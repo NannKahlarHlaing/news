@@ -1,0 +1,38 @@
+/* body{
+    marign:0;
+    padding: 0;
+} */
+.container{
+    height: 150vh;
+    background-color: aqua;
+}
+.navScroll{
+     position: fixed;
+     width:100%;
+     z-index: 100;
+ }
+  .sticky{
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+   
+  }
+
+  .form-control{
+    border-radius: 0;
+  }
+
+  #search-form{
+    margin: 5px auto;
+  }
+
+  .search-input{
+    background-color: transparent;
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #fff;
+  }
+  .search-input:focus{
+    outline: 0;
+    background-color: transparent;
+  }
