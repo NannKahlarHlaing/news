@@ -2,10 +2,25 @@
     marign:0;
     padding: 0;
 } */
-.container{
-    height: 150vh;
-    background-color: aqua;
+h2{
+  font-family: 'Caprasimo', cursive;
+  margin-bottom: 15px;
 }
+a{
+  text-decoration: none;
+  color: #545454;
+}
+a:hover{
+  color: #CF232B;
+}
+.container{
+    height: 50px;
+}
+.d-flex-center{
+  display: flex;
+  justify-content: center;
+}
+
 .navScroll{
      position: fixed;
      width:100%;
@@ -36,3 +51,103 @@
     outline: 0;
     background-color: transparent;
   }
+  .offcanvas{
+    background-color: #CF232B;;
+  }
+
+  /* home page */
+
+  .home{
+    /* height: 600px; */
+    padding: 30px 0;
+  }
+  .row{
+    /* margin-bottom: 30px; */
+  }
+  .site-title{
+    margin-bottom: 20px;
+  }
+  .feature{
+    margin: 30px 0;
+  }
+.circle{
+  border: 1px solid #242423;
+  background-color: transparent;
+  color: #242423;
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 12.5px;
+  display: inline-block;
+  font-size: 15px;
+}
+.current{
+  background: #242423;
+    position: relative;
+    /*  */
+    padding: 1em 0;
+    z-index: -1;
+}
+.half{
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50%);
+  background: #CF232B;
+  z-index: 0;
+}
+.fa-calendar{
+  text-align: center;
+  border: 1px solid #CF232B;
+  background-color: transparent;
+  color: #CF232B;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 25px;
+  display: inline-block;
+  font-size: 1.75em;
+}
+.month{
+  font-size: 14px;
+  position: absolute;
+  margin-left: -32px;
+  margin-top: 18px;
+  padding: 0;
+  color: #CF232B;
+}
+.current span{
+  font-size: 10px;
+}
+.most{
+  z-index: 1;
+}
+.fa-eye, .fa-comment-dots{
+  text-align: center;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 25px;
+  display: inline-block;
+  font-size: 1.75em;
+}
+
+.category{
+  background: #242423;
+  color: #fff;
+  /* top: 0;
+  left: 0; */
+  padding: 5px 10px;
+  line-height: 1em;
+  position: absolute;
+  font-size: 0.750em;
+}
+
+
