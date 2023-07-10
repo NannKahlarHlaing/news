@@ -35,13 +35,21 @@ Route::prefix('/admin')->group(function(){
         Route::post('/categories/news/create', 'create')->name('news.category.create');
         Route::get('/categories/news/update/{id}', 'update_form');
         Route::post('/categories/news/update', 'update')->name('news.category.update');
-        Route::get('/categories/news/delete/{id}', 'destroy');
+        Route::delete('/categories/news/delete/{id}', 'destroy');
     });
 
     Route::controller(App\Http\Controllers\NewController::class)->group(function(){
-        Route::get('/categories/news', 'index')->name('backend.news');
-        Route::get('/news/create', 'create_form')->name('backend.news.create');
+        Route::get('/news', 'index')->name('backend.news');
+        Route::get('/news/create', 'create_form')->name('backend.news.create_form');
+        Route::post('/news/create', 'create')->name('backend.news.create');
+        Route::get('/news/update/{id}', 'update_form');
+        Route::post('/news/update', 'update')->name('backend.news.update');
+        Route::delete('/news/delete/{id}', 'destroy');
     });
 });
+
+// news details
+
+Route::get('/news/{id}', [App\Http\Controllers\NewController::class, 'details']);
 
 

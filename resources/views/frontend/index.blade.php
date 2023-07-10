@@ -24,7 +24,7 @@
 <body>
     <div class="container-fluid">
         <div class="row d-flex justify-content-center sticky-lg-top navScroll" id="navbar">
-            <div class="col-10 ">
+            <div class="col-11">
                 <nav class="navbar navbar-expand-lg navbar-light aa">
                     <div class="" id="menu-bar">
                         <button class="btn btn-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>

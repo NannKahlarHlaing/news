@@ -1,8 +1,8 @@
 @extends('backend.index')
 
 @section('content')
-    <section class="container">
-        <h3>Add News Category</h3>
+    <section class="container-fluid">
+        <h3 class="my-3">Add News Category</h3>
         <div class="row">
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route('news.category.create') }}" enctype="multipart/form-data"> 
@@ -10,8 +10,10 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name">
-                        @error('title')
-                            <div class="alert alert-danger">{{ $error }}</div>
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
                         @enderror
                     </div>
                     <div class="form-group">

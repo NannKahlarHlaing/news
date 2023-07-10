@@ -10,6 +10,6 @@ class NewModel extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'category', 'topic', 'desc', 'short_desc', 'img_link','fb_link', 'tw_link', 'li_link','views'];
+    protected $fillable = ['title', 'category', 'topic', 'short_desc', 'desc', 'img_link','fb_link', 'tw_link', 'li_link','views'];
     
 }

@@ -362,7 +362,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-weight: 400;
+  /* font-weight: 400; */
   line-height: 1.2;
 }
 
@@ -11282,3 +11282,16 @@ body.sidebar-toggled footer.sticky-footer {
 .container{
   padding: 20px !important;
 }
+
+
+.description-column {
+  width: 500px; /* Set the desired width for the description column */
+}
+
+.vertical {
+  width: 1px; /* Width of the vertical line */
+  height: 200px; /* Height of the vertical line */
+  background: linear-gradient(to bottom, black 100%, transparent 50%); /* Vertical line style */
+  margin: 0 auto;
+}
+

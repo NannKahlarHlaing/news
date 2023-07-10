@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('topic');
             $table->string('short_desc');
-            $table->string('desc');
+            $table->text('desc', 65535);
             $table->string('img_link');
             $table->string('fb_link');
             $table->string('tw_link');

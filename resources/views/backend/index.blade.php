@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title> The Irrawaddy - Dashboard</title>
     
 
     <!-- Custom fonts for this template-->
@@ -20,6 +20,11 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('/backend/css/sb-admin-2.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('/backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -97,6 +102,13 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('/backend/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('/js/demo/chart-pie-demo.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('/backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('/backend/js/demo/datatables-demo.js') }}"></script>
 
 </body>
 
