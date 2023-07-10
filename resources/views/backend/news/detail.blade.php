@@ -11,6 +11,7 @@
                     <div class="col-md-9">
                         <div class="row mb-5">
                             <div class="col-12">
+                                <span class="d-none" id="id">{{ $post->id }}</span>
                                 <span>{{ $post->category }}</span>
                                 <h2>{{ $post->title }}</h2>
                             </div>
@@ -28,7 +29,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-1 social">
+                            <div class="col-1 social" id="social">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="btn btn-transparent  btn-circle-fe mb-2">
@@ -42,7 +43,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="btn border-bottom mb-2">
-                                            <span class="">0</span>
+                                            <span id="views">{{ $post->views }}</span>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -100,4 +101,31 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function(){
+        var value = $('#views').html();
+        var id = $('#id').html();
+        $.ajax({
+            url: '{{ route('views_count') }}',
+            method: 'GET',
+            data: {value: value, id: id},
+            success: function(response){
+                $('#views').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.log('error' + error);
+            }
+        });
+
+        var social = $('#social');
+        var socialOffset = social.offset().top;
+
+        // $(window).scroll(function () {
+        //     $('#social').addClass('social-sticky')
+        // });
+    });
+</script> 
 @endsection

@@ -69,6 +69,20 @@ class NewController extends Controller
         return view('/backend.news.detail', compact('post'));
     }
 
+    public function addValue(Request $request){
+        $value = $request->input('value');
+        $id = $request->input('id');
+
+        $addedValue = $value + 1;
+
+        $post = NewModel::find($id);
+
+        $post->views = $addedValue;
+
+        $post->save();
+
+        return $addedValue;
+    }
 
     private function validation($request){
         Validator::make($request->all(),[

@@ -198,6 +198,9 @@ a:hover{
   background-color: #0c63a6;
   color:#fff;
 }
-
+.social-sticky{
+  position: fixed;
+  top: 0;
+}
 
 

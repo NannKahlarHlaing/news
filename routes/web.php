@@ -52,4 +52,5 @@ Route::prefix('/admin')->group(function(){
 
 Route::get('/news/{id}', [App\Http\Controllers\NewController::class, 'details']);
 
+Route::get('/add_value', [App\Http\Controllers\NewController::class, 'addValue'])->name('views_count');
 
