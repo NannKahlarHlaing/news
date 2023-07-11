@@ -104,7 +104,199 @@
         
     </div>
     @yield('content')
-@yield('js')
+    <div class="container-fulid bg-dark">
+        <div class="row d-flex-center" style="margin: 0">
+            <div class="col-11 p-3">
+                <div class="row my-4">
+                    <div class="col-10">
+                        <nav class="nav">
+                            <a class="nav-link active" href="#">COPYRIGHT</a>
+                            <a class="nav-link" href="#">CODE OF ETHICS</a>
+                            <a class="nav-link" href="#">PRIVACY POLICY</a>
+                            <a class="nav-link" href="#">CAREERS</a>
+                            <a class="nav-link" href="#">TEAM</a>
+                            <a class="nav-link" href="#">ABOUT US</a>
+                            <a class="nav-link" href="#">CONTACT</a>
+                        </nav>
+                    </div>
+                    <div class="col-2 d-flex justify-content-end align-items-center">
+                        <a href="" onclick="topFunction()" id="top">Top <i class="fa-sharp fa-solid fa-angle-up"></i></a>
+                    </div>
+                </div>
+                <div class="row footer-social">
+                    <div class="col-12">
+                        <ul>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>3.8M+ Fans</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-brands fa-youtube"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>12K Follow</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-brands fa-twitter"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>SUBS</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-wifi"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>FEED</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-thumbs-up"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>LIKED</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>LOVED</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-face-surprise"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>WOWED</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-face-sad-tear"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>SAD</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-camera"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded">
+                                        <div class="col-12">
+                                            <span>PHOTOS</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li style="">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-12 d-flex-center">
+                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                                <i class="fa-solid fa-house"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bg-danger rounded ">
+                                        <div class="col-12">
+                                            <span>HOME</span>
+                                        </div>
+                                    </div>
+                                    
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="copyright"> Copyright © 2016 Irrawaddy Publishing Group. All Rights Reserved</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @yield('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 $(document).ready(function(){
@@ -146,6 +338,24 @@ $(document).ready(function(){
         $('.aa').removeClass('d-none');
     })
 })
+let mybutton = document.getElementById("top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    // if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    //     mybutton.style.display = "block";
+    // } else {
+    //     mybutton.style.display = "none";
+    // }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
 </script>
 </body>
 </html>

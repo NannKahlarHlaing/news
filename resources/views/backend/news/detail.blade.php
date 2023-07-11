@@ -80,17 +80,17 @@
                                         </div>
                                         <hr class="line col">
                                         <span class="text-end col">YOUR THOUGHTS …</span>
-                                        <div class="btn btn-transparent  btn-circle-fe mb-2">
-                                            <i class="fa-regular fa-comment-dots"></i>
+                                        <div class="btn btn-reaction mb-2">
+                                            <img src="{{ asset('/images/liked.svg') }}" alt="">
                                         </div>
-                                        <div class="btn btn-transparent  btn-circle-fe mb-2">
-                                            <i class="fa-regular fa-comment-dots"></i>
+                                        <div class="btn btn-reaction mb-2">
+                                            <img src="{{ asset('/images/loved.svg') }}" alt="">
                                         </div>
-                                        <div class="btn btn-transparent  btn-circle-fe mb-2">
-                                            <i class="fa-regular fa-comment-dots"></i>
+                                        <div class="btn btn-reaction mb-2">
+                                            <img src="{{ asset('/images/wow.svg') }}" alt="">
                                         </div>
-                                        <div class="btn btn-transparent  btn-circle-fe mb-2">
-                                            <i class="fa-regular fa-comment-dots"></i>
+                                        <div class="btn btn-reaction mb-2">
+                                            <img src="{{ asset('/images/sad.svg') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
