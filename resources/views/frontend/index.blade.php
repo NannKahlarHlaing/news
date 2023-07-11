@@ -104,10 +104,10 @@
         
     </div>
     @yield('content')
-    <div class="container-fulid bg-dark">
+    <div class="container-fulid bg-dark border-top border-4 border-danger">
         <div class="row d-flex-center" style="margin: 0">
             <div class="col-11 p-3">
-                <div class="row my-4">
+                <div class="row mb-4">
                     <div class="col-10">
                         <nav class="nav">
                             <a class="nav-link active" href="#">COPYRIGHT</a>
@@ -308,8 +308,10 @@ $(document).ready(function(){
     $('#text-menu').addClass('d-none');
 
     $(window).scroll(function () {
+        
         if ($(window).scrollTop() > navbarOffset) {
-            navbar.addClass('sticky scrolled bg-white');
+            navbar.removeClass('bg-danger');
+            navbar.addClass('sticky scrolled bg-background');
             $('#nav-hide').addClass('d-none');
             $('#site-title').addClass('text-danger');
             $('#site-title').removeClass('d-none');
@@ -318,8 +320,8 @@ $(document).ready(function(){
             $('#text-all').addClass('d-none');
         } else {
             
-            // $('.fa-bars').removeClass('text-white');
-            navbar.removeClass('sticky scrolled bg-white');
+            navbar.addClass('bg-danger');
+            navbar.removeClass('sticky scrolled bg-background');
             $('#nav-hide').removeClass('d-none');
             $('#site-title').addClass('d-none');
             $('#menu-bar').removeClass('col');

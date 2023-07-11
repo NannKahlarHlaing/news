@@ -20,7 +20,19 @@ a{
   color: #545454;
 }
 a:hover{
-  color: var(--volor-red);
+  color: var(--color-red);
+}
+.btn-danger{
+  color: var(--font-color);
+  background-color: var(--color-red);
+  border-color: var(--color-red);
+}
+.bg-danger{
+  background-color: var(--color-red) !important;
+}
+.bg-background{
+  background-color: var(--font-color);
+  border-bottom: 1px solid #fff;;
 }
 .container{
     height: 50px;
@@ -61,7 +73,7 @@ a:hover{
     background-color: transparent;
   }
   .offcanvas{
-    background-color: var(--volor-red);
+    background-color: var(--color-red);
   }
 
   /* home page */
@@ -104,14 +116,14 @@ a:hover{
   top: 0;
   bottom: 0;
   left: calc(50%);
-  background: var(--volor-red);
+  background: var(--color-red);
   z-index: 0;
 }
 .fa-calendar{
   text-align: center;
-  border: 1px solid var(--volor-red);
+  border: 1px solid var(--color-red);
   background-color: transparent;
-  color: var(--volor-red);
+  color: var(--color-red);
   height: 50px;
   width: 50px;
   line-height: 50px;
@@ -126,7 +138,7 @@ a:hover{
   margin-left: -32px;
   margin-top: 18px;
   padding: 0;
-  color: var(--volor-red);
+  color: var(--color-red);
 }
 .current span{
   font-size: 10px;
@@ -237,7 +249,7 @@ a:hover{
 }
 
 #top{
-  color : var(--volor-red);
+  color : var(--color-red);
 }
 .footer-social ul{
   list-style: none;
@@ -260,7 +272,7 @@ a:hover{
 }
 .copyright{
   margin: 50px 0 0;
-  color: var(--volor-red);
+  color: var(--color-red);
   text-align: center;
   font-size: 13px;
 }
@@ -282,6 +294,67 @@ a:hover{
 .video h3{
   color: var(--font-color);
 }
+.top-one{
+    background: #CF232B;
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #ECE7DD;
+    border: 2px solid #ECE7DD;
+    height: 50px;
+    width: 50px;
+    line-height: 42px;
+    text-align: center;
+    border-radius: 25px;
+}
+.top-one .fa-eye{
+  text-align: center;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 25px;
+  display: inline-block;
+  font-size: 1.75em;
+}
+.top{
+  transition: 0.5s;
+}
+.top h2 a{
+  color: var(--font-color) !important;
+}
+
+.top:hover{
+  opacity: 0.9;
+  
+  .top span{
+    color: #fff;
+  }
+}
+
+.top-ten{
+  background-color: #e0454d;
+}
+.top-ten .top-one{
+  margin-left: 10px;
+}
+.ml--47{
+  margin-left: -47px;
+}
+h6 a{
+  color: #000;
+}
+.top-ten:hover{
+  opacity: 0.9;
+}
+
+
+
 
 
 
