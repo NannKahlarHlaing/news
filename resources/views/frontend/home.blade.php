@@ -516,7 +516,7 @@
                         </div>
                         <div class="row">
                             <div id="singleImageContainer">
-                                <img id="singleImage" class="img-thumbnail" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg">
+                                {{-- <img id="singleImage" class="img-thumbnail" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg"> --}}
                                 <p class="imglist" style="max-width: 1000px;">
                                     <a href="https://source.unsplash.com/juHayWuaaoQ/1500x1000" data-fancybox="images" data-caption="Backpackers following a dirt trail">
                                       <img src="https://source.unsplash.com/juHayWuaaoQ/240x160" />
@@ -549,7 +549,7 @@
                                     <a href="https://source.unsplash.com/B2LYYV9-y0s/1500x1000" data-fancybox="images" data-caption="On them Indiana Nights" class="d-none">
                                       <img src="https://source.unsplash.com/B2LYYV9-y0s/240x160" />
                                     </a>
-                                  </p>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -919,44 +919,7 @@
         </div>
     </div>
 </section>
- <!-- Bootstrap Carousel Modal -->
-<div id="carouselModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="carouselModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-        <div class="modal-body">
-            <div id="carouselExample" class="carousel slide" data-ride="carousel">
-            <!-- Carousel Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExample" data-slide-to="1"></li>
-                <li data-target="#carouselExample" data-slide-to="2"></li>
-            </ol>
-            <!-- Carousel Slides -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" class="d-block w-100">
-                </div>
-            </div>
-            <!-- Carousel Controls -->
-            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
+
 
   
   <script>

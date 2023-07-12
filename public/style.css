@@ -6,20 +6,24 @@
 :root {
   --font-color: #ECE7DD;
   --color-red: #CF232B;
+  --color-dgray: #242423;
+  --color-gray: #545454;
 }
 body{
   background-color: var(--font-color);
 }
+
 h2, h5, h6{
   font-family: 'Caprasimo', cursive;
   margin-bottom: 15px;
-  color: #545454;
+  color: var(--colo-gray);
 }
 a{
   text-decoration: none;
-  color: #545454;
+  color: var(--colo-gray);
 }
 a:hover{
+  text-decoration: none;
   color: var(--color-red);
 }
 .btn-danger{
@@ -171,7 +175,11 @@ a:hover{
   font-size: 0.750em;
 }
 
-
+.social .fa-eye, .social .fa-comment-dots{
+  border: 0 !important;
+  color: var(--color-dgray);
+  font-size: 20px;
+}
 
 
 .line {
@@ -351,6 +359,139 @@ h6 a{
 }
 .top-ten:hover{
   opacity: 0.9;
+}
+
+/* ============ photos=> image carousel ============ */
+
+.slick-slider .slick-prev, .slick-slider .slick-next {
+  z-index: 100;
+  font-size: 2.5em;
+  height: 40px;
+  width: 40px;
+  margin-top: -20px;
+  color: #B7B7B7;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  color: #000;
+  opacity: .3;
+  transition: opacity .25s;
+  cursor: pointer;
+}
+.slick-slider .slick-prev:hover, .slick-slider .slick-next:hover {
+  opacity: .65;
+}
+.slick-slider .slick-prev {
+  left: 0;
+}
+.slick-slider .slick-next {
+  right: 0;
+}
+
+#detail .product-images {
+  width: 100%;
+  margin: 0 auto;
+  border:1px solid #eee;
+}
+#detail .product-images li, #detail .product-images figure, #detail .product-images a, #detail .product-images img {
+  display: block;
+  outline: none;
+  border: none;
+}
+#detail .product-images .main-img-slider figure {
+  margin: 0 auto;
+  padding: 0 2em;
+}
+#detail .product-images .main-img-slider figure a {
+  cursor: pointer;
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in;
+}
+#detail .product-images .main-img-slider figure a img {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+#detail .product-images .thumb-nav {
+  margin: 0 auto;
+  padding:20px 10px;
+  max-width: 600px;
+}
+#detail .product-images .thumb-nav.slick-slider .slick-prev, #detail .product-images .thumb-nav.slick-slider .slick-next {
+  font-size: 1.2em;
+  height: 20px;
+  width: 26px;
+  margin-top: -10px;
+}
+#detail .product-images .thumb-nav.slick-slider .slick-prev {
+  margin-left: -30px;
+}
+#detail .product-images .thumb-nav.slick-slider .slick-next {
+  margin-right: -30px;
+}
+#detail .product-images .thumb-nav li {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+#detail .product-images .thumb-nav li img {
+  display: block;
+  width: 100%;
+  max-width: 75px;
+  margin: 0 auto;
+  border: 2px solid transparent;
+  -webkit-transition: border-color .25s;
+  -ms-transition: border-color .25s;
+  -moz-transition: border-color .25s;
+  transition: border-color .25s;
+}
+#detail .product-images .thumb-nav li:hover, #detail .product-images .thumb-nav li:focus {
+  border-color: #999;
+}
+#detail .product-images .thumb-nav li.slick-current img {
+  border-color: #d12f81;
+}
+
+/* ============ photos=> image carousel ============ */
+
+.description{
+  background-color: var(--color-dgray);
+  color: #fff;
+}
+.description .fa-eye{
+  color: #fff;
+}
+.description .btn-circle-social {
+  border: 1px solid #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.description .btn-circle{
+  border: 1px solid #fff;
+}
+
+.last-photos{
+  background-color: #000;
+}
+.last-photos h2{
+  color: var(--colo-gray);
+}
+.latest-photos{
+  background-color: var(--color-dgray);
+}
+
+.video-page{
+  background-color: var(--color-dgray);
+}
+.video-page h2 a{
+  color: var(--color-red);
+}
+.video-page h2 a:hover{
+  color: var(--color-gray);
+}
+.video-page p, .video-page span{
+  color: var(--font-color);
 }
 
 
