@@ -490,9 +490,15 @@
                                 <h3>Videos</h3>
                             </div>
                         </div>
-                        <div class="row">
-                            <iframe width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" allowfullscreen>
-                            </iframe>
+                        <div class="row card-deck ">
+                            <div class="card">
+                                <a data-fancybox href="https://www.youtube.com/watch?v=dK7_bcpGNeE" >
+                                  <img class="card-img-top img-fluid" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" />
+                                </a>
+                                <div class="card-body">
+                                  <p class="card-text">Direct link to YouTube</p>
+                                </div>
+                              </div>
                         </div>
                         
                     </div>
@@ -511,6 +517,39 @@
                         <div class="row">
                             <div id="singleImageContainer">
                                 <img id="singleImage" class="img-thumbnail" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg">
+                                <p class="imglist" style="max-width: 1000px;">
+                                    <a href="https://source.unsplash.com/juHayWuaaoQ/1500x1000" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                                      <img src="https://source.unsplash.com/juHayWuaaoQ/240x160" />
+                                    </a>
+                                  
+                                    <a href="https://source.unsplash.com/eWFdaPRFjwE/1500x1000" data-fancybox="images" data-caption="Mallorca, Llubí, Spain" class="d-none">
+                                      <img src="https://source.unsplash.com/eWFdaPRFjwE/240x160" />
+                                    </a>
+                                    
+                                    <a href="https://source.unsplash.com/c1JxO-uAZd0/1500x1000" data-fancybox="images" data-caption="Danish summer" class="d-none">
+                                      <img src="https://source.unsplash.com/c1JxO-uAZd0/240x160" />
+                                    </a>
+                                  
+                                    <a href="https://source.unsplash.com/eXHeq48Z-Q4/1500x1000" data-fancybox="images" data-caption="Sunrise above a sandy beach" class="d-none">
+                                      <img src="https://source.unsplash.com/eXHeq48Z-Q4/240x160" />
+                                    </a>
+                                  
+                                    <a href="https://source.unsplash.com/RFgO9B_OR4g/1500x1000" data-fancybox="images" data-caption="Woman on a slope by the shore" class="d-none">
+                                      <img src="https://source.unsplash.com/RFgO9B_OR4g/240x160" />
+                                    </a>
+                                  
+                                    <a href="https://source.unsplash.com/7bwQXzbF6KE/1500x1000" data-fancybox="images" data-caption="Mountain hiking sunset" class="d-none">
+                                      <img src="https://source.unsplash.com/7bwQXzbF6KE/240x160" />
+                                    </a>
+                                  
+                                    <a href="https://source.unsplash.com/NhU0nUR7920/1500x1000" data-fancybox="images" data-caption="Sunset Picnic" class="d-none">
+                                      <img src="https://source.unsplash.com/NhU0nUR7920/240x160" />
+                                    </a>
+                                    
+                                    <a href="https://source.unsplash.com/B2LYYV9-y0s/1500x1000" data-fancybox="images" data-caption="On them Indiana Nights" class="d-none">
+                                      <img src="https://source.unsplash.com/B2LYYV9-y0s/240x160" />
+                                    </a>
+                                  </p>
                             </div>
                         </div>
                     </div>
@@ -919,15 +958,19 @@
     </div>
 </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
   <script>
     // Attach click event to single image
     document.getElementById("singleImage").addEventListener("click", function() {
       // Open the carousel modal
       $('#carouselModal').modal('show');
     });
+    //  Set caption from card text
+$('.card-deck a').fancybox({
+  caption : function( instance, item ) {
+    return $(this).parent().find('.card-text').html();
+  }
+});
   </script>
 
 @endsection
