@@ -8,6 +8,7 @@
   --color-red: #CF232B;
   --color-dgray: #242423;
   --color-gray: #545454;
+  --color-pale: #dad0bc;
 }
 body{
   background-color: var(--font-color);
@@ -16,11 +17,11 @@ body{
 h2, h5, h6{
   font-family: 'Caprasimo', cursive;
   margin-bottom: 15px;
-  color: var(--colo-gray);
+  color: var(--color-gray);
 }
 a{
   text-decoration: none;
-  color: var(--colo-gray);
+  color: var(--color-gray);
 }
 a:hover{
   text-decoration: none;
@@ -475,7 +476,7 @@ h6 a{
   background-color: #000;
 }
 .last-photos h2{
-  color: var(--colo-gray);
+  color: var(--color-gray);
 }
 .latest-photos{
   background-color: var(--color-dgray);
@@ -492,6 +493,26 @@ h6 a{
 }
 .video-page p, .video-page span{
   color: var(--font-color);
+}
+.careers-title {
+  padding: 30px 0;
+  text-align: center;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.career{
+  background-color: var(--color-pale);
+  margin-bottom: 10px;
+}
+
+.career .fa-location-dot{
+  border: 0;
+  color: var(--color-dgray);
+  font-size: 10px;
+}
+.career .btn-circle-fe{
+  height: 25px;
+  width: 10px;
 }
 
 

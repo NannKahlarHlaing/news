@@ -59,6 +59,8 @@ Route::get('/add_value', [App\Http\Controllers\NewController::class, 'addValue']
 Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
     Route::get('/videos', 'show_videos')->name('frontend.videos');
     Route::get('/photos', 'show_photos')->name('frontend.photos');
+    Route::get('/donation', 'donation')->name('frontend.donation');
+    Route::get('/careers', 'careers')->name('frontend.careers');
 });
 
 
