@@ -61,6 +61,7 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
     Route::get('/photos', 'show_photos')->name('frontend.photos');
     Route::get('/donation', 'donation')->name('frontend.donation');
     Route::get('/careers', 'careers')->name('frontend.careers');
+    Route::get('/contact', 'contact')->name('frontend.contact');
 });
 
 

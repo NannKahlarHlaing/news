@@ -494,7 +494,7 @@ h6 a{
 .video-page p, .video-page span{
   color: var(--font-color);
 }
-.careers-title {
+.careers-title, .contact-title {
   padding: 30px 0;
   text-align: center;
   background-color: rgba(255,255,255,0.5);
@@ -514,6 +514,34 @@ h6 a{
   height: 25px;
   width: 10px;
 }
+.career .fa-circle-plus{
+  font-size: 2em;
+}
+.career span{
+  font-size: 0.81em;
+}
+
+.contact .form-control, .contact .form-select{
+  border: 1px solid #545454 !important;
+  border-radius: 0.25rem;
+  background-color: #ECE7DD;
+}
+
+.contact .btn-circle{
+  font-size: 40px;
+  height: 4rem;
+  width: 4rem;
+}
+
+.contact .btn-fb{
+  background-color: var(--color-red);
+}
+
+.contact .social-title{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 
 
 
