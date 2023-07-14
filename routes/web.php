@@ -46,6 +46,15 @@ Route::prefix('/admin')->group(function(){
         Route::post('/news/update', 'update')->name('backend.news.update');
         Route::delete('/news/delete/{id}', 'destroy');
     });
+
+    Route::controller(App\Http\Controllers\PhotoController::class)->group(function(){
+        Route::get('/photos', 'index')->name('backend.photos');
+        Route::get('/photos/create', 'create_form')->name('backend.photos.create_form');
+        Route::post('/photos/create', 'create')->name('backend.photos.create');
+        Route::get('/photos/update/{id}', 'update_form');
+        Route::post('/photos/update', 'update')->name('backend.photos.update');
+        // Route::delete('/photos/delete/{id}', 'destroy');
+    });
 });
 
 // news details
@@ -54,7 +63,7 @@ Route::get('/news/{id}', [App\Http\Controllers\NewController::class, 'details'])
 
 Route::get('/add_value', [App\Http\Controllers\NewController::class, 'addValue'])->name('views_count');
 
-//frontend 
+//frontend
 
 Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
     Route::get('/videos', 'show_videos')->name('frontend.videos');

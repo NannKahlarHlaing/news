@@ -12,6 +12,7 @@ class FrontendController extends Controller
 
     public function show_photos(){
         return view('frontend.photos.photos');
+        // return view('frontend.test');
     }
 
     public function donation(){

@@ -1,5 +1,8 @@
 @extends('frontend.index')
-
+@section('css')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
+<link rel="stylesheet" type="text/css" href="https://codepen.io/fancyapps/pen/Kxdwjj.css">
+@endsection
 @section('content')
 <section class="home">
     <div class="container-fluid">
@@ -921,19 +924,20 @@
 </section>
 
 
-  
-  <script>
-    // Attach click event to single image
-    document.getElementById("singleImage").addEventListener("click", function() {
-      // Open the carousel modal
-      $('#carouselModal').modal('show');
-    });
-    //  Set caption from card text
+@endsection
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>  
+<script>
+  // Attach click event to single image
+  document.getElementById("singleImage").addEventListener("click", function() {
+    // Open the carousel modal
+    $('#carouselModal').modal('show');
+  });
+  //  Set caption from card text
 $('.card-deck a').fancybox({
-  caption : function( instance, item ) {
-    return $(this).parent().find('.card-text').html();
-  }
+caption : function( instance, item ) {
+  return $(this).parent().find('.card-text').html();
+}
 });
-  </script>
-
+</script>
 @endsection

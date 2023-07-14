@@ -5,7 +5,7 @@
         <h3 class="my-3">Edit News</h3>
         <div class="row">
             <div class="col-md-8 ">
-                <form class="form" method="POST" action="{{route('backend.news.update') }}" enctype="multipart/form-data"> 
+                <form class="form" method="POST" action="{{route('backend.news.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">
@@ -17,7 +17,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-group">  
+                    <div class="form-group">
                         <label>Categories</label>
                         <select class="form-control @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
                             <option value="">Select Category</option>
@@ -50,7 +50,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="desc">Short Description</label>
+                        <label for="desc">Description</label>
                         <textarea class="form-control @error('desc') is-invalid @enderror"name="desc" id="desc" rows="10">{{ old('desc', $post->desc) }}</textarea>
                         @error('desc')
                             <div class="invalid-feedback">
@@ -94,7 +94,7 @@
                             </div>
                         @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>

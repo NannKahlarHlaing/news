@@ -49,11 +49,11 @@ class NewController extends Controller
         $post->fb_link = $request->fb_link;
         $post->tw_link = $request->tw_link;
         $post->li_link = $request->li_link;
-        
+
         $post->save();
 
         return redirect ('/admin/news')->with('status', 'News is updated successfully!');
-        
+
     }
 
     public function destroy($id){
@@ -61,7 +61,7 @@ class NewController extends Controller
         $post->delete();
 
         return redirect ('/admin/news')->with('status', 'News is deleted successfully!');
-        
+
     }
 
     public function details($id){
