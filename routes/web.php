@@ -30,12 +30,12 @@ Route::prefix('/admin')->group(function(){
     });
 
     Route::controller(App\Http\Controllers\NewsCategoryController::class)->group(function(){
-        Route::get('/categories/news', 'index')->name('news.category');
-        Route::get('/categories/news/create', 'create_form')->name('news.category.create_form');
-        Route::post('/categories/news/create', 'create')->name('news.category.create');
-        Route::get('/categories/news/update/{id}', 'update_form');
-        Route::post('/categories/news/update', 'update')->name('news.category.update');
-        Route::delete('/categories/news/delete/{id}', 'destroy');
+        Route::get('/categories', 'index')->name('category');
+        Route::get('/categories/create', 'create_form')->name('category.create_form');
+        Route::post('/categories/create', 'create')->name('category.create');
+        Route::get('/categories/update/{id}', 'update_form');
+        Route::post('/categories/update', 'update')->name('category.update');
+        Route::delete('/categories/delete/{id}', 'destroy');
     });
 
     Route::controller(App\Http\Controllers\NewController::class)->group(function(){
@@ -53,8 +53,36 @@ Route::prefix('/admin')->group(function(){
         Route::post('/photos/create', 'create')->name('backend.photos.create');
         Route::get('/photos/update/{id}', 'update_form');
         Route::post('/photos/update', 'update')->name('backend.photos.update');
-        // Route::delete('/photos/delete/{id}', 'destroy');
+        Route::delete('/photos/delete/{id}', 'destroy');
     });
+
+    Route::controller(App\Http\Controllers\VideoController::class)->group(function(){
+        Route::get('/videos', 'index')->name('backend.videos');
+        Route::get('/videos/create', 'create_form')->name('backend.videos.create_form');
+        Route::post('/videos/create', 'create')->name('backend.videos.create');
+        Route::get('/videos/update/{id}', 'update_form');
+        Route::post('/videos/update', 'update')->name('backend.videos.update');
+        Route::delete('/videos/delete/{id}', 'destroy');
+    });
+
+    Route::controller(App\Http\Controllers\CareerController::class)->group(function(){
+        Route::get('/careers', 'index')->name('backend.careers');
+        Route::get('/careers/create', 'create_form')->name('backend.careers.create_form');
+        Route::post('/careers/create', 'create')->name('backend.careers.create');
+        Route::get('/careers/update/{id}', 'update_form');
+        Route::post('/careers/update', 'update')->name('backend.careers.update');
+        Route::delete('/careers/delete/{id}', 'destroy');
+    });
+    
+    Route::controller(App\Http\Controllers\SocialContoller::class)->group(function(){
+        Route::get('/socials', 'index')->name('backend.socials');
+        // Route::get('/socials/create', 'create_form')->name('backend.socials.create_form');
+        Route::post('/socials/create', 'create')->name('backend.socials.create');
+        // Route::get('/socials/update/{id}', 'update_form');
+        // Route::post('/socials/update', 'update')->name('backend.socials.update');
+        // Route::delete('/socials/delete/{id}', 'destroy');
+    });
+
 });
 
 // news details

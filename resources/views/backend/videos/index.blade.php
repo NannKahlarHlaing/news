@@ -14,10 +14,10 @@
     </div>
     <div class="row pt-5">
         <div class="col-md-8">
-            <h3>Photos</h3>
+            <h3>Videos</h3>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.photos.create_form') }}" class="btn btn-primary">Add Photos</a>
+            <a href="{{ route('backend.videos.create_form') }}" class="btn btn-primary">Add Videos</a>
         </div>
     </div>
     <div class="row py-5 px-3">
@@ -49,17 +49,17 @@
                             @foreach ($posts as $item)
 
                                 <tr>
+                                    <td>{{ $item->title }}</td>
                                     <td>{{ $item->url }}</td>
                                     <td>{{ $item->desc }}</td>
-                                    <td>{{ $item->camera }}</td>
-                                    <td>{{ $item->views }}</td>
+                                    <td>{{ $item->category }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/photos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                        <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{{ url('/admin/photos/delete', $item->id) }}" method="POST">
+                                        <form action="{{ url('/admin/videos/delete', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
 

@@ -26,7 +26,7 @@
         Interface
     </div>
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -39,6 +39,12 @@
                 <!-- <a class="collapse-item" href="cards.html">Cards</a> -->
             </div>
         </div>
+    </li> --}}
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('category') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Categories</span></a>
     </li>
 
     <li class="nav-item">
@@ -54,9 +60,21 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('backend.videos') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Videos</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.careers') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Careers</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.socials') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Social</span></a>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->

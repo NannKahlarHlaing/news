@@ -16,13 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('category');
-            $table->string('topic');
+            $table->string('topic')->nullable();
             $table->string('short_desc');
-            $table->text('desc', 65535);
-            $table->string('img_link');
-            $table->string('fb_link');
-            $table->string('tw_link');
-            $table->string('li_link');
+            $table->text('desc', 65535)->nullable();
+            $table->string('img_link')->nullable();
             $table->integer('views');
             $table->timestamps();
             $table->softDeletes();

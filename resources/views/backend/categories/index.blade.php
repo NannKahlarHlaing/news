@@ -7,7 +7,7 @@
             <h3 class="">News Categories</h3>
         </div>
         <div class="col-md-3">
-            <a href="{{ route('news.category.create_form') }}" class="btn btn-primary">Add New Category</a>
+            <a href="{{ route('category.create_form') }}" class="btn btn-primary">Add New Category</a>
         </div>
     </div>
     <div class="row">
@@ -27,10 +27,10 @@
                         <tr>
                             <td>{{ $post->name }}</td>
                             <td>
-                                <a href="{{ url('/admin/categories/news/update') . '/' . $post->id }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ url('/admin/categories/update') . '/' . $post->id }}" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                                <form action="{{ url('/admin/categories/news/delete', $post->id) }}" method="POST">
+                                <form action="{{ url('/admin/categories/delete', $post->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 

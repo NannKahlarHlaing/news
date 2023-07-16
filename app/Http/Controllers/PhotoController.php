@@ -40,10 +40,17 @@ class PhotoController extends Controller
         $post->desc = $request->desc;
         $post->camera = $request->camera;
 
-
         $post->save();
 
         return redirect ('/admin/photos')->with('status', 'Photos is updated successfully!');
+
+    }
+
+    public function destroy($id){
+        $post = Photo::find($id);
+        $post->delete();
+
+        return redirect ('/admin/photos')->with('status', 'Photos is deleted successfully!');
 
     }
 

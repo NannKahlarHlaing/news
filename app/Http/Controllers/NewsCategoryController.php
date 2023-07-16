@@ -11,11 +11,11 @@ class NewsCategoryController extends Controller
 {
     public function index(){
         $posts = NewsCategory::where('deleted_at', NULL)->get();
-        return view('backend.categories.news.index', compact('posts'));
+        return view('backend.categories.index', compact('posts'));
     }
 
     public function create_form(){
-        return view('backend.categories.news.create');
+        return view('backend.categories.create');
     }
 
     public function create(Request $request){
@@ -24,13 +24,13 @@ class NewsCategoryController extends Controller
 
         NewsCategory::create($data);
 
-        return redirect ('/admin/categories/news');
+        return redirect ('/admin/categories');
         
     }
     
     public function update_form($id){
         $post = NewsCategory::find($id);
-        return view('backend.categories.news.update', compact('post'));
+        return view('backend.categories.update', compact('post'));
     }
 
     public function update(Request $request){
@@ -42,7 +42,7 @@ class NewsCategoryController extends Controller
         $post->name = $request->name;
         $post->save();
 
-        return redirect ('/admin/categories/news')->with('status', 'NewsCategory is updated successfully!');
+        return redirect ('/admin/categories')->with('status', 'NewsCategory is updated successfully!');
         
     }
 
@@ -50,7 +50,7 @@ class NewsCategoryController extends Controller
         $post = NewsCategory::find($id);
         $post->delete();
 
-        return redirect('/admin/categories/news')->with('status', 'NewsCategory is deleted successfully!');
+        return redirect('/admin/categories')->with('status', 'NewsCategory is deleted successfully!');
     }
 
     private function validation($request){

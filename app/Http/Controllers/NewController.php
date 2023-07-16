@@ -88,13 +88,7 @@ class NewController extends Controller
         Validator::make($request->all(),[
             'title' => 'required',
             'category' => 'required',
-            'topic' => 'required',
             'short_desc' => 'required',
-            'desc' => 'required',
-            'img_link' => 'required',
-            'fb_link' => 'required',
-            'tw_link' => 'required',
-            'li_link' => 'required',
         ])->validate();
     }
 
@@ -106,9 +100,6 @@ class NewController extends Controller
             'short_desc' => $request->short_desc,
             'desc' => $request->desc,
             'img_link' => $request->img_link,
-            'fb_link' => $request->fb_link,
-            'tw_link' => $request->tw_link,
-            'li_link' => $request->li_link,
             'views' => 0
         ];
     }

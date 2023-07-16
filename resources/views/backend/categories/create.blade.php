@@ -5,7 +5,7 @@
         <h3 class="my-3">Add News Category</h3>
         <div class="row">
             <div class="col-md-8">
-                <form class="form" method="POST" action="{{ route('news.category.create') }}" enctype="multipart/form-data"> 
+                <form class="form" method="POST" action="{{ route('category.create') }}" enctype="multipart/form-data"> 
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>

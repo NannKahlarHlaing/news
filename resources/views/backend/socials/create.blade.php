@@ -2,15 +2,14 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Edit News Category</h3>
+        <h3 class="my-3">Add News Category</h3>
         <div class="row">
             <div class="col-md-8">
-                <form class="form" method="POST" action="{{ route('news.category.update') }}" enctype="multipart/form-data"> 
+                <form class="form" method="POST" action="{{ route('category.create') }}" enctype="multipart/form-data"> 
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="hidden" name="id" value="{{ $post->id }}">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $post->name) }}" name="name">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name">
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}

@@ -34,24 +34,11 @@
                     <div class="col-12">
                         <h3>{{ $item->title }}</h3>
                     </div>
-                    <div class="col-5">
-                        <h5 class="fw-bold">Topics: </h5>
-                        <span>{{ $item->topic }}</span>
-                        <h5 class="fw-bold mt-2">Facebook Link:</h5>
-                        <span >{{ $item->fb_link }}</span>
-                        <h5 class="fw-bold mt-2">Short Description: </h5>
-                        <p>{{ $item->short_desc }}</p>
-                    </div>
-                    <div class="col-2">
-                        <hr class="vertical">
-                    </div>
-                    <div class="col-5">
+                    <div class="col-6">
                         <h5 class="fw-bold">Category: </h5> <span>{{ $item->category }}</span>
-                        <h5 class="fw-bold mt-2">Twitter Link: </h5> <span>{{ $item->tw_link }}</span>
-                        <h5 class="fw-bold mt-2">Linked In Link: </h5> <span>{{ $item->li_link }}</span>
                     </div>
-                    <div class="col-12">
-                        
+                    <div class="col-6">
+                        <h5 class="fw-bold">Views: </h5> <span>{{ $item->views }}</span>
                     </div>
                 </div>
             </div>
@@ -84,16 +71,8 @@
                 </div> 
             </div>
         </div>
-        <div class="row pb-5 mb-5 border-bottom">
-            <div class="col-12">
-                <h5 class="fw-bold">Description: </h5>
-                <textarea class="form-control" name="" id="" cols="30" rows="7">{{ $item->desc }}</textarea>
-            </div>
-        </div>
     @endforeach
 </div>
 
     </div>
-
-
 @endsection

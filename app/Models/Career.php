@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class NewModel extends Model
+class Career extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'category', 'topic', 'short_desc', 'desc', 'img_link','views'];
-    
+    protected $fillable = ['position', 'terms', 'location', 'org_background', 'job_overview', 'role', 'qualification', 'benefits', 'latest_date' ];
 }
