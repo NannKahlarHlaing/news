@@ -18,10 +18,10 @@
 <div class="card-header py-3">
     <div class="row mb-3">
         <div class="col-md-8">
-            <h3>News</h3>
+            <h3>Photo Essays</h3>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.news.create_form') }}" class="btn btn-primary">Add News</a>
+            <a href="{{ route('backend.photo_essays.create_form') }}" class="btn btn-primary">Add Photos Essay</a>
         </div>
     </div>
     @foreach ($posts as $item)
@@ -35,27 +35,27 @@
                         <h3>{{ $item->title }}</h3>
                     </div>
                     <div class="col-6">
-                        <h5 class="fw-bold">Category: </h5> <span>{{ $item->category }}</span>
+                        <h5 class="fw-bold">Author: </h5> <span>{{ $item->author }}</span>
                     </div>
                     <div class="col-6">
-                        <h5 class="fw-bold">Views: </h5> <span>{{ $item->views }}</span>
+                        <h5 class="fw-bold">Create Date: </h5> <span>{{ $item->date }}</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-1">
                 <div class="row">
                     <div class="col-12 mb-3">
-                        <a href="{{ url('/admin/news/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                        <a href="{{ url('/admin/photo_essays/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                     </div>
                     <div class="col-12 mb-3">
-                        <a href="{{ url('/news') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                        <a href="{{ url('/photo_essays') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     </div>
                     <div class="col-12">
-                        <form action="{{ url('/admin/news/delete', $item->id) }}" method="POST">
+                        <form action="{{ url('/admin/photo_essays/delete', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
 

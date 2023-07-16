@@ -76,11 +76,16 @@ Route::prefix('/admin')->group(function(){
     
     Route::controller(App\Http\Controllers\SocialContoller::class)->group(function(){
         Route::get('/socials', 'index')->name('backend.socials');
-        // Route::get('/socials/create', 'create_form')->name('backend.socials.create_form');
         Route::post('/socials/create', 'create')->name('backend.socials.create');
-        // Route::get('/socials/update/{id}', 'update_form');
-        // Route::post('/socials/update', 'update')->name('backend.socials.update');
-        // Route::delete('/socials/delete/{id}', 'destroy');
+    });
+
+    Route::controller(App\Http\Controllers\PhotoEssayController::class)->group(function(){
+        Route::get('/photo_essays', 'index')->name('backend.photo_essays');
+        Route::get('/photo_essays/create', 'create_form')->name('backend.photo_essays.create_form');
+        Route::post('/photo_essays/create', 'create')->name('backend.photo_essays.create');
+        Route::get('/photo_essays/update/{id}', 'update_form');
+        Route::post('/photo_essays/update', 'update')->name('backend.photo_essays.update');
+        Route::delete('/photo_essays/delete/{id}', 'destroy');
     });
 
 });

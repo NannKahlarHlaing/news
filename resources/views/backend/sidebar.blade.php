@@ -60,6 +60,12 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.photo_essays') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Photo Essays</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('backend.videos') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Videos</span></a>

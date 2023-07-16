@@ -2,29 +2,15 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add News</h3>
+        <h3 class="my-3">Add Photo Essays</h3>
         <div class="row">
             <div class="col-md-8 ">
-                <form class="form" method="POST" action="{{route('backend.news.create') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{route('backend.photo_essays.create') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}">
                         @error('title')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Categories</label>
-                        <select class="form-control @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
-                            <option value="">Select Category</option>
-                            @foreach ($categories as $item)
-                                <option value="{{ $item->id  }}" {{ old('category') == $item->id? "selected":"" }}>{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('category')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -61,6 +47,24 @@
                         <label for="img_link">Image Url</label>
                         <input type="text" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link" value="{{ old('img_link') }}">
                         @error('img_link')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author') }}">
+                        @error('author')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Create Date</label>
+                        <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="{{ old('date') }}">
+                        @error('date')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

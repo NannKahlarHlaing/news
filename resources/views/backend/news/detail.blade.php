@@ -47,25 +47,26 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <a href="{{ $post->fb_link }}" class="btn btn-fb btn-circle mb-2">
+                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle mb-2">
                                             <i class="fa-brands fa-facebook-f"></i>
                                         </a>
                                     </div>
                                     <div class="col-12">
-                                        <a href="{{ $post->tw_link }}" class="btn btn-tw btn-circle mb-2">
+                                        <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" target="_blank" rel="noopener" class="btn btn-tw btn-circle mb-2">
                                             <i class="fa-brands fa-twitter"></i>
                                         </a>
                                     </div>
                                     <div class="col-12">
-                                        <a href="{{ $post->li_link }}" class="btn btn-li btn-circle mb-2">
+                                        {{-- <script type="IN/Share" data-url="{{ URL::current() }}"><i class="fa-brands fa-linkedin-in"></i></script> --}}
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" target="_blank" class="btn btn-li btn-circle mb-2">
                                             <i class="fa-brands fa-linkedin-in"></i>
-                                        </a>
+                                          </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-10">
                                 <h6>BY <a href="" class="tex-dark fw-bold me-3">THE IRRAWADDY</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
-                                <p>{{ $post->desc }}</p>
+                                <p>{!! nl2br($post->desc) !!}</p>
                                 <div class="col-12">
                                     <div class="card" style="height: 100px">
                                         ddd
@@ -104,6 +105,13 @@
 @endsection
 
 @section('js')
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="YOUR_NONCE_VALUE"></script>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+
+
 <script>
     $(document).ready(function(){
         var value = $('#views').html();

@@ -2,69 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewModel;
-use App\Models\NewsCategory;
+use App\Models\PhotoEssay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class NewController extends Controller
+class PhotoEssayController extends Controller
 {
     public function index(){
-        $posts = NewModel::where('deleted_at', NULL)->get();
-        return view('backend.news.index', compact('posts'));
+        $posts = PhotoEssay::where('deleted_at', NULL)->get();
+        return view('backend.photo_essays.index', compact('posts'));
     }
 
     public function create_form(){
-        $categories = NewsCategory::where('deleted_at', NULL)->get();
-        return view('backend.news.create', compact('categories'));
+        return view('backend.photo_essays.create');
     }
 
     public function create(Request $request){
         $this->validation($request);
         $data = $this->getData($request);
 
-        NewModel::create($data);
+        PhotoEssay::create($data);
 
-        return redirect ('/admin/news');
+        return redirect ('/admin/photo_essays');
     }
 
     public function update_form($id){
-        $post = NewModel::find($id);
-        $categories = NewsCategory::where('deleted_at', NULL)->get();
-        return view('backend.news.update', compact('post','categories'));
+        $post = PhotoEssay::find($id);
+       
+        return view('backend.photo_essays.update', compact('post'));
     }
 
     public function update(Request $request){
         $this->validation($request);
 
-        $post = NewModel::find($request->id);
+        $post = PhotoEssay::find($request->id);
 
         $post->title = $request->title;
-        $post->category = $request->category;
         $post->topic = $request->topic;
         $post->short_desc = str_replace("\n", "\r\n", $request->short_desc);
         $post->desc = str_replace("\n", "\r\n", $request->desc);
         $post->img_link = $request->img_link;
+        $post->author = $request->author;
+        $post->date = $request->date;
         
-
         $post->save();
 
-        return redirect ('/admin/news')->with('status', 'News is updated successfully!');
+        return redirect ('/admin/photo_essays')->with('status', 'photo_essays is updated successfully!');
 
     }
 
     public function destroy($id){
-        $post = NewModel::find($id);
+        $post = PhotoEssay::find($id);
         $post->delete();
 
-        return redirect ('/admin/news')->with('status', 'News is deleted successfully!');
+        return redirect ('/admin/photo_essays')->with('status', 'photo_essays is deleted successfully!');
 
     }
 
     public function details($id){
-        $post = NewModel::find($id);
-        return view('/backend.news.detail', compact('post'));
+        $post = PhotoEssay::find($id);
+        return view('/backend.photo_essays.detail', compact('post'));
     }
 
     public function addValue(Request $request){
@@ -73,7 +71,7 @@ class NewController extends Controller
 
         $addedValue = $value + 1;
 
-        $post = NewModel::find($id);
+        $post = PhotoEssay::find($id);
 
         $post->views = $addedValue;
 
@@ -85,7 +83,6 @@ class NewController extends Controller
     private function validation($request){
         Validator::make($request->all(),[
             'title' => 'required',
-            'category' => 'required',
             'short_desc' => 'required',
         ])->validate();
     }
@@ -93,12 +90,12 @@ class NewController extends Controller
     private function getData($request){
         return [
             'title' => $request->title,
-            'category' => $request->category,
             'topic' => $request->topic,
             'short_desc' => str_replace("\n", "\r\n", $request->short_desc),
             'desc' => str_replace("\n", "\r\n", $request->desc),
             'img_link' => $request->img_link,
-            'views' => 0
+            'author' => $request->author,
+            'date' => $request->date,
         ];
     }
 }
