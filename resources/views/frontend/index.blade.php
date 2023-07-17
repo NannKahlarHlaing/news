@@ -62,7 +62,7 @@
                                                     <h6><a href="{{ route('frontend.photos') }}">Photos</a></h6>
                                                 </div>
                                                 <div>
-                                                    <h6><a href="">Photo Essays</a></h6>
+                                                    <h6><a href="{{ route('frontend.photo_essays') }}">Photo Essays</a></h6>
                                                 </div>
                                                 <div>
                                                     <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>

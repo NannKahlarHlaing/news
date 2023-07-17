@@ -10,5 +10,5 @@ class Video extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'url', 'desc', 'category'];
+    protected $fillable = ['title', 'video_url', 'img_url', 'desc', 'category'];
 }

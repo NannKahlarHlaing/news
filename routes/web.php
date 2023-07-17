@@ -94,6 +94,8 @@ Route::prefix('/admin')->group(function(){
 
 Route::get('/news/{id}', [App\Http\Controllers\NewController::class, 'details']);
 
+Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
+
 Route::get('/add_count_new', [App\Http\Controllers\NewController::class, 'addValue'])->name('new_views_count');
 
 Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'addValue'])->name('photo_views_count');
@@ -103,6 +105,7 @@ Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'ad
 Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
     Route::get('/videos', 'show_videos')->name('frontend.videos');
     Route::get('/photos', 'show_photos')->name('frontend.photos');
+    Route::get('/photo_essays', 'photo_essays')->name('frontend.photo_essays');
     Route::get('/donation', 'donation')->name('frontend.donation');
     Route::get('/careers', 'careers')->name('frontend.careers');
     Route::get('/contact', 'contact')->name('frontend.contact');

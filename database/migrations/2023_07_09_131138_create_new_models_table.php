@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('category');
             $table->string('topic')->nullable();
-            $table->string('short_desc');
+            $table->text('short_desc', 65535)->nullable();
             $table->text('desc', 65535)->nullable();
             $table->string('img_link')->nullable();
             $table->integer('views');

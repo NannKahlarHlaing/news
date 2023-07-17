@@ -47,7 +47,7 @@
                         <div class="col-12">
                             <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
                             <p>Also this week, foreign minister Than Swe defended the regime’s human rights record even as it simultaneously bombed, shelled and burned civilian settlements.</p>
-                            <button class="btn btn-danger   ">Read Now</button>
+                            <button class="btn btn-danger">Read Now</button>
                         </div>
                     </div>
                 </div>

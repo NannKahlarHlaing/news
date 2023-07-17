@@ -62,7 +62,7 @@ class PhotoEssayController extends Controller
 
     public function details($id){
         $post = PhotoEssay::find($id);
-        return view('/backend.photo_essays.detail', compact('post'));
+        return view('backend.photo_essays.detail', compact('post'));
     }
 
     public function addValue(Request $request){

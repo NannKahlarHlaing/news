@@ -62,7 +62,8 @@ class VideoController extends Controller
     private function validation($request){
         Validator::make($request->all(),[
             'title' => 'required',
-            'url' => 'required',
+            'video_url' => 'required',
+            'img_url' => 'required',
             'category' => 'required',
         ])->validate();
     }
@@ -70,7 +71,8 @@ class VideoController extends Controller
     private function getData($request){
         return [
             'title' => $request->title,
-            'url' => $request->url,
+            'video_url' => $request->video_url,
+            'img_url' => $request->img_url,
             'desc' => $request->desc,
             'category' => $request->category
         ];

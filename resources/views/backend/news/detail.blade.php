@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-10">
                                 <h6>BY <a href="" class="tex-dark fw-bold me-3">THE IRRAWADDY</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
-                                <p>{!! nl2br($post->desc) !!}</p>
+                                <p>{!! str_replace("\n", '', $post->desc) !!}</p>
                                 <div class="col-12">
                                     <div class="card" style="height: 100px">
                                         ddd

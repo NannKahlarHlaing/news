@@ -51,7 +51,7 @@
                             </div>
                             <div class="row mb-3">
                                 <strong class="mb-2">Organizational Background</strong>
-                                {!! nl2br($item->org_background) !!}
+                                {!! str_replace("\n", '', $item->org_background) !!}
                             </div>
                             <div class="row mb-3">
                                 <strong class="mb-2">Job Overview</strong>
@@ -59,8 +59,7 @@
                             </div>
                             <div class="row mb-3">
                                 <strong class="mb-2">Roles and Responsibilities</strong>
-                                {{-- {{$item->role}} --}}
-                                {!! nl2br($item->role) !!}
+                                {!! str_replace("\n", '', $item->role) !!}
                             </div>
                             <div class="row mb-3">
                                 <strong class="mb-2">Qualifications/Requirements</strong>
