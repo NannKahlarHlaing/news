@@ -54,6 +54,21 @@ class PhotoController extends Controller
 
     }
 
+    public function addValue(Request $request){
+        $value = $request->input('value');
+        $id = $request->input('id');
+
+        $addedValue = $value + 1;
+
+        $post = Photo::find($id);
+
+        $post->views = $addedValue;
+
+        $post->save();
+
+        return $value;
+    }
+
     private function validation($request){
         Validator::make($request->all(),[
             'url' => 'required',

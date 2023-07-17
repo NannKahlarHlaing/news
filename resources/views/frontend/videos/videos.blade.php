@@ -1,7 +1,15 @@
 @extends('frontend.index')
 
 @section('content')
-
+@section('css')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
+<link rel="stylesheet" type="text/css" href="https://codepen.io/fancyapps/pen/Kxdwjj.css">
+<style>
+    .last-photos{
+        background-color: ;
+    }
+</style>
+@endsection
 <section class="video-page py-5">
     <div class="container-fluid">
         <div class="row d-flex-center">
@@ -53,6 +61,89 @@
                 <h2 class="text-center">LATEST VIEWING</h2>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card">
+                    <a data-fancybox href="https://www.youtube.com/watch?v=dK7_bcpGNeE" >
+                      <img class="card-img-top img-fluid" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" />
+                    </a>
+                    <div class="card-body">
+                      <p class="card-text">Direct link to YouTube</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <a data-fancybox href="https://www.youtube.com/watch?v=dK7_bcpGNeE" >
+                      <img class="card-img-top img-fluid" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" />
+                    </a>
+                    <div class="card-body">
+                      <p class="card-text">Direct link to YouTube</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <a data-fancybox href="https://www.youtube.com/watch?v=dK7_bcpGNeE" >
+                      <img class="card-img-top img-fluid" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" />
+                    </a>
+                    <div class="card-body">
+                      <p class="card-text">Direct link to YouTube</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+<section class="last-photos">
+    <div class="container-fluid">
+        <div class="row d-flex-center">
+            <div class="col-11">
+                <div class="row">
+                    <div class="col-4">
+                        <h2 class="text-center">Filter</h2>
+                    </div>
+                    <div class="col-4">
+                        <h2 class="text-center">Filter</h2>
+                    </div>
+                    <div class="col-4">
+                        <h2 class="text-center">Filter</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <a data-fancybox href="https://www.youtube.com/watch?v=dK7_bcpGNeE" >
+                  <img class="card-img-top img-fluid" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" />
+                </a>
+                <div class="card-body">
+                  <p class="card-text">Direct link to YouTube</p>
+                </div>
+            </div>
+        </div>
+        <div class="row py-5">
+            <div class="col-12 text-center">
+                <button class="btn btn-danger">View All Videos</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+@endsection
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
+<script>
+  // Attach click event to single image
+  document.getElementById("singleImage").addEventListener("click", function() {
+    // Open the carousel modal
+    $('#carouselModal').modal('show');
+  });
+  //  Set caption from card text
+$('.card-deck a').fancybox({
+caption : function( instance, item ) {
+  return $(this).parent().find('.card-text').html();
+}
+});
+</script>
 @endsection

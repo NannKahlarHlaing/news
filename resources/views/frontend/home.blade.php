@@ -13,7 +13,7 @@
         </div>
         <div class="row align-items-center d-flex-center border-dark border-top border-bottom">
             <div class="col-9">
-                <nav class="navbar navbar-expand-lg navbar-light">    
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Home</a>
@@ -24,7 +24,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>
                         </li>
-                    </ul>    
+                    </ul>
                 </nav>
             </div>
             <div class="col-2">
@@ -418,7 +418,7 @@
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center text-center">
             <div class="col-md-11">
-                
+
             </div>
         </div>
     </div>
@@ -433,7 +433,7 @@
                         <span >ANALYSIS</span>
                         <h2 class="mt-3"><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
                         <p>Also this week, foreign minister Than Swe defended the regime’s human rights record even as it simultaneously bombed, shelled and burned civilian settlements.</p>
-                        <button class="btn btn-danger">Read Now</button>    
+                        <button class="btn btn-danger">Read Now</button>
                     </div>
                     <div class="col-md-6">
                         <div class="row d-flex align-items-center">
@@ -501,9 +501,9 @@
                                 <div class="card-body">
                                   <p class="card-text">Direct link to YouTube</p>
                                 </div>
-                              </div>
+                            </div>
                         </div>
-                        
+
                     </div>
                     <div class="col-md-3">
                         <div class="row">
@@ -524,31 +524,31 @@
                                     <a href="https://source.unsplash.com/juHayWuaaoQ/1500x1000" data-fancybox="images" data-caption="Backpackers following a dirt trail">
                                       <img src="https://source.unsplash.com/juHayWuaaoQ/240x160" />
                                     </a>
-                                  
+
                                     <a href="https://source.unsplash.com/eWFdaPRFjwE/1500x1000" data-fancybox="images" data-caption="Mallorca, Llubí, Spain" class="d-none">
                                       <img src="https://source.unsplash.com/eWFdaPRFjwE/240x160" />
                                     </a>
-                                    
+
                                     <a href="https://source.unsplash.com/c1JxO-uAZd0/1500x1000" data-fancybox="images" data-caption="Danish summer" class="d-none">
                                       <img src="https://source.unsplash.com/c1JxO-uAZd0/240x160" />
                                     </a>
-                                  
+
                                     <a href="https://source.unsplash.com/eXHeq48Z-Q4/1500x1000" data-fancybox="images" data-caption="Sunrise above a sandy beach" class="d-none">
                                       <img src="https://source.unsplash.com/eXHeq48Z-Q4/240x160" />
                                     </a>
-                                  
+
                                     <a href="https://source.unsplash.com/RFgO9B_OR4g/1500x1000" data-fancybox="images" data-caption="Woman on a slope by the shore" class="d-none">
                                       <img src="https://source.unsplash.com/RFgO9B_OR4g/240x160" />
                                     </a>
-                                  
+
                                     <a href="https://source.unsplash.com/7bwQXzbF6KE/1500x1000" data-fancybox="images" data-caption="Mountain hiking sunset" class="d-none">
                                       <img src="https://source.unsplash.com/7bwQXzbF6KE/240x160" />
                                     </a>
-                                  
+
                                     <a href="https://source.unsplash.com/NhU0nUR7920/1500x1000" data-fancybox="images" data-caption="Sunset Picnic" class="d-none">
                                       <img src="https://source.unsplash.com/NhU0nUR7920/240x160" />
                                     </a>
-                                    
+
                                     <a href="https://source.unsplash.com/B2LYYV9-y0s/1500x1000" data-fancybox="images" data-caption="On them Indiana Nights" class="d-none">
                                       <img src="https://source.unsplash.com/B2LYYV9-y0s/240x160" />
                                     </a>
@@ -926,7 +926,7 @@
 
 @endsection
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
 <script>
   // Attach click event to single image
   document.getElementById("singleImage").addEventListener("click", function() {

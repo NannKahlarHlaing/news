@@ -97,3 +97,18 @@
         </div>
     </section>
 @endsection
+@section('js')
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+      selector: 'textarea', // Use all textareas as TinyMCE editors
+      plugins: 'advlist autolink lists link image imagetools charmap print preview anchor',
+      toolbar: 'undo redo | formatselect | bold italic backcolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist outdent indent | removeformat | image | link',
+      menubar: 'file edit view insert format tools table help',
+    });
+  </script>
+
+@endsection

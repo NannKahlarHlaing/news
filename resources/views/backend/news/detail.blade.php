@@ -20,7 +20,7 @@
                                 <div class="row my-3  d-flex align-items-center">
                                     <div class="col-1">
                                         <div class="btn btn-transparent  btn-circle-fe">
-                                            <i class="fa-solid fa-camera"></i> 
+                                            <i class="fa-solid fa-camera"></i>
                                         </div>
                                     </div>
                                     <hr class="line col">
@@ -76,7 +76,7 @@
                                     <div class="row my-3  d-flex align-items-center">
                                         <div class="col-1">
                                             <div class="btn btn-transparent  btn-circle-fe">
-                                                <i class="fa-solid fa-camera"></i> 
+                                                <i class="fa-solid fa-camera"></i>
                                             </div>
                                         </div>
                                         <hr class="line col">
@@ -111,13 +111,12 @@
 
 <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
 
-
 <script>
     $(document).ready(function(){
         var value = $('#views').html();
         var id = $('#id').html();
         $.ajax({
-            url: '{{ route('views_count') }}',
+            url: '{{ route('new_views_count') }}',
             method: 'GET',
             data: {value: value, id: id},
             success: function(response){
@@ -127,13 +126,7 @@
                 console.log('error' + error);
             }
         });
-
-        var social = $('#social');
-        var socialOffset = social.offset().top;
-
-        // $(window).scroll(function () {
-        //     $('#social').addClass('social-sticky')
-        // });
     });
-</script> 
+</script>
+
 @endsection

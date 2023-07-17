@@ -9,19 +9,19 @@
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('status') }}
                 </div>
-            @endif   
+            @endif
         </div>
-        
+
     </div>
 </div>
 <div class="card shadow mb-4">
 <div class="card-header py-3">
     <div class="row mb-3">
         <div class="col-md-8">
-            <h3>News</h3>
+            <h3>Careers</h3>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.news.create_form') }}" class="btn btn-primary">Add News</a>
+            <a href="{{ route('backend.careers.create_form') }}" class="btn btn-primary">Add Careers</a>
         </div>
     </div>
     @foreach ($posts as $item)
@@ -35,7 +35,7 @@
                         <h3>{{ $item->position }}</h3>
                     </div>
                     <div class="col-12">
-                        <h5 class="fw-bold">Latest Date: <small>{{ $item->latest_date }}</small></h5> 
+                        <h5 class="fw-bold">Latest Date: <small>{{ $item->latest_date }}</small></h5>
                     </div>
                 </div>
             </div>
@@ -54,8 +54,8 @@
                     @csrf
                     @method('DELETE')
 
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         class="btn btn-danger btn-circle"
                         onclick="return confirm('Are you sure to delete');"
                     >

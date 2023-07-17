@@ -73,7 +73,7 @@ Route::prefix('/admin')->group(function(){
         Route::post('/careers/update', 'update')->name('backend.careers.update');
         Route::delete('/careers/delete/{id}', 'destroy');
     });
-    
+
     Route::controller(App\Http\Controllers\SocialContoller::class)->group(function(){
         Route::get('/socials', 'index')->name('backend.socials');
         Route::post('/socials/create', 'create')->name('backend.socials.create');
@@ -94,7 +94,9 @@ Route::prefix('/admin')->group(function(){
 
 Route::get('/news/{id}', [App\Http\Controllers\NewController::class, 'details']);
 
-Route::get('/add_value', [App\Http\Controllers\NewController::class, 'addValue'])->name('views_count');
+Route::get('/add_count_new', [App\Http\Controllers\NewController::class, 'addValue'])->name('new_views_count');
+
+Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'addValue'])->name('photo_views_count');
 
 //frontend
 

@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
 <link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
 <style>
+    #detail{
+        background-color: #242423;
+    }
     .slick-slider .slick-prev, .slick-slider .slick-next {
         z-index: 100;
         font-size: 2.5em;
@@ -34,7 +37,7 @@
     #detail .product-images {
         width: 100%;
         margin: 0 auto;
-        border:1px solid #eee;
+        /* border:1px solid #eee; */
     }
     #detail .product-images li, #detail .product-images figure, #detail .product-images a, #detail .product-images img {
         display: block;
@@ -102,71 +105,62 @@
 
 @section('content')
 <section id="detail">
-    <div class="container- fluid">
+    <div class="container-fluid">
       <div class="row d-flex-center">
         <div class="col-12">
-     <!-- Product Images & Alternates -->
+        <!-- Product Images & Alternates -->
             <div class="product-images demo-gallery">
               <!-- Begin Product Images Slider -->
               <div class="main-img-slider">
-                 <a data-fancybox="gallery" href="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg"><img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" width="100%" height="800px"></a>
-                 <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="https://www.geneva-academy.ch/images/News/2023/10_Features_Geneva_Academy/_advanced-content-gallery/Digital_Tracking_Tools_Human_Rights_Implementation.jpg" width="100%" height="800px"></a>
-                 <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="https://www.geneva-academy.ch/images/News/2023/2022_Annual_Report/_advanced-content-gallery/Online_Executive_Master_in_International_Law_in_Armed_Conflict_2022_Annual_report.jpg" width="100%" height="800px"></a>
-                 <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" width="100%" height="800px"></a>
-                 <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="https://www.geneva-academy.ch/images/News/2023/10_Features_Geneva_Academy/_advanced-content-gallery/Digital_Tracking_Tools_Human_Rights_Implementation.jpg" width="100%" height="800px"></a>
-                 <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="https://www.geneva-academy.ch/images/News/2023/2022_Annual_Report/_advanced-content-gallery/Online_Executive_Master_in_International_Law_in_Armed_Conflict_2022_Annual_report.jpg" width="100%" height="800px"></a>
+                @foreach ($posts as $item)
+                    <div class="">
+                        <a data-fancybox="gallery" href="{{ $item->url }}">
+                            <img src="{{ $item->url }}"style="height:100vh;width: 100%;object-fit: cover;">
+                            <div class="row description d-flex-center mt-5 py-3">
+                                <div class="col-lg-10 text-center">
+                                    <p>{{ $item->desc }}</p>
+                                    <div class="row mt-3">
+                                        <div class="col-6 text-end border-right border-white">
+                                            <a class="me-3" style="display: inline-block;">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </a>
+                                            <span class="id d-none">{{ $item->id }}</span>
+                                            <span class="views">{{ $item->views }}</span>
+                                        </div>
+                                        <div class="col-6 text-start">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </a>
+                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
+                                                <i class="fa-brands fa-twitter"></i>
+                                            </a>
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
+                                                <i class="fa-brands fa-linkedin-in"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                @endforeach
                 </div>
             <!-- End Product Images Slider -->
-          
+
             <!-- Begin product thumb nav -->
             <ul class="thumb-nav d-none" >
-              <li><img src="http://via.placeholder.com/72x50"></li>
-              <li><img src="http://via.placeholder.com/72x50"></li>
-              <li><img src="http://via.placeholder.com/72x50"></li>
-              <li><img src="http://via.placeholder.com/72x50"></li>
-              <li><img src="http://via.placeholder.com/72x50"></li>
+                @foreach ($posts as $item)
+                    <li><img src="{{ $item->url }}"></li>
+                @endforeach
             </ul>
             <!-- End product thumb nav -->
           </div>
-          <!-- End Product Images & Alternates -->
-          
+        <!-- End Product Images & Alternates -->
         </div>
       </div>
     </div>
 </section>
-<section class="description p-5">
-    <div class="container-fluid">
-        <div class="row d-flex-center">
-            <div class="col-md-11">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <p>A worshiper walked on fire in observance of the Theemithi Festival at a Hindu temple in Rangoon's Tamwe Township on Sunday. (Photo: Naing Lin Soe / The Irrawaddy)</p>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6 text-end border-right border-white">
-                        <div class=" btn btn-white  btn-circle-social me-2">
-                            <i class="fa-regular fa-eye"></i>
-                        </div>
-                        <span>94.4k</span>
-                    </div>
-                    <div class="col-6 text-start">
-                        <a href="" class="btn btn-fb btn-circle me-2">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="" class="btn btn-tw btn-circle me-2">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a href="" class="btn btn-li btn-circle me-2">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="last-photos py-3">
     <div class="container-fluid">
         <div class="row d-flex-center">
@@ -181,46 +175,13 @@
         <div class="row d-flex-center">
             <div class="col-11">
                 <div class="row imglist">
+                    @foreach ($posts as $item)
                     <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="https://source.unsplash.com/juHayWuaaoQ/1500x1000" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                            <img src="https://source.unsplash.com/juHayWuaaoQ/240x160" width="100%"  />
+                        <a href="{{$item->url}}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                            <img src="{{$item->url}}" width="100%"  />
                         </a>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/eWFdaPRFjwE/1500x1000" data-fancybox="images" data-caption="Mallorca, Llubí, Spain">
-                            <img src="https://source.unsplash.com/eWFdaPRFjwE/240x160" width="100%" />
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/NhU0nUR7920/1500x1000" data-fancybox="images" data-caption="Sunset Picnic">
-                            <img src="https://source.unsplash.com/NhU0nUR7920/240x160" width="100%" />
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/eXHeq48Z-Q4/1500x1000" data-fancybox="images" data-caption="Sunrise above a sandy beach">
-                            <img src="https://source.unsplash.com/eXHeq48Z-Q4/240x160" width="100%" />
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/RFgO9B_OR4g/1500x1000" data-fancybox="images" data-caption="Woman on a slope by the shore">
-                            <img src="https://source.unsplash.com/RFgO9B_OR4g/240x160" width="100%" />
-                          </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/NhU0nUR7920/1500x1000" data-fancybox="images" data-caption="Sunset Picnic">
-                            <img src="https://source.unsplash.com/NhU0nUR7920/240x160" width="100%" />
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/B2LYYV9-y0s/1500x1000" data-fancybox="images" data-caption="On them Indiana Nights">
-                            <img src="https://source.unsplash.com/B2LYYV9-y0s/240x160" width="100%" />
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="https://source.unsplash.com/eWFdaPRFjwE/1500x1000" data-fancybox="images" data-caption="Mallorca, Llubí, Spain">
-                            <img src="https://source.unsplash.com/eWFdaPRFjwE/240x160" width="100%" />
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="row py-5">
                     <div class="col-12 text-center">
@@ -239,48 +200,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
-<script>
-    
-    /*--------------*/
-    // Main/Product image slider for product page
-    $('#detail .main-img-slider').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: true,
-    fade:true,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    speed: 300,
-    lazyLoad: 'ondemand',
-    asNavFor: '.thumb-nav',
-    prevArrow: '<div class="slick-prev"><i class="i-prev"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
-    nextArrow: '<div class="slick-next"><i class="i-next"></i><span class="sr-only sr-only-focusable">Next</span></div>'
-    });
-    // Thumbnail/alternates slider for product page
-    $('.thumb-nav').slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    centerPadding: '0px',
-    asNavFor: '.main-img-slider',
-    dots: false,
-    centerMode: false,
-    draggable: true,
-    speed:200,
-    focusOnSelect: true,
-    prevArrow: '<div class="slick-prev"><i class="i-prev"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
-    nextArrow: '<div class="slick-next"><i class="i-next"></i><span class="sr-only sr-only-focusable">Next</span></div>'  
-    });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>\
+
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="YOUR_NONCE_VALUE"></script>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+    <script>
+
+        /*--------------*/
+        // Main/Product image slider for product page
+        $('#detail .main-img-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: true,
+        fade:true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed: 300,
+        lazyLoad: 'ondemand',
+        asNavFor: '.thumb-nav',
+        prevArrow: '<div class="slick-prev"><i class="i-prev"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
+        nextArrow: '<div class="slick-next"><i class="i-next"></i><span class="sr-only sr-only-focusable">Next</span></div>'
+        });
+        // Thumbnail/alternates slider for product page
+        $('.thumb-nav').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: true,
+        centerPadding: '0px',
+        asNavFor: '.main-img-slider',
+        dots: false,
+        centerMode: false,
+        draggable: true,
+        speed:200,
+        focusOnSelect: true,
+        prevArrow: '<div class="slick-prev"><i class="i-prev"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
+        nextArrow: '<div class="slick-next"><i class="i-next"></i><span class="sr-only sr-only-focusable">Next</span></div>'
+        });
 
 
-    //keeps thumbnails active when changing main image, via mouse/touch drag/swipe
-    $('.main-img-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
-    //remove all active class
-    $('.thumb-nav .slick-slide').removeClass('slick-current');
-    //set active class for current slide
-    $('.thumb-nav .slick-slide:not(.slick-cloned)').eq(currentSlide).addClass('slick-current');  
-    });
-</script>
+        //keeps thumbnails active when changing main image, via mouse/touch drag/swipe
+        $('.main-img-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+        //remove all active class
+        $('.thumb-nav .slick-slide').removeClass('slick-current');
+        //set active class for current slide
+        $('.thumb-nav .slick-slide:not(.slick-cloned)').eq(currentSlide).addClass('slick-current');
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('.views').each(function() {
+                var value = $(this).html();
+                var id = $(this).prev('.id').text();
+                var element = $(this);
+                $.ajax({
+                    url: '{{ route('photo_views_count') }}',
+                    method: 'GET',
+                    data: {value: value, id: id},
+                    success: function(response){
+                        console.log('response: ' + response);
+                        element.html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('error: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

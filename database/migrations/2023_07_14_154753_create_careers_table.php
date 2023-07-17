@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('position');
             $table->string('terms')->nullable();
             $table->string('location')->nullable();
-            $table->string('org_background')->nullable();
-            $table->string('job_overview')->nullable();
-            $table->string('role')->nullable();
-            $table->string('qualification');
+            $table->text('org_background', 65535)->nullable();
+            $table->text('job_overview', 65535)->nullable();
+            $table->text('role', 65535)->nullable();
+            $table->text('qualification', 65535);
             $table->string('benefits')->nullable();
             $table->string('latest_date')->nullable();
             $table->timestamps();

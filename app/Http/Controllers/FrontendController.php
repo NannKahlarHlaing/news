@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
+use App\Models\Career;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -11,8 +13,10 @@ class FrontendController extends Controller
     }
 
     public function show_photos(){
-        return view('frontend.photos.photos');
-        // return view('frontend.test');
+        $posts = Photo::where('deleted_at', NULL)
+                    ->orderBy('id', 'desc')
+                    ->get();
+        return view('frontend.photos.photos', compact('posts'));
     }
 
     public function donation(){
@@ -20,7 +24,10 @@ class FrontendController extends Controller
     }
 
     public function careers(){
-        return view('frontend.careers');
+        $posts = Career::where('deleted_at', NULL)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('frontend.careers', compact('posts'));
     }
 
     public function contact(){

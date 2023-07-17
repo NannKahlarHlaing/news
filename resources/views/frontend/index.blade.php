@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
-    
+
     @yield('css')
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    
+
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,12 +24,12 @@
 
     {{-- jquery --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- botstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    
+
 </head>
 <body>
     <div class="container-fluid">
@@ -51,7 +51,29 @@
                                             <div class="col">News</div>
                                             <div class="col">Opinion</div>
                                             <div class="col">Specials</div>
-                                            <div class="col">LifeStyle</div>
+                                            <div class="col">
+                                                <div>
+                                                    <h6><a href="">LifeStyle</a></h6>
+                                                </div>
+                                                <div>
+                                                    <h6><a href="{{ route('frontend.videos') }}">Videos</a></h6>
+                                                </div>
+                                                <div>
+                                                    <h6><a href="{{ route('frontend.photos') }}">Photos</a></h6>
+                                                </div>
+                                                <div>
+                                                    <h6><a href="">Photo Essays</a></h6>
+                                                </div>
+                                                <div>
+                                                    <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>
+                                                </div>
+                                                <div>
+                                                    <h6><a href="{{ route('frontend.careers') }}">Careers</a></h6>
+                                                </div>
+                                                <div class="">
+                                                    <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -86,29 +108,29 @@
                                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                                 </li>
                             </ul>
-                            
+
                         </div>
                     </div>
                     <div class="col" id="site-title">News</div>
                     <div class="col-2 text-end" id="search">
                         <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    
+
                 </nav>
                 <form class="d-flex" id="search-form">
                     <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search">
                     <i class="fa-solid fa-xmark" id="btn-close"></i>
                 </form>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="container">
-            
+
             </div>
         </div>
-       
-        
+
+
     </div>
     @yield('content')
     <div class="container-fulid bg-dark border-top border-4 border-danger">
@@ -291,7 +313,7 @@
                                             <span>HOME</span>
                                         </div>
                                     </div>
-                                    
+
                                 </a>
                             </li>
                         </ul>
@@ -315,7 +337,7 @@ $(document).ready(function(){
     $('#text-menu').addClass('d-none');
 
     $(window).scroll(function () {
-        
+
         if ($(window).scrollTop() > navbarOffset) {
             navbar.removeClass('bg-danger');
             navbar.addClass('sticky scrolled bg-background');
@@ -326,13 +348,13 @@ $(document).ready(function(){
             $('#text-menu').removeClass('d-none');
             $('#text-all').addClass('d-none');
         } else {
-            
+
             navbar.addClass('bg-danger');
             navbar.removeClass('sticky scrolled bg-background');
             $('#nav-hide').removeClass('d-none');
             $('#site-title').addClass('d-none');
             $('#menu-bar').removeClass('col');
-            
+
             $('#text-menu').addClass('d-none');
             $('#text-all').removeClass('d-none');
         }
@@ -347,7 +369,7 @@ $(document).ready(function(){
         $('.aa').removeClass('d-none');
     })
 })
-let mybutton = document.getElementById("top");
+    let mybutton = document.getElementById("top");
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};

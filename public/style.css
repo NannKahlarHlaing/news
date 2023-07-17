@@ -56,7 +56,7 @@ a:hover{
     top: 0;
     display: flex;
     justify-content: space-between;
-   
+
   }
 
   .form-control{
@@ -340,7 +340,7 @@ a:hover{
 
 .top:hover{
   opacity: 0.9;
-  
+
   .top span{
     color: #fff;
   }
@@ -362,26 +362,25 @@ h6 a{
   opacity: 0.9;
 }
 
-/* ============ photos=> image carousel ============ */
-
-
-
-/* ============ photos=> image carousel ============ */
 
 .description{
   background-color: var(--color-dgray);
   color: #fff;
 }
-.description .fa-eye{
+.description p, .description span{
   color: #fff;
 }
-.description .btn-circle-social {
-  border: 1px solid #fff;
+.description .btn-circle {
+  border: 1px solid #fff ;
   width: 2.5rem;
   height: 2.5rem;
 }
-.description .btn-circle{
-  border: 1px solid #fff;
+.description .fa-eye{
+    color: #fff;
+    font-size: 16px;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 40px;
 }
 
 .last-photos{
@@ -408,6 +407,9 @@ h6 a{
 }
 .full-details row{
   width: auto;
+}
+.full-details ol, ul{
+    line-height: 15px;
 }
 .careers-title, .contact-title {
   padding: 30px 0;
@@ -456,6 +458,15 @@ h6 a{
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+/* offcanvas */
+.offcanvas-top{
+    height: 60vh !important;
+}
+.offcanvas-body a{
+    color: var(--font-color);
+}
+
 
 
 

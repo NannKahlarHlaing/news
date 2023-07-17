@@ -1,11 +1,13 @@
 @extends('backend.index')
+@section('css')
 
+@endsection
 @section('content')
     <section class="container-fluid">
         <h3 class="my-3">Add Careers</h3>
         <div class="row">
             <div class="col-md-8 ">
-                <form class="form" method="POST" action="{{route('backend.careers.update') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{route('backend.careers.create') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="position">Position</label>
@@ -17,7 +19,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="terms">Termss</label>
+                        <label for="terms">Terms</label>
                         <input type="text" class="form-control @error('terms') is-invalid @enderror" id="terms" name="terms" value="{{ old('terms') }}">
                         @error('terms')
                             <div class="invalid-feedback">
@@ -54,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label for="role">Role And Responsibilities</label>
-                        <textarea class="form-control @error('role') is-invalid @enderror"name="role" id="role" rows="5">{{ old('role') }}</textarea>
+                        <textarea id="editor" class="form-control @error('role') is-invalid @enderror"name="role" id="role" rows="5">{{ old('role') }}</textarea>
                         @error('role')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -88,6 +90,7 @@
                             </div>
                         @enderror
                     </div>
+                    <textarea id="tiny"></textarea>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
@@ -95,4 +98,20 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+      selector: 'textarea', // Use all textareas as TinyMCE editors
+      plugins: 'advlist autolink lists link image imagetools charmap print preview anchor',
+      toolbar: 'undo redo | formatselect | bold italic backcolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist outdent indent | removeformat | image | link',
+      menubar: 'file edit view insert format tools table help',
+    });
+  </script>
+
 @endsection
