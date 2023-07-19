@@ -59,7 +59,9 @@
                                 </div>
                             </div>
                             <span class="d-block py-3">{{ $latest->created_at->format('d F Y') }}</span>
-                            <p >{{ $latest->desc }}</p>
+                            <div class="row">
+                                {!! str_replace("\n", '', $latest->desc) !!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +82,7 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <a data-fancybox href="{{ $item->video_url }}" >
-                        <img class="card-img-top img-fluid" src="{{ $item->img_url }}" />
+                            <img class="card-img-top img-fluid" src="{{ $item->img_url }}" />
                         </a>
                         <div class="card-body">
                         <p class="card-text">{{ $item->title }}</p>

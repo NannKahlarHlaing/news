@@ -2,10 +2,10 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add News</h3>
+        <h3 class="my-3">Add Post</h3>
         <div class="row">
             <div class="col-md-8 ">
-                <form class="form" method="POST" action="{{route('backend.news.create') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{route('backend.posts.create') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Title</label>

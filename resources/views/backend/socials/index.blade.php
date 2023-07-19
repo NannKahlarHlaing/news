@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route('backend.socials.create') }}" enctype="multipart/form-data"> 
                     @csrf
-                    <input type="text" name="id" value="{{  is_object($post) ? $post->id : '' }}">
+                    <input type="hidden" name="id" value="{{  is_object($post) ? $post->id : '' }}">
                     <div class="form-group">
                         <label for="site_title">Page Title</label>
                         <input type="text" class="form-control @error('site_title') is-invalid @enderror" value="{{  is_object($post) ? $post->site_title : '' }}" name="site_title">
@@ -116,7 +116,6 @@
                             </div>
                         @enderror
                     </div>
-                 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>

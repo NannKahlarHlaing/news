@@ -2,10 +2,17 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Edit News Category</h3>
+        <h3 class="my-3">
+            Edit 
+            @if ($route_name == 'category.update_form')
+                Category
+            @else
+                Tag
+            @endif
+        </h3>
         <div class="row">
             <div class="col-md-8">
-                <form class="form" method="POST" action="{{ route('category.update') }}" enctype="multipart/form-data"> 
+                <form class="form" method="POST" action="{{ route(Route::currentRouteName() == 'category.update_form' ? 'category.update' : 'tag.update') }}" enctype="multipart/form-data"> 
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>

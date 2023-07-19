@@ -2,43 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewModel;
-use App\Models\NewsCategory;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class NewController extends Controller
+class PostController extends Controller
 {
     public function index(){
-        $posts = NewModel::where('deleted_at', NULL)->get();
-        return view('backend.news.index', compact('posts'));
+        $posts = Post::where('deleted_at', NULL)->get();
+        return view('backend.posts.index', compact('posts'));
     }
 
     public function create_form(){
-        $categories = NewsCategory::where('deleted_at', NULL)->get();
-        return view('backend.news.create', compact('categories'));
+        $categories = Category::where('deleted_at', NULL)->get();
+        return view('backend.posts.create', compact('categories'));
     }
 
     public function create(Request $request){
         $this->validation($request);
         $data = $this->getData($request);
 
-        NewModel::create($data);
+        Post::create($data);
 
-        return redirect ('/admin/news');
+        return redirect ('/admin/posts');
     }
 
     public function update_form($id){
-        $post = NewModel::find($id);
-        $categories = NewsCategory::where('deleted_at', NULL)->get();
-        return view('backend.news.update', compact('post','categories'));
+        $post = Post::find($id);
+        $categories = Category::where('deleted_at', NULL)->get();
+        return view('backend.posts.update', compact('post','categories'));
     }
 
     public function update(Request $request){
         $this->validation($request);
 
-        $post = NewModel::find($request->id);
+        $post = Post::find($request->id);
 
         $post->title = $request->title;
         $post->category = $request->category;
@@ -50,21 +50,21 @@ class NewController extends Controller
 
         $post->save();
 
-        return redirect ('/admin/news')->with('status', 'News is updated successfully!');
+        return redirect ('/admin/posts')->with('status', 'Post is updated successfully!');
 
     }
 
     public function destroy($id){
-        $post = NewModel::find($id);
+        $post = Post::find($id);
         $post->delete();
 
-        return redirect ('/admin/news')->with('status', 'News is deleted successfully!');
+        return redirect ('/admin/posts')->with('status', 'Post is deleted successfully!');
 
     }
 
-    public function details($id){
-        $post = NewModel::find($id);
-        return view('/backend.news.detail', compact('post'));
+    public function details($category, $id){
+        $post = Post::find($id);
+        return view('/backend.posts.detail', compact('post'));
     }
 
     public function addValue(Request $request){
@@ -73,7 +73,7 @@ class NewController extends Controller
 
         $addedValue = $value + 1;
 
-        $post = NewModel::find($id);
+        $post = Post::find($id);
 
         $post->views = $addedValue;
 
@@ -102,3 +102,4 @@ class NewController extends Controller
         ];
     }
 }
+
