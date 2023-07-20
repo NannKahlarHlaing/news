@@ -10,5 +10,9 @@ class Post extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'category', 'topic', 'short_desc', 'desc', 'img_link', 'views', 'like', 'love', 'wow', 'sad'];
+    protected $fillable = ['title', 'category_id', 'topic', 'short_desc', 'desc', 'img_link', 'views', 'like', 'love', 'wow', 'sad'];
+
+    public function category(){
+        return $this->belongsTo('App\Models\Category', 'category_id');
+    }
 }

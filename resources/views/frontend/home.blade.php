@@ -28,11 +28,12 @@
                 </nav>
             </div>
             <div class="col-2">
-                <div class="d-flex  justify-content-between">
+                <div class="d-flex  justify-content-between align-items-center">
                     <div class="col "><i class="fa-brands fa-facebook-f circle"></i></div>
                     <div class="col"><i class="fa-brands fa-youtube circle"></i></div>
                     <div class="col"><i class="fa-brands fa-twitter circle"></i></div>
                     <div class="col"><i class="fa-solid fa-wifi circle"></i></div>
+                    
                 </div>
             </div>
         </div>

@@ -23,6 +23,9 @@ Route::get('/', function () {
 });
 
 
+
+
+
 //backend
 Route::prefix('/admin')->group(function(){
     Route::get('/', function () {
@@ -37,7 +40,7 @@ Route::prefix('/admin')->group(function(){
         Route::post('/categories/update', 'update')->name('category.update');
         Route::delete('/categories/delete/{id}', 'destroy');
     });
-    
+
     Route::controller(App\Http\Controllers\TagController::class)->group(function(){
         Route::get('/tag', 'index')->name('tag');
         Route::get('/tag/create', 'create_form')->name('tag.create_form');
@@ -110,11 +113,11 @@ Route::prefix('/admin')->group(function(){
 
 // news details
 
-Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details']);
+Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'detailsEn']);
 
 Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
 
-Route::get('/add_count_new', [App\Http\Controllers\NewController::class, 'addValue'])->name('new_views_count');
+Route::get('/add_count_new', [App\Http\Controllers\PostController::class, 'addValue'])->name('new_views_count');
 
 Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'addValue'])->name('photo_views_count');
 
@@ -134,5 +137,26 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
 Route::controller(App\Http\Controllers\ContactController::class)->group(function(){
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
 });
+
+Route::group(['prefix' => '{language}'], function () {
+
+    Route::get('/', function () {
+        return view('frontend.home');
+    })->name('home');
+
+    Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details'])->name('new.details');
+
+    Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
+        Route::get('/videos', 'show_videos');
+        Route::get('/photos', 'show_photos');
+        Route::get('/photo_essays', 'photo_essays');
+        Route::get('/donation', 'donation');
+        Route::get('/careers', 'careers');
+        Route::get('/contact', 'contact');
+        Route::post('/contact', 'sendEmail');
+        Route::get('/cartoons', 'cartoons');
+    });
+});
+
 
 

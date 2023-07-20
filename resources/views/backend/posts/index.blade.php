@@ -9,9 +9,9 @@
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('status') }}
                 </div>
-            @endif   
+            @endif
         </div>
-        
+
     </div>
 </div>
 <div class="card shadow mb-4">
@@ -35,7 +35,7 @@
                         <h3>{{ $item->title }}</h3>
                     </div>
                     <div class="col-6">
-                        <h5 class="fw-bold">Category: </h5> <span>{{ $item->category }}</span>
+                        <h5 class="fw-bold">Category: </h5> <span>{{ $item->category->name }}</span>
                     </div>
                     <div class="col-6">
                         <h5 class="fw-bold">Views: </h5> <span>{{ $item->views }}</span>
@@ -50,7 +50,7 @@
                         </a>
                     </div>
                     <div class="col-12 mb-3">
-                        <a href="{{ url('/category') . '/' . $item->category . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                        <a href="{{ url('/category') . '/' . $item->category->name . '/' . $item->id }}" class="btn btn-danger btn-circle">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     </div>
@@ -59,8 +59,8 @@
                             @csrf
                             @method('DELETE')
 
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 class="btn btn-danger btn-circle"
                                 onclick="return confirm('Are you sure to delete');"
                             >
@@ -68,7 +68,7 @@
                             </button>
                         </form>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     @endforeach

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category');
+            $table->string('category_id');
             $table->string('topic')->nullable();
             $table->text('short_desc', 65535)->nullable();
             $table->text('desc', 65535)->nullable();

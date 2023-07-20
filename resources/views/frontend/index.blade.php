@@ -85,7 +85,13 @@
                         </div>
                     </div>
                     <div class="container-fluid col" id="nav-hide">
-                        <a class="navbar-brand" href="#">Navbar</a>
+                        <a class="navbar-brand" href="#">
+                            @if (session()->get('locale') == 'en')
+                                 Navbar
+                            @else
+                                NannKahlar
+                            @endif
+                            </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -126,7 +132,19 @@
                     <i class="fa-solid fa-xmark" id="btn-close"></i>
                 </form>
             </div>
-
+            <div class="col-8"><div class="row">
+                <div class="col-md-2 col-md-offset-6 text-right">
+                    <strong>Select Language: </strong>
+                </div>
+                <div class="col-md-8">
+                    <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
+                    <ul>
+                        <li><a href="" id="en">English</a></li>
+                        <li><a href="" id="mm">Myanmar</a></li>
+                        <li><a href="" id="zh">Chinese</a></li>
+                    </ul>
+                </div>
+            </div></div>
         </div>
         <div class="row">
             <div class="container">
@@ -157,7 +175,7 @@
                     </div>
                 </div>
                 <div class="row d-flex-center">
-                    <div class="row footer-social column-gap-3">
+                    <div class="row d-flex-center footer-social column-gap-3">
                         <div class="col-lg-1">
                             <a href="">
                                 <div class="row">
@@ -330,6 +348,43 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 $(document).ready(function(){
+
+    var lang = $('#lang').text();
+
+    $('#mm').on('click', function(event) {
+        event.preventDefault();
+        var currentURL = window.location.href;
+        if(lang == 'en'){
+            var newUrl = currentURL.replace('http://127.0.0.1:9000/', 'http://127.0.0.1:9000/mm/');
+        }else{
+            var newUrl = currentURL.replace(/\/(zh|en)\//, '/mm/');
+        }
+
+        window.location.replace(newUrl);
+    });
+    $('#en').on('click', function(event) {
+        event.preventDefault();
+        var currentURL = window.location.href;
+        if(lang == 'en'){
+            var newUrl = currentURL.replace('http://127.0.0.1:9000/', 'http://127.0.0.1:9000/en/');
+        }else{
+            var newUrl = currentURL.replace(/\/(mm|zh)\//, '/en/');
+        }
+
+        window.location.replace(newUrl);
+    });
+    $('#zh').on('click', function(event) {
+        event.preventDefault();
+        var currentURL = window.location.href;
+        if(lang == 'en'){
+            var newUrl = currentURL.replace('http://127.0.0.1:9000/', 'http://127.0.0.1:9000/zh/');
+        }else{
+            var newUrl = currentURL.replace(/\/(mm|en)\//, '/zh/');
+        }
+
+        window.location.replace(newUrl);
+    });
+
     $('#site-title').addClass('d-none');
     $('#search-form').addClass('d-none');
     var navbar = $('#navbar');

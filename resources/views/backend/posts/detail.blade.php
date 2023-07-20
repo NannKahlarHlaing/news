@@ -12,11 +12,16 @@
                         <div class="row mb-5">
                             <div class="col-12">
                                 <span class="d-none" id="id">{{ $post->id }}</span>
-                                <span>{{ $post->category }}</span>
-                                <h2>{{ $post->title }}</h2>
+                                <span>{{ $post->category->name }}</span>
+                                <h2>
+                                    @if(app()->getLocale() == 'mm')
+                                        {{ $post->title }}
+                                    @endif
+                                </h2>
+                                <span>{{ app()->getLocale() }}</span>
                             </div>
                             <div class="col-12">
-                                <img src="{{ $post->img_link }}" alt="" width="100%" height="400px">
+                                <img src="{{ $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
                                 <div class="row my-3  d-flex align-items-center">
                                     <div class="col-1">
                                         <div class="btn btn-transparent  btn-circle-fe">
@@ -68,8 +73,15 @@
                                 <h6>BY <a href="" class="tex-dark fw-bold me-3">THE IRRAWADDY</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
                                 <p>{!! str_replace("\n", '', $post->desc) !!}</p>
                                 <div class="col-12">
-                                    <div class="card" style="height: 100px">
-                                        ddd
+                                    <div class="card py-2">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-2">
+                                                <img src="{{ asset('/images/logo.png') }}" alt="" width="130px">
+                                            </div>
+                                            <div class="col-md-3">
+                                                The Irrawaddy
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12">

@@ -11,4 +11,8 @@ class Category extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name'];
+
+    public function posts(){
+        return $this->hasMany('App\Models\Post', 'id');
+    }
 }

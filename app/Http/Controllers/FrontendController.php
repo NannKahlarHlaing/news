@@ -16,9 +16,9 @@ class FrontendController extends Controller
         $posts = Video::where('deleted_at', NULL)
                     ->orderBy('id', 'desc')
                     ->get();
-        $latest = Video::latest()->first(); 
+        $latest = Video::latest()->first();
         $recents = Video::latest()->skip(1)->take(4)->get();
-        $categories = NewsCategory::where('deleted_at', NULL)->get();         
+        $categories = NewsCategory::where('deleted_at', NULL)->get();
         return view('frontend.videos.videos', compact('posts', 'latest', 'recents', 'categories'));
     }
 
@@ -49,16 +49,29 @@ class FrontendController extends Controller
 
     public function contact(){
         $info = Social::find(1);
-        
-        $email = $this->stringToArray($info->email);
-        $phone = $this->stringToArray($info->contact);
-        $facebook = $this->stringToArray($info->facebook);
-        $youtube = $this->stringToArray($info->youtube);
-        $instagram = $this->stringToArray($info->instagram);
-        $twitter = $this->stringToArray($info->twitter);
-        $linked_in = $this->stringToArray($info->linked_in);
-        $whatsapp = $this->stringToArray($info->whatsapp);
-        $line = $this->stringToArray($info->line);
+
+        $email = [];
+        $phone = [];
+        $facebook = [];
+        $youtube = [];
+        $instagram = [];
+        $twitter = [];
+        $linked_in = [];
+        $whatsapp = [];
+        $line = [];
+
+        if($info != null){
+            $email = $this->stringToArray($info->email);
+            $phone = $this->stringToArray($info->contact);
+            $facebook = $this->stringToArray($info->facebook);
+            $youtube = $this->stringToArray($info->youtube);
+            $instagram = $this->stringToArray($info->instagram);
+            $twitter = $this->stringToArray($info->twitter);
+            $linked_in = $this->stringToArray($info->linked_in);
+            $whatsapp = $this->stringToArray($info->whatsapp);
+            $line = $this->stringToArray($info->line);
+        }
+
         return view('frontend.contact', compact('info', 'email', 'phone', 'facebook', 'youtube', 'instagram', 'twitter', 'linked_in','whatsapp', 'line'));
     }
 

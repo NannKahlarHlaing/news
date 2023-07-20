@@ -370,19 +370,28 @@ h6 a{
 .description p, .description span{
   color: #fff;
 }
-.description .btn-circle {
+/* .cartoon{
+    background-color: var(--color-dgray);
+} */
+.description .btn-circle, .cartoon .btn-circle {
   border: 1px solid #fff ;
   width: 2.5rem;
   height: 2.5rem;
 }
-.description .fa-eye{
+.description .fa-eye, .cartoon .fa-eye{
     color: #fff;
     font-size: 16px;
     height: 2.5rem;
     width: 2.5rem;
     line-height: 40px;
 }
-
+.cartoon .fa-eye{
+    color: var(--color-dgray);
+    border: 1px solid var(--color-dgray);
+}
+.cartoon .btn-circle {
+    border: 1px solid var(--color-dgray) !important;
+}
 .last-photos{
   background-color: #000;
 }
@@ -411,7 +420,7 @@ h6 a{
 .full-details ol, ul{
     line-height: 15px;
 }
-.careers-title, .contact-title {
+.careers-title, .contact-title, .cartoons-title {
   padding: 30px 0;
   text-align: center;
   background-color: rgba(255,255,255,0.5);

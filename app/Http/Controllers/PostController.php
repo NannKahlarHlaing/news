@@ -41,12 +41,12 @@ class PostController extends Controller
         $post = Post::find($request->id);
 
         $post->title = $request->title;
-        $post->category = $request->category;
+        $post->category_id = $request->category;
         $post->topic = $request->topic;
         $post->short_desc = str_replace("\n", "\r\n", $request->short_desc);
         $post->desc = str_replace("\n", "\r\n", $request->desc);
         $post->img_link = $request->img_link;
-        
+
 
         $post->save();
 
@@ -62,9 +62,14 @@ class PostController extends Controller
 
     }
 
-    public function details($category, $id){
+    public function details($language, $category, $id){
+
         $post = Post::find($id);
         return view('/backend.posts.detail', compact('post'));
+    }
+
+    public function detailsEn($category, $id){
+        return call_user_func_array([$this, 'details'], ['en', $category, $id]);
     }
 
     public function addValue(Request $request){
@@ -93,7 +98,7 @@ class PostController extends Controller
     private function getData($request){
         return [
             'title' => $request->title,
-            'category' => $request->category,
+            'category_id' => $request->category,
             'topic' => $request->topic,
             'short_desc' => str_replace("\n", "\r\n", $request->short_desc),
             'desc' => str_replace("\n", "\r\n", $request->desc),
