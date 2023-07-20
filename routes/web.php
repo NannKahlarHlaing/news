@@ -115,7 +115,7 @@ Route::prefix('/admin')->group(function(){
 
 Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'detailsEn']);
 
-Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
+Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'detailsEn']);
 
 Route::get('/add_count_new', [App\Http\Controllers\PostController::class, 'addValue'])->name('new_views_count');
 
@@ -145,6 +145,8 @@ Route::group(['prefix' => '{language}'], function () {
     })->name('home');
 
     Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details'])->name('new.details');
+
+    Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
 
     Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
         Route::get('/videos', 'show_videos');

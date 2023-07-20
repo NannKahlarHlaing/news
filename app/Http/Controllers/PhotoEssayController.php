@@ -38,10 +38,18 @@ class PhotoEssayController extends Controller
 
         $post = PhotoEssay::find($request->id);
 
-        $post->title = $request->title;
-        $post->topic = $request->topic;
-        $post->short_desc = str_replace("\n", "\r\n", $request->short_desc);
-        $post->desc = str_replace("\n", "\r\n", $request->desc);
+        $post->title_en = $request->title_en;
+        $post->title_mm = $request->title_mm;
+        $post->title_ch = $request->title_ch;
+        $post->topic_en = $request->topic_en;
+        $post->topic_mm = $request->topic_mm;
+        $post->topic_ch = $request->topic_ch;
+        $post->short_desc_en = str_replace("\n", "\r\n", $request->short_desc_en);
+        $post->short_desc_mm = str_replace("\n", "\r\n", $request->short_desc_mm);
+        $post->short_desc_ch = str_replace("\n", "\r\n", $request->short_desc_ch);
+        $post->desc_en = str_replace("\n", "\r\n", $request->desc_en);
+        $post->desc_mm = str_replace("\n", "\r\n", $request->desc_mm);
+        $post->desc_ch = str_replace("\n", "\r\n", $request->desc_ch);
         $post->img_link = $request->img_link;
         $post->author = $request->author;
         $post->date = $request->date;
@@ -60,9 +68,13 @@ class PhotoEssayController extends Controller
 
     }
 
-    public function details($id){
+    public function details($language, $id){
         $post = PhotoEssay::find($id);
         return view('backend.photo_essays.detail', compact('post'));
+    }
+
+    public function detailsEn($id){
+        return call_user_func_array([$this, 'details'], ['en', $id]);
     }
 
     public function addValue(Request $request){
@@ -82,17 +94,24 @@ class PhotoEssayController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'title' => 'required',
-            'short_desc' => 'required',
+
         ])->validate();
     }
 
     private function getData($request){
         return [
-            'title' => $request->title,
-            'topic' => $request->topic,
-            'short_desc' => str_replace("\n", "\r\n", $request->short_desc),
-            'desc' => str_replace("\n", "\r\n", $request->desc),
+            'title_en' => $request->title_en,
+            'title_mm' => $request->title_mm,
+            'title_ch' => $request->title_ch,
+            'topic_en' => $request->topic_en,
+            'topic_mm' => $request->topic_mm,
+            'topic_ch' => $request->topic_ch,
+            'short_desc_en' => str_replace("\n", "\r\n", $request->short_desc_en),
+            'short_desc_mm' => str_replace("\n", "\r\n", $request->short_desc_mm),
+            'short_desc_ch' => str_replace("\n", "\r\n", $request->short_desc_ch),
+            'desc_en' => str_replace("\n", "\r\n", $request->desc_en),
+            'desc_mm' => str_replace("\n", "\r\n", $request->desc_mm),
+            'desc_ch' => str_replace("\n", "\r\n", $request->desc_ch),
             'img_link' => $request->img_link,
             'author' => $request->author,
             'date' => $request->date,

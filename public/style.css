@@ -475,6 +475,9 @@ h6 a{
 .offcanvas-body a{
     color: var(--font-color);
 }
+.language li a:hover{
+  color: #000;
+}
 
 
 

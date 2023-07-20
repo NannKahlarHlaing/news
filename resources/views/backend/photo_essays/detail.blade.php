@@ -173,7 +173,15 @@
     <div class="container-fluid">
         <div class="row d-flex-center">
             <div class="col-8">
-                <h2 class="text-center">{{ $post->title }}</h2>
+                <h2 class="text-center">
+                    @if (app()->getLocale() == 'mm')
+                        {{ $post->title_mm }}
+                    @elseif(app()->getLocale() == 'ch')
+                        {{ $post->title_ch }}
+                    @else
+                    {{ $post->title_en }}
+                    @endif
+                </h2>
             </div>
         </div>
         <div class="row d-flex-center">
@@ -199,9 +207,24 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        {!! str_replace("\n", '', $post->desc) !!}
+                        @if (app()->getLocale() == 'mm')
+                            {!! str_replace("\n", '', $post->desc_mm) !!}
+                        @elseif(app()->getLocale() == 'ch')
+                            {!! str_replace("\n", '', $post->desc_ch) !!}
+                        @else
+                            {!! str_replace("\n", '', $post->desc_en) !!}
+                        @endif
+                        
                     </div>
-                    <div class="col-12 mb-4"><strong>Topics:</strong> {{ $post->topic }}</div>
+                    <div class="col-12 mb-4"><strong>Topics:</strong>
+                        @if (app()->getLocale() == 'mm')
+                            {{ $post->topic_mm }}
+                        @elseif(app()->getLocale() == 'ch')
+                            {{ $post->topic_ch }}
+                        @else
+                        {{ $post->topic_en }}
+                        @endif 
+                    </div>
                     <div class="col-12 mb-3">
                         <div class="card py-3">
                             <div class="col-12">

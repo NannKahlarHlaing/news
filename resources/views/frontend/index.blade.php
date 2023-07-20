@@ -132,19 +132,21 @@
                     <i class="fa-solid fa-xmark" id="btn-close"></i>
                 </form>
             </div>
-            <div class="col-8"><div class="row">
-                <div class="col-md-2 col-md-offset-6 text-right">
-                    <strong>Select Language: </strong>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-md-2 col-md-offset-6 text-right">
+                        <strong>Select Language: </strong>
+                    </div>
+                    <div class="col-md-8 language">
+                        <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
+                        <ul>
+                            <li><a href="" id="en">English</a></li>
+                            <li><a href="" id="mm">Myanmar</a></li>
+                            <li><a href="" id="ch">Chinese</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
-                    <ul>
-                        <li><a href="" id="en">English</a></li>
-                        <li><a href="" id="mm">Myanmar</a></li>
-                        <li><a href="" id="zh">Chinese</a></li>
-                    </ul>
-                </div>
-            </div></div>
+            </div>
         </div>
         <div class="row">
             <div class="container">
@@ -355,9 +357,9 @@ $(document).ready(function(){
         event.preventDefault();
         var currentURL = window.location.href;
         if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:9000/', 'http://127.0.0.1:9000/mm/');
+            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
         }else{
-            var newUrl = currentURL.replace(/\/(zh|en)\//, '/mm/');
+            var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
         }
 
         window.location.replace(newUrl);
@@ -366,20 +368,20 @@ $(document).ready(function(){
         event.preventDefault();
         var currentURL = window.location.href;
         if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:9000/', 'http://127.0.0.1:9000/en/');
+            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
         }else{
-            var newUrl = currentURL.replace(/\/(mm|zh)\//, '/en/');
+            var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
         }
 
         window.location.replace(newUrl);
     });
-    $('#zh').on('click', function(event) {
+    $('#ch').on('click', function(event) {
         event.preventDefault();
         var currentURL = window.location.href;
         if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:9000/', 'http://127.0.0.1:9000/zh/');
+            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/ch/');
         }else{
-            var newUrl = currentURL.replace(/\/(mm|en)\//, '/zh/');
+            var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
         }
 
         window.location.replace(newUrl);
