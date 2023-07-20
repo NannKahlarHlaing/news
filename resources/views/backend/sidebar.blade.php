@@ -26,21 +26,6 @@
         Interface
     </div>
 
-    {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Categories</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="{{ route('news.category') }}">News</a>
-                <!-- <a class="collapse-item" href="cards.html">Cards</a> -->
-            </div>
-        </div>
-    </li> --}}
-
     <li class="nav-item">
         <a class="nav-link" href="{{ route('category') }}">
             <i class="fas fa-fw fa-table"></i>
@@ -48,9 +33,30 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.news') }}">
+        <a class="nav-link" href="{{ route('tag') }}">
             <i class="fas fa-fw fa-table"></i>
-            <span>News</span></a>
+            <span>Tag</span></a>
+    </li>
+
+    {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>News</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+                <a class="collapse-item" href="{{ route('backend.news.category') }}">News Category</a>
+                <a class="collapse-item" href="cards.html">Posts</a>
+            </div>
+        </div>
+    </li> --}}
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.posts') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Posts</span></a>
     </li>
 
     <li class="nav-item">

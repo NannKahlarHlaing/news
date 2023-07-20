@@ -2,10 +2,10 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Edit News</h3>
+        <h3 class="my-3">Edit Post</h3>
         <div class="row">
             <div class="col-md-8 ">
-                <form class="form" method="POST" action="{{route('backend.news.update') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{route('backend.posts.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">

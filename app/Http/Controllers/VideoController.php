@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
-use App\Models\NewsCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +16,7 @@ class VideoController extends Controller
     }
 
     public function create_form(){
-        $categories = NewsCategory::where('deleted_at', NULL)->get();
+        $categories = Category::where('deleted_at', NULL)->get();
         return view('backend.videos.create', compact('categories'));
     }
 
@@ -31,7 +31,7 @@ class VideoController extends Controller
 
     public function update_form($id){
         $post = Video::find($id);
-        $categories = NewsCategory::where('deleted_at', NULL)->get();
+        $categories = Category::where('deleted_at', NULL)->get();
         return view('backend.videos.update', compact('post', 'categories'));
     }
 
@@ -62,7 +62,8 @@ class VideoController extends Controller
     private function validation($request){
         Validator::make($request->all(),[
             'title' => 'required',
-            'url' => 'required',
+            'video_url' => 'required',
+            'img_url' => 'required',
             'category' => 'required',
         ])->validate();
     }
@@ -70,7 +71,8 @@ class VideoController extends Controller
     private function getData($request){
         return [
             'title' => $request->title,
-            'url' => $request->url,
+            'video_url' => $request->video_url,
+            'img_url' => $request->img_url,
             'desc' => $request->desc,
             'category' => $request->category
         ];

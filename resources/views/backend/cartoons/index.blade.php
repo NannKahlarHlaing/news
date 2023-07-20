@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            @if(Session::has('status'))
+            @if (Session::has('status'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('status') }}
                 </div>
@@ -14,10 +14,10 @@
     </div>
     <div class="row pt-5">
         <div class="col-md-8">
-            <h3>Photos</h3>
+            <h3>Cartoons</h3>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.photos.create_form') }}" class="btn btn-primary">Add Photos</a>
+            <a href="{{ route('backend.cartoons.create_form') }}" class="btn btn-primary">Add Cartoons</a>
         </div>
     </div>
     <div class="row py-5 px-3">
@@ -27,21 +27,21 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Image URL</th>
-                                <th>Description</th>
+                                <th>Title</th>
+                                <th>Image Link</th>
                                 <th>Camera Man</th>
+                                <th>Date</th>
                                 <th>Views</th>
-                                <th>Action</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Image URL</th>
-                                <th>Description</th>
+                                <th>Title</th>
+                                <th>Image Link</th>
                                 <th>Camera Man</th>
+                                <th>Date</th>
                                 <th>Views</th>
-                                <th>Action</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -49,17 +49,16 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{{ $item->url }}</td>
-                                    <td>{{ $item->desc }}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->img_link }}</td>
                                     <td>{{ $item->camera }}</td>
+                                    <td>{{ $item->date }}</td>
                                     <td>{{ $item->views }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/photos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                        <a href="{{ url('/admin/cartoons/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ url('/admin/photos/delete', $item->id) }}" method="POST">
+                                        <form style="display: inline" action="{{ url('/admin/cartoons/delete', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
 
@@ -72,6 +71,9 @@
                                             </button>
                                         </form>
                                     </td>
+                                    {{-- <td>
+
+                                    </td> --}}
                                 </tr>
                             @endforeach
 

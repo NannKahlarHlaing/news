@@ -1,11 +1,11 @@
 
 @extends('frontend.index')
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
-    <style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
+<style>
     #detail{
         background-color: #242423;
     }
@@ -99,6 +99,40 @@
     #detail .product-images .thumb-nav li.slick-current img {
         border-color: #d12f81;
     }
+    .last-photos .fa-user-large{
+        border: 1px solid #ECE7DD;
+        background-color: transparent;
+        color: #ECE7DD;
+        height: 75px;
+        width: 75px;
+        line-height: 70px;
+        text-align: center;
+        border-radius: 37.5px;
+        display: inline-block;
+        font-size: 43px;
+    }
+    .last-photos{
+        background-color: #242423 !important;
+    }
+
+    .last-photos h2, .last-photos span{
+        color: #ECE7DD !important;
+    }
+    .card{
+        background-color: rgba(255,255,255,0.5) !important;
+    }
+    .card .fa-user-large{
+        border: 1px solid #222;
+        color: #222;
+        background-color: transparent;
+        height: 60px;
+        width: 60px;
+        line-height: 57px;
+        text-align: center;
+        border-radius: 37.5px;
+        display: inline-block;
+        font-size: 35px;
+    }
 
 </style>
 @endsection
@@ -107,94 +141,111 @@
 <section id="detail">
     <div class="container-fluid">
       <div class="row d-flex-center">
-        <div class="col-12">
+        <div class="col-12 p-0">
         <!-- Product Images & Alternates -->
             <div class="product-images demo-gallery">
               <!-- Begin Product Images Slider -->
               <div class="main-img-slider">
-                @foreach ($posts as $item)
-                    <div class="">
-                        <a data-fancybox="gallery" href="{{ $item->url }}">
-                            <img src="{{ $item->url }}"style="height:100vh;width: 100%;object-fit: cover;">
-                            <div class="row description d-flex-center mt-5 py-3">
-                                <div class="col-lg-10 text-center">
-                                    <div class="row">
-                                        {!! str_replace("\n", '', $item->desc) !!}
-                                    </div>
-                                    
-                                    <div class="row mt-3">
-                                        <div class="col-6 text-end border-right border-white">
-                                            <a class="me-3" style="display: inline-block;">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </a>
-                                            <span class="id d-none">{{ $item->id }}</span>
-                                            <span class="views">{{ $item->views }}</span>
-                                        </div>
-                                        <div class="col-6 text-start">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-linkedin-in"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
+               
+                <div class="">
+                    <a data-fancybox="gallery" href="{{ $post->img_link }}">
+                        <img src="{{ $post->img_link }}"style="height:500px;width: 100%;object-fit:cover;">
+                    </a>
+                </div>
+
                 </div>
             <!-- End Product Images Slider -->
 
             <!-- Begin product thumb nav -->
-            <ul class="thumb-nav d-none" >
+            {{-- <ul class="thumb-nav d-none" >
                 @foreach ($posts as $item)
                     <li><img src="{{ $item->url }}"></li>
                 @endforeach
-            </ul>
+            </ul> --}}
             <!-- End product thumb nav -->
           </div>
         <!-- End Product Images & Alternates -->
         </div>
-        
       </div>
     </div>
 </section>
 <section class="last-photos py-3">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-11">
-                <h2 class="text-center">LATEST PHOTOS</h2>
+            <div class="col-8">
+                <h2 class="text-center">{{ $post->title }}</h2>
+            </div>
+        </div>
+        <div class="row d-flex-center">
+            <div class="col-8 text-center">
+                <i class="fa-solid fa-user-large"></i><br>
+                <span>{{ $post->author }}</span><br>
+                <span>The Irrawaddy</span>
             </div>
         </div>
     </div>
 </section>
-<section class="latest-photos py-3">
+<section class="py-4">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-11">
-                <div class="row imglist">
-                    @foreach ($posts as $item)
-                    <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="{{$item->url}}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                            <img src="{{$item->url}}" width="100%"  />
-                        </a>
+            <div class="col-lg-8">
+                <div class="row mb-3    ">
+                    <div class="col-6">
+                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $post->date)->format('d F Y') }}
                     </div>
-                    @endforeach
+                    <div class="col-6 text-end">
+                        The Irrawaddy /     
+                    </div>
                 </div>
-                <div class="row py-5">
-                    <div class="col-12 text-center">
-                        <button class="btn btn-danger">View All Photos</button>
+                <div class="row">
+                    <div class="col-12">
+                        {!! str_replace("\n", '', $post->desc) !!}
+                    </div>
+                    <div class="col-12 mb-4"><strong>Topics:</strong> {{ $post->topic }}</div>
+                    <div class="col-12 mb-3">
+                        <div class="card py-3">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-2 col-3">
+                                        <i class="fa-solid fa-user-large"></i>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-9">
+                                        <span class="fw-bold">{{ $post->author }}</span><br>
+                                        <span>The Irrawaddy</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row my-3  d-flex align-items-center">
+                            <div class="col-1">
+                                <div class="btn btn-transparent  btn-circle-fe">
+                                    <i class="fa-solid fa-camera"></i>
+                                </div>
+                            </div>
+                            <hr class="line col">
+                            <span class="text-end col">YOUR THOUGHTS …</span>
+                            <div class="btn btn-reaction mb-2">
+                                <img src="{{ asset('/images/liked.svg') }}" alt="">
+                            </div>
+                            <div class="btn btn-reaction mb-2">
+                                <img src="{{ asset('/images/loved.svg') }}" alt="">
+                            </div>
+                            <div class="btn btn-reaction mb-2">
+                                <img src="{{ asset('/images/wow.svg') }}" alt="">
+                            </div>
+                            <div class="btn btn-reaction mb-2">
+                                <img src="{{ asset('/images/sad.svg') }}" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 @endsection
 
 @section('js')
@@ -254,24 +305,6 @@
         });
     </script>
     <script>
-        $(document).ready(function(){
-            $('.views').each(function() {
-                var value = $(this).html();
-                var id = $(this).prev('.id').text();
-                var element = $(this);
-                $.ajax({
-                    url: '{{ route('photo_views_count') }}',
-                    method: 'GET',
-                    data: {value: value, id: id},
-                    success: function(response){
-                        console.log('response: ' + response);
-                        element.html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('error: ' + error);
-                    }
-                });
-            });
-        });
+        
     </script>
 @endsection

@@ -29,22 +29,31 @@ Route::prefix('/admin')->group(function(){
         return view('backend.dashboard');
     });
 
-    Route::controller(App\Http\Controllers\NewsCategoryController::class)->group(function(){
+    Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
         Route::get('/categories', 'index')->name('category');
         Route::get('/categories/create', 'create_form')->name('category.create_form');
         Route::post('/categories/create', 'create')->name('category.create');
-        Route::get('/categories/update/{id}', 'update_form');
+        Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
         Route::post('/categories/update', 'update')->name('category.update');
         Route::delete('/categories/delete/{id}', 'destroy');
     });
+    
+    Route::controller(App\Http\Controllers\TagController::class)->group(function(){
+        Route::get('/tag', 'index')->name('tag');
+        Route::get('/tag/create', 'create_form')->name('tag.create_form');
+        Route::post('/tag/create', 'create')->name('tag.create');
+        Route::get('/tag/update/{id}', 'update_form')->name('tag.update_form');
+        Route::post('/tag/update', 'update')->name('tag.update');
+        Route::delete('/tag/delete/{id}', 'destroy');
+    });
 
-    Route::controller(App\Http\Controllers\NewController::class)->group(function(){
-        Route::get('/news', 'index')->name('backend.news');
-        Route::get('/news/create', 'create_form')->name('backend.news.create_form');
-        Route::post('/news/create', 'create')->name('backend.news.create');
-        Route::get('/news/update/{id}', 'update_form');
-        Route::post('/news/update', 'update')->name('backend.news.update');
-        Route::delete('/news/delete/{id}', 'destroy');
+    Route::controller(App\Http\Controllers\PostController::class)->group(function(){
+        Route::get('/posts', 'index')->name('backend.posts');
+        Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
+        Route::post('/posts/create', 'create')->name('backend.posts.create');
+        Route::get('/posts/update/{id}', 'update_form');
+        Route::post('/posts/update', 'update')->name('backend.posts.update');
+        Route::delete('/posts/delete/{id}', 'destroy');
     });
 
     Route::controller(App\Http\Controllers\PhotoController::class)->group(function(){
@@ -88,11 +97,22 @@ Route::prefix('/admin')->group(function(){
         Route::delete('/photo_essays/delete/{id}', 'destroy');
     });
 
+    Route::controller(App\Http\Controllers\CartoonController::class)->group(function(){
+        Route::get('/cartoons', 'index')->name('backend.cartoons');
+        Route::get('/cartoons/create', 'create_form')->name('backend.cartoons.create_form');
+        Route::post('/cartoons/create', 'create')->name('backend.cartoons.create');
+        Route::get('/cartoons/update/{id}', 'update_form');
+        Route::post('/cartoons/update', 'update')->name('backend.cartoons.update');
+        Route::delete('/cartoons/delete/{id}', 'destroy');
+    });
+
 });
 
 // news details
 
-Route::get('/news/{id}', [App\Http\Controllers\NewController::class, 'details']);
+Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details']);
+
+Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
 
 Route::get('/add_count_new', [App\Http\Controllers\NewController::class, 'addValue'])->name('new_views_count');
 
@@ -103,9 +123,16 @@ Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'ad
 Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
     Route::get('/videos', 'show_videos')->name('frontend.videos');
     Route::get('/photos', 'show_photos')->name('frontend.photos');
+    Route::get('/photo_essays', 'photo_essays')->name('frontend.photo_essays');
     Route::get('/donation', 'donation')->name('frontend.donation');
     Route::get('/careers', 'careers')->name('frontend.careers');
     Route::get('/contact', 'contact')->name('frontend.contact');
+    Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
+    Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
+});
+
+Route::controller(App\Http\Controllers\ContactController::class)->group(function(){
+    Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
 });
 
 

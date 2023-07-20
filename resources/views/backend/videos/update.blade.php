@@ -18,9 +18,18 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="url">Video URL</label>
-                        <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" value="{{ old('url', $post->url) }}">
-                        @error('url')
+                        <label for="video_url">Video URL</label>
+                        <input type="text" class="form-control @error('video_url') is-invalid @enderror" id="video_url" name="video_url" value="{{ old('video_url', $post->video_url) }}">
+                        @error('video_url')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="img_url">Image URL</label>
+                        <input type="text" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url" value="{{ old('img_url', $post->img_url) }}">
+                        @error('img_url')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

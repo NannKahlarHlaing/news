@@ -14,7 +14,11 @@
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
+    <style>
+        .footer-social .row{
+            padding: 0 10px;
+        }
+    </style>
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -62,7 +66,7 @@
                                                     <h6><a href="{{ route('frontend.photos') }}">Photos</a></h6>
                                                 </div>
                                                 <div>
-                                                    <h6><a href="">Photo Essays</a></h6>
+                                                    <h6><a href="{{ route('frontend.photo_essays') }}">Photo Essays</a></h6>
                                                 </div>
                                                 <div>
                                                     <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>
@@ -152,171 +156,168 @@
                         <a href="" onclick="topFunction()" id="top">Top <i class="fa-sharp fa-solid fa-angle-up"></i></a>
                     </div>
                 </div>
-                <div class="row footer-social">
-                    <div class="col-12">
-                        <ul>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </div>
+                <div class="row d-flex-center">
+                    <div class="row footer-social column-gap-3">
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-brands fa-facebook-f"></i>
                                         </div>
                                     </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>3.8M+ Fans</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>3.8M+ Fans</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-brands fa-youtube"></i>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>12K Follow</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-brands fa-twitter"></i>
                                         </div>
                                     </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>12K Follow</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>SUBS</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-wifi"></i>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>FEED</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-thumbs-up"></i>
                                         </div>
                                     </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>SUBS</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>LIKED</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-heart"></i>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-wifi"></i>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>LOVED</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-face-surprise"></i>
                                         </div>
                                     </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>FEED</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>WOWED</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-face-sad-tear"></i>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-thumbs-up"></i>
-                                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>SAD</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-camera"></i>
                                         </div>
                                     </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>LIKED</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>PHOTOS</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-12 d-flex-center">
+                                        <div class="btn btn-dark btn-circle mb-3 border-white text-center">
+                                            <i class="fa-solid fa-house"></i>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-heart"></i>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 bg-danger rounded text-center">
+                                        <span>HOME</span>
                                     </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>LOVED</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-face-surprise"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>WOWED</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-face-sad-tear"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>SAD</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-camera"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row bg-danger rounded">
-                                        <div class="col-12">
-                                            <span>PHOTOS</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li style="">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-house"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row bg-danger rounded ">
-                                        <div class="col-12">
-                                            <span>HOME</span>
-                                        </div>
-                                    </div>
-
-                                </a>
-                            </li>
-                        </ul>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

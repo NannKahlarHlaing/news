@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('url');
-            $table->string('desc')->nullable();
+            $table->string('video_url');
+            $table->string('img_url');
+            $table->text('desc', 65535)->nullable();
             $table->string('category');
             $table->timestamps();
             $table->softDeletes();

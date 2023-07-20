@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Video extends Model
+class Post extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['title', 'video_url', 'img_url', 'desc', 'category'];
+    protected $fillable = ['title', 'category', 'topic', 'short_desc', 'desc', 'img_link', 'views', 'like', 'love', 'wow', 'sad'];
 }

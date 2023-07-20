@@ -50,7 +50,6 @@ class SocialContoller extends Controller
         }else{
             $data = $this->getData($request);
             Social::create($data);
-            dd('sss');
         }
 
         return redirect()->back();

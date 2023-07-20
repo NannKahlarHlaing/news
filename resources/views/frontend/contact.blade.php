@@ -20,23 +20,27 @@
                 <div class="col-11">
                     <div class="row">
                         <div class="col-lg-6">
-                            
-                            <form class="form bg-transparent" method="POST" action="{{ url('/contact') }}">
+                            @hasSection('message_sent')
+                                <div class="alert alert-success">
+                                    {{ Session::get('message_sent') }}
+                                </div>
+                            @endif
+                            <form class="form bg-transparent" method="POST" action="{{ route('frontend.email_sent') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <input type="email" class="form-control bg-trasparent" placeholder="Name *" >
+                                    <input type="text" class="form-control bg-trasparent" placeholder="Name *" name="name">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Email *" >
+                                    <input type="email" class="form-control" placeholder="Email *" name="email">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Phone" >
+                                    <input type="text" class="form-control" placeholder="Phone" name="phone">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Organisation" >
+                                    <input type="text" class="form-control" placeholder="Organisation" name="organisation">
                                 </div>
                                 <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" name="category">
                                         <option value="Information" selected>Information</option>
                                         <option value="Editors">Editors</option>
                                         <option value="Advertising">Advertising</option>
@@ -45,7 +49,7 @@
                                       </select>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
                                 </div>
                                 <div class="mb-3 text-end">
                                     <button type="submit" class="btn btn-danger">Send</button>
@@ -64,8 +68,9 @@
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10">
                                             <span class="social-title">Facebook</span>
-                                        <a href="" class="d-block">https://www.facebook.com/</a>
-                                        <a href="" class="d-block">https://www.facebook.com/dsfthy</a>
+                                            @foreach ($facebook as $item)
+                                                <a href="" class="d-block">{{ $item }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="row d-flex align-items-center mb-3">
@@ -76,8 +81,9 @@
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10">
                                             <span class="social-title">Twitter</span>
-                                        <a href="" class="d-block">@IrrawaddyNews</a>
-                                        
+                                            @foreach ($twitter as $item)
+                                                <a href="" class="d-block">{{ $item }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="row d-flex align-items-center mb-3">
@@ -88,7 +94,9 @@
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10 mb-3">
                                             <span class="social-title">Youtube</span>
-                                        <a href="" class="d-block">https://youtube.com/user/irrawaddynews</a>
+                                            @foreach ($youtube as $item)
+                                                <a href="" class="d-block">{{ $item }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="row d-flex align-items-center mb-3">
@@ -99,7 +107,9 @@
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10">
                                             <span class="social-title">Instagram</span>
-                                        <a href="" class="d-block">@IrrawaddyNews</a>
+                                            @foreach ($instagram as $item)
+                                                <a href="" class="d-block">{{ $item }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="row d-flex mb-3">
@@ -109,11 +119,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-10">
-                                            <address>Building 170/175, Room 806 and 312
-                                                MGW Tower
-                                                Boaungkyaw Street Middle Block
-                                                Yangon
-                                                Myanmar</address>
+                                            <address>{{ $info->address }}</address>
                                         </div>
                                     </div>
                                     <div class="row d-flex mb-3">
@@ -123,7 +129,9 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-10">
-                                            <address>+95-1-334344</address>
+                                            @foreach ($phone as $item)
+                                                <a class="d-block">{{ $item }}</a>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

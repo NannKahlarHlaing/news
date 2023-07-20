@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('title');
+            $table->string('category');
+            $table->string('topic')->nullable();
+            $table->text('short_desc', 65535)->nullable();
             $table->text('desc', 65535)->nullable();
-            $table->string('camera')->nullable();
+            $table->string('img_link')->nullable();
             $table->integer('views');
+            $table->integer('like')->nullable();
+            $table->integer('love')->nullable();
+            $table->integer('wow')->nullable();
+            $table->integer('sad')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('posts');
     }
 };

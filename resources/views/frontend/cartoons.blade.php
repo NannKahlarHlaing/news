@@ -1,14 +1,11 @@
-
 @extends('frontend.index')
+
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
     <link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
     <style>
-    #detail{
-        background-color: #242423;
-    }
     .slick-slider .slick-prev, .slick-slider .slick-next {
         z-index: 100;
         font-size: 2.5em;
@@ -99,104 +96,94 @@
     #detail .product-images .thumb-nav li.slick-current img {
         border-color: #d12f81;
     }
+    .slick-initialized .slick-slide {
+        display: inline-flex;
+    }
+    .last-cartoons{
+        background-color: #e3dbcd;
+    }
 
 </style>
 @endsection
 
 @section('content')
-<section id="detail">
-    <div class="container-fluid">
-      <div class="row d-flex-center">
-        <div class="col-12">
-        <!-- Product Images & Alternates -->
-            <div class="product-images demo-gallery">
-              <!-- Begin Product Images Slider -->
-              <div class="main-img-slider">
-                @foreach ($posts as $item)
-                    <div class="">
-                        <a data-fancybox="gallery" href="{{ $item->url }}">
-                            <img src="{{ $item->url }}"style="height:100vh;width: 100%;object-fit: cover;">
-                            <div class="row description d-flex-center mt-5 py-3">
-                                <div class="col-lg-10 text-center">
-                                    <div class="row">
-                                        {!! str_replace("\n", '', $item->desc) !!}
-                                    </div>
-                                    
-                                    <div class="row mt-3">
-                                        <div class="col-6 text-end border-right border-white">
-                                            <a class="me-3" style="display: inline-block;">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </a>
-                                            <span class="id d-none">{{ $item->id }}</span>
-                                            <span class="views">{{ $item->views }}</span>
-                                        </div>
-                                        <div class="col-6 text-start">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-linkedin-in"></i>
-                                            </a>
+    <section class="cartoons-title">
+        <div class="container-fluid">
+            <div class="row d-flex-center">
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Cartoons</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="detail" class="py-5">
+        <div class="container-fluid">
+          <div class="row d-flex-center">
+            <div class="col-12">
+            <!-- Product Images & Alternates -->
+                <div class="product-images demo-gallery">
+                  <!-- Begin Product Images Slider -->
+                  <div class="main-img-slider">
+                    {{-- @foreach ($posts as $item) --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a data-fancybox="gallery" href="https://www.irrawaddy.com/wp-content/uploads/2017/03/2H9A7898-a-1-1345x900.jpg">
+                                    <img src="https://www.irrawaddy.com/wp-content/uploads/2017/03/2H9A7898-a-1-1345x900.jpg"style="width: 100%;object-fit: cover;">
+                                </a>
+                            </div>
+                            <div class="col-md-6 cartoon py-3">
+                                <div class="row ">
+                                    <div class="col-lg-12">
+                                        <h3><a href="">“Hostage diplomacy”</a></h3>
+                                        <span class="text-start">13 July 2023 - P2</span>
+                                        <div class="row mt-3">
+                                            <div class="col-12 ">
+                                                <a class="me-3" style="display: inline-block;">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </a>
+                                                <a class="me-3" style="display: inline-block;">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </a>
+                                                <span class="id d-none">tghghh</span>
+                                                <span class="views me-4 border-right">dghdth</span>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
+                                                    <i class="fa-brands fa-facebook-f"></i>
+                                                </a>
+                                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
+                                                    <i class="fa-brands fa-twitter"></i>
+                                                </a>
+                                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
+                                                    <i class="fa-brands fa-linkedin-in"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                @endforeach
-                </div>
-            <!-- End Product Images Slider -->
+                        </div>
 
-            <!-- Begin product thumb nav -->
-            <ul class="thumb-nav d-none" >
-                @foreach ($posts as $item)
-                    <li><img src="{{ $item->url }}"></li>
-                @endforeach
-            </ul>
-            <!-- End product thumb nav -->
+                    {{-- @endforeach --}}
+                    </div>
+                <!-- End Product Images Slider -->
+
+                <!-- Begin product thumb nav -->
+                <ul class="thumb-nav d-none" >
+                    {{-- @foreach ($posts as $item) --}}
+                        <li><img src="https://www.irrawaddy.com/wp-content/uploads/2017/03/2H9A7898-a-1-1345x900.jpg"></li>
+                    {{-- @endforeach --}}
+                </ul>
+                <!-- End product thumb nav -->
+              </div>
+            <!-- End Product Images & Alternates -->
+            </div>
           </div>
-        <!-- End Product Images & Alternates -->
         </div>
-        
-      </div>
-    </div>
-</section>
-<section class="last-photos py-3">
-    <div class="container-fluid">
-        <div class="row d-flex-center">
-            <div class="col-11">
-                <h2 class="text-center">LATEST PHOTOS</h2>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="latest-photos py-3">
-    <div class="container-fluid">
-        <div class="row d-flex-center">
-            <div class="col-11">
-                <div class="row imglist">
-                    @foreach ($posts as $item)
-                    <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="{{$item->url}}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                            <img src="{{$item->url}}" width="100%"  />
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="row py-5">
-                    <div class="col-12 text-center">
-                        <button class="btn btn-danger">View All Photos</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 @endsection
-
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
@@ -254,24 +241,24 @@
         });
     </script>
     <script>
-        $(document).ready(function(){
-            $('.views').each(function() {
-                var value = $(this).html();
-                var id = $(this).prev('.id').text();
-                var element = $(this);
-                $.ajax({
-                    url: '{{ route('photo_views_count') }}',
-                    method: 'GET',
-                    data: {value: value, id: id},
-                    success: function(response){
-                        console.log('response: ' + response);
-                        element.html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('error: ' + error);
-                    }
-                });
-            });
-        });
+        // $(document).ready(function(){
+        //     $('.views').each(function() {
+        //         var value = $(this).html();
+        //         var id = $(this).prev('.id').text();
+        //         var element = $(this);
+        //         $.ajax({
+        //             url: '',
+        //             method: 'GET',
+        //             data: {value: value, id: id},
+        //             success: function(response){
+        //                 console.log('response: ' + response);
+        //                 element.html(response);
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.log('error: ' + error);
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 @endsection
