@@ -146,7 +146,7 @@
             <div class="product-images demo-gallery">
               <!-- Begin Product Images Slider -->
               <div class="main-img-slider">
-               
+
                 <div class="">
                     <a data-fancybox="gallery" href="{{ $post->img_link }}">
                         <img src="{{ $post->img_link }}"style="height:500px;width: 100%;object-fit:cover;">
@@ -202,7 +202,7 @@
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $post->date)->format('d F Y') }}
                     </div>
                     <div class="col-6 text-end">
-                        The Irrawaddy /     
+                        The Irrawaddy /
                     </div>
                 </div>
                 <div class="row">
@@ -214,7 +214,6 @@
                         @else
                             {!! str_replace("\n", '', $post->desc_en) !!}
                         @endif
-                        
                     </div>
                     <div class="col-12 mb-4"><strong>Topics:</strong>
                         @if (app()->getLocale() == 'mm')
@@ -223,7 +222,7 @@
                             {{ $post->topic_ch }}
                         @else
                         {{ $post->topic_en }}
-                        @endif 
+                        @endif
                     </div>
                     <div class="col-12 mb-3">
                         <div class="card py-3">
@@ -328,6 +327,6 @@
         });
     </script>
     <script>
-        
+
     </script>
 @endsection

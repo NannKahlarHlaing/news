@@ -14,10 +14,10 @@
     </div>
     <div class="row pt-5">
         <div class="col-md-8">
-            <h3>Photos</h3>
+            <h3>Pages</h3>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.photos.create_form') }}" class="btn btn-primary">Add Photos</a>
+            <a href="{{ route('backend.pages.create_form') }}" class="btn btn-primary">Add Pages</a>
         </div>
     </div>
     <div class="row py-5 px-3">
@@ -28,9 +28,9 @@
                         <thead>
                             <tr>
                                 <th>Image URL</th>
+                                <th>Page_Title_En</th>
                                 <th>Description_En</th>
-                                <th>Camera Man</th>
-                                <th>Views</th>
+                                <th>Action</th>
                                 <th>Action</th>
                                 <th>Action</th>
                             </tr>
@@ -38,9 +38,9 @@
                         <tfoot>
                             <tr>
                                 <th>Image URL</th>
-                                <th>Description</th>
-                                <th>Camera Man</th>
-                                <th>Views</th>
+                                <th>Page_Title_En</th>
+                                <th>Description_En</th>
+                                <th>Action</th>
                                 <th>Action</th>
                                 <th>Action</th>
                             </tr>
@@ -49,17 +49,21 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{{ $item->url }}</td>
+                                    <td>{{ $item->img_url }}</td>
+                                    <td>{{ $item->title_en }}</td>
                                     <td>{{ $item->desc_en }}</td>
-                                    <td>{{ $item->camera }}</td>
-                                    <td>{{ $item->views }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/photos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                        <a href="{{ url('/') . '/' . $item->title_en }}" class="btn btn-danger btn-circle">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('/admin/pages/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
                                     <td>
-                                        <form action="{{ url('/admin/photos/delete', $item->id) }}" method="POST">
+                                        <form action="{{ url('/admin/pages/delete', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
 

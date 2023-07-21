@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add Videos</h3>
+        <h3 class="my-3">Add Page</h3>
         <div class="row">
             <div class="col-md-8 ">
                 <nav class="mb-3">
@@ -12,35 +12,12 @@
                       <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Chinese</button>
                     </div>
                 </nav>
-                <form class="form" method="POST" action="{{route('backend.videos.create') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{route('backend.pages.create') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
-                        <label for="video_url">Video URL</label>
-                        <input type="text" class="form-control @error('video_url') is-invalid @enderror" id="video_url" name="video_url" value="{{ old('video_url') }}">
-                        @error('video_url')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                    </div>
                     <div class="form-group">
                         <label for="img_url">Image URL</label>
                         <input type="text" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url" value="{{ old('img_url') }}">
                         @error('img_url')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select class="form-control @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
-                            <option value="">Select Category</option>
-                            @foreach ($categories as $item)
-                                <option value="{{ $item->id  }}" {{ old('category') == $item->id? "selected":"" }}>{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('category')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>

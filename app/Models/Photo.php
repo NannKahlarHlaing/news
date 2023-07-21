@@ -9,6 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Photo extends Model
 {
     use HasFactory, SoftDeletes;
-    
-    protected $fillable = ['url', 'desc', 'camera', 'views'];
+
+    protected $fillable = ['url', 'desc_en', 'desc_mm', 'desc_ch', 'camera', 'views'];
 }

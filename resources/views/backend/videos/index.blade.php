@@ -28,9 +28,9 @@
                         <thead>
                             <tr>
                                 <th>Image URL</th>
-                                <th>Description</th>
-                                <th>Camera Man</th>
-                                <th>Views</th>
+                                <th>Video URL</th>
+                                <th>Description_En</th>
+                                <th>Category</th>
                                 <th>Action</th>
                                 <th>Action</th>
                             </tr>
@@ -38,9 +38,9 @@
                         <tfoot>
                             <tr>
                                 <th>Image URL</th>
-                                <th>Description</th>
-                                <th>Camera Man</th>
-                                <th>Views</th>
+                                <th>Video URL</th>
+                                <th>Description_En</th>
+                                <th>Category</th>
                                 <th>Action</th>
                                 <th>Action</th>
                             </tr>
@@ -49,9 +49,9 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->url }}</td>
-                                    <td>{{ $item->desc }}</td>
+                                    <td>{{ $item->img_url }}</td>
+                                    <td>{{ $item->video_url }}</td>
+                                    <td>{{ $item->desc_en }}</td>
                                     <td>{{ $item->category }}</td>
                                     <td>
                                         <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">

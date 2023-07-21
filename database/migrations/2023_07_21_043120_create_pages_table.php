@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('videos', function (Blueprint $table) {
+        ['img_url', 'title_en', 'title_mm', 'title_ch', 'desc_en', 'desc_mm', 'desc_ch'];
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('video_url');
             $table->string('img_url');
-            $table->string('category');
-            $table->string('title_en')->nullable();
-            $table->string('title_mm')->nullable();
-            $table->string('title_ch')->nullable();
+            $table->string('title_en');
+            $table->string('title_mm');
+            $table->string('title_ch');
             $table->text('desc_en', 65535)->nullable();
             $table->text('desc_mm', 65535)->nullable();
             $table->text('desc_ch', 65535)->nullable();
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('videos');
+        Schema::dropIfExists('pages');
     }
 };

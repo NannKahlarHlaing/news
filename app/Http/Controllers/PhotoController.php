@@ -37,7 +37,9 @@ class PhotoController extends Controller
         $post = Photo::find($request->id);
 
         $post->url = $request->url;
-        $post->desc = $request->desc;
+        $post->desc_en = $request->desc_en;
+        $post->desc_mm = $request->desc_mm;
+        $post->desc_ch = $request->desc_ch;
         $post->camera = $request->camera;
 
         $post->save();
@@ -78,7 +80,9 @@ class PhotoController extends Controller
     private function getData($request){
         return [
             'url' => $request->url,
-            'desc' => $request->desc,
+            'desc_en' => $request->desc_en,
+            'desc_mm' => $request->desc_mm,
+            'desc_ch' => $request->desc_ch,
             'camera' => $request->camera,
             'views' => 0
         ];

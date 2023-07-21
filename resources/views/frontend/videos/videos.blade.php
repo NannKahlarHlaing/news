@@ -55,12 +55,30 @@
                         <div class="col-lg-10 col-md-9 col-10">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="border-bottom border-white"><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
+                                    <h2 class="border-bottom border-white">
+                                        <a href="#">
+                                            <p class="card-text">
+                                                @if (app()->getLocale() == 'mm')
+                                                    {{ $latest->title_mm }}
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    {{ $latest->title_ch }}
+                                                @else
+                                                    {{ $latest->title_en }}
+                                                @endif
+                                            </p>
+                                        </a>
+                                    </h2>
                                 </div>
                             </div>
                             <span class="d-block py-3">{{ $latest->created_at->format('d F Y') }}</span>
                             <div class="row">
-                                {!! str_replace("\n", '', $latest->desc) !!}
+                                @if (app()->getLocale() == 'mm')
+                                    {!! str_replace("\n", '', $latest->desc_mm) !!}
+                                @elseif(app()->getLocale() == 'ch')
+                                    {!! str_replace("\n", '', $latest->desc_ch) !!}
+                                @else
+                                    {!! str_replace("\n", '', $latest->desc_en) !!}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -85,7 +103,15 @@
                             <img class="card-img-top img-fluid" src="{{ $item->img_url }}" />
                         </a>
                         <div class="card-body">
-                        <p class="card-text">{{ $item->title }}</p>
+                            <p class="card-text">
+                                @if (app()->getLocale() == 'mm')
+                                   {{ $item->title_mm }}
+                                @elseif(app()->getLocale() == 'ch')
+                                   {{ $item->title_ch }}
+                                @else
+                                   {{ $item->title_en }}
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +156,15 @@
                         <img class="card-img-top img-fluid" src="{{ $item->img_url }}" />
                         </a>
                         <div class="card-body">
-                        <p class="card-text">{{ $item->title }}</p>
+                            <p class="card-text">
+                                @if (app()->getLocale() == 'mm')
+                                    {{ $item->title_mm }}
+                                @elseif(app()->getLocale() == 'ch')
+                                    {{ $item->title_ch }}
+                                @else
+                                    {{ $item->title_en }}
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Photo;
 use App\Models\Video;
 use App\Models\Career;
@@ -38,6 +39,19 @@ class FrontendController extends Controller
 
     public function donation(){
         return view('frontend.donation');
+    }
+    public function pages( $language, $title){
+        // dd($title);
+        $posts = Page::where('title_en', $title)
+                    ->where('deleted_at', NULL)
+                    ->orderBy('id', 'desc')
+                    ->get();
+        $post = $posts->first();
+        return view('frontend.pages', compact('post'));
+    }
+
+    public function pagesEn($title){
+        return call_user_func_array([$this, 'pages'], ['en', $title]);
     }
 
     public function careers(){

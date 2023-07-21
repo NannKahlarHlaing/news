@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add Videos</h3>
+        <h3 class="my-3">Edit Page</h3>
         <div class="row">
             <div class="col-md-8 ">
                 <nav class="mb-3">
@@ -12,35 +12,13 @@
                       <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Chinese</button>
                     </div>
                 </nav>
-                <form class="form" method="POST" action="{{route('backend.videos.create') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{route('backend.pages.update') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
-                        <label for="video_url">Video URL</label>
-                        <input type="text" class="form-control @error('video_url') is-invalid @enderror" id="video_url" name="video_url" value="{{ old('video_url') }}">
-                        @error('video_url')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                    </div>
+                    <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">
                         <label for="img_url">Image URL</label>
-                        <input type="text" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url" value="{{ old('img_url') }}">
+                        <input type="text" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url" value="{{ old('img_url', $post->img_url) }}">
                         @error('img_url')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select class="form-control @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
-                            <option value="">Select Category</option>
-                            @foreach ($categories as $item)
-                                <option value="{{ $item->id  }}" {{ old('category') == $item->id? "selected":"" }}>{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('category')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -50,7 +28,7 @@
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <div class="form-group">
                                 <label for="title_en">Title_EN</label>
-                                <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en') }}">
+                                <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en', $post->title_en) }}">
                                 @error('title_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -59,7 +37,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_en">Description_EN</label>
-                                <textarea class="form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en') }}</textarea>
+                                <textarea class="form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -70,7 +48,7 @@
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <div class="form-group">
                                 <label for="title_mm">Title_MM</label>
-                                <input type="text" class="form-control @error('title_mm') is-invalid @enderror" id="title_mm" name="title_mm" value="{{ old('title_mm') }}">
+                                <input type="text" class="form-control @error('title_mm') is-invalid @enderror" id="title_mm" name="title_mm" value="{{ old('title_mm', $post->title_mm) }}">
                                 @error('title_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -79,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_mm">Description_MM</label>
-                                <textarea class="form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm') }}</textarea>
+                                <textarea class="form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
                                 @error('desc_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -90,7 +68,7 @@
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <div class="form-group">
                                 <label for="title_ch">Title_CH</label>
-                                <input type="text" class="form-control @error('title_ch') is-invalid @enderror" id="title_ch" name="title_ch" value="{{ old('title_ch') }}">
+                                <input type="text" class="form-control @error('title_ch') is-invalid @enderror" id="title_ch" name="title_ch" value="{{ old('title_ch', $post->title_ch) }}">
                                 @error('title_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -99,7 +77,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_ch">Description_CH</label>
-                                <textarea class="form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch') }}</textarea>
+                                <textarea class="form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
                                 @error('desc_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -109,7 +87,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

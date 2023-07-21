@@ -50,6 +50,15 @@ Route::prefix('/admin')->group(function(){
         Route::delete('/tag/delete/{id}', 'destroy');
     });
 
+    Route::controller(App\Http\Controllers\PageController::class)->group(function(){
+        Route::get('/pages', 'index')->name('backend.pages');
+        Route::get('/pages/create', 'create_form')->name('backend.pages.create_form');
+        Route::post('/pages/create', 'create')->name('backend.pages.create');
+        Route::get('/pages/update/{id}', 'update_form');
+        Route::post('/pages/update', 'update')->name('backend.pages.update');
+        Route::delete('/pages/delete/{id}', 'destroy');
+    });
+
     Route::controller(App\Http\Controllers\PostController::class)->group(function(){
         Route::get('/posts', 'index')->name('backend.posts');
         Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
@@ -132,13 +141,24 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
     Route::get('/contact', 'contact')->name('frontend.contact');
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
+    // Route::get('/{title}', 'pagesEn')->name('frontend.pages');
+    Route::get('/{title}', function($path){
+        if($path == 'mm' || $path == 'ch'){
+            return view('frontend.home');
+        }else{
+            $controller = app()->make(App\Http\Controllers\FrontendController::class);
+            return $controller->pagesEn($path);
+        }
+    });
 });
 
 Route::controller(App\Http\Controllers\ContactController::class)->group(function(){
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
 });
 
-Route::group(['prefix' => '{language}'], function () {
+Route::group(['prefix' => '{language}'], function ($language) {
+
+    // dd($language);
 
     Route::get('/', function () {
         return view('frontend.home');
@@ -157,8 +177,13 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/contact', 'contact');
         Route::post('/contact', 'sendEmail');
         Route::get('/cartoons', 'cartoons');
+        Route::get('/{title}', 'pages');
     });
 });
+`
+
+
+
 
 
 

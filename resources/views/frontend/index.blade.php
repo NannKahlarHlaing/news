@@ -59,7 +59,7 @@
                                                 <div>
                                                     <h6><a href="">LifeStyle</a></h6>
                                                 </div>
-                                                <div>
+                                                {{-- <div>
                                                     <h6><a href="{{ route('frontend.videos') }}">Videos</a></h6>
                                                 </div>
                                                 <div>
@@ -76,7 +76,7 @@
                                                 </div>
                                                 <div class="">
                                                     <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>

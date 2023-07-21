@@ -119,9 +119,14 @@
                             <div class="row description d-flex-center mt-5 py-3">
                                 <div class="col-lg-10 text-center">
                                     <div class="row">
-                                        {!! str_replace("\n", '', $item->desc) !!}
+                                        @if (app()->getLocale() == 'mm')
+                                            {!! str_replace("\n", '', $item->desc_mm) !!}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {!! str_replace("\n", '', $item->desc_ch) !!}
+                                        @else
+                                            {!! str_replace("\n", '', $item->desc_en) !!}
+                                        @endif
                                     </div>
-                                    
                                     <div class="row mt-3">
                                         <div class="col-6 text-end border-right border-white">
                                             <a class="me-3" style="display: inline-block;">
@@ -160,7 +165,7 @@
           </div>
         <!-- End Product Images & Alternates -->
         </div>
-        
+
       </div>
     </div>
 </section>
