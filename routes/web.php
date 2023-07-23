@@ -32,15 +32,28 @@ Route::prefix('/admin')->group(function(){
         return view('backend.dashboard');
     });
 
-    Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
-        Route::get('/categories', 'index')->name('category');
-        Route::get('/categories/create', 'create_form')->name('category.create_form');
-        Route::post('/categories/create', 'create')->name('category.create');
-        Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
-        Route::post('/categories/update', 'update')->name('category.update');
-        Route::delete('/categories/delete/{id}', 'destroy');
+    Route::controller(App\Http\Controllers\AdminController::class)->group(function(){
+        Route::get('/register', 'register_form')->name('admin.register_form');
+        Route::post('/register', 'register')->name('admin.register');
+
+        Route::get('/login', 'login_form')->name('admin.login_form');
+
+        Route::post('/login', 'login')->name('admin.login');
     });
 
+    Route::group(['middleware' => 'admin'], function () {
+        Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
+            Route::get('/categories', 'index')->name('category');
+            Route::get('/categories/create', 'create_form')->name('category.create_form');
+            Route::post('/categories/create', 'create')->name('category.create');
+            Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
+            Route::post('/categories/update', 'update')->name('category.update');
+            Route::delete('/categories/delete/{id}', 'destroy');
+        });
+    });
+        
+
+    
     Route::controller(App\Http\Controllers\TagController::class)->group(function(){
         Route::get('/tag', 'index')->name('tag');
         Route::get('/tag/create', 'create_form')->name('tag.create_form');
@@ -180,10 +193,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         Route::get('/{title}', 'pages');
     });
 });
-`
 
+Auth::routes();
 
-
-
-
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

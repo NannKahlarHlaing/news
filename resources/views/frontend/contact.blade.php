@@ -20,9 +20,9 @@
                 <div class="col-11">
                     <div class="row">
                         <div class="col-lg-6">
-                            @hasSection('message_sent')
-                                <div class="alert alert-success">
-                                    {{ Session::get('message_sent') }}
+                            @if (Session::has('message'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ Session::get('error') }}
                                 </div>
                             @endif
                             <form class="form bg-transparent" method="POST" action="{{ route('frontend.email_sent') }}">

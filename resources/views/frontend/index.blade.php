@@ -59,7 +59,7 @@
                                                 <div>
                                                     <h6><a href="">LifeStyle</a></h6>
                                                 </div>
-                                                {{-- <div>
+                                                <div>
                                                     <h6><a href="{{ route('frontend.videos') }}">Videos</a></h6>
                                                 </div>
                                                 <div>
@@ -76,7 +76,7 @@
                                                 </div>
                                                 <div class="">
                                                     <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
-                                                </div> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -115,8 +115,12 @@
                                 </ul>
                                 </li>
                                 <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                                 </li>
+                                <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
+                                <li><a href="" class="nav-link" id="en">English</a></li>
+                                <li><a href="" class="nav-link" id="mm">Myanmar</a></li>
+                                <li><a href="" class="nav-link" id="ch">Chinese</a></li>
                             </ul>
 
                         </div>
@@ -132,21 +136,7 @@
                     <i class="fa-solid fa-xmark" id="btn-close"></i>
                 </form>
             </div>
-            <div class="col-8">
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-6 text-right">
-                        <strong>Select Language: </strong>
-                    </div>
-                    <div class="col-md-8 language">
-                        <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
-                        <ul>
-                            <li><a href="" id="en">English</a></li>
-                            <li><a href="" id="mm">Myanmar</a></li>
-                            <li><a href="" id="ch">Chinese</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <div class="row">
             <div class="container">
@@ -354,8 +344,11 @@ $(document).ready(function(){
     var lang = $('#lang').text();
 
     $('#mm').on('click', function(event) {
+        console.log( 'ddd');
         event.preventDefault();
         var currentURL = window.location.href;
+
+        console.log( ' ddd'+ $('#mm').text());
         if(lang == 'en'){
             var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
         }else{

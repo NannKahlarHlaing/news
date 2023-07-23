@@ -51,7 +51,7 @@
                                 <tr>
                                     <td>{{ $item->img_url }}</td>
                                     <td>{{ $item->title_en }}</td>
-                                    <td>{{ $item->desc_en }}</td>
+                                    <td>{{ substr($item->desc_en, 0, 50) }}</td>
                                     <td>
                                         <a href="{{ url('/') . '/' . $item->title_en }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-eye"></i>
