@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class Moderator
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guard('admins')->check()){
+        if (Auth::guard('admins')->check() && (Auth::guard('admins')->user()->role == 2 )) {
             return $next($request);
         }
 
-        // If the user is not an admin, you can redirect them or return an error response.
-        return redirect('/admin/login');
+        return redirect('/admin')->with('error', 'Unauthorized access.');
     }
 }

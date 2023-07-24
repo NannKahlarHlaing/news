@@ -5,7 +5,7 @@
 
 :root {
   --font-color: #ECE7DD;
-  --color-red: #CF232B;
+  --color-red: #007bff;
   --color-dgray: #242423;
   --color-gray: #545454;
   --color-pale: #dad0bc;
@@ -304,7 +304,7 @@ a:hover{
   color: var(--font-color);
 }
 .top-one{
-    background: #CF232B;
+    background: var(--color-red);
     position: absolute;
     margin-top: -25px;
     margin-left: 20px;
@@ -347,7 +347,7 @@ a:hover{
 }
 
 .top-ten{
-  background-color: #e0454d;
+  background-color: var(--color-red);
 }
 .top-ten .top-one{
   margin-left: 10px;

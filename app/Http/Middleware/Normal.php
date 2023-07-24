@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class Normal
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,13 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guard('admins')->check()){
+        if (Auth::guard('admins')->check() && Auth::guard('admins')->user()->role == 3 ) {
+            if(url()->current() == route('admin.login_form') || url()->current() == route('admin.register_form')){
+                return back();
+            }
             return $next($request);
         }
 
-        // If the user is not an admin, you can redirect them or return an error response.
-        return redirect('/admin/login');
+        return redirect('/admin')->with('error', 'Unauthorized access.');
     }
 }

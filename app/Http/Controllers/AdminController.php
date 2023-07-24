@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,10 +13,17 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     public function register_form(){
+        if (Auth::guard('admins')->check()) {
+            return redirect('/admin');
+        }
         return view('backend.auth.register');
     }
 
     public function login_form(){
+        if (Auth::guard('admins')->check()) {
+            return redirect('/admin');
+        }
+
         return view('backend.auth.login');
     }
 
@@ -26,45 +34,30 @@ class AdminController extends Controller
         $admin = Admin::create($data);
 
         $credentials = $request->only('email', 'password');
-        
+
         Auth::guard('admins')->login($admin);
 
         return redirect('/admin');
     }
 
     public function login(Request $request){
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admins')->attempt($credentials)) {
             // Authentication passed...
-            return redirect('/admin');
+            return redirect()->intended(route('admin'));
         }
 
-        return redirect()->back()->withInput()->withErrors([
-            'email' => 'Invalid email or password',
-        ]);
+        return back();
 
-        
-   
-        // $credentials = $request->only('email', 'password');
-
-        // if (Auth::attempt($credentials, $request->filled('remember'))) {
-        //     return redirect('/');
-        // }
-  
-        // return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([
-        //     'email' => 'These credentials do not match our records.',
-        // ]);
     }
 
     public function logout(){
-        Auth::logout();
-        return redirect('/login');
+        Auth::guard('admins')->logout();
+
+        return redirect()->route('admin.login_form');
     }
 
     private function validation($request)
