@@ -38,11 +38,20 @@ Route::prefix('/admin')->group(function(){
 
 
 //backend
-Route::group(['middleware' => 'admin'], function () {
+// Route::group(['middleware' => 'admin'], function () {
     Route::prefix('/admin')->group(function(){
         Route::get('/', function () {
             return view('backend.dashboard');
         })->name('admin');
+
+        Route::group(['middleware' => 'moderator'], function () {
+
+            Route::controller(App\Http\Controllers\PostController::class)->group(function(){
+                Route::get('/posts', 'index')->name('backend.posts');
+                Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
+                Route::post('/posts/create', 'create')->name('backend.posts.create');
+            });
+        });
 
         Route::group(['middleware' => 'moderator'], function () {
             Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
@@ -74,9 +83,7 @@ Route::group(['middleware' => 'admin'], function () {
         });
 
         Route::controller(App\Http\Controllers\PostController::class)->group(function(){
-            Route::get('/posts', 'index')->name('backend.posts');
-            Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
-            Route::post('/posts/create', 'create')->name('backend.posts.create');
+
             Route::get('/posts/update/{id}', 'update_form');
             Route::post('/posts/update', 'update')->name('backend.posts.update');
             Route::delete('/posts/delete/{id}', 'destroy');
@@ -133,7 +140,7 @@ Route::group(['middleware' => 'admin'], function () {
         });
 
     });
-});
+// });
 
 // news details
 
