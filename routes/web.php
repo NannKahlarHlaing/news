@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,37 +34,47 @@ Route::prefix('/admin')->group(function(){
 
         Route::get('/register', 'register_form')->name('admin.register_form');
         Route::post('/register', 'register')->name('admin.register');
+
+        Route::get('/forgot/password', 'forgot_password')->name('forgot_password');
     });
 
+
+
 });
+
+Route::get('admin/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
+Route::post('admin/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+Route::get('admin/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('admin.password.reset');
+Route::post('admin/password/reset', [ResetPasswordController::class, 'reset'])->name('admin.password.update');
 
 
 //backend
 Route::group(['middleware' => 'normal'], function () {
     Route::prefix('/admin')->group(function(){
+
         Route::get('/', function () {
             return view('backend.dashboard');
         })->name('admin');
 
-        Route::controller(App\Http\Controllers\AdminController::class)->group(function(){
-            Route::get('/users', 'index')->name('backend.users');
-            Route::get('/users/create', 'create_form')->name('users.create_form');
-            Route::post('/users/create', 'create')->name('users.create');
-            Route::get('/users/update/{id}', 'update_form')->name('users.update_form');
-            Route::post('/users/update', 'update')->name('users.update');
-            Route::delete('/users/delete/{id}', 'destroy');
+        Route::group(['middleware' => 'admin'], function () {
+            Route::controller(App\Http\Controllers\AdminController::class)->group(function(){
+                Route::get('/users', 'index')->name('backend.users');
+                Route::get('/users/create', 'create_form')->name('users.create_form');
+                Route::post('/users/create', 'create')->name('users.create');
+                Route::get('/users/update/{id}', 'update_form')->name('users.update_form');
+                Route::post('/users/update', 'update')->name('users.update');
+                Route::delete('/users/delete/{id}', 'destroy');
+            });
         });
 
-        // Route::group(['middleware' => 'moderator'], function () {
-            Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
-                Route::get('/categories', 'index')->name('category');
-                Route::get('/categories/create', 'create_form')->name('category.create_form');
-                Route::post('/categories/create', 'create')->name('category.create');
-                Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
-                Route::post('/categories/update', 'update')->name('category.update');
-                Route::delete('/categories/delete/{id}', 'destroy');
-            });
-        // });
+        Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
+            Route::get('/categories', 'index')->name('category');
+            Route::get('/categories/create', 'create_form')->name('category.create_form');
+            Route::post('/categories/create', 'create')->name('category.create');
+            Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
+            Route::post('/categories/update', 'update')->name('category.update');
+            Route::delete('/categories/delete/{id}', 'destroy');
+        });
 
         Route::controller(App\Http\Controllers\TagController::class)->group(function(){
             Route::get('/tag', 'index')->name('tag');

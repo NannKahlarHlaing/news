@@ -18,7 +18,7 @@
             @else
             <a href="{{ route('tag.create_form') }}" class="btn btn-primary">Add New </a>
             @endif
-            
+
         </div>
     </div>
     <div class="row py-5 px-3">
@@ -32,29 +32,30 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                            <th scope="col" class="col-6">Name</th>
-                            <th scope="col" class="col-6" colspan="2">Action</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Action</th>
                         </thead>
                         <tbody>
                             @foreach($posts as $post)
                                 <tr>
-                                    <td>{{ $post->name }}</td>
+                                    <td>{{ $post->name_en }}</td>
                                     <td>
                                         @if ($route_name == 'category')
                                             <a href="{{ url('/admin/categories/update') . '/' . $post->id }}" class="btn btn-warning">Edit</a>
                                         @else
                                             <a href="{{ url('/admin/tag/update') . '/' . $post->id }}" class="btn btn-warning">Edit</a>
                                         @endif
-                                        
+
                                     </td>
                                     <td>
                                         @if ($route_name == 'category')
                                             <form action="{{ url('/admin/categories/delete', $post->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-            
-                                                <button 
-                                                    type="submit" 
+
+                                                <button
+                                                    type="submit"
                                                     class="btn btn-danger"
                                                     onclick="return confirm('Are you sure to delete');"
                                                 >
@@ -65,9 +66,9 @@
                                             <form action="{{ url('/admin/tag/delete', $post->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-            
-                                                <button 
-                                                    type="submit" 
+
+                                                <button
+                                                    type="submit"
                                                     class="btn btn-danger"
                                                     onclick="return confirm('Are you sure to delete');"
                                                 >
@@ -75,7 +76,7 @@
                                                 </button>
                                             </form>
                                         @endif
-                                        
+
                                     </td>
                                 </tr>
                             @endforeach

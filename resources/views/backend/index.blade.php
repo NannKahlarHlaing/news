@@ -44,7 +44,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-            @if (request()->path() == 'admin/login' || request()->path() == 'admin/register')
+            @if (request()->path() == 'admin/login' || request()->path() == 'admin/register' || request()->path() == 'admin/forgot/password' || request()->path() == 'admin/password/reset')
 
             @else
                 @include('backend.sidebar')
@@ -262,7 +262,6 @@
                         @endif
 
 
-
                     </ul>
 
                 </nav>
@@ -271,14 +270,14 @@
                 @if (Session::has('error'))
                     <div class="modal" id="alertModal" tabindex="-1">
                         <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Authorization Error!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-danger"> {{ Session::get('error') }}</p>
-                            </div>
+                            <div class="modal-content text-danger text-bold">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Authorization Error!</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p> {{ Session::get('error') }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

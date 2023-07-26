@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name_en', 'name_mm', 'name_ch'];
 
     public function posts(){
         return $this->hasMany('App\Models\Post', 'id');

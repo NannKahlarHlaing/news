@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,6 +41,10 @@ class AdminController extends Controller
 
     public function login(Request $request){
 
+        Validator::make($request->all(),[
+            'email' => 'required',
+            'password' => 'required|min:4',
+            ])->validate();
 
         $credentials = $request->only('email', 'password');
 
@@ -50,7 +53,7 @@ class AdminController extends Controller
             return redirect()->intended(route('admin'));
         }
 
-        return back();
+        return back()->with('login_error', 'Your Credentials doesn\'t match');
 
     }
 
@@ -59,6 +62,43 @@ class AdminController extends Controller
 
         return redirect()->route('admin.login_form');
     }
+
+    public function index(){
+        $posts = Admin::all();
+        return view('backend.users.index', compact('posts'));
+    }
+
+    public function create_form(){
+        return view('backend.users.create');
+    }
+
+    public function create(Request $request){
+
+        $this->validation($request);
+        $data = $this->getData($request);
+        $admin = Admin::create($data);
+
+        return redirect('/admin/users');
+    }
+
+    public function update_form($id){
+        $post = Admin::find($id);
+
+        return view('backend.users.update', compact('post'));
+    }
+
+    public function destroy($id){
+        $post = Admin::find($id);
+        $post->delete();
+
+        return redirect ('/admin/users')->with('status', 'careers is deleted successfully!');
+
+    }
+
+    public function forgot_password(){
+        return view('auth.passwords.email');
+    }
+
 
     private function validation($request)
     {

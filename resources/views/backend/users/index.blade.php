@@ -21,17 +21,23 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                            <th scope="col" class="col-6">Name</th>
-                            <th scope="col" class="col-6" colspan="2">Action</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Action</th>
                         </thead>
                         <tbody>
                             @foreach($posts as $post)
                                 <tr>
                                     <td>{{ $post->name }}</td>
+                                    <td>{{ $post->email }}</td>
+                                    <td>{{ $post->role }}</td>
                                     <td>
                                         <a href="{{ url('/admin/users/update') . '/' . $post->id }}" class="btn btn-warning">Edit</a>
                                     </td>
                                     <td>
+
                                         <form action="{{ url('/admin/users/delete', $post->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -40,6 +46,9 @@
                                                 type="submit"
                                                 class="btn btn-danger"
                                                 onclick="return confirm('Are you sure to delete');"
+                                                @if (Auth::guard('admins')->user()->id == $post->id)
+                                                disabled
+                                                @endif
                                             >
                                                 Delete
                                             </button>

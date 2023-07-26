@@ -28,6 +28,11 @@
                                                 {{$message}}
                                             </div>
                                         @enderror
+                                        @if (Session::has('login_error'))
+                                        <div class="text-danger fw-bold">
+                                                {{ Session::get('login_error') }}
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" placeholder="Password">
@@ -57,11 +62,11 @@
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" href="{{ route('admin.password.request') }}">Forgot Password?</a>
                                 </div>
-                                <div class="text-center">
+                                {{-- <div class="text-center">
                                     <a class="small" href="register.html">Create an Account!</a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -73,5 +78,5 @@
     </div>
 
 </div>
-    
+
 @endsection

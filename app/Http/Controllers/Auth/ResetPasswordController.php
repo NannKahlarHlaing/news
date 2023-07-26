@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -27,4 +29,14 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/admin';
+
+    protected function guard()
+    {
+        return Auth::guard('admins');
+    }
+
+    protected function broker()
+    {
+        return Password::broker('admins');
+    }
 }

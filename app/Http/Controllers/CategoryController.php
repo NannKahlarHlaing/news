@@ -29,9 +29,9 @@ class CategoryController extends Controller
         Category::create($data);
 
         return redirect ('/admin/categories');
-        
+
     }
-    
+
     public function update_form($id){
         $route_name = Route::currentRouteName();
         $post = Category::find($id);
@@ -39,16 +39,16 @@ class CategoryController extends Controller
     }
 
     public function update(Request $request){
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $this->validation($request);
 
         $post = Category::find($request->id);
-        $post->name = $request->name;
+        $post->name_en = $request->name_en;
+        $post->name_mm = $request->name_mm;
+        $post->name_ch = $request->name_ch;
         $post->save();
 
         return redirect ('/admin/categories')->with('status', 'Category is updated successfully!');
-        
+
     }
 
     public function destroy($id){
@@ -60,13 +60,15 @@ class CategoryController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'name' => 'required'
+            'name_en' => 'required'
         ])->validate();
     }
 
     private function getData($request){
         return [
-            'name' => $request->name
+            'name_en' => $request->name_en,
+            'name_mm' => $request->name_mm,
+            'name_ch' => $request->name_ch,
         ];
     }
 }

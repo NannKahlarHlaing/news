@@ -106,6 +106,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets', // Replace with your custom password reset table if needed
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*
