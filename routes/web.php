@@ -38,22 +38,22 @@ Route::prefix('/admin')->group(function(){
 
 
 //backend
-// Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => 'normal'], function () {
     Route::prefix('/admin')->group(function(){
         Route::get('/', function () {
             return view('backend.dashboard');
         })->name('admin');
 
-        Route::group(['middleware' => 'moderator'], function () {
-
-            Route::controller(App\Http\Controllers\PostController::class)->group(function(){
-                Route::get('/posts', 'index')->name('backend.posts');
-                Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
-                Route::post('/posts/create', 'create')->name('backend.posts.create');
-            });
+        Route::controller(App\Http\Controllers\AdminController::class)->group(function(){
+            Route::get('/users', 'index')->name('backend.users');
+            Route::get('/users/create', 'create_form')->name('users.create_form');
+            Route::post('/users/create', 'create')->name('users.create');
+            Route::get('/users/update/{id}', 'update_form')->name('users.update_form');
+            Route::post('/users/update', 'update')->name('users.update');
+            Route::delete('/users/delete/{id}', 'destroy');
         });
 
-        Route::group(['middleware' => 'moderator'], function () {
+        // Route::group(['middleware' => 'moderator'], function () {
             Route::controller(App\Http\Controllers\CategoryController::class)->group(function(){
                 Route::get('/categories', 'index')->name('category');
                 Route::get('/categories/create', 'create_form')->name('category.create_form');
@@ -62,7 +62,7 @@ Route::prefix('/admin')->group(function(){
                 Route::post('/categories/update', 'update')->name('category.update');
                 Route::delete('/categories/delete/{id}', 'destroy');
             });
-        });
+        // });
 
         Route::controller(App\Http\Controllers\TagController::class)->group(function(){
             Route::get('/tag', 'index')->name('tag');
@@ -83,10 +83,12 @@ Route::prefix('/admin')->group(function(){
         });
 
         Route::controller(App\Http\Controllers\PostController::class)->group(function(){
-
-            Route::get('/posts/update/{id}', 'update_form');
-            Route::post('/posts/update', 'update')->name('backend.posts.update');
-            Route::delete('/posts/delete/{id}', 'destroy');
+            Route::get('/posts', 'index')->name('backend.posts');
+            Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
+            Route::post('/posts/create', 'create')->name('backend.posts.create');
+            Route::get('/posts/update/{id}', 'update_form')->middleware('moderator');
+            Route::post('/posts/update', 'update')->name('backend.posts.update')->middleware('moderator');
+            Route::delete('/posts/delete/{id}', 'destroy')->middleware('moderator');
         });
 
         Route::controller(App\Http\Controllers\PhotoController::class)->group(function(){
@@ -140,7 +142,7 @@ Route::prefix('/admin')->group(function(){
         });
 
     });
-// });
+});
 
 // news details
 

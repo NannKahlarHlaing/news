@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News</title>
+    <title>The VWXYZ Online</title>
 
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-10">
                                         <div class="offcanvas-header">
-                                            <h5 id="offcanvasTopLabel">{{ env('SITE_TITLE') }}</h5>
+                                            <h5 id="offcanvasTopLabel">The VWXYZ Online</h5>
                                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                         </div>
                                         <div class="offcanvas-body d-flex justify-content-start">
@@ -136,7 +136,7 @@
                     <i class="fa-solid fa-xmark" id="btn-close"></i>
                 </form>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="container">

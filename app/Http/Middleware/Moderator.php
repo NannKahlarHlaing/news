@@ -20,6 +20,6 @@ class Moderator
             return $next($request);
         }
 
-        return redirect('/admin')->with('error', 'Unauthorized access.');
+        return back()->with('error', 'Unauthorized access.');
     }
 }

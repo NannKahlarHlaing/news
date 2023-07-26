@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">{{ env('SITE_TITLE') }}</div>
+        <div class="sidebar-brand-text mx-3">The VWXYZ Online</div>
     </a>
 
     <!-- Divider -->
@@ -87,6 +87,12 @@
         <a class="nav-link" href="{{ route('backend.socials') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Social</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.users') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Users</span></a>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->

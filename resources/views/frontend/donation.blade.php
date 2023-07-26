@@ -23,7 +23,7 @@
                             <p>Through its independent journalism, The Irrawaddy has long championed the voices in Myanmar. We remainfirmly committed to providing comprehensive coverage of events in the country and the wider region, as well as an understanding of their impacts and the challenges they pose. Editorial independence has never been more important.</p>
                         </div>
                         <div class="col-12">
-                            <strong>Support The Irrawaddy: </strong> <a href="" class="text-primary">https://bit.ly/3btQYpR</a>
+                            <strong>Support: </strong> <a href="" class="text-primary">link</a>
                         </div>
                     </div>
                 </div>

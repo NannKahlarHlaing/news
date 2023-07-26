@@ -30,6 +30,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     @yield('css')
+
+    <script>
+        $(document).ready(function () {
+          $('#errorModal').modal('show');
+        });
+      </script>
 </head>
 
 <body id="page-top">
@@ -262,6 +268,22 @@
                 </nav>
                 <!-- End of Topbar -->
 
+                @if (Session::has('error'))
+                    <div class="modal" id="alertModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Authorization Error!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-danger"> {{ Session::get('error') }}</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 @yield('content')
 
             </div>
@@ -342,7 +364,22 @@
             bullist numlist outdent indent | removeformat | image | link',
         menubar: 'file edit view insert format tools table help',
         });
+
+
     </script>
+
+<script>
+    // Show the modal when the page loads
+    $(document).ready(function() {
+        $('#alertModal').modal('show');
+        // $('#submitForm').click(function(){
+        //     $('#buttonClicked').val(1);
+        //     // Submit the form
+        //     $('#myForm').submit();
+        // });
+    });
+
+</script>
 
     @yield('js')
 
