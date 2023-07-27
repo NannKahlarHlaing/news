@@ -192,7 +192,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_ch">Description_EN</label>
+                                <label for="desc_ch">Description_CH</label>
                                 <textarea class="form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch') }}</textarea>
                                 @error('desc_ch')
                                     <div class="invalid-feedback">

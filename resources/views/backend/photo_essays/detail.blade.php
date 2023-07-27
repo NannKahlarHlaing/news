@@ -233,7 +233,7 @@
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-9">
                                         <span class="fw-bold">{{ $post->author }}</span><br>
-                                        <span>The Irrawaddy</span>
+                                        <span>The VWXYZ Online</span>
                                     </div>
                                 </div>
                             </div>

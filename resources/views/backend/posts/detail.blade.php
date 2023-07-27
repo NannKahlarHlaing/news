@@ -14,11 +14,14 @@
                                 <span class="d-none" id="id">{{ $post->id }}</span>
                                 <span>{{ $post->category->name }}</span>
                                 <h2>
-                                    @if(app()->getLocale() == 'mm')
-                                        {{ $post->title }}
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $post->title_mm }}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {{ $post->title_ch }}
+                                    @else
+                                    {{ $post->title_en }}
                                     @endif
                                 </h2>
-                                <span>{{ app()->getLocale() }}</span>
                             </div>
                             <div class="col-12">
                                 <img src="{{ $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
@@ -71,7 +74,24 @@
                             </div>
                             <div class="col-10">
                                 <h6>BY <a href="" class="tex-dark fw-bold me-3">The VWXYZ Online</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
-                                <p>{!! str_replace("\n", '', $post->desc) !!}</p>
+                                <p>
+                                    @if (app()->getLocale() == 'mm')
+                                        {!! str_replace("\n", '', $post->desc_mm) !!}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {!! str_replace("\n", '', $post->desc_ch) !!}
+                                    @else
+                                        {!! str_replace("\n", '', $post->desc_en) !!}
+                                    @endif
+                                </p>
+                                <div class="col-12 mb-4"><strong>Topics:</strong>
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $post->topic_mm }}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {{ $post->topic_ch }}
+                                    @else
+                                    {{ $post->topic_en }}
+                                    @endif
+                                </div>
                                 <div class="col-12">
                                     <div class="card py-2">
                                         <div class="row d-flex align-items-center">

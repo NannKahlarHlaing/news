@@ -9,7 +9,7 @@
                         <div class="col-12">
                             <img src="{{ $post->img_url }}" class="img-fluid rounded-top" alt="" width="100%">
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 my-3">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -25,7 +25,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-12 my-5">
+                        <div class="col-12 my-3">
                             <h2>
                                 @if (app()->getLocale() == 'mm')
                                     {{ $post->title_mm }}
