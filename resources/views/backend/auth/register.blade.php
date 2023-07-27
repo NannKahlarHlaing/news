@@ -1,5 +1,15 @@
 @extends('backend.index')
 
+@section('css')
+    <style>
+        .form-select {
+            font-size: 0.8rem;
+            border-radius: 10rem;
+            height: 3rem;
+        }
+    </style>
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -27,7 +37,7 @@
                                         <option value="2" {{ old('role') == '2'? "selected":"" }}>Moderator</option>
                                         <option value="3" {{ old('role') == '3'? "selected":"" }}>Normal</option>
                                     </select>
-    
+
                                     @error('role')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -86,5 +96,5 @@
     </div>
 
 </div>
-    
+
 @endsection

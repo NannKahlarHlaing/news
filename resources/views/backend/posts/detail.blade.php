@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="col-10">
-                                <h6>BY <a href="" class="tex-dark fw-bold me-3">THE IRRAWADDY</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
+                                <h6>BY <a href="" class="tex-dark fw-bold me-3">The VWXYZ Online</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
                                 <p>{!! str_replace("\n", '', $post->desc) !!}</p>
                                 <div class="col-12">
                                     <div class="card py-2">
@@ -79,7 +79,7 @@
                                                 <img src="{{ asset('/images/logo.png') }}" alt="" width="130px">
                                             </div>
                                             <div class="col-md-3">
-                                                The Irrawaddy
+                                                The VWXYZ Online
                                             </div>
                                         </div>
                                     </div>

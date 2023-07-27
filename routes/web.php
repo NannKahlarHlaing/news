@@ -50,6 +50,7 @@ Route::post('admin/password/reset', [ResetPasswordController::class, 'reset'])->
 
 //backend
 Route::group(['middleware' => 'normal'], function () {
+
     Route::prefix('/admin')->group(function(){
 
         Route::get('/', function () {
@@ -74,6 +75,15 @@ Route::group(['middleware' => 'normal'], function () {
             Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
             Route::post('/categories/update', 'update')->name('category.update');
             Route::delete('/categories/delete/{id}', 'destroy');
+        });
+
+        Route::controller(App\Http\Controllers\SubCategoryController::class)->group(function(){
+            Route::get('/sub_categories', 'index')->name('sub_category');
+            Route::get('/sub_categories/create', 'create_form')->name('sub_category.create_form');
+            Route::post('/sub_categories/create', 'create')->name('sub_category.create');
+            Route::get('/sub_categories/update/{id}', 'update_form')->name('sub_category.update_form');
+            Route::post('/sub_categories/update', 'update')->name('sub_category.update');
+            Route::delete('/sub_categories/delete/{id}', 'destroy');
         });
 
         Route::controller(App\Http\Controllers\TagController::class)->group(function(){
@@ -152,6 +162,8 @@ Route::group(['middleware' => 'normal'], function () {
             Route::post('/cartoons/update', 'update')->name('backend.cartoons.update');
             Route::delete('/cartoons/delete/{id}', 'destroy');
         });
+
+        Route::get('/get/sub_category', [App\Http\Controllers\SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');
 
     });
 });

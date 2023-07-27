@@ -13,12 +13,22 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('category_id');
-            $table->string('topic')->nullable();
-            $table->text('short_desc', 65535)->nullable();
-            $table->text('desc', 65535)->nullable();
             $table->string('img_link')->nullable();
+            $table->string('category_id');
+            $table->string('sub_category_id');
+            $table->string('tags');
+            $table->string('title_en')->nullable();
+            $table->string('title_mm')->nullable();
+            $table->string('title_ch')->nullable();
+            $table->string('topic_en')->nullable();
+            $table->string('topic_mm')->nullable();
+            $table->string('topic_ch')->nullable();
+            $table->text('short_desc_en', 65535)->nullable();
+            $table->text('short_desc_mm', 65535)->nullable();
+            $table->text('short_desc_ch', 65535)->nullable();
+            $table->text('desc_en', 65535)->nullable();
+            $table->text('desc_mm', 65535)->nullable();
+            $table->text('desc_ch', 65535)->nullable();
             $table->integer('views');
             $table->integer('like')->nullable();
             $table->integer('love')->nullable();

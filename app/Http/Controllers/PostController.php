@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +19,9 @@ class PostController extends Controller
 
     public function create_form(){
         $categories = Category::where('deleted_at', NULL)->get();
-        return view('backend.posts.create', compact('categories'));
+        $sub_categories = SubCategory::where('deleted_at', NULL)->get();
+        $tags = Tag::where('deleted_at', NULL)->get();
+        return view('backend.posts.create', compact('categories', 'sub_categories', 'tags'));
     }
 
     public function create(Request $request){
@@ -32,7 +36,10 @@ class PostController extends Controller
     public function update_form($id){
         $post = Post::find($id);
         $categories = Category::where('deleted_at', NULL)->get();
-        return view('backend.posts.update', compact('post','categories'));
+        $sub_categories = SubCategory::where('deleted_at', NULL)->get();
+        $tags = explode(',', $post->tags);
+        $all_tags = Tag::where('deleted_at', NULL)->get();
+        return view('backend.posts.update', compact('post','categories', 'sub_categories', 'tags', 'all_tags'));
     }
 
     public function update(Request $request){
@@ -40,13 +47,22 @@ class PostController extends Controller
 
         $post = Post::find($request->id);
 
-        $post->title = $request->title;
-        $post->category_id = $request->category;
-        $post->topic = $request->topic;
-        $post->short_desc = str_replace("\n", "\r\n", $request->short_desc);
-        $post->desc = str_replace("\n", "\r\n", $request->desc);
         $post->img_link = $request->img_link;
-
+        $post->category_id = $request->category;
+        $post->sub_category_id = $request->sub_category;
+        $post->tags = implode(',', $request->input('tags'));
+        $post->title_en = $request->title_en;
+        $post->title_mm = $request->title_mm;
+        $post->title_ch = $request->title_ch;
+        $post->topic_en = $request->topic_en;
+        $post->topic_mm = $request->topic_mm;
+        $post->topic_ch = $request->topic_ch;
+        $post->short_desc_en = str_replace("\n", "\r\n", $request->short_desc_en);
+        $post->short_desc_mm = str_replace("\n", "\r\n", $request->short_desc_mm);
+        $post->short_desc_ch = str_replace("\n", "\r\n", $request->short_desc_ch);
+        $post->desc_en = str_replace("\n", "\r\n", $request->desc_en);
+        $post->desc_mm = str_replace("\n", "\r\n", $request->desc_mm);
+        $post->desc_ch = str_replace("\n", "\r\n", $request->desc_ch);
 
         $post->save();
 
@@ -89,20 +105,30 @@ class PostController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'title' => 'required',
+            'title_en' => 'required',
             'category' => 'required',
-            'short_desc' => 'required',
+            'short_desc_en' => 'required',
         ])->validate();
     }
 
     private function getData($request){
         return [
-            'title' => $request->title,
-            'category_id' => $request->category,
-            'topic' => $request->topic,
-            'short_desc' => str_replace("\n", "\r\n", $request->short_desc),
-            'desc' => str_replace("\n", "\r\n", $request->desc),
             'img_link' => $request->img_link,
+            'category_id' => $request->category,
+            'sub_category_id' => $request->sub_category,
+            'tags' => implode(',', $request->input('tags')),
+            'title_en' => $request->title_en,
+            'title_mm' => $request->title_mm,
+            'title_ch' => $request->title_ch,
+            'topic_en' => $request->topic_en,
+            'topic_mm' => $request->topic_mm,
+            'topic_ch' => $request->topic_ch,
+            'short_desc_en' => str_replace("\n", "\r\n", $request->short_desc_en),
+            'short_desc_mm' => str_replace("\n", "\r\n", $request->short_desc_mm),
+            'short_desc_ch' => str_replace("\n", "\r\n", $request->short_desc_ch),
+            'desc_en' => str_replace("\n", "\r\n", $request->desc_en),
+            'desc_mm' => str_replace("\n", "\r\n", $request->desc_mm),
+            'desc_ch' => str_replace("\n", "\r\n", $request->desc_ch),
             'views' => 0
         ];
     }

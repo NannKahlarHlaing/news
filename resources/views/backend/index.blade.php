@@ -31,11 +31,7 @@
 
     @yield('css')
 
-    <script>
-        $(document).ready(function () {
-          $('#errorModal').modal('show');
-        });
-      </script>
+
 </head>
 
 <body id="page-top">
@@ -344,7 +340,7 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('/backend/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('/backend/js/demo/chart-pie-demo.js') }}"></script>
 
     <!-- Page level plugins -->
     <script src="{{ asset('/backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
@@ -367,18 +363,13 @@
 
     </script>
 
-<script>
-    // Show the modal when the page loads
-    $(document).ready(function() {
-        $('#alertModal').modal('show');
-        // $('#submitForm').click(function(){
-        //     $('#buttonClicked').val(1);
-        //     // Submit the form
-        //     $('#myForm').submit();
-        // });
-    });
+    <script>
+        // Show the modal when the page loads
+        $(document).ready(function() {
+            $('#alertModal').modal('show');
+        });
 
-</script>
+    </script>
 
     @yield('js')
 

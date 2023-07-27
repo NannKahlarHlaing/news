@@ -26,16 +26,16 @@
     </div>
     @foreach ($posts as $item)
         <div class="row mb-4 py-3 border-bottom">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <img src="{{ $item->img_link }}" alt="image" width="100%">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="row">
                     <div class="col-12">
                         <h3>{{ $item->title }}</h3>
                     </div>
                     <div class="col-6">
-                        <h5 class="fw-bold">Category: </h5> <span>{{ $item->category->name }}</span>
+                        <h5 class="fw-bold">Category: </h5> <span>{{ $item->category->name_en }}</span>
                     </div>
                     <div class="col-6">
                         <h5 class="fw-bold">Views: </h5> <span>{{ $item->views }}</span>
@@ -50,7 +50,7 @@
                         </a>
                     </div>
                     <div class="col-12 mb-3">
-                        <a href="{{ url('/category') . '/' . $item->category->name . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                        <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-danger btn-circle">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     </div>
