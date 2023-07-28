@@ -110,7 +110,7 @@
     <section class="cartoons-title">
         <div class="container-fluid">
             <div class="row d-flex-center">
-                <div class="col-11">
+                <div class="col-12">
                     <div class="row">
                         <div class="col-12">
                             <h2>Cartoons</h2>

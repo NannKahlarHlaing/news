@@ -15,4 +15,17 @@ class Post extends Model
     public function category(){
         return $this->belongsTo('App\Models\Category', 'category_id');
     }
+
+    public function sub_category(){
+        return $this->belongsTo('App\Models\SubCategory', 'category_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(App\Models\Tag::class)->with('tagNames');
+    }
+
+    protected $casts = [
+        'tags' => 'array',
+    ];
 }

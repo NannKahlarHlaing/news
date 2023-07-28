@@ -20,9 +20,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 // });
 
 //frontend
-Route::get('/', function () {
-    return view('frontend.home');
-});
+Route::get('/', [App\Http\Controllers\FrontEndController::class, 'home_page']);
 
 Route::prefix('/admin')->group(function(){
 

@@ -11,5 +11,10 @@ class Tag extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name_en', 'name_mm', 'name_ch'];
-    
+
+    public function tagNames()
+    {
+        return $this->select('name_en', 'name_mm', 'name_ch');
+    }
+
 }

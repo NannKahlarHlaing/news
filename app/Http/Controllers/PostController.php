@@ -14,7 +14,8 @@ class PostController extends Controller
 {
     public function index(){
         $posts = Post::where('deleted_at', NULL)->get();
-        return view('backend.posts.index', compact('posts'));
+        $tags = Tag::where('deleted_at', NULL)->get();
+        return view('backend.posts.index', compact('posts', 'tags'));
     }
 
     public function create_form(){
@@ -116,7 +117,7 @@ class PostController extends Controller
             'img_link' => $request->img_link,
             'category_id' => $request->category,
             'sub_category_id' => $request->sub_category,
-            'tags' => implode(',', $request->input('tags')),
+            'tags' => $request->input('tags'),
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
             'title_ch' => $request->title_ch,

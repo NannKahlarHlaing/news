@@ -24,7 +24,7 @@
 <section class="video-page py-5">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -91,7 +91,7 @@
 <section class="last-photos py-3">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-11">
+            <div class="col-12">
                 <h2 class="text-center">LATEST VIEWING</h2>
             </div>
         </div>
@@ -122,7 +122,7 @@
 <section class="last-photos">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-11">
+            <div class="col-12">
                 <div class="row my-3">
                     <div class="col-3">
                         <div class="dropdown">

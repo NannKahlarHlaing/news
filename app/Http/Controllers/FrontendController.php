@@ -7,12 +7,28 @@ use App\Models\Photo;
 use App\Models\Video;
 use App\Models\Career;
 use App\Models\Social;
+use App\Models\Post;
 use App\Models\PhotoEssay;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+    public function home_page(){
+        $latest = Post::orderBy('created_at', 'desc')->first();
+
+        $most_view = Post::orderBy('views', 'desc')->first();
+
+        $maxViews = $most_view->views;
+
+        $latestFive = Post::where('views', '<', $maxViews)
+                        ->orderBy('views', 'desc')
+                        ->take(2)
+                        ->get();
+
+        return view('frontend.home', compact('latest', 'most_view', 'latestFive'));
+    }
+
     public function show_videos(){
         $posts = Video::where('deleted_at', NULL)
                     ->orderBy('id', 'desc')

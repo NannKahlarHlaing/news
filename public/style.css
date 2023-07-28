@@ -5,10 +5,13 @@
 
 :root {
   --font-color: #ECE7DD;
-  --color-red: #007bff;
+  --color-red: #FF8300;
   --color-dgray: #242423;
   --color-gray: #545454;
   --color-pale: #dad0bc;
+}
+.container-fluid{
+    max-width: 1280px !important;
 }
 body{
   background-color: var(--font-color);
@@ -25,12 +28,16 @@ a{
 }
 a:hover{
   text-decoration: none;
-  color: var(--color-red);
+  color: var(--color-pale);
 }
 .btn-danger{
   color: var(--font-color);
   background-color: var(--color-red);
   border-color: var(--color-red);
+}
+.btn-danger:hover{
+    background-color: #000 !important;
+    border-color: #000;
 }
 .bg-danger{
   background-color: var(--color-red) !important;

@@ -96,7 +96,7 @@
                                     <div class="card py-2">
                                         <div class="row d-flex align-items-center">
                                             <div class="col-md-2">
-                                                <img src="{{ asset('/images/logo.png') }}" alt="" width="130px">
+                                                <img src="" alt="logo" width="130px">
                                             </div>
                                             <div class="col-md-3">
                                                 The VWXYZ Online

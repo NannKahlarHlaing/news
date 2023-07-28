@@ -31,14 +31,28 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-12">
-                        <h3>{{ $item->title }}</h3>
+                    <div class="col-12 mb-2">
+                        <h3>{{ $item->title_en }}</h3>
                     </div>
-                    <div class="col-6">
-                        <h5 class="fw-bold">Category: </h5> <span>{{ $item->category->name_en }}</span>
+                    <div class="col-3">
+                        <strong class="fw-bold h5">Category: </strong> <span>{{ $item->category->name_en }}</span>
                     </div>
-                    <div class="col-6">
-                        <h5 class="fw-bold">Views: </h5> <span>{{ $item->views }}</span>
+                    <div class="col-3">
+                        <strong class="fw-bold h5">SubCategory: </strong> <span>{{ $item->sub_category->name_en }}</span>
+                    </div>
+                    <div class="col-3">
+                        <strong class="fw-bold h5">Tag: </strong>
+                        @foreach ($item->tags as $post_tag)
+                            @foreach ($tags as $tag)
+                                @if ($tag->id == $post_tag)
+                                    <span>{{ $tag->name_en}},</span>
+                                @endif
+                            @endforeach
+                        @endforeach
+
+                    </div>
+                    <div class="col-3">
+                        <strong class="fw-bold h5   ">Views: </strong> <span>{{ $item->views }}</span>
                     </div>
                 </div>
             </div>

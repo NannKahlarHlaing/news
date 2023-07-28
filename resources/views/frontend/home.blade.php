@@ -7,8 +7,8 @@
 <section class="home">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-11 site-title">
-                <h2>{{ env('SITE_TITLE') }}</h2>
+            <div class="col-md-12 site-title">
+                <h2>The VWXYZ Online</h2>
             </div>
         </div>
         <div class="row align-items-center d-flex-center border-dark border-top border-bottom">
@@ -33,25 +33,41 @@
                     <div class="col"><i class="fa-brands fa-youtube circle"></i></div>
                     <div class="col"><i class="fa-brands fa-twitter circle"></i></div>
                     <div class="col"><i class="fa-solid fa-wifi circle"></i></div>
-                    
+
                 </div>
             </div>
         </div>
         <div class="row d-flex-center feature">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="row">
-                <div class="col-md-6">
-                    <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                            <p>Also this week, foreign minister Than Swe defended the regime’s human rights record even as it simultaneously bombed, shelled and burned civilian settlements.</p>
-                            <button class="btn btn-danger">Read Now</button>
+                    <div class="col-md-6">
+                        <img src="{{ $latest->img_link }}" alt="image" width="100%">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2><a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $latest->title_mm }}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {{ $latest->title_ch }}
+                                    @else
+                                        {{ $latest->title_en }}
+                                    @endif
+                                </a></h2>
+                                <p>
+                                    @if (app()->getLocale() == 'mm')
+                                        {!! str_replace("\n", '', $latest->short_desc_mm) !!}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {!! str_replace("\n", '', $latest->short_desc_ch) !!}
+                                    @else
+                                        {!! str_replace("\n", '', $latest->short_desc_en) !!}
+                                    @endif
+                                </p>
+                                <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger">Read Now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -61,7 +77,7 @@
     <div class="half"></div>
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center">
-            <div class="col-md-11">
+            <div class="col-md-12">
                <div class="row text-white">
                     <div class="col-6">
                         <div class="row">
@@ -71,7 +87,7 @@
                             </div>
                             <div class="col-5">
                                 <span>THE NEWS FOR</span>
-                                <h4>8 July 2023</h4>
+                                <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
                             </div>
                             <div class="col-4">
                                 <span>YANGON</span>
@@ -101,7 +117,7 @@
 <section>
     <div class="container-fluid">
         <div class="row d-flex-center feature">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="row">
@@ -120,9 +136,9 @@
                                                     <i class="fa-regular fa-eye"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 text-center">
                                                 <div class="mb-2">
-                                                    <span class="text-center">100</span>
+                                                    <span>100</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -334,7 +350,7 @@
                     <div class="col-md-5 top">
                         <div class="row">
                             <div class="col-12 p-0">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%" height="250px">
+                                <img src="{{ $most_view->img_link}}" alt="image" width="100%" height="250px">
                                 <span class="top-one d-block">1</span>
                             </div>
                             <div class="col-12" >
@@ -342,30 +358,45 @@
                                     <div class="col-md-2 col-2">
                                         <div class="col-12">
                                             <i class="fa-solid fa-eye"></i>
-                                            <div class="mb-2 text-center">
-                                                <span>100</span>
+                                            <div class="mb-2 ms-3">
+                                                <span>{{ $most_view->views }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-10 col-10">
-                                        <h2><a href="#" >Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
+                                        <h2><a href="{{ url('/category') . '/' . $most_view->category->name_en . '/' . $latest->id }}" >
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $most_view->title_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $most_view->title_ch }}
+                                            @else
+                                                {{ $most_view->title_en }}
+                                            @endif
+                                            </a></h2>
                                     </div>
                                 </div>
-                                <div class="row py-3 top-ten d-flex align-items-center" >
-                                    <div class="col-md-2 col-2">
-                                        <div class="col-12">
-                                            <span class="top-one">2</span>
+                                @foreach ($latestFive as $key => $itemFive)
+                                    <div class="row py-3 top-ten d-flex align-items-center" >
+                                        <div class="col-md-2 col-3">
+                                            <div class="col-12">
+                                                <span class="top-one">{{ $key + 2 }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10 col-9">
+                                            <h6>
+                                                <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $latest->id }}" >
+                                                    @if (app()->getLocale() == 'mm')
+                                                        {{ $itemFive->title_mm }}
+                                                    @elseif(app()->getLocale() == 'ch')
+                                                        {{ $itemFive->title_ch }}
+                                                    @else
+                                                        {{ $itemFive->title_en }}
+                                                    @endif
+                                                </a>
+                                            </h6>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-2 ml--47">
-                                        <div class="col-12">
-                                            <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%" >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-10">
-                                        <h6><a href="#" >Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -380,7 +411,7 @@
             <div class="col-md-5">
                <div class="row d-flex align-items-center">
                     <div class="col-md-3">
-                        <img src="{{ asset('/images/logo.png') }}" alt="" width="100%">
+                        <img src="" alt="logo" width="100%">
                     </div>
                     <div class="col-md-9">
                         <h3>Get the top stories delivered to you daily…</h3>
@@ -408,7 +439,7 @@
 <section class="opnion p-5">
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center text-center">
-            <div class="col-md-11">
+            <div class="col-md-2">
                 <h3>Editorial & Opinion</h3>
             </div>
         </div>
@@ -418,7 +449,7 @@
 <section class="opnion mb-4 p-5" style="background-image: url('{{ asset('/images/bg-image.jpg') }}');width: 100%;height: 500px;background-size: cover;background-repeat: no-repeat;background-position: 50% 50%;">
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center text-center">
-            <div class="col-md-11">
+            <div class="col-md-12">
 
             </div>
         </div>
@@ -428,7 +459,7 @@
 <section class="mb-4 single-new">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6 text-center">
                         <span >ANALYSIS</span>
@@ -480,7 +511,7 @@
 <section class="bg-dark p-3 video mb-4">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row">
@@ -583,7 +614,7 @@
 <section class=" mb-4">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="row gx-5">
                     <div class="col-md-4 mb-5">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
