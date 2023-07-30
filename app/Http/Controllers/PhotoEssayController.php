@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PhotoEssay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class PhotoEssayController extends Controller
@@ -38,6 +39,20 @@ class PhotoEssayController extends Controller
 
         $post = PhotoEssay::find($request->id);
 
+        $image = $request->file('img_link'); 
+
+        if($image != '' || $image != NULL){
+
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+            $post->img_link = $imageName;
+        }
+
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
@@ -50,7 +65,6 @@ class PhotoEssayController extends Controller
         $post->desc_en = str_replace("\n", "\r\n", $request->desc_en);
         $post->desc_mm = str_replace("\n", "\r\n", $request->desc_mm);
         $post->desc_ch = str_replace("\n", "\r\n", $request->desc_ch);
-        $post->img_link = $request->img_link;
         $post->author = $request->author;
         $post->date = $request->date;
         
@@ -99,6 +113,27 @@ class PhotoEssayController extends Controller
     }
 
     private function getData($request){
+
+        $postController = new PostController();
+
+        $postController->create_path();
+
+        $image = $request->file('img_link'); 
+
+        if($image != '' || $image != NULL){
+
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+
+        }else{
+            $imageName = '';
+        }
+
         return [
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
@@ -112,7 +147,7 @@ class PhotoEssayController extends Controller
             'desc_en' => str_replace("\n", "\r\n", $request->desc_en),
             'desc_mm' => str_replace("\n", "\r\n", $request->desc_mm),
             'desc_ch' => str_replace("\n", "\r\n", $request->desc_ch),
-            'img_link' => $request->img_link,
+            'img_link' => $imageName,
             'author' => $request->author,
             'date' => $request->date,
         ];

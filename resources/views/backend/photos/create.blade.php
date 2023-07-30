@@ -15,8 +15,8 @@
                 <form class="form" method="POST" action="{{route('backend.photos.create') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="url">Image URL</label>
-                        <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" value="{{ old('url') }}">
+                        <label for="url">Image</label>
+                        <input type="file" class="form-control @error('url') is-invalid @enderror" id="url" name="url">
                         @error('url')
                             <div class="invalid-feedback">
                                 {{$message}}

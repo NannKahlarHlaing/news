@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class PhotoController extends Controller
@@ -36,7 +37,20 @@ class PhotoController extends Controller
 
         $post = Photo::find($request->id);
 
-        $post->url = $request->url;
+        $image = $request->file('url'); 
+
+        if($image != '' || $image != NULL){
+
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+            $post->url = $imageName;
+        }
+
         $post->desc_en = $request->desc_en;
         $post->desc_mm = $request->desc_mm;
         $post->desc_ch = $request->desc_ch;
@@ -78,8 +92,29 @@ class PhotoController extends Controller
     }
 
     private function getData($request){
+
+        $postController = new PostController();
+
+        $postController->create_path();
+
+        $image = $request->file('url'); 
+
+        if($image != '' || $image != NULL){
+
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+
+        }else{
+            $imageName = '';
+        }
+
         return [
-            'url' => $request->url,
+            'url' => $imageName,
             'desc_en' => $request->desc_en,
             'desc_mm' => $request->desc_mm,
             'desc_ch' => $request->desc_ch,

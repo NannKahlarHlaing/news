@@ -24,7 +24,7 @@
                                 </h2>
                             </div>
                             <div class="col-12">
-                                <img src="{{ $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
+                                <img src="/storage/images/original/{{ $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
                                 <div class="row my-3  d-flex align-items-center">
                                     <div class="col-1">
                                         <div class="btn btn-transparent  btn-circle-fe">

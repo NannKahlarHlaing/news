@@ -27,7 +27,7 @@
     @foreach ($posts as $item)
         <div class="row mb-4 py-3 border-bottom">
             <div class="col-md-2">
-                <img src="{{ $item->img_link }}" alt="image" width="100%">
+                <img src="/storage/images/thumbnail/{{ $item->img_link }}" alt="image" width="100%">
             </div>
             <div class="col-md-9">
                 <div class="row">
@@ -41,7 +41,7 @@
                         <strong class="fw-bold h5">SubCategory: </strong> <span>{{ $item->sub_category->name_en }}</span>
                     </div>
                     <div class="col-3">
-                        <strong class="fw-bold h5">Tag: </strong>
+                        <strong class="fw-bold h5">Tag: </strong>                        
                         @foreach ($item->tags as $post_tag)
                             @foreach ($tags as $tag)
                                 @if ($tag->id == $post_tag)
@@ -49,7 +49,6 @@
                                 @endif
                             @endforeach
                         @endforeach
-
                     </div>
                     <div class="col-3">
                         <strong class="fw-bold h5   ">Views: </strong> <span>{{ $item->views }}</span>

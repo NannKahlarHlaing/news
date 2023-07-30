@@ -32,12 +32,15 @@
                     </nav>
                     <div class="form-group">
                         <label for="img_link">Image Url</label>
-                        <input type="text" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link" value="{{ old('img_link', $post->img_link) }}">
+                        <input type="file" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link">
                         @error('img_link')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
                         @enderror
+                        <div class="col-lg-12 mt-2">
+                            <img src="/storage/images/thumbnail/{{ $post->img_link }}" width="200" height="150">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">

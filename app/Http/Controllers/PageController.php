@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Validator;
 
 class PageController extends Controller
@@ -36,7 +38,20 @@ class PageController extends Controller
 
         $post = Page::find($request->id);
 
-        $post->img_url = $request->img_url;
+        $image = $request->file('img_link'); 
+
+        if($image != '' || $image != NULL){
+
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+            $post->img_url = $imageName;
+        }
+
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
@@ -50,6 +65,15 @@ class PageController extends Controller
 
     }
 
+    public function destroy($id){
+        $post = Page::find($id);
+        $post->delete();
+
+        return redirect ('/admin/pages')->with('status', 'Post is deleted successfully!');
+
+    }
+
+
     private function validation($request){
         Validator::make($request->all(),[
             'title_en' => 'required',
@@ -57,8 +81,29 @@ class PageController extends Controller
     }
 
     private function getData($request){
+
+        $postController = new PostController();
+
+        $postController->create_path();
+
+        $image = $request->file('img_url'); 
+
+        if($image != '' || $image != NULL){
+
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+
+        }else{
+            $imageName = '';
+        }
+        
         return [
-            'img_url' => $request->img_url,
+            'img_url' => $imageName,
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
             'title_ch' => $request->title_ch,

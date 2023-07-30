@@ -27,7 +27,7 @@
     @foreach ($posts as $item)
         <div class="row mb-4 py-3 border-bottom">
             <div class="col-md-3">
-                <img src="{{ $item->img_link }}" alt="image" width="100%">
+                <img src="/storage/images/thumbnail/{{ $item->img_link }}" alt="image" width="100%">
             </div>
             <div class="col-md-8">
                 <div class="row">

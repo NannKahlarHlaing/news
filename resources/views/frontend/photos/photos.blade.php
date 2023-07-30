@@ -114,8 +114,8 @@
               <div class="main-img-slider">
                 @foreach ($posts as $item)
                     <div class="">
-                        <a data-fancybox="gallery" href="{{ $item->url }}">
-                            <img src="{{ $item->url }}"style="height:100vh;width: 100%;object-fit: cover;">
+                        <a data-fancybox="gallery" href="/storage/images/original/{{ $item->url }}">
+                            <img src="/storage/images/original/{{ $item->url }}"style="height:100vh;width: 100%;object-fit: cover;">
                             <div class="row description d-flex-center mt-5 py-3">
                                 <div class="col-lg-10 text-center">
                                     <div class="row">
@@ -158,7 +158,7 @@
             <!-- Begin product thumb nav -->
             <ul class="thumb-nav d-none" >
                 @foreach ($posts as $item)
-                    <li><img src="{{ $item->url }}"></li>
+                    <li><img src="/storage/images/original/{{ $item->url }}"></li>
                 @endforeach
             </ul>
             <!-- End product thumb nav -->
@@ -185,8 +185,8 @@
                 <div class="row imglist">
                     @foreach ($posts as $item)
                     <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="{{$item->url}}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                            <img src="{{$item->url}}" width="100%"  />
+                        <a href="/storage/images/original/{{$item->url}}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                            <img src="/storage/images/original/{{$item->url}}" width="100%"  />
                         </a>
                     </div>
                     @endforeach

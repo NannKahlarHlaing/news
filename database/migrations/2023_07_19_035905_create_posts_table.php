@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('img_link')->nullable();
             $table->string('category_id');
-            $table->string('sub_category_id');
+            $table->string('sub_category_id')->nullable();
             $table->string('tags');
             $table->string('title_en')->nullable();
             $table->string('title_mm')->nullable();

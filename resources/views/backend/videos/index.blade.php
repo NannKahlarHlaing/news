@@ -27,7 +27,6 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Image URL</th>
                                 <th>Video URL</th>
                                 <th>Description_En</th>
                                 <th>Category</th>
@@ -36,8 +35,6 @@
                             </tr>
                         </thead>
                         <tfoot>
-                            <tr>
-                                <th>Image URL</th>
                                 <th>Video URL</th>
                                 <th>Description_En</th>
                                 <th>Category</th>
@@ -49,7 +46,6 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{{ $item->img_url }}</td>
                                     <td>{{ $item->video_url }}</td>
                                     <td>{{ $item->desc_en }}</td>
                                     <td>{{ $item->category }}</td>

@@ -17,12 +17,15 @@
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">
                         <label for="url">Image URL</label>
-                        <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" value="{{ old('url', $post->url) }}">
+                        <input type="file" class="form-control @error('url') is-invalid @enderror" id="url" name="url">
                         @error('url')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
                         @enderror
+                        <div class="col-lg-12 mt-2">
+                            <img src="/storage/images/thumbnail/{{ $post->url }}" width="200" height="150">
+                        </div>
                     </div>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">

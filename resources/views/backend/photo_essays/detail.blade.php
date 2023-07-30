@@ -148,8 +148,8 @@
               <div class="main-img-slider">
 
                 <div class="">
-                    <a data-fancybox="gallery" href="{{ $post->img_link }}">
-                        <img src="{{ $post->img_link }}"style="height:500px;width: 100%;object-fit:cover;">
+                    <a data-fancybox="gallery" href="/storage/images/original/{{ $post->img_link }}">
+                        <img src="/storage/images/original/{{ $post->img_link }}"style="height:500px;width: 100%;object-fit:cover;">
                     </a>
                 </div>
 

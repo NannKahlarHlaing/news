@@ -26,7 +26,12 @@ class FrontendController extends Controller
                         ->take(2)
                         ->get();
 
-        return view('frontend.home', compact('latest', 'most_view', 'latestFive'));
+        $latestTen = Post::where('views', '<', $maxViews)
+        ->orderBy('views', 'desc')
+        ->take(5)
+        ->get();
+
+        return view('frontend.home', compact('latest', 'most_view', 'latestFive', 'latestTen'));
     }
 
     public function show_videos(){

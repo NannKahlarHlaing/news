@@ -8,25 +8,32 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::where('deleted_at', NULL)->get();
-        $tags = Tag::where('deleted_at', NULL)->get();
+        $posts = Post::all();
+        $tags = Tag::all();
         return view('backend.posts.index', compact('posts', 'tags'));
     }
 
     public function create_form(){
-        $categories = Category::where('deleted_at', NULL)->get();
-        $sub_categories = SubCategory::where('deleted_at', NULL)->get();
-        $tags = Tag::where('deleted_at', NULL)->get();
+        $categories = Category::all();
+        $sub_categories = SubCategory::all();
+        $tags = Tag::all();
         return view('backend.posts.create', compact('categories', 'sub_categories', 'tags'));
     }
 
     public function create(Request $request){
+        Validator::make($request->all(),[
+            'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ])->validate();
+
         $this->validation($request);
+        
         $data = $this->getData($request);
 
         Post::create($data);
@@ -36,22 +43,36 @@ class PostController extends Controller
 
     public function update_form($id){
         $post = Post::find($id);
-        $categories = Category::where('deleted_at', NULL)->get();
-        $sub_categories = SubCategory::where('deleted_at', NULL)->get();
-        $tags = explode(',', $post->tags);
-        $all_tags = Tag::where('deleted_at', NULL)->get();
+        $categories = Category::all();
+        $sub_categories = SubCategory::all();
+        $tags = $post->tags;
+        $all_tags = Tag::all();
         return view('backend.posts.update', compact('post','categories', 'sub_categories', 'tags', 'all_tags'));
     }
 
     public function update(Request $request){
         $this->validation($request);
+        
 
         $post = Post::find($request->id);
 
-        $post->img_link = $request->img_link;
+        $image = $request->file('img_link'); 
+        
+        if($image != '' || $image != NULL){
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+
+            $post->img_link = $imageName;
+        }
+
         $post->category_id = $request->category;
         $post->sub_category_id = $request->sub_category;
-        $post->tags = implode(',', $request->input('tags'));
+        $post->tags = $request->input('tags');
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
@@ -112,9 +133,36 @@ class PostController extends Controller
         ])->validate();
     }
 
+    public function create_path(){
+        $path_image = public_path('storage/images/original');
+        $path_thumbnail = public_path('storage/images/thumbnail');
+
+        if(!File::isDirectory($path_image)){
+            File::makeDirectory($path_image, 0777, true, true);
+        }
+
+        if(!File::isDirectory($path_thumbnail)){
+            File::makeDirectory($path_thumbnail, 0777, true, true);
+        }
+    }
+
     private function getData($request){
+
+        $this->create_path();
+
+        $image = $request->file('img_link'); 
+  
+        $imageName = uniqid() . time().'.'.$image->extension();
+        $original = Image::make($image->path());
+        $image->move(public_path('storage/images/original'), $imageName);
+
+        $thumbnail = $original->fit(400, 300, function($constraint){
+            $constraint->aspectRatio();
+        })->save(public_path('storage/images/thumbnail/' . $imageName));
+
+        
         return [
-            'img_link' => $request->img_link,
+            'img_link' => $imageName,
             'category_id' => $request->category,
             'sub_category_id' => $request->sub_category,
             'tags' => $request->input('tags'),

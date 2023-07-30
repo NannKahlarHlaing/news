@@ -27,7 +27,6 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Image URL</th>
                                 <th>Page_Title_En</th>
                                 <th>Description_En</th>
                                 <th>Action</th>
@@ -37,7 +36,6 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Image URL</th>
                                 <th>Page_Title_En</th>
                                 <th>Description_En</th>
                                 <th>Action</th>
@@ -49,7 +47,6 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{{ $item->img_url }}</td>
                                     <td>{{ $item->title_en }}</td>
                                     <td>{{ substr($item->desc_en, 0, 50) }}</td>
                                     <td>

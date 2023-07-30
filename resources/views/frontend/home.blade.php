@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="{{ $latest->img_link }}" alt="image" width="100%">
+                        <img src="/storage/images/original{{ $latest->img_link }}" alt="image" width="100%">
                     </div>
                     <div class="col-md-6">
                         <div class="row">
@@ -121,134 +121,68 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="row">
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
+                            @foreach ($latestTen as $ten)
+                                <div class="col-12 mb-3 py-5 border-bottom ">
+                                    <h2>
+                                        <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $ten->title_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $ten->title_ch }}
+                                            @else
+                                                {{ $ten->title_en }}
+                                            @endif
+                                        </a>
+                                    </h2>
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-2 col-2">
+                                            <div class="row d-flex-center">
+                                                <div class="col-12">
+                                                    <div class="btn btn-reaction mb-2">
+                                                        <img src="{{ asset('/images/liked.svg') }}" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-social ">
-                                                    <i class="fa-regular fa-eye"></i>
+                                                <div class="col-12">
+                                                    <div class=" btn btn-transparent  btn-circle-social ">
+                                                        <i class="fa-regular fa-eye"></i>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 text-center">
-                                                <div class="mb-2">
-                                                    <span>100</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-social ">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <span class="text-center">100</span>
+                                                <div class="col-12 text-center">
+                                                    <div class="mb-2">
+                                                        <span>{{ $ten->views }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-social ">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <span class="text-center">100</span>
-                                                </div>
-                                            </div>
+                                        <div class="col-lg-5 col-md-10 col-10">
+                                            <span class="category">
+                                                @if (app()->getLocale() == 'mm')
+                                                    {{ $ten->category->name_en }}
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    {{ $ten->category->name_mm }}
+                                                @else
+                                                    {{ $ten->category->name_ch }}
+                                                @endif
+                                                
+                                            </span>
+                                            <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-12  ">
+                                            <span>BY THE VWXYZ Online</span>
+                                            <P>
+                                                @if (app()->getLocale() == 'mm')
+                                                    {!! str_replace("\n", '', $ten->short_desc_mm) !!}
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    {!! str_replace("\n", '', $ten->short_desc_ch) !!}
+                                                @else
+                                                    {!! str_replace("\n", '', $ten->short_desc_en) !!}
+                                                @endif
+                                            </P>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-sociale ">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <span class="text-center">100</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
+                                </div> 
+                            @endforeach
+                            
                             <div class="col-12 mb-3 py-5 border-bottom ">
                                 <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
                                 <div class="row">
@@ -276,81 +210,18 @@
                                         <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
+                                        <span>BY THE VWXYZ Online</span>
                                         <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-social ">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <span class="text-center">100</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-social ">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <span class="text-center">100</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE IRRAWADDY</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="col-md-5 top">
                         <div class="row">
                             <div class="col-12 p-0">
-                                <img src="{{ $most_view->img_link}}" alt="image" width="100%" height="250px">
+                                <img src="/storage/images/thumbnail/{{ $most_view->img_link}}" alt="image" width="100%" height="250px">
                                 <span class="top-one d-block">1</span>
                             </div>
                             <div class="col-12" >

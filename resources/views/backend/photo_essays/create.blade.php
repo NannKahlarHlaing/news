@@ -135,8 +135,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="img_link">Image Url</label>
-                        <input type="text" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link" value="{{ old('img_link') }}">
+                        <label for="img_link">Image</label>
+                        <input type="file" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link">
                         @error('img_link')
                             <div class="invalid-feedback">
                                 {{$message}}

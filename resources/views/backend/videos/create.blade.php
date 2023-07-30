@@ -24,8 +24,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="img_url">Image URL</label>
-                        <input type="text" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url" value="{{ old('img_url') }}">
+                        <label for="img_url">Image</label>
+                        <input type="file" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url">
                         @error('img_url')
                             <div class="invalid-feedback">
                                 {{$message}}

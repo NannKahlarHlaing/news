@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <a data-fancybox href="{{ $latest->video_url }}" >
-                          <img class="card-img-top img-fluid" src="{{ $latest->img_url }}" />
+                          <img class="card-img-top img-fluid" src="/storage/images/original/{{ $latest->img_url }}" />
                         </a>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <a data-fancybox href="{{ $item->video_url }}" >
-                            <img class="card-img-top img-fluid" src="{{ $item->img_url }}" />
+                            <img class="card-img-top img-fluid" src="/storage/images/original/{{ $item->img_url }}" />
                         </a>
                         <div class="card-body">
                             <p class="card-text">

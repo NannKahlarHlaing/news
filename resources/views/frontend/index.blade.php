@@ -46,7 +46,7 @@
                         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                             <div class="container-fulid">
                                 <div class="row d-flex justify-content-center">
-                                    <div class="col-10">
+                                    <div class="col-11">
                                         <div class="offcanvas-header">
                                             <h5 id="offcanvasTopLabel">The VWXYZ Online</h5>
                                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
