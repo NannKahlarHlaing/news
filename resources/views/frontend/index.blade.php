@@ -333,7 +333,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <span class="copyright"> Copyright © 2016 Irrawaddy Publishing Group. All Rights Reserved</span>
+                        <span class="copyright"> Copyright © 2016 VWXYZ Publishing Group. All Rights Reserved</span>
                     </div>
                 </div>
             </div>

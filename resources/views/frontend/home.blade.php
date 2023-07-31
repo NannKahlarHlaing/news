@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="/storage/images/original{{ $latest->img_link }}" alt="image" width="100%">
+                        <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
                     </div>
                     <div class="col-md-6">
                         <div class="row">
@@ -91,7 +91,7 @@
                             </div>
                             <div class="col-4">
                                 <span>YANGON</span>
-                                <h5>31 <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
+                                <h5>{{ $temperature }} <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-5">
                                 <span>THE NEWS FOR</span>
-                                <h4>8 July 2023</h4>
+                                <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
                             </div>
                             <div class="col-2">
                                 <i class="fa-regular fa-comment-dots"></i>
@@ -122,7 +122,7 @@
                     <div class="col-md-7">
                         <div class="row">
                             @foreach ($latestTen as $ten)
-                                <div class="col-12 mb-3 py-5 border-bottom ">
+                                <div class="col-12 mb-3 py-3 border-bottom ">
                                     <h2>
                                         <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">
                                             @if (app()->getLocale() == 'mm')
@@ -163,7 +163,7 @@
                                                 @else
                                                     {{ $ten->category->name_ch }}
                                                 @endif
-                                                
+
                                             </span>
                                             <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
                                         </div>
@@ -180,9 +180,9 @@
                                             </P>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             @endforeach
-                            
+
                             <div class="col-12 mb-3 py-5 border-bottom ">
                                 <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
                                 <div class="row">
@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                     <div class="col-md-5 top">
@@ -246,7 +246,7 @@
                                             </a></h2>
                                     </div>
                                 </div>
-                                @foreach ($latestFive as $key => $itemFive)
+                                @foreach ($mostViews as $key => $itemFive)
                                     <div class="row py-3 top-ten d-flex align-items-center" >
                                         <div class="col-md-2 col-3">
                                             <div class="col-12">
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="col-md-10 col-9">
                                             <h6>
-                                                <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $latest->id }}" >
+                                                <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >
                                                     @if (app()->getLocale() == 'mm')
                                                         {{ $itemFive->title_mm }}
                                                     @elseif(app()->getLocale() == 'ch')
@@ -310,7 +310,7 @@
 <section class="opnion p-5">
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center text-center">
-            <div class="col-md-2">
+            <div class="col-md-12">
                 <h3>Editorial & Opinion</h3>
             </div>
         </div>
@@ -493,36 +493,28 @@
                                 <h3>Burma</h3>
                             </div>
                             <div class="col text-end p-0">
-                                <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                <a href="{{ url('/News') . '/' . $catBurma }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                        @foreach ($burmas as $burma)
+                            <div class="row mt-3">
+                                <div class="col-md-4 col-6">
+                                    <img src="/storage/images/thumbnail/{{ $burma->img_link }}" alt="image" width="100%">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <p><a href="{{ url('/category') . '/' . $burma->category->name_en . '/' . $burma->id }}">
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $burma->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $burma->title_ch }}
+                                        @else
+                                            {{ $burma->title_en }}
+                                        @endif
+                                    </a></p>
+                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($burma->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $burma->views }}</span>
+                                </div>
                             </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-md-4">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-primary border-3 ">
@@ -533,33 +525,25 @@
                                 <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                        @foreach ($businesses as $business)
+                            <div class="row mt-3">
+                                <div class="col-md-4 col-6">
+                                    <img src="/storage/images/thumbnail/{{ $business->img_link }}" alt="image" width="100%">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <p class=""><a href="{{ url('/category') . '/' . $business->category->name_en . '/' . $business->id }}">
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $business->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $business->title_ch }}
+                                        @else
+                                            {{ $business->title_en }}
+                                        @endif
+                                    </a></p>
+                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($business->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $business->views }}</span>
+                                </div>
                             </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-md-4 ">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
@@ -570,33 +554,25 @@
                                 <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                        @foreach ($persons as $person)
+                            <div class="row mt-3">
+                                <div class="col-md-4 col-6">
+                                    <img src="/storage/images/thumbnail/{{ $person->img_link }}" alt="image" width="100%">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <p class=""><a href="{{ url('/category') . '/' . $person->category->name_en . '/' . $person->id }}">
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $person->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $person->title_ch }}
+                                        @else
+                                            {{ $person->title_en }}
+                                        @endif
+                                    </a></p>
+                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $person->views }}</span>
+                                </div>
                             </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-md-4 mb-5">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
@@ -607,33 +583,25 @@
                                 <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                        @foreach ($opinions as $opinion)
+                            <div class="row mt-3">
+                                <div class="col-md-4 col-6">
+                                    <img src="/storage/images/thumbnail/{{ $opinion->img_link }}" alt="image" width="100%">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <p class=""><a href="{{ url('/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $opinion->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $opinion->title_ch }}
+                                        @else
+                                            {{ $opinion->title_en }}
+                                        @endif
+                                    </a></p>
+                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($opinion->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $opinion->views }}</span>
+                                </div>
                             </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-md-4">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-success border-3 ">
@@ -644,72 +612,56 @@
                                 <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                        @foreach ($lifeStyles as $lifestyle)
+                            <div class="row mt-3">
+                                <div class="col-md-4 col-6">
+                                    <img src="/storage/images/thumbnail/{{ $lifestyle->img_link }}" alt="image" width="100%">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <p class=""><a href="{{ url('/category') . '/' . $lifestyle->category->name_en . '/' . $lifestyle->id }}">
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $lifestyle->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $lifestyle->title_ch }}
+                                        @else
+                                            {{ $lifestyle->title_en }}
+                                        @endif
+                                    </a></p>
+                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($lifestyle->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $lifestyle->views }}</span>
+                                </div>
                             </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-md-4">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-success border-3 ">
                             <div class="col p-0">
-                                <h3>Food</h3>
+                                <h3>Special</h3>
                             </div>
                             <div class="col text-end p-0">
                                 <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                        @foreach ($specials as $special)
+                            <div class="row mt-3">
+                                <div class="col-md-4 col-6">
+                                    <img src="/storage/images/thumbnail/{{ $special->img_link }}" alt="image" width="100%">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <p class=""><a href="{{ url('/category') . '/' . $special->category->name_en . '/' . $special->id }}">
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $special->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $special->title_ch }}
+                                        @else
+                                            {{ $special->title_en }}
+                                        @endif
+                                    </a></p>
+                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($special->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $special->views }}</span>
+                                </div>
                             </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 col-6">
-                                <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                            </div>
-                            <div class="col-md-9 col-6">
-                                <p class=""><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></p>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="row d-flex justify-content-between align-items-center border-bottom border-success border-3 ">
                             <div class="col p-0">
                                 <h3>Culture</h3>
@@ -819,7 +771,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

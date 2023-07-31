@@ -187,6 +187,7 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
     Route::get('/contact', 'contact')->name('frontend.contact');
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
+    Route::get('/News/{sub_category}', 'sub_categories');
     // Route::get('/{title}', 'pagesEn')->name('frontend.pages');
     Route::get('/{title}', function($path){
         if($path == 'mm' || $path == 'ch'){

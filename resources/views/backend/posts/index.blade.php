@@ -38,10 +38,13 @@
                         <strong class="fw-bold h5">Category: </strong> <span>{{ $item->category->name_en }}</span>
                     </div>
                     <div class="col-3">
-                        <strong class="fw-bold h5">SubCategory: </strong> <span>{{ $item->sub_category->name_en }}</span>
+                        <strong class="fw-bold h5">SubCategory: </strong>
+                        @if ($item->sub_category != '' || $item->sub_category != NULL)
+                            <span>{{ $item->sub_category->name_en }}</span>
+                        @endif
                     </div>
                     <div class="col-3">
-                        <strong class="fw-bold h5">Tag: </strong>                        
+                        <strong class="fw-bold h5">Tag: </strong>
                         @foreach ($item->tags as $post_tag)
                             @foreach ($tags as $tag)
                                 @if ($tag->id == $post_tag)

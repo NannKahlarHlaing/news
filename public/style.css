@@ -28,7 +28,10 @@ a{
 }
 a:hover{
   text-decoration: none;
-  color: var(--color-pale);
+  color: var(--color-red);
+}
+h6 a:hover{
+    color: var(--color-pale);
 }
 .btn-danger{
   color: var(--font-color);
@@ -94,8 +97,13 @@ a:hover{
     /* height: 600px; */
     padding: 30px 0;
   }
-  .row{
-    /* margin-bottom: 30px; */
+  .small .fa-eye{
+    font-size: .875rem;
+    border: 0;
+    color: #000;
+    height: 0;
+    width: 0;
+    line-height: 0;
   }
   .site-title{
     margin-bottom: 20px;
@@ -355,6 +363,7 @@ a:hover{
 
 .top-ten{
   background-color: var(--color-red);
+  border-top: 1px solid #fc9a30;
 }
 .top-ten .top-one{
   margin-left: 10px;
@@ -368,7 +377,9 @@ h6 a{
 .top-ten:hover{
   opacity: 0.9;
 }
-
+.top-ten .border-top{
+    border-color: var(--color-pale) !important;
+}
 
 .description{
   background-color: var(--color-dgray);
