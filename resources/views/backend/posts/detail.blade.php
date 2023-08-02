@@ -5,8 +5,26 @@
         <div class="row d-flex-center my-5">
             <div class="col-md-11">
                 <div class="row">
-                    <div class="col-md-3">
-                        sidebar
+                    <div class="col-md-3 related">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="border-bottom border-dark pb-1">Related Posts</h3>
+                            </div>
+
+                            @foreach ($relatedPosts as $related)
+                                <div class="col-md-12 py-1">
+                                    <h6><a href="{{ url('/category') . '/' . $related->category->name_en . '/' . $related->id }}" >
+                                        @if (app()->getLocale() == 'mm')
+                                            {{ $related->title_mm }}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {{ $related->title_ch }}
+                                        @else
+                                            {{ $related->title_en }}
+                                        @endif
+                                        </a></h6>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="col-md-9">
                         <div class="row mb-5">
@@ -72,7 +90,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-10">
+                            <div class="col-11">
                                 <h6>BY <a href="" class="tex-dark fw-bold me-3">The VWXYZ Online</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
                                 <p>
                                     @if (app()->getLocale() == 'mm')
@@ -106,12 +124,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="row my-3  d-flex align-items-center">
-                                        <div class="col-1">
-                                            <div class="btn btn-transparent  btn-circle-fe">
-                                                <i class="fa-solid fa-camera"></i>
-                                            </div>
+                                        <div class="col">
                                         </div>
-                                        <hr class="line col">
                                         <span class="text-end col">YOUR THOUGHTS …</span>
                                         <div class="btn btn-reaction mb-2">
                                             <img src="{{ asset('/images/liked.svg') }}" alt="">
@@ -127,6 +141,24 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-4"><strong>Tags:</strong>
+                                @foreach ($post->tags as $tagId)
+                                @php
+                                    $tag = \App\Models\Tag::find($tagId);
+                                @endphp
+                                @if ($tag)
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $tag->name_mm }}
+                                    @elseif (app()->getLocale() == 'ch')
+                                        {{ $tag->name_ch }}
+                                    @else
+                                        {{ $tag->name_en }}
+                                    @endif
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

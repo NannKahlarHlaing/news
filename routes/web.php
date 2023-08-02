@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
@@ -187,11 +188,33 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
     Route::get('/contact', 'contact')->name('frontend.contact');
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
-    Route::get('/News/{sub_category}', 'sub_categories');
+    Route::get('/News/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
     // Route::get('/{title}', 'pagesEn')->name('frontend.pages');
     Route::get('/{title}', function($path){
         if($path == 'mm' || $path == 'ch'){
-            return view('frontend.home');
+            $frontendController = new FrontendController();
+
+            $data = $frontendController->home_page();
+
+            $latest = $data->latest;
+            $most_view = $data->most_view;
+            $mostViews = $data->mostViews;
+            $latestTen = $data->latestTen;
+            $temperature = $data->temperature;
+            $burmas = $data->burmas;
+            $businesses = $data->businesses;
+            $persons = $data->persons;
+            $opinions = $data->opinions;
+            $lifeStyles = $data->lifeStyles;
+            $specials = $data->specials;
+            $catBurma = $data->catBurma;
+            $catBusiness = $data->catBusiness;
+            $catInperson = $data->catInperson;
+            $catOpinion = $data->catOpinion;
+            $catLifeStyle = $data->catLifeStyle;
+            $catSpecial = $data->catSpecial;
+
+            return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -205,10 +228,31 @@ Route::controller(App\Http\Controllers\ContactController::class)->group(function
 
 Route::group(['prefix' => '{language}'], function ($language) {
 
-    // dd($language);
-
     Route::get('/', function () {
-        return view('frontend.home');
+        $frontendController = new FrontendController();
+
+            $data = $frontendController->home_page();
+
+            $latest = $data->latest;
+            $most_view = $data->most_view;
+            $mostViews = $data->mostViews;
+            $latestTen = $data->latestTen;
+            $temperature = $data->temperature;
+            $burmas = $data->burmas;
+            $businesses = $data->businesses;
+            $persons = $data->persons;
+            $opinions = $data->opinions;
+            $lifeStyles = $data->lifeStyles;
+            $specials = $data->specials;
+            $catBurma = $data->catBurma;
+            $catBusiness = $data->catBusiness;
+            $catInperson = $data->catInperson;
+            $catOpinion = $data->catOpinion;
+            $catLifeStyle = $data->catLifeStyle;
+            $catSpecial = $data->catSpecial;
+
+            return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+        
     })->name('home');
 
     Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details'])->name('new.details');
@@ -225,6 +269,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         Route::post('/contact', 'sendEmail');
         Route::get('/cartoons', 'cartoons');
         Route::get('/{title}', 'pages');
+        Route::get('/News/{sub_category}', 'sub_categories');
     });
 });
 

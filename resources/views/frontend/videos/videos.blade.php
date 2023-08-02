@@ -100,7 +100,7 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <a data-fancybox href="{{ $item->video_url }}" >
-                            <img class="card-img-top img-fluid" src="/storage/images/original/{{ $item->img_url }}" />
+                            <img class="card-img-top img-fluid" src="/storage/images/original/{{ $item->img_url }}" alt=""/>
                         </a>
                         <div class="card-body">
                             <p class="card-text">
@@ -131,7 +131,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 @foreach ($categories as $item)
-                                    <li><a class="dropdown-item" href="#">{{ $item->name }}</a></li>
+                                    <li><a class="dropdown-item" href="#">{{ $item->name_en }}</a></li>
                                 @endforeach
                             </ul>
                           </div>
@@ -153,7 +153,7 @@
                 <div class="col-lg-3 mb-3">
                     <div class="card">
                         <a data-fancybox href="{{ $item->video_url }}" >
-                        <img class="card-img-top img-fluid" src="{{ $item->img_url }}" />
+                        <img class="card-img-top img-fluid" src="/storage/images/original/{{ $latest->img_url }}" />
                         </a>
                         <div class="card-body">
                             <p class="card-text">

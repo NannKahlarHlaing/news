@@ -11,7 +11,7 @@
                 <h2>The VWXYZ Online</h2>
             </div>
         </div>
-        <div class="row align-items-center d-flex-center border-dark border-top border-bottom">
+        {{-- <div class="row align-items-center d-flex-center border-dark border-top border-bottom">
             <div class="col-9">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav">
@@ -36,7 +36,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row d-flex-center feature">
             <div class="col-md-12">
                 <div class="row">
@@ -82,8 +82,7 @@
                     <div class="col-6">
                         <div class="row">
                             <div class="col-2">
-                                <i class="fa-regular fa-calendar"></i>
-                                <span class="month">09</span>
+                                <i class="fa-solid fa-calendar-days"></i>
                             </div>
                             <div class="col-5">
                                 <span>THE NEWS FOR</span>
@@ -116,9 +115,9 @@
 </section>
 <section>
     <div class="container-fluid">
-        <div class="row d-flex-center feature">
+        <div class="row feature">
             <div class="col-md-12">
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-7">
                         <div class="row">
                             @foreach ($latestTen as $ten)
@@ -182,40 +181,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-                            <div class="col-12 mb-3 py-5 border-bottom ">
-                                <h2><a href="#">Myanmar Junta Aims to Boost Ties to the Mideast to Evade Isolation</a></h2>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-2">
-                                        <div class="row d-flex-center">
-                                            <div class="col-12">
-                                                <div class="btn btn-reaction mb-2">
-                                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class=" btn btn-transparent  btn-circle-social ">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-2">
-                                                    <span class="text-center">100</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-10 col-10">
-                                        <span class="category">Myanmar’s Crisis & the World</span>
-                                        <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 col-12  ">
-                                        <span>BY THE VWXYZ Online</span>
-                                        <P>Regime aims to forge closer ties with Saudi Arabia, Kuwait and Qatar as it faces mounting calls for more sanctions.  </P>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                     <div class="col-md-5 top">
@@ -235,7 +200,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-10 col-10">
-                                        <h2><a href="{{ url('/category') . '/' . $most_view->category->name_en . '/' . $latest->id }}" >
+                                        <h2><a href="{{ url('/category') . '/' . $most_view->category->name_en . '/' . $most_view->id }}" >
                                             @if (app()->getLocale() == 'mm')
                                                 {{ $most_view->title_mm }}
                                             @elseif(app()->getLocale() == 'ch')
@@ -784,15 +749,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
 <script>
   // Attach click event to single image
-  document.getElementById("singleImage").addEventListener("click", function() {
+    document.getElementById("singleImage").addEventListener("click", function() {
     // Open the carousel modal
-    $('#carouselModal').modal('show');
-  });
-  //  Set caption from card text
-$('.card-deck a').fancybox({
-caption : function( instance, item ) {
-  return $(this).parent().find('.card-text').html();
-}
-});
+        $('#carouselModal').modal('show');
+        });
+        //  Set caption from card text
+        $('.card-deck a').fancybox({
+        caption : function( instance, item ) {
+        return $(this).parent().find('.card-text').html();
+        }
+
+    });
+
 </script>
 @endsection

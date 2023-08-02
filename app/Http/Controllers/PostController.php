@@ -33,7 +33,7 @@ class PostController extends Controller
         ])->validate();
 
         $this->validation($request);
-        
+
         $data = $this->getData($request);
 
         Post::create($data);
@@ -52,12 +52,12 @@ class PostController extends Controller
 
     public function update(Request $request){
         $this->validation($request);
-        
+
 
         $post = Post::find($request->id);
 
-        $image = $request->file('img_link'); 
-        
+        $image = $request->file('img_link');
+
         if($image != '' || $image != NULL){
             $imageName = uniqid() . time().'.'.$image->extension();
             $original = Image::make($image->path());
@@ -103,7 +103,11 @@ class PostController extends Controller
     public function details($language, $category, $id){
 
         $post = Post::find($id);
-        return view('/backend.posts.detail', compact('post'));
+        $relatedPosts = Post::where('category_id', $post->category_id)
+                        ->where('id', '<>', $post->id)
+                        ->limit(5)
+                        ->get();
+        return view('/backend.posts.detail', compact('post', 'relatedPosts'));
     }
 
     public function detailsEn($category, $id){
@@ -150,8 +154,8 @@ class PostController extends Controller
 
         $this->create_path();
 
-        $image = $request->file('img_link'); 
-  
+        $image = $request->file('img_link');
+
         $imageName = uniqid() . time().'.'.$image->extension();
         $original = Image::make($image->path());
         $image->move(public_path('storage/images/original'), $imageName);
@@ -160,7 +164,7 @@ class PostController extends Controller
             $constraint->aspectRatio();
         })->save(public_path('storage/images/thumbnail/' . $imageName));
 
-        
+
         return [
             'img_link' => $imageName,
             'category_id' => $request->category,

@@ -188,7 +188,7 @@
             <div class="col-8 text-center">
                 <i class="fa-solid fa-user-large"></i><br>
                 <span>{{ $post->author }}</span><br>
-                <span>The Irrawaddy</span>
+                <span>The VWXYZ ONLINE</span>
             </div>
         </div>
     </div>
@@ -202,7 +202,7 @@
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $post->date)->format('d F Y') }}
                     </div>
                     <div class="col-6 text-end">
-                        The Irrawaddy /
+                        The VWXYZ ONLINE /
                     </div>
                 </div>
                 <div class="row">

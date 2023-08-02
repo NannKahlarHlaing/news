@@ -125,7 +125,7 @@
 
                         </div>
                     </div>
-                    <div class="col" id="site-title">News</div>
+                    <div class="col" id="site-title">THE VWXYZ ONLINE</div>
                     <div class="col-2 text-end" id="search">
                         <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
                     </div>
@@ -350,7 +350,7 @@ $(document).ready(function(){
         console.log( 'ddd');
         event.preventDefault();
         var currentURL = window.location.href;
-
+        //
         console.log( ' ddd'+ $('#mm').text());
         if(lang == 'en'){
             var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/mm/');

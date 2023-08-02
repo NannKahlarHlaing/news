@@ -13,6 +13,7 @@ use App\Models\PhotoEssay;
 use App\Models\SubCategory;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class FrontendController extends Controller
 {
@@ -44,10 +45,7 @@ class FrontendController extends Controller
 
         $maxViews = $most_view->views;
 
-        $mostViews = Post::where('views', '<', $maxViews)
-                        ->orderBy('views', 'desc')
-                        ->take(4)
-                        ->get();
+        $mostViews = $this->mostFiveViews($most_view);
 
         $latestTen = Post::orderBy('id', 'desc')
                     ->take(10)
@@ -94,17 +92,17 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->take(3)
                     ->get();
-        // dd($specials);
+
         return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+
     }
 
-    public function sub_categories($sub_category){
+    public function sub_categories($language, $sub_category){
         $cat= SubCategory::where('name_en', $sub_category)->get();
         $sub_cat = $cat->first();
         $latest = Post::where('sub_category_id', $sub_cat->id)
                 ->orderBy('id', 'desc')
                 ->first();
-                // dd($sub_cat);
 
         $latestTen = Post::orderBy('id', 'desc')
             ->take(9)
@@ -112,15 +110,15 @@ class FrontendController extends Controller
 
         $most_view = Post::orderBy('views', 'desc')->first();
 
-        $maxViews = $most_view->views;
-
-        $mostViews = Post::where('views', '<', $maxViews)
-                        ->orderBy('views', 'desc')
-                        ->take(4)
-                        ->get();
+        $mostViews = $this->mostFiveViews($most_view);
 
         return view('frontend.sub_page', compact('sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
     }
+
+    public function sub_categoriesEn($sub_category){
+        return call_user_func_array([$this, 'sub_categories'], ['en', $sub_category]);
+    }
+
 
     public function show_videos(){
         $posts = Video::where('deleted_at', NULL)
@@ -140,10 +138,19 @@ class FrontendController extends Controller
     }
 
     public function photo_essays(){
-        $posts = PhotoEssay::where('deleted_at', NULL)
-                    ->orderBy('id', 'desc')
+        $sub_cat = ['photo_essays', 'Photo Essays'];
+        $latest = PhotoEssay::orderBy('created_at', 'desc')
+                    ->first();
+
+        $latestTen = PhotoEssay::orderBy('id', 'desc')
+                    ->take(9)
                     ->get();
-        return view('frontend.photo_essays.essays', compact('posts'));
+
+        $most_view = Post::orderBy('views', 'desc')->first();
+
+        $mostViews = $this->mostFiveViews($most_view);
+
+        return view('frontend.sub_page', compact('sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
     }
 
     public function donation(){
@@ -205,5 +212,16 @@ class FrontendController extends Controller
     private function stringToArray($str){
         $arr = explode(',', $str);
         return $arr;
+    }
+
+    private function mostFiveViews($most_view){
+        $maxViews = $most_view->views;
+
+        $mostViews = Post::where('views', '<', $maxViews)
+                    ->orderBy('views', 'desc')
+                    ->take(4)
+                    ->get();
+
+        return $mostViews;
     }
 }
