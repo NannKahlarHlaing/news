@@ -162,6 +162,15 @@ Route::group(['middleware' => 'normal'], function () {
             Route::delete('/cartoons/delete/{id}', 'destroy');
         });
 
+        Route::controller(App\Http\Controllers\MenuController::class)->group(function(){
+            Route::get('/menus', 'index')->name('backend.menus');
+            Route::get('/menus/create', 'create_form')->name('backend.menus.create_form');
+
+            Route::get('/create', 'create_menu')->name('menu_name.create');
+
+            Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
+        });
+
         Route::get('/get/sub_category', [App\Http\Controllers\SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');
 
     });
@@ -231,28 +240,28 @@ Route::group(['prefix' => '{language}'], function ($language) {
     Route::get('/', function () {
         $frontendController = new FrontendController();
 
-            $data = $frontendController->home_page();
+        $data = $frontendController->home_page();
 
-            $latest = $data->latest;
-            $most_view = $data->most_view;
-            $mostViews = $data->mostViews;
-            $latestTen = $data->latestTen;
-            $temperature = $data->temperature;
-            $burmas = $data->burmas;
-            $businesses = $data->businesses;
-            $persons = $data->persons;
-            $opinions = $data->opinions;
-            $lifeStyles = $data->lifeStyles;
-            $specials = $data->specials;
-            $catBurma = $data->catBurma;
-            $catBusiness = $data->catBusiness;
-            $catInperson = $data->catInperson;
-            $catOpinion = $data->catOpinion;
-            $catLifeStyle = $data->catLifeStyle;
-            $catSpecial = $data->catSpecial;
+        $latest = $data->latest;
+        $most_view = $data->most_view;
+        $mostViews = $data->mostViews;
+        $latestTen = $data->latestTen;
+        $temperature = $data->temperature;
+        $burmas = $data->burmas;
+        $businesses = $data->businesses;
+        $persons = $data->persons;
+        $opinions = $data->opinions;
+        $lifeStyles = $data->lifeStyles;
+        $specials = $data->specials;
+        $catBurma = $data->catBurma;
+        $catBusiness = $data->catBusiness;
+        $catInperson = $data->catInperson;
+        $catOpinion = $data->catOpinion;
+        $catLifeStyle = $data->catLifeStyle;
+        $catSpecial = $data->catSpecial;
 
-            return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
-        
+        return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+
     })->name('home');
 
     Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details'])->name('new.details');

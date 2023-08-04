@@ -101,6 +101,12 @@
             <span>Users</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.menus') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Menus</span></a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
