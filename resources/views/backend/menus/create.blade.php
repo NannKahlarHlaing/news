@@ -10,8 +10,7 @@
       padding: 5px 15px;
       background-color: #f9f9f9;
     }
-    /* Add more custom CSS styles as needed */
-  </style>
+</style>
 
 @endsection
 

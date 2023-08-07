@@ -54,4 +54,26 @@ class MenuController extends Controller
         return response()->json(['message' => 'Data saved successfully']);
 
     }
+
+    public function update_menuItems($id) {
+
+        $pages = Page::all();
+        $categories = Category::all();
+        $sub_categories = SubCategory::all();
+
+        if($id == 1){
+            $menu_name = 'Main Menu';
+        }else if($id == 2){
+            $menu_name = 'Footer Menu';
+        }
+
+        $menu_items = MenuItem::where('menu_id', $id)->get();
+
+        // dd($menu_name);
+
+        return view('backend.menus.update', compact('menu_name', 'menu_items', 'pages'));
+
+    }
+
+
 }

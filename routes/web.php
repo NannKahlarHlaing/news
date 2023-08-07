@@ -169,6 +169,8 @@ Route::group(['middleware' => 'normal'], function () {
             Route::get('/create', 'create_menu')->name('menu_name.create');
 
             Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
+
+            Route::get('/menu_items/update/{id}', 'update_menuItems')->name('backend.menu_items.update');
         });
 
         Route::get('/get/sub_category', [App\Http\Controllers\SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');
