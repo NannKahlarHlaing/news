@@ -357,7 +357,7 @@ $(document).ready(function(){
         //
         console.log( ' ddd'+ $('#mm').text());
         if(lang == 'en'){
-            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/');
+            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/mm/');
         }else{
             var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
         }
