@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\MenuItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -168,9 +169,11 @@ Route::group(['middleware' => 'normal'], function () {
 
             Route::get('/create', 'create_menu')->name('menu_name.create');
 
+            Route::get('/menu/update/{id}', 'update_menu')->name('backend.menu.update');
+
             Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
 
-            Route::get('/menu_items/update/{id}', 'update_menuItems')->name('backend.menu_items.update');
+            Route::get('/menu_items/update', 'update_menuItems')->name('backend.menu_items.update');
         });
 
         Route::get('/get/sub_category', [App\Http\Controllers\SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');
@@ -225,7 +228,9 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
             $catLifeStyle = $data->catLifeStyle;
             $catSpecial = $data->catSpecial;
 
-            return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+            $main_menus = MenuItem::where('menu_id', '1')->get();
+
+            return view('frontend.home', compact('main_menus', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -261,8 +266,10 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $catOpinion = $data->catOpinion;
         $catLifeStyle = $data->catLifeStyle;
         $catSpecial = $data->catSpecial;
+        $main_menus = MenuItem::where('menu_id', '1')->get();
+        dd($main_menus);
 
-        return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+        return view('frontend.home', compact('main_menus', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
 
     })->name('home');
 

@@ -19,6 +19,7 @@ class MenuController extends Controller
         $pages = Page::all();
         $categories = Category::all();
         $sub_categories = SubCategory::all();
+        $menu_items = MenuItem::all();
         return view('backend.menus.create', compact('pages', 'categories', 'sub_categories'));
     }
 
@@ -30,6 +31,24 @@ class MenuController extends Controller
         ]);
 
         return $name;
+    }
+
+    public function update_menu($id) {
+
+        $pages = Page::all();
+        $categories = Category::all();
+        $sub_categories = SubCategory::all();
+
+        if($id == 1){
+            $menu_name = 'Main Menu';
+        }else if($id == 2){
+            $menu_name = 'Footer Menu';
+        }
+
+        $menu_items = MenuItem::where('menu_id', $id)->get();
+
+        return view('backend.menus.update', compact('id', 'menu_name', 'menu_items', 'pages', 'categories', 'sub_categories'));
+
     }
 
     public function create_menuItems(Request $request){
@@ -55,24 +74,37 @@ class MenuController extends Controller
 
     }
 
-    public function update_menuItems($id) {
+    public function update_menuItems(Request $request) {
+        $arr = [];
+        foreach ($request->formData as $data) {
+            $checkboxName = $data['checkboxName'];
+            $linkValue = $data['linkValue'];
 
-        $pages = Page::all();
-        $categories = Category::all();
-        $sub_categories = SubCategory::all();
+            $item = MenuItem::where('name', $checkboxName)->where('menu_id', $request->menu_id)->first();
 
-        if($id == 1){
-            $menu_name = 'Main Menu';
-        }else if($id == 2){
-            $menu_name = 'Footer Menu';
+            if($item){
+                $item->menu_id = $request->menu_id;
+                $item->link = $linkValue;
+
+                $item->save();
+            }else{
+                MenuItem::create([
+                    'menu_id' => $request->menu_id,
+                    'name' => $checkboxName,
+                    'link' => $linkValue,
+                ]);
+            }
+
         }
 
-        $menu_items = MenuItem::where('menu_id', $id)->get();
-
-        // dd($menu_name);
-
-        return view('backend.menus.update', compact('menu_name', 'menu_items', 'pages'));
-
+        foreach ($request->uncheckedData as $item) {
+            $name = $item['name'];
+            $menuItem = MenuItem::where('name', $name)->where('menu_id', $request->menu_id)->first();
+            if ($menuItem) {
+                $menuItem->delete();
+            }
+        }
+        return response()->json(['message' => 'Data updated successfully']);
     }
 
 

@@ -1,7 +1,5 @@
 @extends('backend.index')
 
-
-
 @section('content')
 
 <section class="container-fluid">
@@ -14,7 +12,7 @@
                             <strong>Main Menu</strong>
                         </div>
                         <div class="col-6 text-end">
-                            <a href="{{ url('/admin/menu_items/update/1')}}" class="btn btn-primary px-3">Edit Menu Items</a>
+                            <a href="{{ url('/admin/menu/update/1')}}" class="btn btn-primary px-3">Edit Menu Items</a>
                         </div>
                     </div>
 
@@ -31,7 +29,7 @@
                             <strong>Footer Menu</strong>
                         </div>
                         <div class="col-6 text-end">
-                            <a href="{{ url('/admin/menu_items/update/2')}}" class="btn btn-primary px-3">Edit Menu Items </a>
+                            <a href="{{ url('/admin/menu/update/2')}}" class="btn btn-primary px-3">Edit Menu Items </a>
                         </div>
                     </div>
 

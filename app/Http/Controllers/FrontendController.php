@@ -9,6 +9,7 @@ use App\Models\Video;
 use App\Models\Career;
 use App\Models\Social;
 use App\Models\Category;
+use App\Models\MenuItem;
 use App\Models\PhotoEssay;
 use App\Models\SubCategory;
 use App\Models\NewsCategory;
@@ -92,8 +93,9 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->take(3)
                     ->get();
+        $main_menus = MenuItem::where('menu_id', '1')->get();
 
-        return view('frontend.home', compact('latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+        return view('frontend.home', compact('main_menus','latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
 
     }
 
@@ -112,7 +114,9 @@ class FrontendController extends Controller
 
         $mostViews = $this->mostFiveViews($most_view);
 
-        return view('frontend.sub_page', compact('sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
+        $main_menus = MenuItem::where('menu_id', '1')->get();
+
+        return view('frontend.sub_page', compact('main_menus', 'sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
     }
 
     public function sub_categoriesEn($sub_category){
@@ -149,13 +153,15 @@ class FrontendController extends Controller
         $most_view = Post::orderBy('views', 'desc')->first();
 
         $mostViews = $this->mostFiveViews($most_view);
+        $main_menus = MenuItem::where('menu_id', '1')->get();
 
-        return view('frontend.sub_page', compact('sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
+        return view('frontend.sub_page', compact('main_menus', 'sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
     }
 
     public function donation(){
         return view('frontend.donation');
     }
+
     public function pages( $language, $title){
         // dd($title);
         $posts = Page::where('title_en', $title)
@@ -163,7 +169,9 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->get();
         $post = $posts->first();
-        return view('frontend.pages', compact('post'));
+        $main_menus = MenuItem::where('menu_id', '1')->get();
+
+        return view('frontend.pages', compact('main_menus','post'));
     }
 
     public function pagesEn($title){
@@ -202,7 +210,9 @@ class FrontendController extends Controller
             $line = $this->stringToArray($info->line);
         }
 
-        return view('frontend.contact', compact('info', 'email', 'phone', 'facebook', 'youtube', 'instagram', 'twitter', 'linked_in','whatsapp', 'line'));
+        $main_menus = MenuItem::where('menu_id', '1')->get();
+
+        return view('frontend.contact', compact('main_menus','info', 'email', 'phone', 'facebook', 'youtube', 'instagram', 'twitter', 'linked_in','whatsapp', 'line'));
     }
 
     public function cartoons(){

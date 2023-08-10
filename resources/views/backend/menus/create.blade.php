@@ -19,7 +19,7 @@
     <h3 class="my-3">Add Menu Items</h3>
     <div class="row">
         <div class="col-lg-8">
-            <form class="form" method="POST" action="{{route('backend.pages.create') }}" enctype="multipart/form-data">
+            <form class="form" method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="radio-container mb-3 h5">
                     <label class="radio-inline me-5">
@@ -57,9 +57,6 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="form-group">
-                            {{-- <button type="submit" class="btn btn-primary btn-save">Save</button> --}}
-                        </div>
                     </div>
 
                     <div class="col-md-4">
@@ -73,15 +70,14 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="form-group">
-                            {{-- <button type="submit" class="btn btn-primary btn-save">Save</button> --}}
-                        </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </section>
+@endsection
+
 @section('js')
 <script>
     $(document).ready(function(){
@@ -100,7 +96,6 @@
 
         $(".category-input-check").change(function() {
             var inputId = $(this).data("category-input-id");
-            console.log(inputId);
             var inputBox = $("#" + inputId);
 
             if ($(this).prop("checked")) {
@@ -112,7 +107,6 @@
 
         $(".subcategory-input-check").change(function() {
             var inputId = $(this).data("subcategory-input-id");
-            console.log(inputId);
             var inputBox = $("#" + inputId);
 
             if ($(this).prop("checked")) {
@@ -174,5 +168,4 @@
 
     });
 </script>
-@endsection
 @endsection

@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="container-fluid col" id="nav-hide">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="{{ url('/') }}">
                             @if (session()->get('locale') == 'en')
                                  Navbar
                             @else
@@ -97,10 +97,13 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                @foreach ($main_menus as $item)
                                 <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                    </li>
+                                @endforeach
+
+                                {{-- <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -120,7 +123,7 @@
                                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                                 <li><a href="" class="nav-link" id="en">English</a></li>
                                 <li><a href="" class="nav-link" id="mm">Myanmar</a></li>
-                                <li><a href="" class="nav-link" id="ch">Chinese</a></li>
+                                <li><a href="" class="nav-link" id="ch">Chinese</a></li> --}}
                             </ul>
 
                         </div>
