@@ -102,7 +102,6 @@
                                     <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                     </li>
                                 @endforeach
-
                                 {{-- <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
                                 </li>
@@ -119,11 +118,11 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                                </li>
+                                </li> --}}
                                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                                 <li><a href="" class="nav-link" id="en">English</a></li>
                                 <li><a href="" class="nav-link" id="mm">Myanmar</a></li>
-                                <li><a href="" class="nav-link" id="ch">Chinese</a></li> --}}
+                                <li><a href="" class="nav-link" id="ch">Chinese</a></li>
                             </ul>
 
                         </div>
@@ -134,10 +133,26 @@
                     </div>
 
                 </nav>
-                <form class="d-flex" id="search-form">
-                    <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search">
-                    <i class="fa-solid fa-xmark" id="btn-close"></i>
-                </form>
+                @if (session()->get('locale') == 'mm')
+                    <form class="d-flex" id="search-form" action="{{ url('/mm/posts/search') }}" method="GET">
+                        @csrf
+                        <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                        <i class="fa-solid fa-xmark" id="btn-close"></i>
+                    </form>
+                @elseif (session()->get('locale') == 'ch')
+                    <form class="d-flex" id="search-form" action="{{ url('/ch/posts/search') }}" method="GET">
+                        @csrf
+                        <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                        <i class="fa-solid fa-xmark" id="btn-close"></i>
+                    </form>
+                @else
+                    <form class="d-flex" id="search-form" action="{{ url('/posts/search') }}" method="GET">
+                        @csrf
+                        <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                        <i class="fa-solid fa-xmark" id="btn-close"></i>
+                    </form>
+                @endif
+
             </div>
 
         </div>
@@ -347,8 +362,34 @@
 <script>
     // https://vwxyz.online/public/
 $(document).ready(function(){
+    // Get the input element
+    const searchInput = $('.search-input');
+
+        // Add an event listener for the "keydown" event on the input element
+        searchInput.on('keydown', function(event) {
+            // Check if the pressed key is the "Enter" key (key code 13)
+            if (event.keyCode === 13) {
+                // Prevent the default behavior of the "Enter" key (form submission)
+                event.preventDefault();
+
+                // Submit the form
+                $('#search-form').submit();
+            }
+        });
 
     var lang = $('#lang').text();
+
+    $('#en').on('click', function(event) {
+        event.preventDefault();
+        var currentURL = window.location.href;
+        if(lang == 'en'){
+            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+        }else{
+            var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
+        }
+
+        window.location.replace(newUrl);
+    });
 
     $('#mm').on('click', function(event) {
         console.log( 'ddd');
@@ -364,17 +405,7 @@ $(document).ready(function(){
 
         window.location.replace(newUrl);
     });
-    $('#en').on('click', function(event) {
-        event.preventDefault();
-        var currentURL = window.location.href;
-        if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
-        }else{
-            var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
-        }
 
-        window.location.replace(newUrl);
-    });
     $('#ch').on('click', function(event) {
         event.preventDefault();
         var currentURL = window.location.href;
@@ -431,14 +462,6 @@ $(document).ready(function(){
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-    // if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    //     mybutton.style.display = "block";
-    // } else {
-    //     mybutton.style.display = "none";
-    // }
-    }
 
     // When the user clicks on the button, scroll to the top of the document
     function topFunction() {

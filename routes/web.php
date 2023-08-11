@@ -191,6 +191,8 @@ Route::get('/add_count_new', [App\Http\Controllers\PostController::class, 'addVa
 
 Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'addValue'])->name('photo_views_count');
 
+Route::get('/posts/search', [App\Http\Controllers\PostController::class, 'searchEn'])->name('search');
+
 //frontend
 
 Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
@@ -275,6 +277,8 @@ Route::group(['prefix' => '{language}'], function ($language) {
 
     Route::get('/category/{category}/{id}', [App\Http\Controllers\PostController::class, 'details'])->name('new.details');
 
+    Route::get('/posts/search', [App\Http\Controllers\PostController::class, 'search']);
+
     Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
 
     Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
@@ -294,3 +298,4 @@ Route::group(['prefix' => '{language}'], function ($language) {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

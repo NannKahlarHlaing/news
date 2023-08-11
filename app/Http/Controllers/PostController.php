@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\MenuItem;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -107,7 +108,9 @@ class PostController extends Controller
                         ->where('id', '<>', $post->id)
                         ->limit(5)
                         ->get();
-        return view('/backend.posts.detail', compact('post', 'relatedPosts'));
+        $main_menus = MenuItem::where('menu_id', '1')->get();
+
+        return view('/backend.posts.detail', compact('main_menus', 'post', 'relatedPosts'));
     }
 
     public function detailsEn($category, $id){
@@ -127,6 +130,39 @@ class PostController extends Controller
         $post->save();
 
         return $addedValue;
+    }
+
+    public function searchEn(Request $request){
+        return call_user_func_array([$this, 'search'], ['en', $request]);
+    }
+
+    public function search($language, Request $request){
+
+        $search = $request->search;
+
+        if($language == 'mm'){
+            $posts = Post::where('title_mm', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_mm', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc_mm', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_mm', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }elseif($language == 'ch'){
+            $posts = Post::where('title_ch', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_ch', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc_ch', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }else{
+            $posts = Post::where('title_en', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_en', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc_en', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }
+
+        $main_menus = MenuItem::where('menu_id', '1')->get();
+
+        return view('frontend.search', compact('main_menus', 'posts', 'search'));
     }
 
     private function validation($request){

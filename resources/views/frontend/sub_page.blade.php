@@ -82,7 +82,7 @@
                     <div class="col-md-8">
                         <div class="row">
                             @foreach ($latestTen as $ten)
-                                <div class="col-4 mb-3 py-3 border-bottom">
+                                <div class="col-md-4 mb-3 py-3 border-bottom">
                                     <h5>
                                         @if (Route::currentRouteName() == 'sub_pages')
                                             <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">
