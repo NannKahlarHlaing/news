@@ -383,7 +383,7 @@ $(document).ready(function(){
         event.preventDefault();
         var currentURL = window.location.href;
         if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/en/');
         }else{
             var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
         }
@@ -398,19 +398,27 @@ $(document).ready(function(){
         //
         console.log( ' ddd'+ $('#mm').text());
         if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
+            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/mm/');
         }else{
             var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
         }
 
         window.location.replace(newUrl);
     });
+    $('#en').on('click', function(event) {
+        event.preventDefault();
+        var currentURL = window.location.href;
+        if(lang == 'en'){
+            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/en/');
+        }else{
+            var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
+        }
 
     $('#ch').on('click', function(event) {
         event.preventDefault();
         var currentURL = window.location.href;
         if(lang == 'en'){
-            var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/ch/');
+            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public//ch/');
         }else{
             var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
         }
