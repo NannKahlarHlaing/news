@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cartoon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
 class CartoonController extends Controller
@@ -19,6 +20,10 @@ class CartoonController extends Controller
     }
 
     public function create(Request $request){
+        Validator::make($request->all(),[
+            'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ])->validate();
+
         $this->validation($request);
         $data = $this->getData($request);
 
@@ -38,10 +43,26 @@ class CartoonController extends Controller
 
         $post = Cartoon::find($request->id);
 
-        $post->title = $request->title;
-        $post->img_link = $request->img_link;
-        $post->camera = $request->camera;
-        $post->date = $request->date;
+        $image = $request->file('img_link');
+
+        if($image != '' || $image != NULL){
+            $imageName = uniqid() . time().'.'.$image->extension();
+            $original = Image::make($image->path());
+            $image->move(public_path('storage/images/original'), $imageName);
+
+            $thumbnail = $original->fit(400, 300, function($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path('storage/images/thumbnail/' . $imageName));
+
+            $post->img_link = $imageName;
+        }
+
+        $post->title_en = $request->title_en;
+        $post->title_mm = $request->title_mm;
+        $post->title_ch = $request->title_ch;
+        $post->cartoonist_en = $request->cartoonist_en;
+        $post->cartoonist_mm = $request->cartoonist_mm;
+        $post->cartoonist_ch = $request->cartoonist_ch;
 
         $post->save();
 
@@ -79,17 +100,33 @@ class CartoonController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'title' => 'required',
-            'img_link' => 'required',
+            'title_en' => 'required',
         ])->validate();
     }
 
     private function getData($request){
+        $controller = app(\App\Http\Controllers\PostController::class);
+
+        $controller->create_path();
+
+        $image = $request->file('img_link');
+
+        $imageName = uniqid() . time().'.'.$image->extension();
+        $original = Image::make($image->path());
+        $image->move(public_path('storage/images/original'), $imageName);
+
+        $thumbnail = $original->fit(400, 300, function($constraint){
+            $constraint->aspectRatio();
+        })->save(public_path('storage/images/thumbnail/' . $imageName));
         return [
-            'title' => $request->title,
-            'img_link' => $request->img_link,
-            'camera' => $request->camera,
-            'date' => $request->date,
+            'img_link' => $imageName,
+            'category_id' => $request->category_id,
+            'title_en' => $request->title_en,
+            'title_mm' => $request->title_mm,
+            'title_ch' => $request->title_ch,
+            'cartoonist_en' => $request->cartoonist_en,
+            'cartoonist_mm' => $request->cartoonist_mm,
+            'cartoonist_ch' => $request->cartoonist_ch,
             'views' => 0
         ];
     }

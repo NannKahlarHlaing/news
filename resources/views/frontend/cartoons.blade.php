@@ -103,6 +103,22 @@
         background-color: #e3dbcd;
     }
 
+    .card {
+        overflow: hidden;
+    }
+    .card img {
+        height: 23rem;
+        object-fit: cover;
+        transition: transform 1s ease !important;
+    }
+    .card .img-fluid:hover{
+        transform: scale(1.1);
+    }
+
+    .breadcrumb {
+        background-color: #ECE7DD;
+    }
+
 </style>
 @endsection
 
@@ -120,67 +136,125 @@
             </div>
         </div>
     </section>
-    <section id="detail" class="py-5">
+    <section class="py-5">
         <div class="container-fluid">
-          <div class="row d-flex-center">
-            <div class="col-12">
-            <!-- Product Images & Alternates -->
-                <div class="product-images demo-gallery">
-                  <!-- Begin Product Images Slider -->
-                  <div class="main-img-slider">
-                    {{-- @foreach ($posts as $item) --}}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a data-fancybox="gallery" href="https://www.irrawaddy.com/wp-content/uploads/2017/03/2H9A7898-a-1-1345x900.jpg">
-                                    <img src="https://www.irrawaddy.com/wp-content/uploads/2017/03/2H9A7898-a-1-1345x900.jpg"style="width: 100%;object-fit: cover;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <a data-fancybox href="{{ asset('storage/images/original') . '/' . $latest->img_link }}" >
+                                <img class="card-img-top img-fluid" src="{{ asset('storage/images/original') . '/' . $latest->img_link }}" />
                                 </a>
                             </div>
-                            <div class="col-md-6 cartoon py-3">
-                                <div class="row ">
-                                    <div class="col-lg-12">
-                                        <h3><a href="">“Hostage diplomacy”</a></h3>
-                                        <span class="text-start">13 July 2023 - P2</span>
-                                        <div class="row mt-3">
-                                            <div class="col-12 ">
-                                                <a class="me-3" style="display: inline-block;">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </a>
-                                                <a class="me-3" style="display: inline-block;">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </a>
-                                                <span class="id d-none">tghghh</span>
-                                                <span class="views me-4 border-right">dghdth</span>
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                    <i class="fa-brands fa-facebook-f"></i>
-                                                </a>
-                                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                    <i class="fa-brands fa-twitter"></i>
-                                                </a>
-                                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                    <i class="fa-brands fa-linkedin-in"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="border-bottom border-white">
+                                        <a href="#">
+                                            <p class="card-text">
+                                                @if (app()->getLocale() == 'mm')
+                                                    {{ $latest->title_mm }}
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    {{ $latest->title_ch }}
+                                                @else
+                                                    {{ $latest->title_en }}
+                                                @endif
+                                            </p>
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <span><i class="fa-solid fa-clock"></i> {{ $latest->created_at->format('d F Y') }} - </span>
+
+                                @if (app()->getLocale() == 'mm')
+                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_mm) !!} </span>
+                                @elseif(app()->getLocale() == 'ch')
+                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_ch) !!} </span>
+                                @else
+                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_en) !!} </span>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <span class="id d-none">{{ $latest->id }}</span>
+                                <span class="views d-flex align-items-center">
+                                    <div class="me-4"><i class="fa-regular fa-eye"></i></div>
+                                    <div class="">{{ $latest->views }}</div>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-3">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                {{-- </div> --}}
+                                {{-- <div class="col-12"> --}}
+                                    <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-3">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                {{-- </div> --}}
+                                {{-- <div class="col-12"> --}}
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-3">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-
-                    {{-- @endforeach --}}
                     </div>
-                <!-- End Product Images Slider -->
-
-                <!-- Begin product thumb nav -->
-                <ul class="thumb-nav d-none" >
-                    {{-- @foreach ($posts as $item) --}}
-                        <li><img src="https://www.irrawaddy.com/wp-content/uploads/2017/03/2H9A7898-a-1-1345x900.jpg"></li>
-                    {{-- @endforeach --}}
-                </ul>
-                <!-- End product thumb nav -->
-              </div>
-            <!-- End Product Images & Alternates -->
+                </div>
+                {{-- <div class="col-lg-3">
+                    @foreach ($lastThree as $three)
+                        <div class="row three mb-1">
+                            <img src="{{ asset('storage/images/thumbnail') . '/' . $three->img_link }}" alt="">
+                        </div>
+                    @endforeach
+                </div> --}}
             </div>
-          </div>
+            <div class="row">
+                <div class="col-12 my-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cartoons</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @foreach ($cartoons as $cartoon)
+                    <div class="row mt-3">
+                        <div class="col-md-4 col-6">
+                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                        </div>
+                        <div class="col-md-8 col-6">
+                            <p class=""><a href="">
+                                @if (app()->getLocale() == 'mm')
+                                    {{ $cartoon->title_en }}
+                                @elseif(app()->getLocale() == 'ch')
+                                    {{ $cartoon->title_ch }}
+                                @else
+                                    {{ $cartoon->title_en }}
+                                @endif
+                            </a></p>
+                            <span class="me-3">
+                                @if (app()->getLocale() == 'mm')
+                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_mm) !!} </span>
+                                @elseif(app()->getLocale() == 'ch')
+                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_ch) !!} </span>
+                                @else
+                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_en) !!} </span>
+                                @endif
+                            </span>
+                            <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($cartoon->created_at)->format('d F Y') }}</span>
+                            <span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $cartoon->views }}</span>
+                        </div>
+                    </div>
+                @endforeach
+                </div>
+            </div>
         </div>
     </section>
 @endsection

@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                     <div class="card">
                         <a data-fancybox href="{{ $latest->video_url }}" >
-                          <img class="card-img-top img-fluid" src="/storage/images/original/{{ $latest->img_url }}" />
+                          <img class="card-img-top img-fluid" src="{{ asset('/storage/images/original/') . '/' . $latest->img_url }}" />
                         </a>
                     </div>
                 </div>
@@ -125,30 +125,59 @@
             <div class="col-12">
                 <div class="row my-3">
                     <div class="col-3">
-                        <div class="dropdown">
+                        {{-- <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                               Pick A Channel
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 @foreach ($categories as $item)
-                                    <li><a class="dropdown-item" href="#">{{ $item->name_en }}</a></li>
+                                    <li><a class="dropdown-item">{{ $item->name_en }}</a></li>
                                 @endforeach
                             </ul>
-                          </div>
+                        </div> --}}
+                        <select class="btn btn-secondary" name="categories" id="categories">
+                            <option value=""> Pick A Channel</option>
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $item->name_mm }}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {{ $item->name_ch }}
+                                    @else
+                                        {{ $item->name_en }}
+                                    @endif
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-6">
-                        <h2 class="text-center">Filters</h2>
+                        <h2 class="text-center">FILTERS</h2>
                     </div>
                     <div class="col-3">
-                        <form class="d-flex" id="search-form">
-                            <input class="form-control me-2 search-input" type="search" placeholder="Search Video" aria-label="Search">
-                            <button class="btn btn-danger">Search</button>
-                        </form>
+                        @if (session()->get('locale') == 'mm')
+                            <form class="d-flex" id="search-form" action="{{ url('/mm/videos/search') }}" method="GET">
+                                @csrf
+                                <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                                <button type="submit" class="btn btn-danger">Search</button>
+                            </form>
+                        @elseif (session()->get('locale') == 'ch')
+                            <form class="d-flex" id="search-form" action="{{ url('/ch/videos/search') }}" method="GET">
+                                @csrf
+                                <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                                <button type="submit" class="btn btn-danger">Search</button>
+                            </form>
+                        @else
+                            <form class="d-flex" id="search-form" action="{{ url('/videos/search') }}" method="GET">
+                                @csrf
+                                <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                                <button type="submit" class="btn btn-danger">Search</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="post_container">
             @foreach ($posts as $item)
                 <div class="col-lg-3 mb-3">
                     <div class="card">
@@ -188,16 +217,60 @@
 
 <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
 <script>
-  // Attach click event to single image
-  document.getElementById("singleImage").addEventListener("click", function() {
-    // Open the carousel modal
-    $('#carouselModal').modal('show');
-  });
-  //  Set caption from card text
-$('.card-deck a').fancybox({
-caption : function( instance, item ) {
-  return $(this).parent().find('.card-text').html();
-}
-});
+
+    $(document).ready(function(){
+          // Attach click event to single image
+        // document.getElementById("singleImage").addEventListener("click", function() {
+        //     // Open the carousel modal
+        //     $('#carouselModal').modal('show');
+        // });
+        // //  Set caption from card text
+        // $('.card-deck a').fancybox({
+        //     caption : function( instance, item ) {
+        //     return $(this).parent().find('.card-text').html();
+        //     }
+        // });
+
+        $('#categories').on('change', function(event){
+            event.preventDefault();
+            $cat_id = $('#categories').val();
+
+            $.ajax({
+                url: '{{ route('getVideosByCategory') }}',
+                method: 'GET',
+                data: { 'id': $cat_id },
+                success: function(response){
+                    // console.log(response);
+                    $('#post_container').empty();
+                    if (response.length > 0) {
+                        response.forEach(video => {
+                            $.each(response, function(index, video) {
+                            const card = `
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="card">
+                                            <a data-fancybox href="${video.video_url}">
+                                                <img class="card-img-top img-fluid" src="/storage/images/original/${video.img_url}" />
+                                            </a>
+                                            <div class="card-body">
+                                                <p class="card-text">${video.title_en}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                $('#post_container').append(card);
+                            });
+                        });
+                    }else{
+                        const card=`<div class="card p-3 text-center text-white fw-bold">"There is no search result"</div>`;
+                        $('#post_container').append(card);
+                    }
+                }
+            });
+
+        })
+
+    })
+
+
 </script>
 @endsection

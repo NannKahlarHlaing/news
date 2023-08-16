@@ -108,9 +108,15 @@ class PostController extends Controller
                         ->where('id', '<>', $post->id)
                         ->limit(5)
                         ->get();
-        $main_menus = MenuItem::where('menu_id', '1')->get();
 
-        return view('/backend.posts.detail', compact('main_menus', 'post', 'relatedPosts'));
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+
+        return view('/backend.posts.detail', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts'));
     }
 
     public function detailsEn($category, $id){
@@ -160,9 +166,14 @@ class PostController extends Controller
                 ->paginate(4);
         }
 
-        $main_menus = MenuItem::where('menu_id', '1')->get();
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.search', compact('main_menus', 'posts', 'search'));
+        return view('frontend.search', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'search'));
     }
 
     private function validation($request){

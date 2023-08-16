@@ -73,7 +73,7 @@
                                 <strong><i>Interested applicants, please apply no later than {{ $item->latest_date }} with a letter of interest, a copy of full resume/CV (please mentioned two referrers) in English with the expected salary.</i></strong>
                             </div>
                             <div class="row mb-3">
-                                <span><i><strong>Email: application@irrawaddy.org</strong>(early applications are encouraged)</i></span>
+                                <span><i><strong>Email: example@gmail.com</strong>(early applications are encouraged)</i></span>
                             </div>
                         </div>
                         @endforeach

@@ -57,7 +57,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        @if (Route::currentRouteName() == 'sub_pages')
+                        @if (Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang')
                             @if (app()->getLocale() == 'mm')
                                 {{ $sub_cat->name_mm }}
                             @elseif(app()->getLocale() == 'ch')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuItem;
 use App\Models\PhotoEssay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,7 +31,7 @@ class PhotoEssayController extends Controller
 
     public function update_form($id){
         $post = PhotoEssay::find($id);
-       
+
         return view('backend.photo_essays.update', compact('post'));
     }
 
@@ -39,7 +40,7 @@ class PhotoEssayController extends Controller
 
         $post = PhotoEssay::find($request->id);
 
-        $image = $request->file('img_link'); 
+        $image = $request->file('img_link');
 
         if($image != '' || $image != NULL){
 
@@ -67,7 +68,7 @@ class PhotoEssayController extends Controller
         $post->desc_ch = str_replace("\n", "\r\n", $request->desc_ch);
         $post->author = $request->author;
         $post->date = $request->date;
-        
+
         $post->save();
 
         return redirect ('/admin/photo_essays')->with('status', 'photo_essays is updated successfully!');
@@ -84,7 +85,15 @@ class PhotoEssayController extends Controller
 
     public function details($language, $id){
         $post = PhotoEssay::find($id);
-        return view('backend.photo_essays.detail', compact('post'));
+
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+
+        return view('backend.photo_essays.detail', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post'));
     }
 
     public function detailsEn($id){
@@ -118,7 +127,7 @@ class PhotoEssayController extends Controller
 
         $postController->create_path();
 
-        $image = $request->file('img_link'); 
+        $image = $request->file('img_link');
 
         if($image != '' || $image != NULL){
 

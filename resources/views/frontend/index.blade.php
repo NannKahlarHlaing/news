@@ -6,9 +6,12 @@
     <title>The VWXYZ Online</title>
 
     <!-- google font -->
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet"> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     @yield('css')
     <!-- boostrap -->
@@ -85,23 +88,47 @@
                         </div>
                     </div>
                     <div class="container-fluid col" id="nav-hide">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            @if (session()->get('locale') == 'en')
-                                 Navbar
-                            @else
-                                NannKahlar
-                            @endif
+
+                        @if (session()->get('locale') == 'mm')
+                            <a class="navbar-brand" href="{{ url('/mm') }}">
+                                Home MM
                             </a>
+                        @elseif (session()->get('locale') == 'ch')
+                            <a class="navbar-brand" href="{{ url('/ch') }}">
+                                Home CH
+                            </a>
+                        @else
+                            <a class="navbar-brand" href="{{ url('/') }}">
+                                Home
+                            </a>
+                        @endif
+
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                @foreach ($main_menus as $item)
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
-                                    </li>
-                                @endforeach
+                                @if (session()->get('locale') == 'mm')
+                                    @foreach ($main_menus_mm as $item)
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                        </li>
+                                    @endforeach
+                                @elseif (session()->get('locale') == 'ch')
+                                    @foreach ($main_menus_ch as $item)
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    @foreach ($main_menus_en as $item)
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                        </li>
+                                    @endforeach
+                                @endif
+
+
                                 {{-- <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
                                 </li>
@@ -173,13 +200,26 @@
                     <div class="row mb-4">
                         <div class="col-10">
                             <nav class="nav">
-                                <a class="nav-link active" href="#">COPYRIGHT</a>
+                                @if (session()->get('locale') == 'mm')
+                                    @foreach ($footer_menus_mm as $item)
+                                        <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
+                                    @endforeach
+                                @elseif (session()->get('locale') == 'ch')
+                                    @foreach ($footer_menus_ch as $item)
+                                        <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
+                                    @endforeach
+                                @else
+                                    @foreach ($footer_menus_en as $item)
+                                        <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
+                                    @endforeach
+                                @endif
+                                {{-- <a class="nav-link active" href="#">COPYRIGHT</a>
                                 <a class="nav-link" href="#">CODE OF ETHICS</a>
                                 <a class="nav-link" href="#">PRIVACY POLICY</a>
                                 <a class="nav-link" href="#">CAREERS</a>
                                 <a class="nav-link" href="#">TEAM</a>
                                 <a class="nav-link" href="#">ABOUT US</a>
-                                <a class="nav-link" href="#">CONTACT</a>
+                                <a class="nav-link" href="#">CONTACT</a> --}}
                             </nav>
                         </div>
                         <div class="col-2 d-flex justify-content-end align-items-center">
@@ -361,121 +401,125 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     // https://vwxyz.online/public/
-$(document).ready(function(){
-    // Get the input element
-    const searchInput = $('.search-input');
+    $(document).ready(function(){
+        // Get the input element
+        const searchInput = $('.search-input');
 
-        // Add an event listener for the "keydown" event on the input element
-        searchInput.on('keydown', function(event) {
-            // Check if the pressed key is the "Enter" key (key code 13)
-            if (event.keyCode === 13) {
-                // Prevent the default behavior of the "Enter" key (form submission)
-                event.preventDefault();
+            // Add an event listener for the "keydown" event on the input element
+            searchInput.on('keydown', function(event) {
+                // Check if the pressed key is the "Enter" key (key code 13)
+                if (event.keyCode === 13) {
+                    // Prevent the default behavior of the "Enter" key (form submission)
+                    event.preventDefault();
 
-                // Submit the form
-                $('#search-form').submit();
+                    // Submit the form
+                    $('#search-form').submit();
+                }
+            });
+
+        var lang = $('#lang').text();
+
+        $('#en').on('click', function(event) {
+            event.preventDefault();
+            var currentURL = window.location.href;
+            if(lang == 'en'){
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+            }else{
+                var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
+            }
+
+            window.location.replace(newUrl);
+        });
+
+        $('#mm').on('click', function(event) {
+            console.log( 'ddd');
+            event.preventDefault();
+            var currentURL = window.location.href;
+            //
+            console.log( ' ddd'+ $('#mm').text());
+            if(lang == 'en'){
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
+            }else{
+                var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
+            }
+
+            window.location.replace(newUrl);
+        });
+
+        $('#en').on('click', function(event) {
+            event.preventDefault();
+            var currentURL = window.location.href;
+            if(lang == 'en'){
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+            }else{
+                var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
             }
         });
 
-    var lang = $('#lang').text();
+        $('#ch').on('click', function(event) {
+            event.preventDefault();
+            var currentURL = window.location.href;
+            if(lang == 'en'){
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/ch/');
+            }else{
+                var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
+            }
 
-    $('#en').on('click', function(event) {
-        event.preventDefault();
-        var currentURL = window.location.href;
-        if(lang == 'en'){
-            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/en/');
-        }else{
-            var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
-        }
+            window.location.replace(newUrl);
+        });
 
-        window.location.replace(newUrl);
-    });
-
-    $('#mm').on('click', function(event) {
-        console.log( 'ddd');
-        event.preventDefault();
-        var currentURL = window.location.href;
-        //
-        console.log( ' ddd'+ $('#mm').text());
-        if(lang == 'en'){
-            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/mm/');
-        }else{
-            var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
-        }
-
-        window.location.replace(newUrl);
-    });
-    $('#en').on('click', function(event) {
-        event.preventDefault();
-        var currentURL = window.location.href;
-        if(lang == 'en'){
-            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public/en/');
-        }else{
-            var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
-        }
-
-    $('#ch').on('click', function(event) {
-        event.preventDefault();
-        var currentURL = window.location.href;
-        if(lang == 'en'){
-            var newUrl = currentURL.replace('https://vwxyz.online/public/', 'https://vwxyz.online/public//ch/');
-        }else{
-            var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
-        }
-
-        window.location.replace(newUrl);
-    });
-
-    $('#site-title').addClass('d-none');
-    $('#search-form').addClass('d-none');
-    var navbar = $('#navbar');
-    var navbarOffset = navbar.offset().top;
-    navbar.addClass('bg-danger');
-    $('#text-menu').addClass('d-none');
-
-    $(window).scroll(function () {
-
-        if ($(window).scrollTop() > navbarOffset) {
-            navbar.removeClass('bg-danger');
-            navbar.addClass('sticky scrolled bg-background');
-            $('#nav-hide').addClass('d-none');
-            $('#site-title').addClass('text-danger');
-            $('#site-title').removeClass('d-none');
-            $('#menu-bar').addClass('col');
-            $('#text-menu').removeClass('d-none');
-            $('#text-all').addClass('d-none');
-        } else {
-
-            navbar.addClass('bg-danger');
-            navbar.removeClass('sticky scrolled bg-background');
-            $('#nav-hide').removeClass('d-none');
-            $('#site-title').addClass('d-none');
-            $('#menu-bar').removeClass('col');
-
-            $('#text-menu').addClass('d-none');
-            $('#text-all').removeClass('d-none');
-        }
-    });
-    $('#search').click(function(){
-        $('#search-form').removeClass('d-none');
-        $('.aa').addClass('d-none');
-    });
-
-    $('#btn-close').click(function(){
+        $('#site-title').addClass('d-none');
         $('#search-form').addClass('d-none');
-        $('.aa').removeClass('d-none');
+        var navbar = $('#navbar');
+        var navbarOffset = navbar.offset().top;
+        navbar.addClass('bg-danger');
+        $('#text-menu').addClass('d-none');
+
+        $(window).scroll(function () {
+
+            if ($(window).scrollTop() > navbarOffset) {
+                navbar.removeClass('bg-danger');
+                navbar.addClass('sticky scrolled bg-background');
+                $('#nav-hide').addClass('d-none');
+                $('#site-title').addClass('text-danger');
+                $('#site-title').removeClass('d-none');
+                $('#menu-bar').addClass('col');
+                $('#text-menu').removeClass('d-none');
+                $('#text-all').addClass('d-none');
+            } else {
+
+                navbar.addClass('bg-danger');
+                navbar.removeClass('sticky scrolled bg-background');
+                $('#nav-hide').removeClass('d-none');
+                $('#site-title').addClass('d-none');
+                $('#menu-bar').removeClass('col');
+
+                $('#text-menu').addClass('d-none');
+                $('#text-all').removeClass('d-none');
+            }
+        });
+        $('#search').click(function(){
+            $('#search-form').removeClass('d-none');
+            $('.aa').addClass('d-none');
+        });
+
+        $('#btn-close').click(function(){
+            $('#search-form').addClass('d-none');
+            $('.aa').removeClass('d-none');
+        })
+
+        let mybutton = document.getElementById("top");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
     })
-})
-    let mybutton = document.getElementById("top");
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
-
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
 </script>
 </body>
 </html>

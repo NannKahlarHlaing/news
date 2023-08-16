@@ -18,53 +18,86 @@
 
     <form class="form" action="" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" id="menu_id" name="menu_id" value="{{ $id }}" />
+        <input type="text" id="menu_id" name="menu_id" value="{{ $id }}" />
         <div class="row">
             <div class="col-md-4">
                 <h6 class="mb-3">Edit Menu Items From Pages</h6>
                 <div class="form-control scroll-window mb-3">
                     @foreach ($pages as $item)
                         @php
-                            $menu = $menu_items->where('name', $item->title_en)->first();
+                            if($id == '2' || $id == '3'){
+                                $name = $item->title_mm;
+                            }else if($id == '5' || $id == '6'){
+                                $name = $item->title_ch;
+                            }else{
+                                $name = $item->title_en;
+                            }
+                            if($name == '' || $name == NULL){
+                                $name = $item->title_en;
+                            }
+                            $menu = $menu_items->where('name', $name)->first();
                         @endphp
                         <div class="form-check mb-3">
-                            <input class="form-check-input page-input-check" type="checkbox" name="{{ $item->title_en }}" value="{{ $item->id }}" data-page-input-id="page_input_{{ $item->id }}" {{ $menu ? 'checked' : '' }}>
-                            <label class="form-check-label">{{ $item->title_en }}</label>
+                            <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="{{ $item->id }}" data-page-input-id="page_input_{{ $item->id }}" {{ $menu ? 'checked' : '' }}>
+                            <label class="form-check-label">{{ $name }}</label>
                             <input type="text" id="page_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
                         </div>
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-4">
-                <h6 class="mb-3">Edit Menu Items From Categories</h6>
-                <div class="form-control scroll-window mb-3">
-                    @foreach ($categories as $item)
-                        @php
-                            $menu = $menu_items->where('name', $item->name_en)->first();
-                        @endphp
-                        <div class="form-check mb-3">
-                            <input class="form-check-input category-input-check" type="checkbox" name="{{ $item->name_en }}" value="{{ $item->id }}" data-category-input-id="category_input_{{ $item->id }}" {{ $menu ? 'checked' : '' }}>
-                            <label class="form-check-label">{{ $item->name_en }}</label>
-                            <input type="text" id="category_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
-                        </div>
-                    @endforeach
+            @if ($menu_name == 'Main Menu EN' || $menu_name == 'Main Menu MM' || $menu_name == 'Main Menu CH')
+                <div class="col-md-4">
+                    <h6 class="mb-3">Edit Menu Items From Categories</h6>
+                    <div class="form-control scroll-window mb-3">
+                        @foreach ($categories as $item)
+                            @php
+                                if($id == '2' || $id == '3'){
+                                    $name = $item->name_mm;
+                                }else if($id == '5' || $id == '6'){
+                                    $name = $item->name_ch;
+                                }else{
+                                    $name = $item->name_en;
+                                }
+                                if($name == '' || $name == NULL){
+                                    $name = $item->name_en;
+                                }
+                                $menu = $menu_items->where('name', $name)->first();
+                            @endphp
+                            <div class="form-check mb-3">
+                                <input class="form-check-input category-input-check" type="checkbox" name="{{ $name }}" value="{{ $item->id }}" data-category-input-id="category_input_{{ $item->id }}" {{ $menu ? 'checked' : '' }}>
+                                <label class="form-check-label">{{ $name }}</label>
+                                <input type="text" id="category_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <h6 class="mb-3">Edit Menu Items From SubCategories</h6>
-                <div class="form-control scroll-window mb-3">
-                    @foreach ($sub_categories as $item)
-                        @php
-                            $menu = $menu_items->where('name', $item->name_en)->first();
-                        @endphp
-                        <div class="form-check mb-3">
-                            <input class="form-check-input subcategory-input-check" type="checkbox" name="{{ $item->name_en }}" value="{{ $item->id }}" data-subcategory-input-id="subcategory_input_{{ $item->id }}" {{ $menu ? 'checked' : '' }}>
-                            <label class="form-check-label">{{ $item->name_en }}</label>
-                            <input type="text" id="subcategory_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
-                        </div>
-                    @endforeach
+                <div class="col-md-4">
+                    <h6 class="mb-3">Edit Menu Items From SubCategories</h6>
+                    <div class="form-control scroll-window mb-3">
+                        @foreach ($sub_categories as $item)
+                            @php
+                                if($id == '2' || $id == '3'){
+                                    $name = $item->name_mm;
+                                }else if($id == '5' || $id == '6'){
+                                    $name = $item->name_ch;
+                                }else{
+                                    $name = $item->name_en;
+                                }
+                                if($name == '' || $name == NULL){
+                                    $name = $item->name_en;
+                                }
+                                $menu = $menu_items->where('name', $name)->first();
+                            @endphp
+                            <div class="form-check mb-3">
+                                <input class="form-check-input subcategory-input-check" type="checkbox" name="{{ $name }}" value="{{ $item->id }}" data-subcategory-input-id="subcategory_input_{{ $item->id }}" {{ $menu ? 'checked' : '' }}>
+                                <label class="form-check-label">{{ $name }}</label>
+                                <input type="text" id="subcategory_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-save">Save</button>
             </div>
@@ -140,6 +173,8 @@
         $('.btn-save').click(function(event){
 
             var menu_id = $("#menu_id").val();
+
+            console.log(menu_id);
 
             var formData = [];
 

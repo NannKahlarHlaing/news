@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-12">
-                            <img src="storage/images/original/{{ $post->img_url }}" class="img-fluid rounded-top" alt="...." width="100%">
+                            <img src="/storage/images/original/{{ $post->img_url }}" class="img-fluid rounded-top" alt="...." width="100%">
                         </div>
                         <div class="col-12 my-3">
                             <nav aria-label="breadcrumb">

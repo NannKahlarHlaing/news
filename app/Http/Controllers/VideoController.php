@@ -46,7 +46,7 @@ class VideoController extends Controller
 
         $post = Video::find($request->id);
 
-        $image = $request->file('url'); 
+        $image = $request->file('url');
 
         if($image != '' || $image != NULL){
 
@@ -84,6 +84,47 @@ class VideoController extends Controller
 
     }
 
+    public function getVideosByCategory(Request $request){
+        $id = $request->id;
+        $videos = Video::where('category', $id)->orderby('id', 'desc')->get();
+
+        return $videos;
+        // return response()->json(['videos' => $videos]);
+    }
+
+    public function searchEn(Request $request){
+        return call_user_func_array([$this, 'search'], ['en', $request]);
+    }
+
+    public function search($language, Request $request){
+        $search = $request->search;
+        if($language == 'mm'){
+            $posts = Video::where('title_mm', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_mm', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_mm', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }elseif($language == 'ch'){
+            $posts = Video::where('title_ch', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_ch', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }else{
+            $posts = Video::where('title_en', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_en', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }
+
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+
+        // return view('', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch'));
+    }
+
     private function validation($request){
         Validator::make($request->all(),[
             'video_url' => 'required',
@@ -96,7 +137,7 @@ class VideoController extends Controller
 
         $postController->create_path();
 
-        $image = $request->file('img_url'); 
+        $image = $request->file('img_url');
 
         if($image != '' || $image != NULL){
 

@@ -40,9 +40,21 @@ class MenuController extends Controller
         $sub_categories = SubCategory::all();
 
         if($id == 1){
-            $menu_name = 'Main Menu';
+            $menu_name = 'Main Menu EN';
         }else if($id == 2){
-            $menu_name = 'Footer Menu';
+            $menu_name = 'Main Menu MM';
+        }
+        else if($id == 3){
+            $menu_name = 'Main Menu CH';
+        }
+        else if($id == 4){
+            $menu_name = 'Footer Menu EN';
+        }
+        else if($id == 5){
+            $menu_name = 'Footer Menu MM';
+        }
+        else if($id == 6){
+            $menu_name = 'Footer Menu CH';
         }
 
         $menu_items = MenuItem::where('menu_id', $id)->get();

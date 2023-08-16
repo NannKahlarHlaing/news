@@ -139,7 +139,7 @@
 
 @section('content')
 <section id="detail">
-    <div class="container-fluid">
+    {{-- <div class="container-fluid"> --}}
       <div class="row d-flex-center">
         <div class="col-12 p-0">
         <!-- Product Images & Alternates -->
@@ -149,7 +149,7 @@
 
                 <div class="">
                     <a data-fancybox="gallery" href="/storage/images/original/{{ $post->img_link }}">
-                        <img src="/storage/images/original/{{ $post->img_link }}"style="height:500px;width: 100%;object-fit:cover;">
+                        <img src="/storage/images/original/{{ $post->img_link }}"style="height:600px;width: 100%;object-fit:cover;">
                     </a>
                 </div>
 
@@ -167,7 +167,7 @@
         <!-- End Product Images & Alternates -->
         </div>
       </div>
-    </div>
+    {{-- </div> --}}
 </section>
 <section class="last-photos py-3">
     <div class="container-fluid">

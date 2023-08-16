@@ -22,7 +22,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 // });
 
 //frontend
-Route::get('/', [App\Http\Controllers\FrontEndController::class, 'home_page']);
+Route::get('/', [App\Http\Controllers\FrontendController::class, 'home_page']);
 
 Route::prefix('/admin')->group(function(){
 
@@ -37,8 +37,6 @@ Route::prefix('/admin')->group(function(){
 
         Route::get('/forgot/password', 'forgot_password')->name('forgot_password');
     });
-
-
 
 });
 
@@ -129,6 +127,8 @@ Route::group(['middleware' => 'normal'], function () {
             Route::get('/videos/update/{id}', 'update_form');
             Route::post('/videos/update', 'update')->name('backend.videos.update');
             Route::delete('/videos/delete/{id}', 'destroy');
+
+            Route::get('/getVideos', 'getVideosByCategory')->name('getVideosByCategory');
         });
 
         Route::controller(App\Http\Controllers\CareerController::class)->group(function(){
@@ -193,6 +193,8 @@ Route::get('/add_count_photo', [App\Http\Controllers\PhotoController::class, 'ad
 
 Route::get('/posts/search', [App\Http\Controllers\PostController::class, 'searchEn'])->name('search');
 
+Route::get('/videos/search', [App\Http\Controllers\VideoController::class, 'searchEn']);
+
 //frontend
 
 Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
@@ -204,6 +206,7 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
     Route::get('/contact', 'contact')->name('frontend.contact');
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
+    Route::get('/category/{category}', 'main_categoriesEn')->name('main_categories.sub_pages');
     Route::get('/News/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
     // Route::get('/{title}', 'pagesEn')->name('frontend.pages');
     Route::get('/{title}', function($path){
@@ -230,9 +233,14 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
             $catLifeStyle = $data->catLifeStyle;
             $catSpecial = $data->catSpecial;
 
-            $main_menus = MenuItem::where('menu_id', '1')->get();
+            $main_menus_en = MenuItem::where('menu_id', '1')->get();
+            $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+            $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+            $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+            $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+            $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-            return view('frontend.home', compact('main_menus', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -268,10 +276,15 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $catOpinion = $data->catOpinion;
         $catLifeStyle = $data->catLifeStyle;
         $catSpecial = $data->catSpecial;
-        $main_menus = MenuItem::where('menu_id', '1')->get();
-        dd($main_menus);
 
-        return view('frontend.home', compact('main_menus', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
 
     })->name('home');
 
@@ -279,9 +292,12 @@ Route::group(['prefix' => '{language}'], function ($language) {
 
     Route::get('/posts/search', [App\Http\Controllers\PostController::class, 'search']);
 
+    Route::get('/videos/search', [App\Http\Controllers\VideoController::class, 'search']);
+
     Route::get('/photo_essays/{id}', [App\Http\Controllers\PhotoEssayController::class, 'details']);
 
     Route::controller(App\Http\Controllers\FrontendController::class)->group(function(){
+
         Route::get('/videos', 'show_videos');
         Route::get('/photos', 'show_photos');
         Route::get('/photo_essays', 'photo_essays');
@@ -291,7 +307,9 @@ Route::group(['prefix' => '{language}'], function ($language) {
         Route::post('/contact', 'sendEmail');
         Route::get('/cartoons', 'cartoons');
         Route::get('/{title}', 'pages');
+        Route::get('/category/{category}', 'main_categories')->name('main_categories.sub_pages.lang');
         Route::get('/News/{sub_category}', 'sub_categories');
+
     });
 });
 

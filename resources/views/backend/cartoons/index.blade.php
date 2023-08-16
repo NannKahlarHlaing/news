@@ -27,20 +27,18 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>Title EN</th>
                                 <th>Image Link</th>
-                                <th>Camera Man</th>
-                                <th>Date</th>
+                                <th>Cartoonist EN</th>
                                 <th>Views</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Title</th>
+                                <th>Title EN</th>
                                 <th>Image Link</th>
-                                <th>Camera Man</th>
-                                <th>Date</th>
+                                <th>Cartoonist EN</th>
                                 <th>Views</th>
                                 <th>Action</th>
                             </tr>
@@ -49,10 +47,9 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->title_en }}</td>
                                     <td>{{ $item->img_link }}</td>
-                                    <td>{{ $item->camera }}</td>
-                                    <td>{{ $item->date }}</td>
+                                    <td>{{ $item->cartoonist_en }}</td>
                                     <td>{{ $item->views }}</td>
                                     <td>
                                         <a href="{{ url('/admin/cartoons/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
@@ -71,9 +68,6 @@
                                             </button>
                                         </form>
                                     </td>
-                                    {{-- <td>
-
-                                    </td> --}}
                                 </tr>
                             @endforeach
 

@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                        <img src=" {{ asset('storage/images/original') . '/' . $latest->img_link }}" alt="image" width="100%">
                     </div>
                     <div class="col-md-6">
                         <div class="row">
@@ -186,7 +186,7 @@
                     <div class="col-md-5 top">
                         <div class="row">
                             <div class="col-12 p-0">
-                                <img src="/storage/images/thumbnail/{{ $most_view->img_link}}" alt="image" width="100%" height="250px">
+                                <img src=" {{ asset('/storage/images/thumbnail/') . '/' . $most_view->img_link }}" alt="image" width="100%" height="250px">
                                 <span class="top-one d-block">1</span>
                             </div>
                             <div class="col-12" >
@@ -464,7 +464,7 @@
                         @foreach ($burmas as $burma)
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
-                                    <img src="/storage/images/thumbnail/{{ $burma->img_link }}" alt="image" width="100%">
+                                    <img src=" {{ asset('/storage/images/thumbnail/') . '/' . $burma->img_link }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-md-8 col-6">
                                     <p><a href="{{ url('/category') . '/' . $burma->category->name_en . '/' . $burma->id }}">
@@ -493,7 +493,7 @@
                         @foreach ($businesses as $business)
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
-                                    <img src="/storage/images/thumbnail/{{ $business->img_link }}" alt="image" width="100%">
+                                    <img src=" {{ asset('storage/images/thumbnail' . '/' . $business->img_link) }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-md-8 col-6">
                                     <p class=""><a href="{{ url('/category') . '/' . $business->category->name_en . '/' . $business->id }}">
@@ -522,7 +522,7 @@
                         @foreach ($persons as $person)
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
-                                    <img src="/storage/images/thumbnail/{{ $person->img_link }}" alt="image" width="100%">
+                                    <img src=" {{ asset('storage/images/thumbnail') . '/' . $person->img_link }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-md-8 col-6">
                                     <p class=""><a href="{{ url('/category') . '/' . $person->category->name_en . '/' . $person->id }}">
@@ -551,7 +551,7 @@
                         @foreach ($opinions as $opinion)
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
-                                    <img src="/storage/images/thumbnail/{{ $opinion->img_link }}" alt="image" width="100%">
+                                    <img src="{{ asset('storage/images/thumbnail') . '/' . $opinion->img_link }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-md-8 col-6">
                                     <p class=""><a href="{{ url('/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">
@@ -580,7 +580,7 @@
                         @foreach ($lifeStyles as $lifestyle)
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
-                                    <img src="/storage/images/thumbnail/{{ $lifestyle->img_link }}" alt="image" width="100%">
+                                    <img src="{{ asset('storage/images/thumbnail') . '/' . $lifestyle->img_link }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-md-8 col-6">
                                     <p class=""><a href="{{ url('/category') . '/' . $lifestyle->category->name_en . '/' . $lifestyle->id }}">
@@ -609,7 +609,7 @@
                         @foreach ($specials as $special)
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
-                                    <img src="/storage/images/thumbnail/{{ $special->img_link }}" alt="image" width="100%">
+                                    <img src="{{ asset('storage/images/thumbnail') . '/' . $special->img_link }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-md-8 col-6">
                                     <p class=""><a href="{{ url('/category') . '/' . $special->category->name_en . '/' . $special->id }}">
