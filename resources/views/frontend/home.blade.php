@@ -349,16 +349,13 @@
         <div class="row d-flex-center">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-2">
                         <div class="row">
-                            <div class="col-12 mb-2 ">
-                                <span>28 JUNE 2023</span>
-                            </div>
-                            <div class="col-12 d-flex">
-                                <div class=" btn-circle mb-3 border border-white me-2">
-                                    <i class="fa-brands fa-facebook-f text-white"></i>
-                                </div>
+                            <div class="col-6 d-flex">
                                 <h3>Videos</h3>
+                            </div>
+                            <div class="col-6 text-end">
+                                <span>28 JUNE 2023</span>
                             </div>
                         </div>
                         <div class="row card-deck ">

@@ -31,7 +31,8 @@
                                 <th>Image Link</th>
                                 <th>Cartoonist EN</th>
                                 <th>Views</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -40,12 +41,12 @@
                                 <th>Image Link</th>
                                 <th>Cartoonist EN</th>
                                 <th>Views</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach ($posts as $item)
-
                                 <tr>
                                     <td>{{ $item->title_en }}</td>
                                     <td>{{ $item->img_link }}</td>
@@ -55,6 +56,8 @@
                                         <a href="{{ url('/admin/cartoons/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
+                                    </td>
+                                    <td>
                                         <form style="display: inline" action="{{ url('/admin/cartoons/delete', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -70,9 +73,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
-
                     </table>
                 </div>
             </div>

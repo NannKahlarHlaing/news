@@ -18,7 +18,7 @@ body{
     background-color: var(--font-color);
 }
 
-h2, h5, h6{
+h2, h4, h5, h6{
     font-family: 'Roboto', sans-serif;
     margin-bottom: 15px;
     color: var(--color-gray);

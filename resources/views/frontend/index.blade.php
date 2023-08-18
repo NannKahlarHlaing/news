@@ -74,9 +74,6 @@
                                                 <div>
                                                     <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>
                                                 </div>
-                                                <div>
-                                                    <h6><a href="{{ route('frontend.careers') }}">Careers</a></h6>
-                                                </div>
                                                 <div class="">
                                                     <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
                                                 </div>
@@ -216,7 +213,6 @@
                                 {{-- <a class="nav-link active" href="#">COPYRIGHT</a>
                                 <a class="nav-link" href="#">CODE OF ETHICS</a>
                                 <a class="nav-link" href="#">PRIVACY POLICY</a>
-                                <a class="nav-link" href="#">CAREERS</a>
                                 <a class="nav-link" href="#">TEAM</a>
                                 <a class="nav-link" href="#">ABOUT US</a>
                                 <a class="nav-link" href="#">CONTACT</a> --}}

@@ -167,35 +167,31 @@
                                 </div>
                             </div>
                             <div class="mb-3">
+                                <span class="id d-none">{{ $latest->id }}</span>
+                                <span class="views me-4">
+                                    <i class="fa-solid fa-eye text-dark me-4"></i> {{ $latest->views }}
+                                </span>
                                 <span><i class="fa-solid fa-clock"></i> {{ $latest->created_at->format('d F Y') }} - </span>
 
                                 @if (app()->getLocale() == 'mm')
-                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_mm) !!} </span>
+                                    <span>By {{ $latest->cartoonist_mm }} </span>
                                 @elseif(app()->getLocale() == 'ch')
-                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_ch) !!} </span>
+                                    <span>By {{ $latest->cartoonist_ch }} </span>
                                 @else
-                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_en) !!} </span>
+                                    <span>By {{ $latest->cartoonist_en }} </span>
                                 @endif
                             </div>
                             <div class="mb-3">
-                                <span class="id d-none">{{ $latest->id }}</span>
-                                <span class="views d-flex align-items-center">
-                                    <div class="me-4"><i class="fa-regular fa-eye"></i></div>
-                                    <div class="">{{ $latest->views }}</div>
-                                </span>
+
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-3">
                                         <i class="fa-brands fa-facebook-f"></i>
                                     </a>
-                                {{-- </div> --}}
-                                {{-- <div class="col-12"> --}}
                                     <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-3">
                                         <i class="fa-brands fa-twitter"></i>
                                     </a>
-                                {{-- </div> --}}
-                                {{-- <div class="col-12"> --}}
                                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-3">
                                         <i class="fa-brands fa-linkedin-in"></i>
                                     </a>

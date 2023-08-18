@@ -30,16 +30,16 @@
                                 <th>Video URL</th>
                                 <th>Description_En</th>
                                 <th>Category</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tfoot>
                                 <th>Video URL</th>
                                 <th>Description_En</th>
                                 <th>Category</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{ $item->video_url }}</td>
                                     <td>{{ $item->desc_en }}</td>
-                                    <td>{{ $item->category }}</td>
+                                    <td>{{ $item->category->name_en }}</td>
                                     <td>
                                         <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>

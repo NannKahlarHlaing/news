@@ -90,12 +90,6 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.careers') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Careers</span></a>
-    </li>
-
-    <li class="nav-item">
         <a class="nav-link" href="{{ route('backend.socials') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Social</span></a>

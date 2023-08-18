@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cartoon;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -78,9 +79,23 @@ class CartoonController extends Controller
 
     }
 
-    public function details($id){
+    public function details($language, $id){
         $post = Cartoon::find($id);
-        return view('/backend.cartoons.detail', compact('post'));
+
+        $relatedPosts = Cartoon::where('id', '<>', $post->id)->limit(3)->get();
+
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+
+        return view('backend.cartoons.detail', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts'));
+    }
+
+    public function detailsEn($id){
+        return call_user_func_array([$this, 'details'], ['en', $id]);
     }
 
     public function addValue(Request $request){

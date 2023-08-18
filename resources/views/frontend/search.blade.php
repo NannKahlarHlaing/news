@@ -8,16 +8,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            Search
-                            {{-- @if (app()->getLocale() == 'mm')
-                                {{ $post->title_mm }}
-                            @elseif(app()->getLocale() == 'ch')
-                                {{ $post->title_ch }}
-                            @else
-                                {{ $post->title_en }}
-                            @endif --}}
-                    </li>
+                        <li class="breadcrumb-item active" aria-current="page">Search</li>
                     </ol>
                 </nav>
             </div>
@@ -28,7 +19,12 @@
                 @foreach ($posts as $post)
                     <div class="col-md-3 mb-3 py-3 border-bottom">
                         <h5>
+                            @if ($route == 'post_search')
                             <a href="{{ url('/category') . '/' . $post->category->name_en . '/' . $post->id }}">
+                            @else
+                            <a href="">
+                            @endif
+
                             @if (app()->getLocale() == 'mm')
                                 {{ $post->title_mm }}
                             @elseif(app()->getLocale() == 'ch')
@@ -49,20 +45,33 @@
                                         {{ $post->category->name_en }}
                                     @endif
                                 </span>
-                                <img src="/storage/images/thumbnail/{{ $post->img_link }}" alt="image" width="100%">
+                                <img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%">
                             </div>
                             <div class="col-lg-12 col-md-12 col-12 ">
                                 <span>BY THE VWXYZ Online</span>
-                                <P>
+                                @if ($route == 'post_search')
+                                    <p>
+                                        @if (app()->getLocale() == 'mm')
+                                        {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_mm), 100) !!}
+
+                                        @elseif(app()->getLocale() == 'ch')
+                                        {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_ch), 100) !!}
+                                        @else
+                                        {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_en), 100) !!}
+                                        @endif
+                                    </p>
+                                @else
+                                <p>
                                     @if (app()->getLocale() == 'mm')
-                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_mm), 100) !!}
+                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->desc_mm), 100) !!}
 
                                     @elseif(app()->getLocale() == 'ch')
-                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_ch), 100) !!}
+                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->desc_ch), 100) !!}
                                     @else
-                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_en), 100) !!}
+                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->desc_en), 100) !!}
                                     @endif
-                                </P>
+                                </p>
+                                @endif
                             </div>
                         </div>
                     </div>

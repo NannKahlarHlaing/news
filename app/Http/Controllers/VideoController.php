@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use App\Models\Category;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -61,7 +62,7 @@ class VideoController extends Controller
         }
 
         $post->video_url = $request->video_url;
-        $post->category = $request->category;
+        $post->category_id = $request->category;
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
@@ -100,17 +101,14 @@ class VideoController extends Controller
         $search = $request->search;
         if($language == 'mm'){
             $posts = Video::where('title_mm', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_mm', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_mm', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }elseif($language == 'ch'){
             $posts = Video::where('title_ch', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_ch', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }else{
             $posts = Video::where('title_en', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_en', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }
@@ -122,7 +120,28 @@ class VideoController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        // return view('', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch'));
+        $route = 'video_search';
+
+        return view('frontend.search', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'search', 'route'));
+    }
+
+    public function detailsEn($id){
+        return call_user_func_array([$this, 'details'], ['en', $id]);
+    }
+
+    public function details($language, $id){
+        $post = Video::find($id);
+
+        $relatedPosts = Video::where('id', '<>', $post->id)->limit(3)->get();
+
+        $main_menus_en = MenuItem::where('menu_id', '1')->get();
+        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
+        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
+        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
+        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
+        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+
+        return view('frontend.videos.details', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts'));
     }
 
     private function validation($request){
@@ -155,7 +174,7 @@ class VideoController extends Controller
         return [
             'video_url' => $request->video_url,
             'img_url' => $imageName,
-            'category' => $request->category,
+            'category_id' => $request->category,
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
             'title_ch' => $request->title_ch,

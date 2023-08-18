@@ -15,10 +15,69 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    public function index(){
-        $posts = Post::all();
+    public function index(Request $request){
+
+        $search = $request->search;
+        $title = $request->title;
+        $category = $request->category;
+
+        if(isset($search)){
+            $posts = Post::where(function($query) use ($title) {
+                        $query->where('title_en', 'LIKE', '%'. $title. '%')
+                        ->orWhere('short_desc_en','LIKE', '%'. $title. '%')
+                        ->orWhere('desc_en','LIKE', '%'. $title. '%');
+                        })
+                    ->when($category, function ($query) use ($category) {
+                        return $query->where('category_id', '=', $category);
+                    })
+                    ->orderBy('id', 'desc')
+                    ->paginate(4);
+        }else{
+            $posts = Post::orderby('id', 'desc')->paginate(5);
+        }
+
         $tags = Tag::all();
-        return view('backend.posts.index', compact('posts', 'tags'));
+        $categories = Category::all();
+
+        $route = 'post_index';
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'category', 'route'));
+    }
+
+    public function trashed(Request $request){
+
+        $search = $request->search;
+        $title = $request->title;
+        $category = $request->category;
+
+        if(isset($search)){
+            $posts = Post::onlyTrashed()
+                    ->where(function($query) use ($title) {
+                        $query->where('title_en', 'LIKE', '%'. $title. '%')
+                        ->orWhere('short_desc_en','LIKE', '%'. $title. '%')
+                        ->orWhere('desc_en','LIKE', '%'. $title. '%');
+                        })
+                    ->when($category, function ($query) use ($category) {
+                        return $query->where('category_id', '=', $category);
+                    })
+                    ->orderBy('id', 'desc')
+                    ->paginate(4);
+        }else{
+            $posts = Post::onlyTrashed()->orderBy('id', 'desc')->paginate(5);
+        }
+
+        $tags = Tag::all();
+        $categories = Category::all();
+
+        $route = 'post_trashed';
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'category', 'route'));
+    }
+
+    public function restore($id){
+        $post = Post::onlyTrashed()->find($id);
+
+        $post->restore();
+
+        return redirect ('/admin/posts');
     }
 
     public function create_form(){
@@ -173,7 +232,9 @@ class PostController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.search', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'search'));
+        $route = 'post_search';
+
+        return view('frontend.search', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'search', 'route'));
     }
 
     private function validation($request){

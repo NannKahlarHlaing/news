@@ -2,23 +2,23 @@
 
 @section('content')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
-<link rel="stylesheet" type="text/css" href="https://codepen.io/fancyapps/pen/Kxdwjj.css">
-<style>
-    .last-photos .card{
-    background-color: #242423;
-    border-radius: 0;
-    }
-    .last-photos .col-lg-3 {
-        padding: 0;
-    }
-    .video-page .card{
-        border-radius: 0 !important;
-        border: 0;
-    }
-    .last-photos .card-text{
-        color: #fff;
-    }
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="https://codepen.io/fancyapps/pen/Kxdwjj.css">
+    <style>
+        .last-photos .card{
+        background-color: #242423;
+        border-radius: 0;
+        }
+        .last-photos .col-lg-3 {
+            padding: 0;
+        }
+        .video-page .card{
+            border-radius: 0 !important;
+            border: 0;
+        }
+        .last-photos .card-text{
+            color: #fff;
+        }
 </style>
 @endsection
 <section class="video-page py-5">

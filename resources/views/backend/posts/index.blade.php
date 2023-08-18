@@ -21,7 +21,25 @@
             <h3>Posts</h3>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.posts.create_form') }}" class="btn btn-primary">Add post</a>
+            <a href="{{ route('backend.posts.create_form') }}" class="btn btn-success me-3">Add Post</a>
+            <a href="{{ route('backend.posts.trashed') }}" class="btn btn-primary">Trashed Post</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form class="form-inline" action="">
+                <input type="hidden" name="search" value="1">
+                <input class="form-control" type="text" name="title" value="{{ $title }}" placeholder="Enter Title">
+
+                <select class="form-control form-select mx-2" name="category" id="">
+                    <option value="">Select Category</option>
+                    @foreach ($categories as $item)
+                        <option value="{{ $item->id }}" {{ $category == $item->id ? 'selected' : '' }}> {{ $item->name_en }}</option>
+                    @endforeach
+                </select>
+
+                <button class="btn btn-primary">Search</button>
+            </form>
         </div>
     </div>
     @foreach ($posts as $item)
@@ -59,35 +77,54 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <a href="{{ url('/admin/posts/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-danger btn-circle">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
-                    </div>
-                    <div class="col-12">
-                        <form action="{{ url('/admin/posts/delete', $item->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
+                @if ($route == 'post_index')
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <a href="{{ url('/admin/posts/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <form action="{{ url('/admin/posts/delete', $item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
 
-                            <button
-                                type="submit"
-                                class="btn btn-danger btn-circle"
-                                onclick="return confirm('Are you sure to delete');"
-                            >
-                            <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-circle"
+                                    onclick="return confirm('Are you sure to delete');"
+                                >
+                                <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <form action="{{ url('/admin/posts/restore', $item->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-circle"
+                                >
+                                <i class="fa-solid fa-recycle"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     @endforeach
+    <div class="">{{ $posts->appends(Request::all())->links() }}</div>
 </div>
 
     </div>

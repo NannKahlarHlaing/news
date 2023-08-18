@@ -20,4 +20,8 @@ class Category extends Model
         return $this->hasMany('App\Models\SubCategory', 'category_id');
     }
 
+    public function videos(){
+        return $this->hasMany('App\Models\Video', 'id');
+    }
+
 }

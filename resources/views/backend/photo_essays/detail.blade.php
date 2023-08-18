@@ -241,12 +241,6 @@
                     </div>
                     <div class="col-12">
                         <div class="row my-3  d-flex align-items-center">
-                            <div class="col-1">
-                                <div class="btn btn-transparent  btn-circle-fe">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-                            </div>
-                            <hr class="line col">
                             <span class="text-end col">YOUR THOUGHTS …</span>
                             <div class="btn btn-reaction mb-2">
                                 <img src="{{ asset('/images/liked.svg') }}" alt="">
