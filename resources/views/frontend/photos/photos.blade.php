@@ -135,15 +135,15 @@
                                             <span class="id d-none">{{ $item->id }}</span>
                                             <span class="views">{{ $item->views }}</span>
                                         </div>
-                                        <div class="col-6 text-start">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-facebook-f"></i>
+                                        <div class="col-6 text-start d-flex">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class=" me-2" >
+                                                <i class="fa-brands fa-square-facebook me-3"></i>
                                             </a>
-                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-twitter"></i>
+                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class=" me-2" >
+                                                <i class="fa-brands fa-square-twitter me-3"></i>
                                             </a>
-                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle me-2" style="border: 1px solid #fff !important;display: inline-block;">
-                                                <i class="fa-brands fa-linkedin-in"></i>
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="me-2" >
+                                                <i class="fa-brands fa-linkedin"></i>
                                             </a>
                                         </div>
                                     </div>

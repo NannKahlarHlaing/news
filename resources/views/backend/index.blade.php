@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.css" rel="stylesheet">
+
 
     @yield('css')
 
@@ -191,33 +193,33 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('/backend/js/demo/datatables-demo.js') }}"></script>
-    <script src="https://cdn.tiny.cloud/1/jvgg8kp13x9r8tbzf76mmt35xqmw877ln3vadyx31afcbhpp/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
-    {{-- <script>
-        tinymce.init({
-        selector: 'textarea', // Use all textareas as TinyMCE editors
-        plugins: 'advlist autolink lists link image imagetools charmap print preview anchor',
-        toolbar: 'undo redo | formatselect | bold italic backcolor | \
-            alignleft aligncenter alignright alignjustify | \
-            bullist numlist outdent indent | removeformat | image | link',
-        menubar: 'file edit view insert format tools table help',
-        });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    {{-- <script src="https://cdn.tiny.cloud/1/jvgg8kp13x9r8tbzf76mmt35xqmw877ln3vadyx31afcbhpp/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 
-    </script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
-<script>
+{{-- <script>
     tinymce.init({
       selector: 'textarea',
       plugins: ' anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
       toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
     });
-  </script>
-
+  </script> --}}
     <script>
         // Show the modal when the page loads
         $(document).ready(function() {
             $('#alertModal').modal('show');
+
+            $('.short_summernote').summernote({
+                height: 100
+            });
+
+            $('.summernote').summernote({
+                height: 250
+            });
+
         });
 
     </script>

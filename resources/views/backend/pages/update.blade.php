@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_en">Description_EN</label>
-                                <textarea class="form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_mm">Description_MM</label>
-                                <textarea class="form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
+                                <textarea class="summernoteform-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
                                 @error('desc_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_ch">Description_CH</label>
-                                <textarea class="form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
                                 @error('desc_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}

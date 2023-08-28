@@ -33,11 +33,10 @@ class PhotoController extends Controller
     }
 
     public function update(Request $request){
-        $this->validation($request);
 
         $post = Photo::find($request->id);
 
-        $image = $request->file('url'); 
+        $image = $request->file('url');
 
         if($image != '' || $image != NULL){
 
@@ -97,7 +96,7 @@ class PhotoController extends Controller
 
         $postController->create_path();
 
-        $image = $request->file('url'); 
+        $image = $request->file('url');
 
         if($image != '' || $image != NULL){
 

@@ -50,7 +50,7 @@ class FrontendController extends Controller
         $mostViews = $this->mostFiveViews($most_view);
 
         $latestTen = Post::orderBy('id', 'desc')
-                    ->take(10)
+                    ->take(6)
                     ->get();
 
         $catBurma = 'Burma'; //subcategory

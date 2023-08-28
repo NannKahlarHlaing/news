@@ -112,7 +112,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_desc_en">Short Description_EN</label>
-                                <textarea class="form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
+                                <textarea class="short_summernote form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
                                 @error('short_desc_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -121,7 +121,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_en">Description_EN</label>
-                                <textarea class="form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -150,7 +150,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_desc_mm">Short Description_MM</label>
-                                <textarea class="form-control @error('short_desc_mm') is-invalid @enderror"name="short_desc_mm" id="short_desc_mm" >{{ old('short_desc_mm', $post->short_desc_mm) }}</textarea>
+                                <textarea class="short_summernote form-control @error('short_desc_mm') is-invalid @enderror"name="short_desc_mm" id="short_desc_mm" >{{ old('short_desc_mm', $post->short_desc_mm) }}</textarea>
                                 @error('short_desc_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -159,7 +159,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_mm">Description_EN</label>
-                                <textarea class="form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
                                 @error('desc_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -188,7 +188,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_desc_ch">Short Description_CH</label>
-                                <textarea class="form-control @error('short_desc_ch') is-invalid @enderror"name="short_desc_ch" id="short_desc_ch" >{{ old('short_desc_ch', $post->short_desc_ch) }}</textarea>
+                                <textarea class="short_summernote form-control @error('short_desc_ch') is-invalid @enderror"name="short_desc_ch" id="short_desc_ch" >{{ old('short_desc_ch', $post->short_desc_ch) }}</textarea>
                                 @error('short_desc_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -197,7 +197,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_ch">Description_EN</label>
-                                <textarea class="form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
                                 @error('desc_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -217,9 +217,9 @@
 
 @section('js')
 <!-- Example: Using the jQuery CDN (Content Delivery Network) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script>
         $(document).ready(function(){
             var category = $('#category').val();

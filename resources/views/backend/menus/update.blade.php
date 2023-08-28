@@ -18,7 +18,7 @@
 
     <form class="form" action="" enctype="multipart/form-data">
         @csrf
-        <input type="text" id="menu_id" name="menu_id" value="{{ $id }}" />
+        <input type="hidden" id="menu_id" name="menu_id" value="{{ $id }}" />
         <div class="row">
             <div class="col-md-4">
                 <h6 class="mb-3">Edit Menu Items From Pages</h6>

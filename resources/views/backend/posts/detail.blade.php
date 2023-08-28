@@ -41,50 +41,37 @@
                     </div>
                     <div class="col-12">
                         <img src="/storage/images/original/{{ $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
-                        <div class="row my-3  d-flex align-items-center">
-                            <div class="col-1">
-                                <div class="btn btn-transparent  btn-circle-fe">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-                            </div>
-                            <hr class="line col">
-                            <span class="text-end col">Daik-U Prison as seen on Google Maps</span>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-1 social" id="social">
-                        <div class="row">
+                        <div class="row text-center">
                             <div class="col-12">
-                                <div class="btn btn-transparent  btn-circle-fe mb-2">
-                                    <i class="fa-regular fa-comment-dots"></i>
-                                </div>
+                                <i class="fa-regular fa-message"></i>
                             </div>
                             <div class="col-12">
-                                <div class="btn btn-transparent  btn-circle-fe ">
                                     <i class="fa-regular fa-eye"></i>
-                                </div>
                             </div>
                             <div class="col-12">
                                 <div class="btn border-bottom mb-2">
                                     <span id="views">{{ $post->views }}</span>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle mb-2">
-                                    <i class="fa-brands fa-facebook-f"></i>
+                            <div class="col-12 mb-2">
+                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}">
+                                    <i class="fa-brands fa-square-facebook"></i>
                                 </a>
                             </div>
-                            <div class="col-12">
-                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" target="_blank" rel="noopener" class="btn btn-tw btn-circle mb-2">
-                                    <i class="fa-brands fa-twitter"></i>
+                            <div class="col-12 mb-2">
+                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" target="_blank" rel="noopener">
+                                    <i class="fa-brands fa-square-twitter"></i>
                                 </a>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mb-2">
                                 {{-- <script type="IN/Share" data-url="{{ URL::current() }}"><i class="fa-brands fa-linkedin-in"></i></script> --}}
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" target="_blank" class="btn btn-li btn-circle mb-2">
-                                    <i class="fa-brands fa-linkedin-in"></i>
-                                    </a>
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -186,6 +173,16 @@
                 console.log('error' + error);
             }
         });
+
+
+        if (!localStorage.getItem('user_token')) {
+            var userToken = generateUniqueToken(); // Implement a function to generate a unique token
+            localStorage.setItem('user_token', userToken);
+        }
+
+    console.log(userToken);
+
+
     });
 </script>
 

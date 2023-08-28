@@ -35,20 +35,20 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-lg-2 col-md-3 col-2">
-                            <div class="col-12">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="btn btn-fb btn-circle mb-2">
-                                    <i class="fa-brands fa-facebook-f"></i>
+                        <div class="col-lg-2 col-md-3 col-2 text-center">
+                            <div class="col-12 mb-2">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" >
+                                    <i class="fa-brands fa-square-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}">
+                                    <i class="fa-brands fa-square-twitter"></i>
                                 </a>
                             </div>
                             <div class="col-12">
-                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="btn btn-tw btn-circle mb-2">
-                                    <i class="fa-brands fa-twitter"></i>
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="btn btn-li btn-circle mb-2">
-                                    <i class="fa-brands fa-linkedin-in"></i>
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}">
+                                    <i class="fa-brands fa-linkedin"></i>
                                 </a>
                             </div>
                         </div>
@@ -85,37 +85,6 @@
                 </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<section class="last-photos py-3">
-    <div class="container-fluid">
-        <div class="row d-flex-center">
-            <div class="col-12">
-                <h2 class="text-center">LATEST VIEWING</h2>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($recents as $item)
-                <div class="col-lg-3">
-                    <div class="card">
-                        <a data-fancybox href="{{ $item->video_url }}" >
-                            <img class="card-img-top img-fluid" src="/storage/images/original/{{ $item->img_url }}" alt=""/>
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text">
-                                @if (app()->getLocale() == 'mm')
-                                   {{ $item->title_mm }}
-                                @elseif(app()->getLocale() == 'ch')
-                                   {{ $item->title_ch }}
-                                @else
-                                   {{ $item->title_en }}
-                                @endif
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
         </div>
     </div>
 </section>

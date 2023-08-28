@@ -80,15 +80,12 @@
             <div class="col-md-12">
                <div class="row text-white">
                     <div class="col-6">
-                        <div class="row">
-                            <div class="col-2">
-                                <i class="fa-solid fa-calendar-days"></i>
-                            </div>
-                            <div class="col-5">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
                                 <span>THE NEWS FOR</span>
                                 <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-5 col-6 text-end">
                                 <span>YANGON</span>
                                 <h5>{{ $temperature }} <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
                             </div>
@@ -121,30 +118,28 @@
                     <div class="col-md-7">
                         <div class="row">
                             @foreach ($latestTen as $ten)
-                                <div class="col-12 mb-3 py-3 border-bottom ">
-                                    <h2>
+                                <div class="col-6 mb-3 py-3 border-bottom">
+                                    <h6>
                                         <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">
                                             @if (app()->getLocale() == 'mm')
-                                                {{ $ten->title_mm }}
+                                               {{ $ten->id }} {{ $ten->title_mm }}
                                             @elseif(app()->getLocale() == 'ch')
-                                                {{ $ten->title_ch }}
+                                            {{ $ten->id }}   {{ $ten->title_ch }}
                                             @else
-                                                {{ $ten->title_en }}
+                                            {{ $ten->id }}  {{ $ten->title_en }}
                                             @endif
                                         </a>
-                                    </h2>
-                                    <div class="row">
-                                        <div class="col-lg-1 col-md-2 col-2">
+                                    </h6>
+                                    <div class="row d-flex justify-content-end">
+                                        <div class="col-lg-2 col-md-2 col-2">
                                             <div class="row d-flex-center">
                                                 <div class="col-12">
                                                     <div class="btn btn-reaction mb-2">
                                                         <img src="{{ asset('/images/liked.svg') }}" alt="">
                                                     </div>
                                                 </div>
-                                                <div class="col-12">
-                                                    <div class=" btn btn-transparent  btn-circle-social ">
-                                                        <i class="fa-regular fa-eye"></i>
-                                                    </div>
+                                                <div class="col-12 text-center">
+                                                    <i class="fa-regular fa-eye"></i>
                                                 </div>
                                                 <div class="col-12 text-center">
                                                     <div class="mb-2">
@@ -153,30 +148,29 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-10 col-10">
+                                        <div class="col-lg-10 col-md-10 col-10 mb-2">
                                             <span class="category">
                                                 @if (app()->getLocale() == 'mm')
-                                                    {{ $ten->category->name_en }}
-                                                @elseif(app()->getLocale() == 'ch')
                                                     {{ $ten->category->name_mm }}
-                                                @else
+                                                @elseif(app()->getLocale() == 'ch')
                                                     {{ $ten->category->name_ch }}
+                                                @else
+                                                    {{ $ten->category->name_en }}
                                                 @endif
 
                                             </span>
                                             <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
                                         </div>
-                                        <div class="col-lg-6 col-md-12 col-12  ">
-                                            <span>BY THE VWXYZ Online</span>
-                                            <P>
+                                        <div class="col-10">
+                                            <p>
                                                 @if (app()->getLocale() == 'mm')
-                                                    {!! str_replace("\n", '', $ten->short_desc_mm) !!}
+                                                    {!! $ten->short_desc_mm !!}
                                                 @elseif(app()->getLocale() == 'ch')
-                                                    {!! str_replace("\n", '', $ten->short_desc_ch) !!}
+                                                    {!! $ten->short_desc_ch !!}
                                                 @else
-                                                    {!! str_replace("\n", '', $ten->short_desc_en) !!}
+                                                    {!! $ten->short_desc_en !!}
                                                 @endif
-                                            </P>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +238,7 @@
 <section class="current contact-email">
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center">
-            <div class="col-md-5">
+            <div class="col-md-7">
                <div class="row d-flex align-items-center">
                     <div class="col-md-3">
                         <img src="" alt="logo" width="100%">

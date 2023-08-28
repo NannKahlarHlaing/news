@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_desc_en">Short_Description_EN</label>
-                                <textarea class="form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
+                                <textarea class="short_summernote form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
                                 @error('short_desc_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_en">Description_EN</label>
-                                <textarea class="form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -79,7 +79,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_desc_mm">Short_Description_MM</label>
-                                <textarea class="form-control @error('short_desc_mm') is-invalid @enderror"name="short_desc_mm" id="short_desc_mm" >{{ old('short_desc_mm', $post->short_desc_mm) }}</textarea>
+                                <textarea class="short_summernote form-control @error('short_desc_mm') is-invalid @enderror"name="short_desc_mm" id="short_desc_mm" >{{ old('short_desc_mm', $post->short_desc_mm) }}</textarea>
                                 @error('short_desc_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_mm">Description_MM</label>
-                                <textarea class="form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
                                 @error('desc_mm')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -117,7 +117,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_desc_ch">Short_Description_CH</label>
-                                <textarea class="form-control @error('short_desc_ch') is-invalid @enderror"name="short_desc_ch" id="short_desc_ch" >{{ old('short_desc_ch', $post->short_desc_ch) }}</textarea>
+                                <textarea class="short_summernote form-control @error('short_desc_ch') is-invalid @enderror"name="short_desc_ch" id="short_desc_ch" >{{ old('short_desc_ch', $post->short_desc_ch) }}</textarea>
                                 @error('short_desc_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -126,7 +126,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="desc_ch">Description_CH</label>
-                                <textarea class="form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
+                                <textarea class="summernote form-control @error('desc_ch') is-invalid @enderror"name="desc_ch" id="desc_ch" rows="10">{{ old('desc_ch', $post->desc_ch) }}</textarea>
                                 @error('desc_ch')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -164,7 +164,7 @@
                                 {{$message}}
                             </div>
                         @enderror
-                    </div>                   
+                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>

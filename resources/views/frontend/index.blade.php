@@ -17,12 +17,6 @@
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <style>
-        .footer-social .row{
-            padding: 0 10px;
-        }
-    </style>
-
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -47,7 +41,7 @@
                         <button class="btn btn-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>
 
                         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-                            <div class="container-fulid">
+                            <div class="container-fluid">
                                 <div class="row d-flex justify-content-center">
                                     <div class="col-11">
                                         <div class="offcanvas-header">
@@ -190,12 +184,12 @@
     </div>
 
     @yield('content')
-    <section>
-        <div class="container-fulid bg-dark border-top border-4 border-danger">
+    <section class="bg-dark border-top border-danger border-4 text-white">
+        <div class="container-fluid">
             <div class="row d-flex-center" style="margin: 0">
                 <div class="col-12 p-3">
-                    <div class="row mb-4">
-                        <div class="col-10">
+                    <div class="row mb-4 d-flex justify-content-end align-items-center">
+                        {{-- <div class="col-10">
                             <nav class="nav">
                                 @if (session()->get('locale') == 'mm')
                                     @foreach ($footer_menus_mm as $item)
@@ -210,19 +204,19 @@
                                         <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
                                     @endforeach
                                 @endif
-                                {{-- <a class="nav-link active" href="#">COPYRIGHT</a>
+                                <a class="nav-link active" href="#">COPYRIGHT</a>
                                 <a class="nav-link" href="#">CODE OF ETHICS</a>
                                 <a class="nav-link" href="#">PRIVACY POLICY</a>
                                 <a class="nav-link" href="#">TEAM</a>
                                 <a class="nav-link" href="#">ABOUT US</a>
-                                <a class="nav-link" href="#">CONTACT</a> --}}
+                                <a class="nav-link" href="#">CONTACT</a>
                             </nav>
-                        </div>
-                        <div class="col-2 d-flex justify-content-end align-items-center">
+                        </div> --}}
+                        <div class="col-2 d-flex justify-content-end test-end">
                             <a href="" onclick="topFunction()" id="top">Top <i class="fa-sharp fa-solid fa-angle-up"></i></a>
                         </div>
                     </div>
-                    <div class="row d-flex-center">
+                    {{-- <div class="row d-flex-center">
                         <div class="row d-flex-center footer-social column-gap-3">
                             <div class="col-lg-1">
                                 <a href="">
@@ -234,6 +228,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <i class="fa-brands fa-square-facebook"></i>
                                         <div class="col-12 bg-danger rounded text-center">
                                             <span>3.8M+ Fans</span>
                                         </div>
@@ -385,6 +380,37 @@
                                 </a>
                             </div>
                         </div>
+                    </div> --}}
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-md-3">
+                            <img src="" alt="logo" width="100%">
+                            <ul class="footer-link">
+                                @if (session()->get('locale') == 'mm')
+                                    @foreach ($footer_menus_mm as $item)
+                                        <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
+                                    @endforeach
+                                @elseif (session()->get('locale') == 'ch')
+                                    @foreach ($footer_menus_ch as $item)
+                                        <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
+                                    @endforeach
+                                @else
+                                    @foreach ($footer_menus_en as $item)
+                                        <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row footer-social">
+                                <div class="col-12 d-flex-center border-bottom border-white pb-3 mb-3">
+                                    <i class="fa-brands fa-square-facebook me-5"></i> <i class="fa-brands fa-square-youtube me-5"></i> <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <p>contact@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
                     </div>
                     <div class="row">
                         <span class="copyright"> Copyright © 2016 VWXYZ Publishing Group. All Rights Reserved</span>

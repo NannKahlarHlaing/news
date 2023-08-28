@@ -62,9 +62,7 @@
                                 <div class="col-12">
                                     <div class="row d-flex align-items-center mb-3">
                                         <div class="col-lg-2 col-md-1 col-2">
-                                            <div class=" btn-fb btn-circle">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </div>
+                                            <i class="fa-brands fa-square-facebook"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10">
                                             <span class="social-title">Facebook</span>
@@ -75,9 +73,7 @@
                                     </div>
                                     <div class="row d-flex align-items-center mb-3">
                                         <div class="col-lg-2 col-md-1 col-2">
-                                            <div class=" btn-fb btn-circle">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </div>
+                                            <i class="fa-brands fa-square-twitter"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10">
                                             <span class="social-title">Twitter</span>
@@ -88,9 +84,7 @@
                                     </div>
                                     <div class="row d-flex align-items-center mb-3">
                                         <div class="col-lg-2 col-md-1 col-2">
-                                            <div class=" btn-fb btn-circle">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </div>
+                                            <i class="fa-brands fa-square-youtube"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10 mb-3">
                                             <span class="social-title">Youtube</span>
@@ -101,9 +95,7 @@
                                     </div>
                                     <div class="row d-flex align-items-center mb-3">
                                         <div class="col-lg-2 col-md-1 col-2">
-                                            <div class=" btn-fb btn-circle">
-                                                <i class="fa-solid fa-camera"></i>
-                                            </div>
+                                            <i class="fa-brands fa-instagram"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-11 col-10">
                                             <span class="social-title">Instagram</span>
@@ -113,25 +105,23 @@
                                         </div>
                                     </div>
                                     <div class="row d-flex mb-3">
-                                        <div class="col-lg-2 col-md-2 col-2 text-center">
-                                            <div class="btn btn-transparent btn-circle-fe">
-                                                <i class="fa-solid fa-location-dot"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-10 col-md-10 col-10">
-                                            <address>{{ $info->address }}</address>
-                                        </div>
-                                    </div>
-                                    <div class="row d-flex mb-3">
-                                        <div class="col-lg-2 col-md-2 col-2 text-center">
-                                            <div class="btn btn-transparent btn-circle-fe">
-                                                <i class="fa-solid fa-phone"></i>
-                                            </div>
+                                        <div class="col-lg-2 col-md-2 col-2 ">
+                                            <i class="fa-solid fa-phone-volume"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-10">
                                             @foreach ($phone as $item)
                                                 <a class="d-block">{{ $item }}</a>
                                             @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex mb-3">
+                                        <div class="col-lg-2 col-md-2 col-2 ">
+                                            {{-- <div class="btn btn-transparent btn-circle-fe"> --}}
+                                                <i class="fa-solid fa-location-dot"></i>
+                                            {{-- </div> --}}
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-10">
+                                            <address>{{ $info->address }}</address>
                                         </div>
                                     </div>
                                 </div>

@@ -284,12 +284,12 @@ class PostController extends Controller
             'topic_en' => $request->topic_en,
             'topic_mm' => $request->topic_mm,
             'topic_ch' => $request->topic_ch,
-            'short_desc_en' => str_replace("\n", "\r\n", $request->short_desc_en),
-            'short_desc_mm' => str_replace("\n", "\r\n", $request->short_desc_mm),
-            'short_desc_ch' => str_replace("\n", "\r\n", $request->short_desc_ch),
-            'desc_en' => str_replace("\n", "\r\n", $request->desc_en),
-            'desc_mm' => str_replace("\n", "\r\n", $request->desc_mm),
-            'desc_ch' => str_replace("\n", "\r\n", $request->desc_ch),
+            'short_desc_en' => $request->short_desc_en,
+            'short_desc_mm' => $request->short_desc_mm,
+            'short_desc_ch' => $request->short_desc_ch,
+            'desc_en' => $request->desc_en,
+            'desc_mm' => $request->desc_mm,
+            'desc_ch' => $request->desc_ch,
             'views' => 0
         ];
     }
