@@ -95,7 +95,7 @@
                             {{ $post->topic_en }}
                             @endif
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 mb-4">
                             <div class="card py-2">
                                 <div class="row d-flex align-items-center">
                                     <div class="col-md-2">
@@ -107,45 +107,44 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 mb-4"><strong>Tags:</strong>
+                            @foreach ($post->tags as $tagId)
+                                @php
+                                    $tag = \App\Models\Tag::find($tagId);
+                                @endphp
+                                @if ($tag)
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $tag->name_mm }}
+                                    @elseif (app()->getLocale() == 'ch')
+                                        {{ $tag->name_ch }}
+                                    @else
+                                        {{ $tag->name_en }}
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
                         <div class="col-12">
                             <div class="row my-3  d-flex align-items-center">
                                 <div class="col">
                                 </div>
                                 <span class="text-end col">YOUR THOUGHTS …</span>
-                                <div class="btn btn-reaction mb-2">
+                                <button class="btn btn-reaction mb-2" id="btn-like">
                                     <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                </div>
-                                <div class="btn btn-reaction mb-2">
+                                </button>
+                                <button class="btn btn-reaction mb-2" id="btn-love">
                                     <img src="{{ asset('/images/loved.svg') }}" alt="">
-                                </div>
-                                <div class="btn btn-reaction mb-2">
+                                </button>
+                                <button class="btn btn-reaction mb-2" id="btn-wow">
                                     <img src="{{ asset('/images/wow.svg') }}" alt="">
-                                </div>
-                                <div class="btn btn-reaction mb-2">
+                                </button>
+                                <button class="btn btn-reaction mb-2" id="btn-sad">
                                     <img src="{{ asset('/images/sad.svg') }}" alt="">
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 mb-4"><strong>Tags:</strong>
-                        @foreach ($post->tags as $tagId)
-                        @php
-                            $tag = \App\Models\Tag::find($tagId);
-                        @endphp
-                        @if ($tag)
-                            @if (app()->getLocale() == 'mm')
-                                {{ $tag->name_mm }}
-                            @elseif (app()->getLocale() == 'ch')
-                                {{ $tag->name_ch }}
-                            @else
-                                {{ $tag->name_en }}
-                            @endif
-                        @endif
-                        @endforeach
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -174,14 +173,122 @@
             }
         });
 
-
-        if (!localStorage.getItem('user_token')) {
-            var userToken = generateUniqueToken(); // Implement a function to generate a unique token
-            localStorage.setItem('user_token', userToken);
+        var likedKey = `liked_${id}`;
+        if (localStorage.getItem(likedKey)) {
+            $('#btn-love').prop('disabled', true);
+            $('#btn-wow').prop('disabled', true);
+            $('#btn-sad').prop('disabled', true);
         }
 
-    console.log(userToken);
+        var lovedKey = `loved_${id}`;
+        if (localStorage.getItem(lovedKey)) {
+            $('#btn-like').prop('disabled', true);
+            $('#btn-wow').prop('disabled', true);
+            $('#btn-sad').prop('disabled', true);
+        }
+        var wowKey = `wow_${id}`;
+        if (localStorage.getItem(wowKey)) {
+            $('#btn-like').prop('disabled', true);
+            $('#btn-love').prop('disabled', true);
+            $('#btn-sad').prop('disabled', true);
+        }
+        var sadKey = `sad_${id}`;
+        if (localStorage.getItem(sadKey)) {
+            $('#btn-like').prop('disabled', true);
+            $('#btn-love').prop('disabled', true);
+            $('#btn-wow').prop('disabled', true);
+        }
 
+        $('#btn-like').click(function(){
+            var likedKey =  `liked_${id}`;
+            if (!localStorage.getItem(likedKey)) {
+                $.ajax({
+                    url: `/post/like/${id}`,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        document.cookie = `${likedKey}=true`;
+                        localStorage.setItem(likedKey, 'true');
+
+                        $('#btn-love').prop('disabled', true);
+                        $('#btn-wow').prop('disabled', true);
+                        $('#btn-sad').prop('disabled', true);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error liking post:', error);
+                    }
+                });
+            }
+
+        });
+        $('#btn-love').click(function(){
+            var lovedKey =  `loved_${id}`;
+            if (!localStorage.getItem(lovedKey)) {
+                $.ajax({
+                    url: `/post/love/${id}`,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        document.cookie = `${lovedKey}=true`;
+                        localStorage.setItem(lovedKey, 'true');
+
+                        $('#btn-like').prop('disabled', true);
+                        $('#btn-wow').prop('disabled', true);
+                        $('#btn-sad').prop('disabled', true);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error liking post:', error);
+                    }
+                });
+            }
+
+        });
+
+        $('#btn-wow').click(function(){
+            var wowKey =  `wow_${id}`;
+            if (!localStorage.getItem(wowKey)) {
+                $.ajax({
+                    url: `/post/wow/${id}`,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        document.cookie = `${wowKey}=true`;
+                        localStorage.setItem(wowKey, 'true');
+
+                        $('#btn-like').prop('disabled', true);
+                        $('#btn-love').prop('disabled', true);
+                        $('#btn-sad').prop('disabled', true);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error liking post:', error);
+                    }
+                });
+            }
+
+        });
+
+        $('#btn-sad').click(function(){
+            var sadKey =  `sad_${id}`;
+            if (!localStorage.getItem(sadKey)) {
+                $.ajax({
+                    url: `/post/sad/${id}`,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        document.cookie = `${sadKey}=true`;
+                        localStorage.setItem(sadKey, 'true');
+
+                        $('#btn-like').prop('disabled', true);
+                        $('#btn-love').prop('disabled', true);
+                        $('#btn-wow').prop('disabled', true);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error liking post:', error);
+                    }
+                });
+            }
+
+        });
 
     });
 </script>

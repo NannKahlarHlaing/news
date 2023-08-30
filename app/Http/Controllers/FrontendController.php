@@ -95,6 +95,10 @@ class FrontendController extends Controller
                     ->take(3)
                     ->get();
 
+        $latest_video = Video::orderBy('id', 'desc')->first();
+
+        $latest_cartoon = Cartoon::orderBy('id', 'desc')->first();
+
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
         $main_menus_ch = MenuItem::where('menu_id', '3')->get();
@@ -102,7 +106,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch','latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch','latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_video', 'latest_cartoon'));
 
     }
 
@@ -193,7 +197,7 @@ class FrontendController extends Controller
     public function show_photos(){
         $posts = Photo::where('deleted_at', NULL)
                     ->orderBy('id', 'desc')
-                    ->get();
+                    ->paginate(1);
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();

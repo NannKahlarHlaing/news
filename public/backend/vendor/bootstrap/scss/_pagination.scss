@@ -12,8 +12,8 @@
   line-height: $pagination-line-height;
   color: $pagination-color;
   text-decoration: if($link-decoration == none, null, none);
-  background-color: $pagination-bg;
-  border: $pagination-border-width solid $pagination-border-color;
+  background-color: #ff8800;
+  border: $pagination-border-width solid #ff8800;
 
   &:hover {
     z-index: 2;
@@ -46,8 +46,8 @@
   &.active .page-link {
     z-index: 3;
     color: $pagination-active-color;
-    background-color: $pagination-active-bg;
-    border-color: $pagination-active-border-color;
+    background-color: #ff8800 !important;
+    border-color: #ff8800 !important;
   }
 
   &.disabled .page-link {
@@ -72,3 +72,10 @@
 .pagination-sm {
   @include pagination-size($pagination-padding-y-sm, $pagination-padding-x-sm, $font-size-sm, $line-height-sm, $pagination-border-radius-sm);
 }
+
+// .page-item.active .page-link {
+//     z-index: 3;
+//     color: #fff;
+//     background-color: #ff8800;
+//     border-color: #ff8800;
+// }

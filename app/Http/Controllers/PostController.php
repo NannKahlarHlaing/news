@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\MenuItem;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -258,6 +259,43 @@ class PostController extends Controller
         }
     }
 
+    public function likePost($postId) {
+        // $cookieName = "liked_" . $postId;
+        $post = Post::find($postId);
+        $like = $post->like;
+        $post->like = $like + 1;
+        $post->save();
+
+        return response('Already liked');
+    }
+
+    public function lovePost($postId) {
+        $post = Post::find($postId);
+        $love = $post->love;
+        $post->love = $love + 1;
+        $post->save();
+
+        return response('Already love');
+    }
+
+    public function wowPost($postId) {
+        $post = Post::find($postId);
+        $wow = $post->wow;
+        $post->wow = $wow + 1;
+        $post->save();
+
+        return response('Already wow');
+    }
+
+    public function sadPost($postId) {
+        $post = Post::find($postId);
+        $sad = $post->sad;
+        $post->sad = $sad + 1;
+        $post->save();
+
+        return response('Already sad');
+    }
+
     private function getData($request){
 
         $this->create_path();
@@ -290,7 +328,11 @@ class PostController extends Controller
             'desc_en' => $request->desc_en,
             'desc_mm' => $request->desc_mm,
             'desc_ch' => $request->desc_ch,
-            'views' => 0
+            'views' => 0,
+            'like' => 0,
+            'love' => 0,
+            'wow' => 0,
+            'sad' => 0,
         ];
     }
 }

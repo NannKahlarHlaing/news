@@ -123,7 +123,7 @@
 @endsection
 
 @section('content')
-    <section class="cartoons-title">
+    <section class="cartoons-title mt-5">
         <div class="container-fluid">
             <div class="row d-flex-center">
                 <div class="col-12">
@@ -153,7 +153,7 @@
                                 <div class="col-12">
                                     <h2 class="border-bottom border-white">
                                         <a href="#">
-                                            <p class="card-text">
+                                            <h6 class="card-text mb-3">
                                                 @if (app()->getLocale() == 'mm')
                                                     {{ $latest->title_mm }}
                                                 @elseif(app()->getLocale() == 'ch')
@@ -161,7 +161,7 @@
                                                 @else
                                                     {{ $latest->title_en }}
                                                 @endif
-                                            </p>
+                                            </h6>
                                         </a>
                                     </h2>
                                 </div>

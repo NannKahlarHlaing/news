@@ -196,6 +196,10 @@ Route::controller(PostController::class)->group(function(){
     Route::get('/category/{category}/{id}', 'detailsEn');
     Route::get('/add_count_new', 'addValue')->name('new_views_count');
     Route::get('/posts/search', 'searchEn')->name('search');
+    Route::get('/post/like/{id}', 'likePost');
+    Route::get('/post/love/{id}', 'lovePost');
+    Route::get('/post/wow/{id}', 'wowPost');
+    Route::get('/post/sad/{id}', 'sadPost');
 });
 
 Route::controller(VideoController::class)->group(function(){
@@ -247,6 +251,8 @@ Route::controller(FrontendController::class)->group(function(){
             $catOpinion = $data->catOpinion;
             $catLifeStyle = $data->catLifeStyle;
             $catSpecial = $data->catSpecial;
+            $latest_video = $data->latest_video;
+            $latest_cartoon = $data->latest_cartoon;
 
             $main_menus_en = MenuItem::where('menu_id', '1')->get();
             $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -255,7 +261,7 @@ Route::controller(FrontendController::class)->group(function(){
             $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
             $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_video', 'latest_cartoon'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -291,6 +297,8 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $catOpinion = $data->catOpinion;
         $catLifeStyle = $data->catLifeStyle;
         $catSpecial = $data->catSpecial;
+        $latest_video = $data->latest_video;
+        $latest_cartoon = $data->latest_cartoon;
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -299,7 +307,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial'));
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_video', 'latest_cartoon'));
 
     })->name('home');
 

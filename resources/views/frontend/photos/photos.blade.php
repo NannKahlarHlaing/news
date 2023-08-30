@@ -17,7 +17,7 @@
         margin-top: -20px;
         color: #B7B7B7;
         position: absolute;
-        top: 50%;
+        top: 40%;
         text-align: center;
         color: #000;
         opacity: .3;
@@ -111,45 +111,33 @@
         <!-- Product Images & Alternates -->
             <div class="product-images demo-gallery">
               <!-- Begin Product Images Slider -->
-              <div class="main-img-slider">
+                <div class="main-img-slider">
                 @foreach ($posts as $item)
                     <div class="">
-                        <a data-fancybox="gallery" href="/storage/images/original/{{ $item->url }}">
-                            <img src="/storage/images/original/{{ $item->url }}"style="height:100vh;width: 100%;object-fit: cover;">
+                        <a data-fancybox="gallery" href="{{ asset('storage/images/original/') . '/' . $item->url }}">
+                            <img src="{{ asset('storage/images/original/') . '/' . $item->url }}"style="height:60vh;width: 100%;object-fit: cover;">
                             <div class="row description d-flex-center mt-5 py-3">
                                 <div class="col-lg-10 text-center">
-                                    <div class="row">
-                                        @if (app()->getLocale() == 'mm')
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-6">
+                                            @if (app()->getLocale() == 'mm')
                                             {!! str_replace("\n", '', $item->desc_mm) !!}
                                         @elseif(app()->getLocale() == 'ch')
                                             {!! str_replace("\n", '', $item->desc_ch) !!}
                                         @else
                                             {!! str_replace("\n", '', $item->desc_en) !!}
                                         @endif
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-6 text-end border-right border-white">
-                                            <a class="me-3" style="display: inline-block;">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </a>
-                                            <span class="id d-none">{{ $item->id }}</span>
-                                            <span class="views">{{ $item->views }}</span>
                                         </div>
-                                        <div class="col-6 text-start d-flex">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class=" me-2" >
-                                                <i class="fa-brands fa-square-facebook me-3"></i>
-                                            </a>
-                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class=" me-2" >
-                                                <i class="fa-brands fa-square-twitter me-3"></i>
-                                            </a>
-                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" class="me-2" >
-                                                <i class="fa-brands fa-linkedin"></i>
-                                            </a>
+                                        <div class="col-3 d-flex align-items-center"> <!-- Add a new column for the eye icon -->
+                                            <i class="fa-regular fa-eye me-3"></i>
+                                            <span class="id d-none">{{ $item->id }}</span>
+                                            <span class="views d-inline">{{ $item->views }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </a>
+                        {{-- <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="http://via.placeholder.com/840x480" class="img-fluid"></a> --}}
                     </div>
                 @endforeach
                 </div>
@@ -193,7 +181,8 @@
                 </div>
                 <div class="row py-5">
                     <div class="col-12 text-center">
-                        <button class="btn btn-danger">View All Photos</button>
+                        {{-- <button class="btn btn-danger">View All Photos</button> --}}
+                        {{ $posts->appends(Request::all())->links() }}
                     </div>
                 </div>
             </div>
