@@ -22,7 +22,7 @@
                             @if ($route == 'post_search')
                             <a href="{{ url('/category') . '/' . $post->category->name_en . '/' . $post->id }}">
                             @else
-                            <a href="">
+                            <a href="{{ url('/videos') . '/' . $post->id }}">
                             @endif
 
                             @if (app()->getLocale() == 'mm')
@@ -52,23 +52,23 @@
                                 @if ($route == 'post_search')
                                     <p>
                                         @if (app()->getLocale() == 'mm')
-                                        {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_mm), 100) !!}
+                                        {!! \Illuminate\Support\Str::limit($post->short_desc_mm) !!}
 
                                         @elseif(app()->getLocale() == 'ch')
-                                        {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_ch), 100) !!}
+                                        {!! \Illuminate\Support\Str::limit($post->short_desc_ch) !!}
                                         @else
-                                        {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->short_desc_en), 100) !!}
+                                        {!! \Illuminate\Support\Str::limit($post->short_desc_en) !!}
                                         @endif
                                     </p>
                                 @else
                                 <p>
                                     @if (app()->getLocale() == 'mm')
-                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->desc_mm), 100) !!}
+                                    {!! \Illuminate\Support\Str::limit($post->desc_mm) !!}
 
                                     @elseif(app()->getLocale() == 'ch')
-                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->desc_ch), 100) !!}
+                                    {!! \Illuminate\Support\Str::limit($post->desc_ch) !!}
                                     @else
-                                    {!! \Illuminate\Support\Str::limit(str_replace("\n", '', $post->desc_en), 100) !!}
+                                    {!! \Illuminate\Support\Str::limit($post->desc_en) !!}
                                     @endif
                                 </p>
                                 @endif

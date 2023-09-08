@@ -55,7 +55,7 @@
                         <div class="col-lg-10 col-md-9 col-10">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="border-bottom border-white">
+                                    <h2 class="border-bottom border-white pb-3">
                                         <a href="#">
                                             <p class="card-text">
                                                 @if (app()->getLocale() == 'mm')
@@ -167,12 +167,13 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-        <div class="row py-5">
-            <div class="col-12 text-center">
-                <button class="btn btn-danger">View All Videos</button>
+            <div class="row py-5">
+                <div class="col-12 text-center" id="pagination">
+                    <div class="">{{ $posts->appends(Request::all())->links() }}</div>
+                </div>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -209,37 +210,35 @@
                 method: 'GET',
                 data: { 'id': $cat_id },
                 success: function(response){
-                    // console.log(response);
+                    console.log(response);
                     $('#post_container').empty();
-                    if (response.length > 0) {
-                        response.forEach(video => {
-                            $.each(response, function(index, video) {
+                    const responseLength = response.data.length;
+                    if (responseLength > 0) {
+                        response.data.forEach(video => {
                             const card = `
-                                    <div class="col-lg-3 mb-3">
-                                        <div class="card">
-                                            <a data-fancybox href="${video.video_url}">
-                                                <img class="card-img-top img-fluid" src="/storage/images/original/${video.img_url}" />
-                                            </a>
-                                            <div class="card-body">
-                                                <p class="card-text">${video.title_en}</p>
-                                            </div>
+                                <div class="col-lg-3 mb-3">
+                                    <div class="card">
+                                        <a data-fancybox href="${video.video_url}">
+                                            <img class="card-img-top img-fluid" src="/storage/images/original/${video.img_url}" />
+                                        </a>
+                                        <div class="card-body">
+                                            <p class="card-text">${video.title_en}</p>
                                         </div>
                                     </div>
-                                `;
-                                $('#post_container').append(card);
-                            });
+                                </div>
+                            `;
+                            $('#post_container').append(card);
+                            $('#pagination').empty();
+                            $('#pagination').html(response.pagination);
                         });
-                    }else{
-                        const card=`<div class="card p-3 text-center text-white fw-bold">"There is no search result"</div>`;
+                    } else {
+                        const card = `<div class="card p-3 text-center text-white fw-bold">"There is no search result"</div>`;
                         $('#post_container').append(card);
                     }
                 }
             });
-
         })
-
     })
-
 
 </script>
 @endsection

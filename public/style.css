@@ -169,7 +169,7 @@ h6 a:hover{
 }
 .fa-eye, .fa-comment-dots{
   text-align: center;
-  color: #fff;
+  color: var(--color-dgray);
   display: inline-block;
   font-size: 1.75em;
 }
@@ -320,6 +320,12 @@ h6 a:hover{
   background-color: var(--color-red);
   border-top: 1px solid #fc9a30;
 }
+.top-ten h6{
+    margin-bottom: 0;
+}
+.top-ten h6 a:hover{
+    color: var(--color-gray);
+}
 .top-ten .top-one{
   margin-left: 10px;
 }
@@ -418,7 +424,7 @@ h6 a{
 
 /* offcanvas */
 .offcanvas-top{
-    height: 60vh !important;
+    height: 35vh !important;
 }
 .offcanvas-body a{
     color: var(--font-color);
@@ -462,6 +468,20 @@ h6 a{
 .vd-home .card{
     background-color: #000 !important;
     padding: 0;
+}
+.vd-home .card-body{
+    color: var(--font-color);
+}
+.footer-top{
+    border-top: 4px solid var(--color-red);
+}
+
+.cartoons h6 a{
+    color: var(--font-color);
+}
+
+.cartoons h6 a:hover{
+    color: var(--color-red);
 }
 
 

@@ -100,15 +100,7 @@
         border-color: #d12f81;
     }
     .last-photos .fa-user-large{
-        border: 1px solid #ECE7DD;
-        background-color: transparent;
         color: #ECE7DD;
-        height: 75px;
-        width: 75px;
-        line-height: 70px;
-        text-align: center;
-        border-radius: 37.5px;
-        display: inline-block;
         font-size: 43px;
     }
     .last-photos{
@@ -122,15 +114,7 @@
         background-color: rgba(255,255,255,0.5) !important;
     }
     .card .fa-user-large{
-        border: 1px solid #222;
         color: #222;
-        background-color: transparent;
-        height: 60px;
-        width: 60px;
-        line-height: 57px;
-        text-align: center;
-        border-radius: 37.5px;
-        display: inline-block;
         font-size: 35px;
     }
 
@@ -173,6 +157,7 @@
     <div class="container-fluid">
         <div class="row d-flex-center">
             <div class="col-8">
+                <span class="d-none" id="id">{{ $post->id }}</span>
                 <h2 class="text-center">
                     @if (app()->getLocale() == 'mm')
                         {{ $post->title_mm }}
@@ -202,11 +187,11 @@
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $post->date)->format('d F Y') }}
                     </div>
                     <div class="col-6 text-end">
-                        The VWXYZ ONLINE /
+                        The VWXYZ ONLINE
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 mb-4">
                         @if (app()->getLocale() == 'mm')
                             {!! str_replace("\n", '', $post->desc_mm) !!}
                         @elseif(app()->getLocale() == 'ch')
@@ -227,7 +212,7 @@
                     <div class="col-12 mb-3">
                         <div class="card py-3">
                             <div class="col-12">
-                                <div class="row">
+                                <div class="row d-flex align-items-center">
                                     <div class="col-lg-1 col-md-2 col-3">
                                         <i class="fa-solid fa-user-large"></i>
                                     </div>
@@ -241,19 +226,21 @@
                     </div>
                     <div class="col-12">
                         <div class="row my-3  d-flex align-items-center">
+                            <div class="col">
+                            </div>
                             <span class="text-end col">YOUR THOUGHTS …</span>
-                            <div class="btn btn-reaction mb-2">
+                            <button class="btn btn-reaction mb-2" id="btn-like">
                                 <img src="{{ asset('/images/liked.svg') }}" alt="">
-                            </div>
-                            <div class="btn btn-reaction mb-2">
+                            </button>
+                            <button class="btn btn-reaction mb-2" id="btn-love">
                                 <img src="{{ asset('/images/loved.svg') }}" alt="">
-                            </div>
-                            <div class="btn btn-reaction mb-2">
+                            </button>
+                            <button class="btn btn-reaction mb-2" id="btn-wow">
                                 <img src="{{ asset('/images/wow.svg') }}" alt="">
-                            </div>
-                            <div class="btn btn-reaction mb-2">
+                            </button>
+                            <button class="btn btn-reaction mb-2" id="btn-sad">
                                 <img src="{{ asset('/images/sad.svg') }}" alt="">
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -278,7 +265,6 @@
 
     <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
     <script>
-
         /*--------------*/
         // Main/Product image slider for product page
         $('#detail .main-img-slider').slick({
@@ -321,6 +307,124 @@
         });
     </script>
     <script>
+        $(document).ready(function(){
+            var id = $('#id').html();
+            var likedKey = `photo_essay_liked_${id}`;
+            if (localStorage.getItem(likedKey)) {
+                $('#btn-love').prop('disabled', true);
+                $('#btn-wow').prop('disabled', true);
+                $('#btn-sad').prop('disabled', true);
+            }
 
+            var lovedKey = `photo_essay_loved_${id}`;
+            if (localStorage.getItem(lovedKey)) {
+                $('#btn-like').prop('disabled', true);
+                $('#btn-wow').prop('disabled', true);
+                $('#btn-sad').prop('disabled', true);
+            }
+            var wowKey = `photo_essay_wow_${id}`;
+            if (localStorage.getItem(wowKey)) {
+                $('#btn-like').prop('disabled', true);
+                $('#btn-love').prop('disabled', true);
+                $('#btn-sad').prop('disabled', true);
+            }
+            var sadKey = `photo_essay_sad_${id}`;
+            if (localStorage.getItem(sadKey)) {
+                $('#btn-like').prop('disabled', true);
+                $('#btn-love').prop('disabled', true);
+                $('#btn-wow').prop('disabled', true);
+            }
+
+            $('#btn-like').click(function(){
+                var likedKey =  `photo_essay_liked_${id}`;
+                if (!localStorage.getItem(likedKey)) {
+                    $.ajax({
+                        url: `/photo_essays/like/${id}`,
+                        method: 'GET',
+                        success: function(response) {
+                            console.log(response);
+                            document.cookie = `${likedKey}=true`;
+                            localStorage.setItem(likedKey, 'true');
+
+                            $('#btn-love').prop('disabled', true);
+                            $('#btn-wow').prop('disabled', true);
+                            $('#btn-sad').prop('disabled', true);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error liking post:', error);
+                        }
+                    });
+                }
+
+            });
+            $('#btn-love').click(function(){
+                var lovedKey =  `photo_essay_loved_${id}`;
+                if (!localStorage.getItem(lovedKey)) {
+                    $.ajax({
+                        url: `/photo_essays/love/${id}`,
+                        method: 'GET',
+                        success: function(response) {
+                            console.log(response);
+                            document.cookie = `${lovedKey}=true`;
+                            localStorage.setItem(lovedKey, 'true');
+
+                            $('#btn-like').prop('disabled', true);
+                            $('#btn-wow').prop('disabled', true);
+                            $('#btn-sad').prop('disabled', true);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error liking post:', error);
+                        }
+                    });
+                }
+
+            });
+
+            $('#btn-wow').click(function(){
+                var wowKey =  `photo_essay_wow_${id}`;
+                if (!localStorage.getItem(wowKey)) {
+                    $.ajax({
+                        url: `/photo_essays/wow/${id}`,
+                        method: 'GET',
+                        success: function(response) {
+                            console.log(response);
+                            document.cookie = `${wowKey}=true`;
+                            localStorage.setItem(wowKey, 'true');
+
+                            $('#btn-like').prop('disabled', true);
+                            $('#btn-love').prop('disabled', true);
+                            $('#btn-sad').prop('disabled', true);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error liking post:', error);
+                        }
+                    });
+                }
+
+            });
+
+            $('#btn-sad').click(function(){
+                var sadKey =  `photo_essay_sad_${id}`;
+                if (!localStorage.getItem(sadKey)) {
+                    $.ajax({
+                        url: `/photo_essays/sad/${id}`,
+                        method: 'GET',
+                        success: function(response) {
+                            console.log(response);
+                            document.cookie = `${sadKey}=true`;
+                            localStorage.setItem(sadKey, 'true');
+
+                            $('#btn-like').prop('disabled', true);
+                            $('#btn-love').prop('disabled', true);
+                            $('#btn-wow').prop('disabled', true);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error liking post:', error);
+                        }
+                    });
+                }
+
+            });
+        })
     </script>
 @endsection

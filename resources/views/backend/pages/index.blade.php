@@ -28,19 +28,17 @@
                         <thead>
                             <tr>
                                 <th>Page_Title_En</th>
-                                <th>Description_En</th>
-                                <th>Action</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Page_Title_En</th>
-                                <th>Description_En</th>
-                                <th>Action</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -48,7 +46,6 @@
 
                                 <tr>
                                     <td>{{ $item->title_en }}</td>
-                                    <td>{{ substr($item->desc_en, 0, 50) }}</td>
                                     <td>
                                         <a href="{{ url('/') . '/' . $item->title_en }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-eye"></i>

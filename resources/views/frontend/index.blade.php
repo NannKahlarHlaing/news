@@ -37,6 +37,12 @@
 <body>
     <section class="d-flex justify-content-center sticky-lg-top navScroll" id="navbar">
         <div class="container-fluid">
+            <div class="col-12 bg-dark  text-end">
+                <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
+                <a href="" class="text-white me-2" id="en">English</a>
+                <a href="" class="text-white me-2" id="mm">Myanmar</a>
+                <a href="" class="text-white" id="ch">Chinese</a>
+            </div>
             <div class="col-12">
                 <nav class="navbar navbar-expand-lg navbar-light aa">
                     <div class="" id="menu-bar">
@@ -139,10 +145,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                                 </li> --}}
-                                <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
+                                {{-- <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                                 <li><a href="" class="nav-link" id="en">English</a></li>
                                 <li><a href="" class="nav-link" id="mm">Myanmar</a></li>
-                                <li><a href="" class="nav-link" id="ch">Chinese</a></li>
+                                <li><a href="" class="nav-link" id="ch">Chinese</a></li> --}}
                             </ul>
 
                         </div>
@@ -186,7 +192,7 @@
     </div>
 
     @yield('content')
-    <section class="bg-dark border-top border-danger border-4 text-white">
+    <section class="bg-dark footer-top text-white">
         <div class="container-fluid">
             <div class="row d-flex-center" style="margin: 0">
                 <div class="col-12 p-3">
@@ -412,7 +418,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <h6>About Us</h6>
+                            <p>
+                                On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même
+                            </p>
+                        </div>
                     </div>
                     <div class="row">
                         <span class="copyright"> Copyright © 2016 VWXYZ Publishing Group. All Rights Reserved</span>

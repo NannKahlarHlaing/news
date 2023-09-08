@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {    
+    {
         Schema::create('photo_essays', function (Blueprint $table) {
             $table->id();
             $table->string('title_en')->nullable();
@@ -28,6 +28,10 @@ return new class extends Migration
             $table->string('img_link');
             $table->string('author');
             $table->string('date');
+            $table->integer('like')->nullable();
+            $table->integer('love')->nullable();
+            $table->integer('wow')->nullable();
+            $table->integer('sad')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

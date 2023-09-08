@@ -95,9 +95,11 @@ class FrontendController extends Controller
                     ->take(3)
                     ->get();
 
-        $latest_video = Video::orderBy('id', 'desc')->first();
+        $latest_photo = Photo::orderBy('id', 'desc')->first();
 
         $latest_cartoon = Cartoon::orderBy('id', 'desc')->first();
+
+        $lasts_cartoons = Cartoon::latest()->take(6)->get();
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -106,7 +108,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch','latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_video', 'latest_cartoon'));
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch','latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
 
     }
 
@@ -179,7 +181,7 @@ class FrontendController extends Controller
     public function show_videos(){
         $posts = Video::where('deleted_at', NULL)
                     ->orderBy('id', 'desc')
-                    ->get();
+                    ->paginate(8);
         $latest = Video::latest()->first();
         $recents = Video::latest()->skip(1)->take(4)->get();
         $categories = Category::where('deleted_at', NULL)->get();
@@ -197,7 +199,7 @@ class FrontendController extends Controller
     public function show_photos(){
         $posts = Photo::where('deleted_at', NULL)
                     ->orderBy('id', 'desc')
-                    ->paginate(1);
+                    ->paginate(8);
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();

@@ -50,7 +50,7 @@
                                 <i class="fa-regular fa-message"></i>
                             </div>
                             <div class="col-12">
-                                    <i class="fa-regular fa-eye"></i>
+                                <i class="fa-regular fa-eye"></i>
                             </div>
                             <div class="col-12">
                                 <div class="btn border-bottom mb-2">

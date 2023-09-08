@@ -31,6 +31,7 @@
                                 <th>Image Link</th>
                                 <th>Cartoonist EN</th>
                                 <th>Views</th>
+                                <th>View</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -41,6 +42,7 @@
                                 <th>Image Link</th>
                                 <th>Cartoonist EN</th>
                                 <th>Views</th>
+                                <th>View</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -52,6 +54,11 @@
                                     <td>{{ $item->img_link }}</td>
                                     <td>{{ $item->cartoonist_en }}</td>
                                     <td>{{ $item->views }}</td>
+                                    <td>
+                                        <a href="{{ url('/cartoons') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href="{{ url('/admin/cartoons/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>

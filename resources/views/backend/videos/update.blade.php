@@ -38,10 +38,10 @@
                     </div>
                     <div class="form-group">
                         <label>Category</label>
-                        <select class="form-control @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
+                        <select class="form-control form-select @error('category') is-invalid @enderror" name="category" aria-label="Default select example">
                             <option value="">Select Category</option>
                             @foreach ($categories as $item)
-                                <option value="{{ $item->id  }}" {{ old('category', $post->category) == $item->id? "selected":"" }}>{{ $item->name_en }}</option>
+                                <option value="{{ $item->id  }}" {{ old('category', $post->category_id) == $item->id? "selected":"" }}>{{ $item->name_en }}</option>
                             @endforeach
                         </select>
                         @error('category')

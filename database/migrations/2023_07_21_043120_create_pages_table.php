@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('img_url');
             $table->string('title_en');
-            $table->string('title_mm');
-            $table->string('title_ch');
+            $table->string('title_mm')->nullable();
+            $table->string('title_ch')->nullable();
             $table->text('desc_en', 65535)->nullable();
             $table->text('desc_mm', 65535)->nullable();
             $table->text('desc_ch', 65535)->nullable();

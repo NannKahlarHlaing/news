@@ -1,7 +1,7 @@
 @extends('backend.index')
 
 @section('content')
-    <!-- Begin Page Content -->
+    {{-- <!-- Begin Page Content -->
     <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -330,6 +330,6 @@
     </div>
 
     </div>
-    <!-- /.container-fluid -->
+    <!-- /.container-fluid --> --}}
 
 @endsection

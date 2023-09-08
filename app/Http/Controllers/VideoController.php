@@ -87,10 +87,9 @@ class VideoController extends Controller
 
     public function getVideosByCategory(Request $request){
         $id = $request->id;
-        $videos = Video::where('category', $id)->orderby('id', 'desc')->get();
+        $videos = Video::where('category_id', $id)->orderby('id', 'desc')->paginate(8);
 
         return $videos;
-        // return response()->json(['videos' => $videos]);
     }
 
     public function searchEn(Request $request){

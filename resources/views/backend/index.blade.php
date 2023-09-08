@@ -28,11 +28,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.css" rel="stylesheet">
-
-
     @yield('css')
-
 
 </head>
 
@@ -181,13 +177,6 @@
     <script src="{{ asset('/backend/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('/backend/vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('/backend/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('/backend/js/demo/chart-pie-demo.js') }}"></script>
-
-    <!-- Page level plugins -->
     <script src="{{ asset('/backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
@@ -198,7 +187,18 @@
 
     {{-- <script src="https://cdn.tiny.cloud/1/jvgg8kp13x9r8tbzf76mmt35xqmw877ln3vadyx31afcbhpp/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+
+{{--<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
 
 {{-- <script>
     tinymce.init({
@@ -213,13 +213,27 @@
             $('#alertModal').modal('show');
 
             $('.short_summernote').summernote({
-                height: 100
+                height: 100,
             });
 
             $('.summernote').summernote({
-                height: 250
+                height: 250,
             });
 
+            // $('.summernote').summernote({
+            //     toolbar: [
+            //         ['style', ['bold', 'italic', 'underline', 'clear']],
+            //         ['font', ['strikethrough', 'superscript', 'subscript']],
+            //         ['fontsize', ['fontsize']],
+            //         ['color', ['color']],
+            //         ['para', ['ul', 'ol', 'paragraph']],
+            //         ['height', ['height']],
+            //         ['insert', ['link', 'picture', 'table', 'hr']],
+            //         ['view', ['fullscreen', 'codeview']],
+            //     ],
+            //     height: 250,
+                
+            // });
         });
 
     </script>

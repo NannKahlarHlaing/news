@@ -24,68 +24,105 @@
                 <h6 class="mb-3">Edit Menu Items From Pages</h6>
                 <div class="form-control scroll-window mb-3">
                     @php
-                        if($id == '2' || $id == '3'){
-                                $name = $item->name_mm;
-                            }else if($id == '5' || $id == '6'){
-                                $name = $item->name_ch;
+                        if($id == '2' || $id == '5'){
+                                $name = 'ဓာတ်ပုံများ';
+                            }else if($id == '3' || $id == '6'){
+                                $name = '相片';
                             }else{
-                                $name = $item->name_en;
+                                $name = 'Photos';
                             }
                             if($name == '' || $name == NULL){
-                                $name = $item->name_en;
+                                $name = 'Photos';
                             }
-                        $menu = $menu_items->where('name', 'Photos')->first();
-
-
-                        
+                        $menu = $menu_items->where('name', $name)->first();
                     @endphp
                     <div class="form-check mb-3">
-                        <input class="form-check-input page-input-check" type="checkbox" name="Photos" value="" data-page-input-id="page_input_photos" {{ $menu ? 'checked' : '' }}>
-                        <label class="form-check-label">Photos</label>
+                        <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="" data-page-input-id="page_input_photos" {{ $menu ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $name }}</label>
                         <input type="text" id="page_input_photos" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
                     </div>
 
                     @php
-                        $menu = $menu_items->where('name', 'Photos Essays')->first();
+                        if($id == '2' || $id == '5'){
+                                $name = 'ဓာတ်ပုံအက်ဆေးများ';
+                            }else if($id == '3' || $id == '6'){
+                                $name = '照片随笔';
+                            }else{
+                                $name = 'Photo Essays';
+                            }
+                            if($name == '' || $name == NULL){
+                                $name = 'Photo Essays';
+                            }
+                        $menu = $menu_items->where('name', $name)->first();
                     @endphp
                     <div class="form-check mb-3">
-                        <input class="form-check-input page-input-check" type="checkbox" name="Photos Essays" value="" data-page-input-id="page_input_photo_essays" {{ $menu ? 'checked' : '' }}>
-                        <label class="form-check-label">Photos Essays</label>
+                        <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="" data-page-input-id="page_input_photo_essays" {{ $menu ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $name }}</label>
                         <input type="text" id="page_input_photo_essays" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
                     </div>
 
                     @php
-                        $menu = $menu_items->where('name', 'Videos')->first();
+                        if($id == '2' || $id == '5'){
+                                $name = 'ဗီဒီယိုများ';
+                            }else if($id == '3' || $id == '6'){
+                                $name = '视频';
+                            }else{
+                                $name = 'Videos';
+                            }
+                            if($name == '' || $name == NULL){
+                                $name = 'Videos';
+                            }
+                        $menu = $menu_items->where('name', $name)->first();
                     @endphp
                     <div class="form-check mb-3">
-                        <input class="form-check-input page-input-check" type="checkbox" name="Videos" value="" data-page-input-id="page_input_videos" {{ $menu ? 'checked' : '' }}>
-                        <label class="form-check-label">Videos</label>
+                        <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="" data-page-input-id="page_input_videos" {{ $menu ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $name }}</label>
                         <input type="text" id="page_input_videos" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
                     </div>
 
                     @php
-                        $menu = $menu_items->where('name', 'Cartoons')->first();
+                        if($id == '2' || $id == '5'){
+                                $name = 'ကာတွန်းများ';
+                            }else if($id == '3' || $id == '6'){
+                                $name = '卡通';
+                            }else{
+                                $name = 'Cartoons';
+                            }
+                            if($name == '' || $name == NULL){
+                                $name = 'Cartoons';
+                            }
+                        $menu = $menu_items->where('name', $name)->first();
                     @endphp
                     <div class="form-check mb-3">
-                        <input class="form-check-input page-input-check" type="checkbox" name="Cartoons" value="" data-page-input-id="page_input_cartoons" {{ $menu ? 'checked' : '' }}>
-                        <label class="form-check-label">Cartoons</label>
+                        <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="" data-page-input-id="page_input_cartoons" {{ $menu ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $name }}</label>
                         <input type="text" id="page_input_cartoons" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
                     </div>
 
                     @php
-                        $menu = $menu_items->where('name', 'Contact')->first();
+                        if($id == '2' || $id == '5'){
+                                $name = 'ဆက်သွယ်ရန်';
+                            }else if($id == '3' || $id == '6'){
+                                $name = '联络我们';
+                            }else{
+                                $name = 'Contact';
+                            }
+                            if($name == '' || $name == NULL){
+                                $name = 'Contact';
+                            }
+                        $menu = $menu_items->where('name', $name)->first();
                     @endphp
                     <div class="form-check mb-3">
-                        <input class="form-check-input page-input-check" type="checkbox" name="Contact" value="" data-page-input-id="page_input_contact" {{ $menu ? 'checked' : '' }}>
-                        <label class="form-check-label">Contact</label>
+                        <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="" data-page-input-id="page_input_contact" {{ $menu ? 'checked' : '' }}>
+                        <label class="form-check-label">{{ $name }}</label>
                         <input type="text" id="page_input_contact" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : '')) }}">
                     </div>
 
                     @foreach ($pages as $item)
                         @php
-                            if($id == '2' || $id == '3'){
+                            if($id == '2' || $id == '5'){
                                 $name = $item->title_mm;
-                            }else if($id == '5' || $id == '6'){
+                            }else if($id == '3' || $id == '6'){
                                 $name = $item->title_ch;
                             }else{
                                 $name = $item->title_en;
@@ -109,9 +146,9 @@
                     <div class="form-control scroll-window mb-3">
                         @foreach ($categories as $item)
                             @php
-                                if($id == '2' || $id == '3'){
+                                if($id == '2' || $id == '5'){
                                     $name = $item->name_mm;
-                                }else if($id == '5' || $id == '6'){
+                                }else if($id == '3' || $id == '6'){
                                     $name = $item->name_ch;
                                 }else{
                                     $name = $item->name_en;
@@ -134,9 +171,9 @@
                     <div class="form-control scroll-window mb-3">
                         @foreach ($sub_categories as $item)
                             @php
-                                if($id == '2' || $id == '3'){
+                                if($id == '2' || $id == '5'){
                                     $name = $item->name_mm;
-                                }else if($id == '5' || $id == '6'){
+                                }else if($id == '3' || $id == '6'){
                                     $name = $item->name_ch;
                                 }else{
                                     $name = $item->name_en;

@@ -112,7 +112,7 @@ class CartoonController extends Controller
 
         return $addedValue;
     }
-
+    
     private function validation($request){
         Validator::make($request->all(),[
             'title_en' => 'required',

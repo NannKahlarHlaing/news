@@ -202,12 +202,20 @@ Route::controller(PostController::class)->group(function(){
     Route::get('/post/sad/{id}', 'sadPost');
 });
 
+Route::controller(PhotoEssayController::class)->group(function(){
+    Route::get('/photo_essays/like/{id}', 'likePost');
+    Route::get('/photo_essays/love/{id}', 'lovePost');
+    Route::get('/photo_essays/wow/{id}', 'wowPost');
+    Route::get('/photo_essays/sad/{id}', 'sadPost');
+});
+
 Route::controller(VideoController::class)->group(function(){
     Route::get('/videos/search', 'searchEn');
     Route::get('/videos/{id}', 'detailsEn');
 });
 
 Route::controller(CartoonController::class)->group(function(){
+    Route::get('/add_count_cartoon', 'addValue')->name('cartoon_views_count');
     Route::get('/cartoons/{id}', 'detailsEn');
 });
 
@@ -251,8 +259,9 @@ Route::controller(FrontendController::class)->group(function(){
             $catOpinion = $data->catOpinion;
             $catLifeStyle = $data->catLifeStyle;
             $catSpecial = $data->catSpecial;
-            $latest_video = $data->latest_video;
+            $latest_photo = $data->latest_photo;
             $latest_cartoon = $data->latest_cartoon;
+            $lasts_cartoons = $data->lasts_cartoons;
 
             $main_menus_en = MenuItem::where('menu_id', '1')->get();
             $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -261,7 +270,7 @@ Route::controller(FrontendController::class)->group(function(){
             $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
             $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_video', 'latest_cartoon'));
+            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -297,8 +306,9 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $catOpinion = $data->catOpinion;
         $catLifeStyle = $data->catLifeStyle;
         $catSpecial = $data->catSpecial;
-        $latest_video = $data->latest_video;
+        $latest_photo = $data->latest_photo;
         $latest_cartoon = $data->latest_cartoon;
+        $lasts_cartoons = $data->lasts_cartoons;
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -307,7 +317,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_video', 'latest_cartoon'));
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
 
     })->name('home');
 

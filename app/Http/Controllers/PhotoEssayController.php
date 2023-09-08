@@ -115,6 +115,42 @@ class PhotoEssayController extends Controller
         return $addedValue;
     }
 
+    public function likePost($postId) {
+        $post = PhotoEssay::find($postId);
+        $like = $post->like;
+        $post->like = $like + 1;
+        $post->save();
+
+        return response('Already liked');
+    }
+
+    public function lovePost($postId) {
+        $post = PhotoEssay::find($postId);
+        $love = $post->love;
+        $post->love = $love + 1;
+        $post->save();
+
+        return response('Already love');
+    }
+
+    public function wowPost($postId) {
+        $post = PhotoEssay::find($postId);
+        $wow = $post->wow;
+        $post->wow = $wow + 1;
+        $post->save();
+
+        return response('Already wow');
+    }
+
+    public function sadPost($postId) {
+        $post = PhotoEssay::find($postId);
+        $sad = $post->sad;
+        $post->sad = $sad + 1;
+        $post->save();
+
+        return response('Already sad');
+    }
+
     private function validation($request){
         Validator::make($request->all(),[
 

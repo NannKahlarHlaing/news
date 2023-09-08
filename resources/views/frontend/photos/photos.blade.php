@@ -146,7 +146,7 @@
             <!-- Begin product thumb nav -->
             <ul class="thumb-nav d-none" >
                 @foreach ($posts as $item)
-                    <li><img src="/storage/images/original/{{ $item->url }}"></li>
+                    <li><img src="{{ asset('/storage/images/original') . '/' . $item->url }}"></li>
                 @endforeach
             </ul>
             <!-- End product thumb nav -->
@@ -173,8 +173,8 @@
                 <div class="row imglist">
                     @foreach ($posts as $item)
                     <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="/storage/images/original/{{$item->url}}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                            <img src="/storage/images/original/{{$item->url}}" width="100%"  />
+                        <a href="{{ asset('/storage/images/original') . '/' . $item->url }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                            <img src="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" width="100%"  />
                         </a>
                     </div>
                     @endforeach
@@ -197,7 +197,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>\
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="YOUR_NONCE_VALUE"></script>
 

@@ -38,11 +38,11 @@
                         </div>
                         <div class="col-12">
                             @if (app()->getLocale() == 'mm')
-                                {!! str_replace("\n", '', $post->desc_mm) !!}
+                                {!! $post->desc_mm !!}
                             @elseif(app()->getLocale() == 'ch')
-                                {!! str_replace("\n", '', $post->desc_ch) !!}
+                                {!! $post->desc_ch !!}
                             @else
-                                {!! str_replace("\n", '', $post->desc_en) !!}
+                                {!! $post->desc_en !!}
                             @endif
                         </div>
                     </div>

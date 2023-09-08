@@ -91,7 +91,7 @@ class AdminController extends Controller
         $post = Admin::find($id);
         $post->delete();
 
-        return redirect ('/admin/users')->with('status', 'careers is deleted successfully!');
+        return redirect ('/admin/users')->with('status', 'User is deleted successfully!');
 
     }
 

@@ -76,36 +76,25 @@
 <section class="current">
     <div class="half"></div>
     <div class="container-fluid">
-        <div class="row d-flex-center align-items-center">
-            <div class="col-md-12">
-               <div class="row text-white">
+        <div class="row text-white d-flex align-items-center">
+            <div class="col-6">
+                <div class="row d-flex align-items-center">
                     <div class="col-6">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-6">
-                                <span>THE NEWS FOR</span>
-                                <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
-                            </div>
-                            <div class="col-md-5 col-6 text-end">
-                                <span>YANGON</span>
-                                <h5>{{ $temperature }} <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
-                            </div>
-                        </div>
+                        <span>THE NEWS FOR</span>
+                        <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
                     </div>
-                    <div class="col-6 most">
-                        <div class="row">
-                            <div class="col-2">
-                                <i class="fa-solid fa-eye"></i>
-                            </div>
-                            <div class="col-5">
-                                <span>THE NEWS FOR</span>
-                                <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
-                            </div>
-                            <div class="col-2">
-                                <i class="fa-regular fa-comment-dots"></i>
-                            </div>
-                        </div>
+                    <div class="col-md-5 col-6 text-end">
+                        <span>YANGON</span>
+                        <h5>{{ $temperature }} <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
                     </div>
-               </div>
+                </div>
+            </div>
+            <div class="col-6 most">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h4>THE VWXYZ ONLINE</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -134,8 +123,13 @@
                                         <div class="col-lg-2 col-md-2 col-2">
                                             <div class="row d-flex-center">
                                                 <div class="col-12">
-                                                    <div class="btn btn-reaction mb-2">
+                                                    <div class=" mb-2">
                                                         <img src="{{ asset('/images/liked.svg') }}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 text-center">
+                                                    <div class="mb-2">
+                                                        <span>{{ $ten->like }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-center">
@@ -159,7 +153,7 @@
                                                 @endif
 
                                             </span>
-                                            <img src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg" alt="image" width="100%">
+                                            <img src="{{ asset('storage/images/thumbnail/') . '/' . $ten->img_link }}" alt="image" width="100%">
                                         </div>
                                         <div class="col-10">
                                             <p>
@@ -206,7 +200,7 @@
                                     </div>
                                 </div>
                                 @foreach ($mostViews as $key => $itemFive)
-                                    <div class="row py-3 top-ten d-flex align-items-center" >
+                                    <div class="row py-4 top-ten d-flex align-items-center" >
                                         <div class="col-md-2 col-3">
                                             <div class="col-12">
                                                 <span class="top-one">{{ $key + 2 }}</span>
@@ -600,84 +594,32 @@
                     <div class="col-md-6 mb-2">
                         <div class="row">
                             <div class="col-6 d-flex">
-                                <h3>Videos</h3>
+                                <h3>Photos</h3>
                             </div>
                             <div class="col-6 text-end">
-                                <span>{{ \Carbon\Carbon::parse($latest_video->created_at)->format('d F Y') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($latest_photo->created_at)->format('d F Y') }}</span>
                             </div>
                         </div>
                         <div class="row vd-home card-deck">
                             <div class="card">
-                                <a data-fancybox href="{{ $latest_video->video_url }}" >
-                                  <img class="card-img-top img-fluid" src="{{ asset('storage/images/thumbnail/') . '/' . $latest_video->img_url }}" />
+                                <a data-fancybox href="{{ $latest_photo->video_url }}" >
+                                  <img class="card-img-top img-fluid" src="{{ asset('storage/images/original/') . '/' . $latest_photo->url }}" />
                                 </a>
                                 <div class="card-body">
                                   <p class="card-text">
                                         @if (app()->getLocale() == 'mm')
-                                            {{ $latest_video->id }} {{ $latest_video->title_mm }}
+                                            {!! $latest_photo->desc_mm !!}
                                         @elseif(app()->getLocale() == 'ch')
-                                            {{ $latest_video->id }}   {{ $latest_video->title_ch }}
+                                            {!! $latest_photo->desc_ch !!}
                                         @else
-                                            {{ $latest_video->id }}  {{ $latest_video->title_en }}
+                                            {!! $latest_photo->desc_en !!}
                                         @endif
-                                        {{ $latest_video->img_url }}
                                   </p>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    {{-- <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-12 mb-2 ">
-                                <span>28 JUNE 2023</span>
-                            </div>
-                            <div class="col-12 d-flex">
-                                <div class=" btn-circle mb-3 border border-white me-2">
-                                    <i class="fa-solid fa-camera text-white"></i>
-                                </div>
-                                <h3>Photos</h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div id="singleImageContainer">
-
-                                <p class="imglist" style="max-width: 1000px;">
-                                    <a href="https://source.unsplash.com/juHayWuaaoQ/1500x1000" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                                      <img src="https://source.unsplash.com/juHayWuaaoQ/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/eWFdaPRFjwE/1500x1000" data-fancybox="images" data-caption="Mallorca, Llubí, Spain" class="d-none">
-                                      <img src="https://source.unsplash.com/eWFdaPRFjwE/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/c1JxO-uAZd0/1500x1000" data-fancybox="images" data-caption="Danish summer" class="d-none">
-                                      <img src="https://source.unsplash.com/c1JxO-uAZd0/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/eXHeq48Z-Q4/1500x1000" data-fancybox="images" data-caption="Sunrise above a sandy beach" class="d-none">
-                                      <img src="https://source.unsplash.com/eXHeq48Z-Q4/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/RFgO9B_OR4g/1500x1000" data-fancybox="images" data-caption="Woman on a slope by the shore" class="d-none">
-                                      <img src="https://source.unsplash.com/RFgO9B_OR4g/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/7bwQXzbF6KE/1500x1000" data-fancybox="images" data-caption="Mountain hiking sunset" class="d-none">
-                                      <img src="https://source.unsplash.com/7bwQXzbF6KE/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/NhU0nUR7920/1500x1000" data-fancybox="images" data-caption="Sunset Picnic" class="d-none">
-                                      <img src="https://source.unsplash.com/NhU0nUR7920/240x160" />
-                                    </a>
-
-                                    <a href="https://source.unsplash.com/B2LYYV9-y0s/1500x1000" data-fancybox="images" data-caption="On them Indiana Nights" class="d-none">
-                                      <img src="https://source.unsplash.com/B2LYYV9-y0s/240x160" />
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="col-md-6">
                         <div class="row">
                             <div class="row">
@@ -689,10 +631,46 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div id="singleImageContainer">
-                                <img id="singleImage" class="img-thumbnail" src="https://www.xinhuanet.com/english/asiapacific/2020-10/29/139476798_16039816214291n.jpg">
+                        {{-- <div class="row mb-4">
+                            <div class="col-md-4 col-6">
+                                <img src=" {{ asset('/storage/images/thumbnail/') . '/' . $latest_cartoon->img_link }}" alt="image" width="100%">
                             </div>
+                            <div class="col-md-8 col-6 cartoons">
+                                <h6><a href="{{ url('/cartoons') . '/' .  $latest_cartoon->id }}">
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $latest_cartoon->title_mm }}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {{ $latest_cartoon->title_ch }}
+                                    @else
+                                        {{ $latest_cartoon->title_en }}
+                                    @endif
+                                </a></h6>
+                                <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($latest_cartoon->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $latest_cartoon->views }}</span>
+                            </div>
+                        </div> --}}
+                        <div class="row mb-4">
+                            @foreach ($lasts_cartoons as $last)
+                            <div class="col-md-4">
+                                <div class="row cartoons" >
+                                    <div class="col-12 mb-1">
+                                        <img src=" {{ asset('/storage/images/thumbnail/') . '/' . $last->img_link }}" alt="image" width="100%">
+                                    </div>
+                                    <div class="col-12">
+                                        <h6>
+                                            <a href="{{ url('/cartoons') . '/' . $last->id }}" >
+                                                @if (app()->getLocale() == 'mm')
+                                                    {{ $last->title_mm }}
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    {{ $last->title_ch }}
+                                                @else
+                                                    {{ $last->title_en }}
+                                                @endif
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

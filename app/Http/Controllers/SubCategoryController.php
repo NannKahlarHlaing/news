@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class SubCategoryController extends Controller
 {
     public function index(){
-        $posts = SubCategory::where('deleted_at', NULL)->get();
+        $posts = SubCategory::orderBy('id', 'desc')->get();
         $route_name = Route::currentRouteName();
         return view('backend.categories.index', compact('posts', 'route_name'));
     }
