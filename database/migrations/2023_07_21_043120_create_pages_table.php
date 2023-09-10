@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('title_en');
             $table->string('title_mm')->nullable();
             $table->string('title_ch')->nullable();
-            $table->text('desc_en', 65535)->nullable();
-            $table->text('desc_mm', 65535)->nullable();
-            $table->text('desc_ch', 65535)->nullable();
+            $table->longText('desc_en')->nullable();
+            $table->longText('desc_mm')->nullable();
+            $table->longText('desc_ch')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

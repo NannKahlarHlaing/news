@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class VideoController extends Controller
 {
     public function index(){
-        $posts = Video::where('deleted_at', NULL)->get();
+        $posts = Video::all();
         return view('backend.videos.index', compact('posts'));
     }
 
@@ -43,6 +43,7 @@ class VideoController extends Controller
     }
 
     public function update(Request $request){
+        dd($request->id);
         $this->validation($request);
 
         $post = Video::find($request->id);

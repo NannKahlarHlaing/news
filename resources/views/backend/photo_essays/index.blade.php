@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-12">
-                        <h3>{{ $item->title }}</h3>
+                        <h3>{{ $item->title_en }}</h3>
                     </div>
                     <div class="col-6">
                         <h5 class="fw-bold">Author: </h5> <span>{{ $item->author }}</span>

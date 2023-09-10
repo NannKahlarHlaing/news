@@ -22,9 +22,9 @@ return new class extends Migration
             $table->text('short_desc_en', 65535)->nullable();
             $table->text('short_desc_mm', 65535)->nullable();
             $table->text('short_desc_ch', 65535)->nullable();
-            $table->text('desc_en', 65535)->nullable();
-            $table->text('desc_mm', 65535)->nullable();
-            $table->text('desc_ch', 65535)->nullable();
+            $table->longText('desc_en')->nullable();
+            $table->longText('desc_mm')->nullable();
+            $table->longText('desc_ch')->nullable();
             $table->string('img_link');
             $table->string('author');
             $table->string('date');

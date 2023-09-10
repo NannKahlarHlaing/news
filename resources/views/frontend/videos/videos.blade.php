@@ -56,7 +56,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="border-bottom border-white pb-3">
-                                        <a href="#">
+                                        <a href="{{ route('video.details', $latest->id) }}">
                                             <p class="card-text">
                                                 @if (app()->getLocale() == 'mm')
                                                     {{ $latest->title_mm }}
@@ -151,7 +151,7 @@
                 <div class="col-lg-3 mb-3">
                     <div class="card">
                         <a data-fancybox href="{{ $item->video_url }}" >
-                        <img class="card-img-top img-fluid" src="/storage/images/original/{{ $latest->img_url }}" />
+                        <img class="card-img-top img-fluid" src=" {{ asset('/storage/images/thumbnail') . '/' . $item->img_url }}" />
                         </a>
                         <div class="card-body">
                             <p class="card-text">

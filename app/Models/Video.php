@@ -13,6 +13,6 @@ class Video extends Model
     protected $fillable = ['video_url', 'img_url', 'category_id', 'title_en', 'title_mm' ,'title_ch', 'desc_en', 'desc_mm', 'desc_ch'];
 
     public function category(){
-        return $this->belongsTo('App\Models\Category', 'id');
+        return $this->belongsTo('App\Models\Category', 'category_id');
     }
 }

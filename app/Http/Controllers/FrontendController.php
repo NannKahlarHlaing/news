@@ -131,9 +131,7 @@ class FrontendController extends Controller
         ->orderBy('id', 'desc')
         ->first();
 
-        $latestTen = Post::orderBy('id', 'desc')
-            ->take(9)
-            ->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(9);
 
         $most_view = Post::orderBy('views', 'desc')->first();
 
@@ -146,7 +144,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
+        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
     }
 
     public function sub_categories($language, $sub_category){
@@ -156,9 +154,7 @@ class FrontendController extends Controller
                 ->orderBy('id', 'desc')
                 ->first();
 
-        $latestTen = Post::orderBy('id', 'desc')
-            ->take(9)
-            ->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(9);
 
         $most_view = Post::orderBy('views', 'desc')->first();
 
@@ -171,7 +167,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
+        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
     }
 
     public function sub_categoriesEn($sub_category){
@@ -183,7 +179,6 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->paginate(8);
         $latest = Video::latest()->first();
-        $recents = Video::latest()->skip(1)->take(4)->get();
         $categories = Category::where('deleted_at', NULL)->get();
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
@@ -193,7 +188,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.videos.videos', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'latest', 'recents', 'categories'));
+        return view('frontend.videos.videos', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'latest', 'categories'));
     }
 
     public function show_photos(){
@@ -216,9 +211,7 @@ class FrontendController extends Controller
         $latest = PhotoEssay::orderBy('created_at', 'desc')
                     ->first();
 
-        $latestTen = PhotoEssay::orderBy('id', 'desc')
-                    ->take(9)
-                    ->get();
+        $posts = PhotoEssay::orderBy('id', 'desc')->paginate(9);
 
         $most_view = Post::orderBy('views', 'desc')->first();
 
@@ -231,7 +224,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'latestTen'));
+        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
     }
 
     public function donation(){

@@ -26,9 +26,9 @@ return new class extends Migration
             $table->text('short_desc_en', 65535)->nullable();
             $table->text('short_desc_mm', 65535)->nullable();
             $table->text('short_desc_ch', 65535)->nullable();
-            $table->text('desc_en', 65535)->nullable();
-            $table->text('desc_mm', 65535)->nullable();
-            $table->text('desc_ch', 65535)->nullable();
+            $table->longText('desc_en')->nullable();
+            $table->longText('desc_mm')->nullable();
+            $table->longText('desc_ch')->nullable();
             $table->integer('views');
             $table->integer('like')->nullable();
             $table->integer('love')->nullable();

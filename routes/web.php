@@ -346,7 +346,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         Route::get('/cartoons', 'cartoons');
         Route::get('/{title}', 'pages');
         Route::get('/category/{category}', 'main_categories')->name('main_categories.sub_pages.lang');
-        Route::get('/News/{sub_category}', 'sub_categories');
+        Route::get('/News/{sub_category}', 'sub_categories')->name('sub_pages.lang');
 
     });
 });
