@@ -56,16 +56,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="border-bottom border-white pb-3">
-                                        <a href="{{ route('video.details', $latest->id) }}">
-                                            <p class="card-text">
-                                                @if (app()->getLocale() == 'mm')
-                                                    {{ $latest->title_mm }}
-                                                @elseif(app()->getLocale() == 'ch')
-                                                    {{ $latest->title_ch }}
-                                                @else
-                                                    {{ $latest->title_en }}
-                                                @endif
-                                            </p>
+                                        <a href="{{ url('/videos') . '/' . $latest->id }}">
+                                            @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title_mm }}</a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title_ch }}</a>
+                                        @else
+                                            <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title_en }}</a>
+                                        @endif
                                         </a>
                                     </h2>
                                 </div>
@@ -93,17 +91,7 @@
         <div class="row d-flex-center">
             <div class="col-12">
                 <div class="row my-3">
-                    <div class="col-3">
-                        {{-- <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                              Pick A Channel
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                @foreach ($categories as $item)
-                                    <li><a class="dropdown-item">{{ $item->name_en }}</a></li>
-                                @endforeach
-                            </ul>
-                        </div> --}}
+                    <div class="col-md-3 col-6">
                         <select class="btn btn-secondary" name="categories" id="categories">
                             <option value=""> Pick A Channel</option>
                             @foreach ($categories as $item)
@@ -119,10 +107,10 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-6">
                         <h2 class="text-center">FILTERS</h2>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         @if (session()->get('locale') == 'mm')
                             <form class="d-flex" id="search-form" action="{{ url('/mm/videos/search') }}" method="GET">
                                 @csrf

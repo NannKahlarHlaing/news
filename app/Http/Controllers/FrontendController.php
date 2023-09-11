@@ -117,6 +117,7 @@ class FrontendController extends Controller
     }
 
     public function main_categories($language, $name){
+        // dd(Route::currentRouteName());
         $category = Category::where('name_en', $name)->first();
 
         $id = $category->id;
@@ -147,7 +148,7 @@ class FrontendController extends Controller
         return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
     }
 
-    public function sub_categories($language, $sub_category){
+    public function sub_categories($language, $main_categroy, $sub_category){
         $cat= SubCategory::where('name_en', $sub_category)->get();
         $sub_cat = $cat->first();
         $latest = Post::where('sub_category_id', $sub_cat->id)
@@ -170,8 +171,8 @@ class FrontendController extends Controller
         return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
     }
 
-    public function sub_categoriesEn($sub_category){
-        return call_user_func_array([$this, 'sub_categories'], ['en', $sub_category]);
+    public function sub_categoriesEn($main_categroy, $sub_category){
+        return call_user_func_array([$this, 'sub_categories'], ['en', $main_categroy, $sub_category]);
     }
 
     public function show_videos(){

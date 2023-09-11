@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="col-md-5 mb-3">
                     <div class="row">
@@ -70,15 +70,15 @@
                         <div class="row related">
                             @foreach ($relatedPosts as $related)
                                 <div class="col-md-12 py-1">
-                                    <h6><a href="" >
+                                    <h6>
                                         @if (app()->getLocale() == 'mm')
-                                            {{ $related->title_mm }}
+                                            <a href="{{ url('/mm/videos') . '/' . $related->id }}" >{{ $related->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
-                                            {{ $related->title_ch }}
+                                            <a href="{{ url('/ch/videos') . '/' . $related->id }}" >{{ $related->title_ch }}</a>
                                         @else
-                                            {{ $related->title_en }}
+                                            <a href="{{ url('/videos') . '/' . $related->id }}" >{{ $related->title_en }}</a>
                                         @endif
-                                        </a></h6>
+                                    </h6>
                                 </div>
                             @endforeach
                         </div>

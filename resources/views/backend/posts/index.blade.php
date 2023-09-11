@@ -29,7 +29,7 @@
         <div class="col-12">
             <form class="form-inline" action="">
                 <input type="hidden" name="search" value="1">
-                <input class="form-control" type="text" name="title" value="{{ $title }}" placeholder="Enter Title">
+                <input class="form-control" type="text" name="title" value="{{ $title }}" placeholder="Search by Title, Short Description or Description">
 
                 <select class="form-control form-select mx-2" name="category" id="">
                     <option value="">Select Category</option>

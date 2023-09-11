@@ -12,26 +12,22 @@
                 <div class="row">
                     <div class="col-12">
                         <h2>
-                            @if (Route::currentRouteName() == 'sub_pages')
-                                <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">
-                                    @if (app()->getLocale() == 'mm')
-                                        {{ $latest->title_mm }}
-                                    @elseif(app()->getLocale() == 'ch')
-                                        {{ $latest->title_ch }}
-                                    @else
-                                        {{ $latest->title_en }}
-                                    @endif
-                                </a>
+                            @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
+                                @if (app()->getLocale() == 'mm')
+                                    <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
+                                @elseif(app()->getLocale() == 'ch')
+                                    <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                @else
+                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">{{ $latest->title_en }}</a>
+                                @endif
                             @else
-                                <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}">
-                                    @if (app()->getLocale() == 'mm')
-                                        {{ $latest->title_mm }}
-                                    @elseif(app()->getLocale() == 'ch')
-                                        {{ $latest->title_ch }}
-                                    @else
-                                        {{ $latest->title_en }}
-                                    @endif
-                                </a>
+                                @if (app()->getLocale() == 'mm')
+                                    <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
+                                @elseif(app()->getLocale() == 'ch')
+                                    <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                @else
+                                    <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_en }}</a>
+                                @endif
                             @endif
                         </a></h2>
                         <p>
@@ -57,14 +53,14 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        @if (Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang' || Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang')
-                        @if (app()->getLocale() == 'mm')
-                            {{ $sub_cat->name_mm }}
-                        @elseif(app()->getLocale() == 'ch')
-                            {{ $sub_cat->name_ch }}
-                        @else
-                            {{ $sub_cat->name_en }}
-                        @endif
+                        @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
+                            @if (app()->getLocale() == 'mm')
+                                {{ $sub_cat->name_mm }}
+                            @elseif(app()->getLocale() == 'ch')
+                                {{ $sub_cat->name_ch }}
+                            @else
+                                {{ $sub_cat->name_en }}
+                            @endif
                         @else
                             {{ $sub_cat[1] }}
                         @endif
@@ -82,26 +78,23 @@
                     @foreach ($posts as $ten)
                         <div class="col-md-4 mb-3 py-3 border-bottom">
                             <h5>
-                                @if (Route::currentRouteName() == 'sub_pages')
-                                    <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">
-                                        @if (app()->getLocale() == 'mm')
-                                            {{ $ten->title_mm }}
-                                        @elseif(app()->getLocale() == 'ch')
-                                            {{ $ten->title_ch }}
-                                        @else
-                                            {{ $ten->title_en }}
-                                        @endif
-                                    </a>
+                                @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
+                                    @if (app()->getLocale() == 'mm')
+                                        <a href="{{ url('/mm/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <a href="{{ url('/ch/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                    @else
+                                        <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_en }}</a>
+                                    @endif
                                 @else
-                                    <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $ten->id }}">
-                                        @if (app()->getLocale() == 'mm')
-                                            {{ $ten->title_mm }}
-                                        @elseif(app()->getLocale() == 'ch')
-                                            {{ $ten->title_ch }}
-                                        @else
-                                            {{ $ten->title_en }}
-                                        @endif
-                                    </a>
+                                    @if (app()->getLocale() == 'mm')
+                                        <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                    @else
+                                    <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_en }}</a>
+                                    @endif
+
                                 @endif
                             </h5>
                             <div class="row">
@@ -126,7 +119,7 @@
                                             {!! $ten->short_desc_mm !!}
                                         @elseif(app()->getLocale() == 'ch')
                                             {!! $ten->short_desc_ch !!}
-                                        @else                                        
+                                        @else
                                             {!! $ten->short_desc_en !!}
                                         @endif
                                     </p>

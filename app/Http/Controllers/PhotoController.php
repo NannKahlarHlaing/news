@@ -47,6 +47,7 @@ class PhotoController extends Controller
             $thumbnail = $original->fit(400, 300, function($constraint){
                 $constraint->aspectRatio();
             })->save(public_path('storage/images/thumbnail/' . $imageName));
+            
             $post->url = $imageName;
         }
 

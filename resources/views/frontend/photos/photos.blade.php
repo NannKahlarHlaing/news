@@ -173,7 +173,7 @@
                 <div class="row imglist">
                     @foreach ($posts as $item)
                     <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="{{ asset('/storage/images/original') . '/' . $item->url }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                        <a href="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
                             <img src="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" width="100%"  />
                         </a>
                     </div>
@@ -181,7 +181,6 @@
                 </div>
                 <div class="row py-5">
                     <div class="col-12 text-center">
-                        {{-- <button class="btn btn-danger">View All Photos</button> --}}
                         {{ $posts->appends(Request::all())->links() }}
                     </div>
                 </div>

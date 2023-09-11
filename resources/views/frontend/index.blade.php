@@ -6,9 +6,6 @@
     <title>The VWXYZ Online</title>
 
     <!-- google font -->
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet"> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -31,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 </head>
 <body>
@@ -46,8 +43,7 @@
             <div class="col-12">
                 <nav class="navbar navbar-expand-lg navbar-light aa">
                     <div class="" id="menu-bar">
-                        <button class="btn btn-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>
-
+                        <button class="btn btn-transparent d-none d-lg-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>
                         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                             <div class="container-fluid">
                                 <div class="row d-flex justify-content-center">
@@ -86,21 +82,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid col" id="nav-hide">
-
-                        @if (session()->get('locale') == 'mm')
-                            <a class="navbar-brand" href="{{ url('/mm') }}">
-                                Home MM
-                            </a>
-                        @elseif (session()->get('locale') == 'ch')
-                            <a class="navbar-brand" href="{{ url('/ch') }}">
-                                Home CH
-                            </a>
-                        @else
-                            <a class="navbar-brand" href="{{ url('/') }}">
-                                Home
-                            </a>
-                        @endif
+                    <div class="container-fluid col-lg" id="nav-hide">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            Home
+                        </a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -126,38 +111,14 @@
                                         </li>
                                     @endforeach
                                 @endif
-
-
-                                {{-- <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                                </li> --}}
-                                {{-- <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
-                                <li><a href="" class="nav-link" id="en">English</a></li>
-                                <li><a href="" class="nav-link" id="mm">Myanmar</a></li>
-                                <li><a href="" class="nav-link" id="ch">Chinese</a></li> --}}
                             </ul>
 
                         </div>
                     </div>
-                    <div class="col" id="site-title">THE VWXYZ ONLINE</div>
-                    <div class="col-2 text-end" id="search">
+                    <div class="col-lg" id="site-title">THE VWXYZ ONLINE</div>
+                    <div class="col-lg-2 col-12 text-end mt-md-0 mt-2" id="search">
                         <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-
                 </nav>
                 @if (session()->get('locale') == 'mm')
                     <form class="d-flex" id="search-form" action="{{ url('/mm/posts/search') }}" method="GET">
@@ -197,198 +158,10 @@
             <div class="row d-flex-center" style="margin: 0">
                 <div class="col-12 p-3">
                     <div class="row mb-4 d-flex justify-content-end align-items-center">
-                        {{-- <div class="col-10">
-                            <nav class="nav">
-                                @if (session()->get('locale') == 'mm')
-                                    @foreach ($footer_menus_mm as $item)
-                                        <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
-                                    @endforeach
-                                @elseif (session()->get('locale') == 'ch')
-                                    @foreach ($footer_menus_ch as $item)
-                                        <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
-                                    @endforeach
-                                @else
-                                    @foreach ($footer_menus_en as $item)
-                                        <a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a>
-                                    @endforeach
-                                @endif
-                                <a class="nav-link active" href="#">COPYRIGHT</a>
-                                <a class="nav-link" href="#">CODE OF ETHICS</a>
-                                <a class="nav-link" href="#">PRIVACY POLICY</a>
-                                <a class="nav-link" href="#">TEAM</a>
-                                <a class="nav-link" href="#">ABOUT US</a>
-                                <a class="nav-link" href="#">CONTACT</a>
-                            </nav>
-                        </div> --}}
                         <div class="col-2 d-flex justify-content-end test-end">
                             <a href="" onclick="topFunction()" id="top">Top <i class="fa-sharp fa-solid fa-angle-up"></i></a>
                         </div>
                     </div>
-                    {{-- <div class="row d-flex-center">
-                        <div class="row d-flex-center footer-social column-gap-3">
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <i class="fa-brands fa-square-facebook"></i>
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>3.8M+ Fans</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-brands fa-youtube"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>12K Follow</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>SUBS</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-wifi"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>FEED</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-thumbs-up"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>LIKED</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-heart"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>LOVED</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-face-surprise"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>WOWED</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-face-sad-tear"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>SAD</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-camera"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>PHOTOS</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-1">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-12 d-flex-center">
-                                            <div class="btn btn-dark btn-circle mb-3 border-white text-center">
-                                                <i class="fa-solid fa-house"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 bg-danger rounded text-center">
-                                            <span>HOME</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="row d-flex justify-content-between">
                         <div class="col-md-3">
                             <img src="" alt="logo" width="100%">
@@ -418,7 +191,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mt-md-0 mt-3">
                             <h6>About Us</h6>
                             <p>
                                 On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même

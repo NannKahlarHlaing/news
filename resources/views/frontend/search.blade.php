@@ -20,9 +20,9 @@
                     <div class="col-md-3 mb-3 py-3 border-bottom">
                         <h5>
                             @if ($route == 'post_search')
-                            <a href="{{ url('/category') . '/' . $post->category->name_en . '/' . $post->id }}">
+                                <a href="{{ url('/category') . '/' . $post->category->name_en . '/' . $post->id }}">
                             @else
-                            <a href="{{ url('/videos') . '/' . $post->id }}">
+                                <a href="{{ url('/videos') . '/' . $post->id }}">
                             @endif
 
                             @if (app()->getLocale() == 'mm')
@@ -52,23 +52,23 @@
                                 @if ($route == 'post_search')
                                     <p>
                                         @if (app()->getLocale() == 'mm')
-                                        {!! \Illuminate\Support\Str::limit($post->short_desc_mm) !!}
+                                        {!! $post->short_desc_mm !!}
 
                                         @elseif(app()->getLocale() == 'ch')
-                                        {!! \Illuminate\Support\Str::limit($post->short_desc_ch) !!}
+                                        {!! $post->short_desc_ch !!}
                                         @else
-                                        {!! \Illuminate\Support\Str::limit($post->short_desc_en) !!}
+                                        {!! $post->short_desc_en !!}
                                         @endif
                                     </p>
                                 @else
                                 <p>
                                     @if (app()->getLocale() == 'mm')
-                                    {!! \Illuminate\Support\Str::limit($post->desc_mm) !!}
+                                    {!! $post->desc_mm !!}
 
                                     @elseif(app()->getLocale() == 'ch')
-                                    {!! \Illuminate\Support\Str::limit($post->desc_ch) !!}
+                                    {!! $post->desc_ch !!}
                                     @else
-                                    {!! \Illuminate\Support\Str::limit($post->desc_en) !!}
+                                    {!! $post->desc_en !!}
                                     @endif
                                 </p>
                                 @endif
@@ -81,7 +81,7 @@
             @endif
 
 
-            {{ $posts->appends(Request::all())->links() }}
+            {{-- {{ $posts->appends(Request::all())->links() }} --}}
         </div>
     </div>
 </section>

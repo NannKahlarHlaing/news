@@ -234,7 +234,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
     Route::get('/category/{category}', 'main_categoriesEn')->name('main_categories.sub_pages');
-    Route::get('/News/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
+    Route::get('/categories/{main_category}/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
     // Route::get('/{title}', 'pagesEn')->name('frontend.pages');
     Route::get('/{title}', function($path){
         if($path == 'mm' || $path == 'ch'){
@@ -336,7 +336,6 @@ Route::group(['prefix' => '{language}'], function ($language) {
     Route::get('/photo_essays/{id}', [PhotoEssayController::class, 'details']);
 
     Route::controller(FrontendController::class)->group(function(){
-
         Route::get('/videos', 'show_videos');
         Route::get('/photos', 'show_photos');
         Route::get('/photo_essays', 'photo_essays');
@@ -346,7 +345,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         Route::get('/cartoons', 'cartoons');
         Route::get('/{title}', 'pages');
         Route::get('/category/{category}', 'main_categories')->name('main_categories.sub_pages.lang');
-        Route::get('/News/{sub_category}', 'sub_categories')->name('sub_pages.lang');
+        Route::get('/categories/{main_category}/{sub_category}', 'sub_categories')->name('sub_pages.lang');
 
     });
 });
