@@ -32,48 +32,94 @@
 
 </head>
 <body>
-    <section class="d-flex justify-content-center sticky-lg-top navScroll" id="navbar">
+    <section class="bg-dark">
         <div class="container-fluid">
-            <div class="col-12 bg-dark  text-end">
+            <div class="col-12 py-1 text-end locale">
                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                 <a href="" class="text-white me-2" id="en">English</a>
                 <a href="" class="text-white me-2" id="mm">Myanmar</a>
                 <a href="" class="text-white" id="ch">Chinese</a>
             </div>
-            <div class="col-12">
-                <nav class="navbar navbar-expand-lg navbar-light aa">
-                    <div class="" id="menu-bar">
-                        <button class="btn btn-transparent d-none d-lg-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>
-                        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-                            <div class="container-fluid">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-11">
-                                        <div class="offcanvas-header">
-                                            <h5 id="offcanvasTopLabel">The VWXYZ Online</h5>
-                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                        </div>
-                                        <div class="offcanvas-body d-flex justify-content-start">
-                                            <div class="col">News</div>
-                                            <div class="col">Opinion</div>
-                                            <div class="col">Specials</div>
-                                            <div class="col">
-                                                <div>
-                                                    <h6><a href="">LifeStyle</a></h6>
+        </div>
+    </section>
+
+    <section class="d-flex justify-content-center navScroll" id="navbar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light aa">
+                        <div class="" id="menu-bar">
+                            <button class="btn btn-transparent d-none d-lg-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>
+                            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                                <div class="container-fluid">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-11">
+                                            <div class="offcanvas-header">
+                                                <h5 id="offcanvasTopLabel">The VWXYZ Online</h5>
+                                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body d-flex justify-content-start">
+                                                <div class="col">
+                                                    <h6><a href="{{ url('/category/News')  }}">News</a></h6>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Burma') }}">Burma</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Politics') }}">Politics</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/World') }}">World</a></h6>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <h6><a href="{{ route('frontend.videos') }}">Videos</a></h6>
+                                                <div class="col">
+                                                    <h6><a href="{{ url('/category/Opinion')  }}">Opinion</a></h6>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Commentary') }}">Commentary</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Editorial') }}">Editorial</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Analysis') }}">Analysis</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <h6><a href="{{ route('frontend.photos') }}">Photos</a></h6>
+                                                <div class="col">
+                                                    <h6><a href="{{ url('/category/Specials')  }}">Specials</a></h6>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <h6><a href="{{ route('frontend.photo_essays') }}">Photo Essays</a></h6>
-                                                </div>
-                                                <div>
-                                                    <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>
-                                                </div>
-                                                <div class="">
-                                                    <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
+                                                <div class="col">
+                                                    <div>
+                                                        <h6><a href="{{ url('/category/LifeStyle')  }}">LifeStyle</a></h6>
+                                                    </div>
+                                                    {{-- <div>
+                                                        <h6><a href="{{ route('frontend.videos') }}">Videos</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ route('frontend.photos') }}">Photos</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ route('frontend.photo_essays') }}">Photo Essays</a></h6>
+                                                    </div>
+                                                    <div>
+                                                        <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>
+                                                    </div>
+                                                    <div class="">
+                                                        <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -81,67 +127,67 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="container-fluid col-lg" id="nav-hide">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            Home
-                        </a>
+                        <div class="container-fluid col-lg" id="nav-hide">
+                            <a class="navbar-brand" href="{{ url('/') }}">
+                                Home
+                            </a>
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                @if (session()->get('locale') == 'mm')
-                                    @foreach ($main_menus_mm as $item)
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
-                                        </li>
-                                    @endforeach
-                                @elseif (session()->get('locale') == 'ch')
-                                    @foreach ($main_menus_ch as $item)
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
-                                        </li>
-                                    @endforeach
-                                @else
-                                    @foreach ($main_menus_en as $item)
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
-                                        </li>
-                                    @endforeach
-                                @endif
-                            </ul>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    @if (session()->get('locale') == 'mm')
+                                        @foreach ($main_menus_mm as $item)
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    @elseif (session()->get('locale') == 'ch')
+                                        @foreach ($main_menus_ch as $item)
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    @else
+                                        @foreach ($main_menus_en as $item)
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg" id="site-title">THE VWXYZ ONLINE</div>
-                    <div class="col-lg-2 col-12 text-end mt-md-0 mt-2" id="search">
-                        <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </nav>
-                @if (session()->get('locale') == 'mm')
-                    <form class="d-flex" id="search-form" action="{{ url('/mm/posts/search') }}" method="GET">
-                        @csrf
-                        <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
-                        <i class="fa-solid fa-xmark" id="btn-close"></i>
-                    </form>
-                @elseif (session()->get('locale') == 'ch')
-                    <form class="d-flex" id="search-form" action="{{ url('/ch/posts/search') }}" method="GET">
-                        @csrf
-                        <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
-                        <i class="fa-solid fa-xmark" id="btn-close"></i>
-                    </form>
-                @else
-                    <form class="d-flex" id="search-form" action="{{ url('/posts/search') }}" method="GET">
-                        @csrf
-                        <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
-                        <i class="fa-solid fa-xmark" id="btn-close"></i>
-                    </form>
-                @endif
+                        <div class="col-lg" id="site-title">THE VWXYZ ONLINE</div>
+                        <div class="col-lg-2 col-12 text-end mt-2" id="search">
+                            <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </nav>
+                    @if (session()->get('locale') == 'mm')
+                        <form class="d-flex" id="search-form" action="{{ url('/mm/posts/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <i class="fa-solid fa-xmark" id="btn-close"></i>
+                        </form>
+                    @elseif (session()->get('locale') == 'ch')
+                        <form class="d-flex" id="search-form" action="{{ url('/ch/posts/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <i class="fa-solid fa-xmark" id="btn-close"></i>
+                        </form>
+                    @else
+                        <form class="d-flex" id="search-form" action="{{ url('/posts/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <i class="fa-solid fa-xmark" id="btn-close"></i>
+                        </form>
+                    @endif
+
+                </div>
 
             </div>
-
         </div>
     </section>
     <div class="container-fluid">

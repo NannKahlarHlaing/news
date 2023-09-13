@@ -5,7 +5,7 @@
 <section class="pt-5">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-6">
+            <div class="col-md-6 mb-md-0 mb-3">
                 <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
             </div>
             <div class="col-md-6">
@@ -39,10 +39,10 @@
                                 {!! $latest->short_desc_en !!}
                             @endif
                         </p>
-                        @if (Route::currentRouteName() == 'sub_pages')
-                            <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger">Read Now</a>
+                        @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
+                            <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
                         @else
-                            <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}">
+                            <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
                         @endif
                     </div>
                 </div>
@@ -72,11 +72,11 @@
 </section>
 <section>
     <div class="container-fluid">
-        <div class="row d-flex-center feature">
-            <div class="col-md-8">
+        <div class="row d-flex-center">
+            <div class="col-lg-8 col-md-6">
                 <div class="row">
                     @foreach ($posts as $ten)
-                        <div class="col-md-4 mb-3 py-3 border-bottom">
+                        <div class="col-lg-4 mb-3 pb-3 border-bottom">
                             <h5>
                                 @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
                                     @if (app()->getLocale() == 'mm')
@@ -130,7 +130,7 @@
                     <div class="">{{ $posts->appends(Request::all())->links() }}</div>
                 </div>
             </div>
-            <div class="col-md-4 top">
+            <div class="col-lg-4 col-md-6 top">
                 <div class="row">
                     <div class="col-12 p-0">
                         <img src="/storage/images/thumbnail/{{ $most_view->img_link}}" alt="image" width="100%" height="250px">

@@ -90,7 +90,7 @@
     <div class="container-fluid">
         <div class="row d-flex-center">
             <div class="col-12">
-                <div class="row my-3">
+                <div class="row d-flex align-items-center my-3">
                     <div class="col-md-3 col-6">
                         <select class="btn btn-secondary" name="categories" id="categories">
                             <option value=""> Pick A Channel</option>
@@ -136,7 +136,7 @@
         </div>
         <div class="row" id="post_container">
             @foreach ($posts as $item)
-                <div class="col-lg-3 mb-3">
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="card">
                         <a data-fancybox href="{{ $item->video_url }}" >
                         <img class="card-img-top img-fluid" src=" {{ asset('/storage/images/thumbnail') . '/' . $item->img_url }}" />
@@ -155,7 +155,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="row py-5">
+            <div class="row">
                 <div class="col-12 text-center" id="pagination">
                     <div class="">{{ $posts->appends(Request::all())->links() }}</div>
                 </div>
@@ -177,17 +177,6 @@
 <script>
 
     $(document).ready(function(){
-          // Attach click event to single image
-        // document.getElementById("singleImage").addEventListener("click", function() {
-        //     // Open the carousel modal
-        //     $('#carouselModal').modal('show');
-        // });
-        // //  Set caption from card text
-        // $('.card-deck a').fancybox({
-        //     caption : function( instance, item ) {
-        //     return $(this).parent().find('.card-text').html();
-        //     }
-        // });
 
         $('#categories').on('change', function(event){
             event.preventDefault();

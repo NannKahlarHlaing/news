@@ -178,7 +178,7 @@ class FrontendController extends Controller
     public function show_videos(){
         $posts = Video::where('deleted_at', NULL)
                     ->orderBy('id', 'desc')
-                    ->paginate(8);
+                    ->paginate(2);
         $latest = Video::latest()->first();
         $categories = Category::where('deleted_at', NULL)->get();
 

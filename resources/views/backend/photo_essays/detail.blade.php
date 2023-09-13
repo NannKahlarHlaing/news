@@ -133,7 +133,7 @@
 
                 <div class="">
                     <a data-fancybox="gallery" href="/storage/images/original/{{ $post->img_link }}">
-                        <img src="/storage/images/original/{{ $post->img_link }}"style="height:600px;width: 100%;object-fit:cover;">
+                        <img src="/storage/images/original/{{ $post->img_link }}" class="ph-img" style="">
                     </a>
                 </div>
 

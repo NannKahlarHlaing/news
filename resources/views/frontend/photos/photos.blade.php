@@ -161,7 +161,7 @@
     <div class="container-fluid">
         <div class="row d-flex-center">
             <div class="col-12">
-                <h2 class="text-center">LATEST PHOTOS</h2>
+                <h2 class="text-center mt-3">LATEST PHOTOS</h2>
             </div>
         </div>
     </div>
@@ -257,7 +257,6 @@
                     method: 'GET',
                     data: {value: value, id: id},
                     success: function(response){
-                        console.log('response: ' + response);
                         element.html(response);
                     },
                     error: function(xhr, status, error) {

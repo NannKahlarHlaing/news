@@ -2,19 +2,15 @@
 
 @section('content')
     <section class="contact-title">
-        <div class="container-fluid">
-            <div class="row d-flex-center">
+        <div class="container-fluid my-3">
+            <div class="row">
                 <div class="col-12">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Contact</h2>
-                        </div>
-                    </div>
+                    <h2>Contact</h2>
                 </div>
             </div>
         </div>
     </section>
-    <section class="py-5 contact">
+    <section class="contact">
         <div class="container-fluid">
             <div class="row d-flex-center">
                 <div class="col-12">
@@ -105,7 +101,7 @@
                                         </div>
                                     </div>
                                     <div class="row d-flex mb-3">
-                                        <div class="col-lg-2 col-md-2 col-2 ">
+                                        <div class="col-lg-2 col-md-1 col-2 ">
                                             <i class="fa-solid fa-phone-volume"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-10">
@@ -115,10 +111,8 @@
                                         </div>
                                     </div>
                                     <div class="row d-flex mb-3">
-                                        <div class="col-lg-2 col-md-2 col-2 ">
-                                            {{-- <div class="btn btn-transparent btn-circle-fe"> --}}
-                                                <i class="fa-solid fa-location-dot"></i>
-                                            {{-- </div> --}}
+                                        <div class="col-lg-2 col-md-1 col-2 ">
+                                            <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-10">
                                             <address>{{ $info->address }}</address>

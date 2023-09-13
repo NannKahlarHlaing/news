@@ -154,7 +154,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_mm">Description_EN</label>
+                                <label for="desc_mm">Description_MM</label>
                                 <textarea class="summernote form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm') }}</textarea>
                                 @error('desc_mm')
                                     <div class="invalid-feedback">

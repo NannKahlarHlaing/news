@@ -4,12 +4,12 @@
     <section class="py-5">
         <div class="container-fluid">
             <div class="row d-flex-center">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                     <div class="row">
                         <div class="col-12">
-                            <img src="/storage/images/original/{{ $post->img_url }}" class="img-fluid rounded-top" alt="...." width="100%">
+                            <img src="{{ asset('storage/images/original') . '/' . $post->img_url }}" class="img-fluid rounded-top" alt="...." width="100%">
                         </div>
-                        <div class="col-12 my-3">
+                        <div class="col-12 mt-4">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -25,7 +25,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="col-12 my-3">
+                        <div class="col-12 my-2">
                             <h2>
                                 @if (app()->getLocale() == 'mm')
                                     {{ $post->title_mm }}

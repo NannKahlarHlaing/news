@@ -38,7 +38,7 @@ class PageController extends Controller
 
         $post = Page::find($request->id);
 
-        $image = $request->file('img_link'); 
+        $image = $request->file('img_url');
 
         if($image != '' || $image != NULL){
 
@@ -86,7 +86,7 @@ class PageController extends Controller
 
         $postController->create_path();
 
-        $image = $request->file('img_url'); 
+        $image = $request->file('img_url');
 
         if($image != '' || $image != NULL){
 
@@ -101,7 +101,7 @@ class PageController extends Controller
         }else{
             $imageName = '';
         }
-        
+
         return [
             'img_url' => $imageName,
             'title_en' => $request->title_en,

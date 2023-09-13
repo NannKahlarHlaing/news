@@ -6,37 +6,11 @@
 @section('content')
 <section class="home">
     <div class="container-fluid">
-        <div class="row d-flex-center">
+        <div class="row">
             <div class="col-md-12 site-title">
                 <h2>The VWXYZ Online</h2>
             </div>
         </div>
-        {{-- <div class="row align-items-center d-flex-center border-dark border-top border-bottom">
-            <div class="col-9">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-2">
-                <div class="d-flex  justify-content-between align-items-center">
-                    <div class="col "><i class="fa-brands fa-facebook-f circle"></i></div>
-                    <div class="col"><i class="fa-brands fa-youtube circle"></i></div>
-                    <div class="col"><i class="fa-brands fa-twitter circle"></i></div>
-                    <div class="col"><i class="fa-solid fa-wifi circle"></i></div>
-
-                </div>
-            </div>
-        </div> --}}
         <div class="row d-flex-center feature">
             <div class="col-md-12">
                 <div class="row">
@@ -65,11 +39,11 @@
                                     @endif
                                 </p>
                                 @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger">Read Now</a>
+                                    <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger">Read Now</a>
+                                    <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
                                 @else
-                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger">Read Now</a>
+                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
                                 @endif
                             </div>
                         </div>
@@ -113,7 +87,7 @@
                     <div class="col-md-7">
                         <div class="row">
                             @foreach ($latestTen as $ten)
-                                <div class="col-6 mb-3 py-3 border-bottom">
+                                <div class="col-md-6 mb-3 py-3 border-bottom">
                                     <h6>
                                         @if (app()->getLocale() == 'mm')
                                             <a href="{{ url('/mm/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->id }} {{ $ten->title_mm }}</a>
@@ -554,7 +528,7 @@
                         </div>
                         <div class="row vd-home card-deck">
                             <div class="card">
-                                <a data-fancybox href="{{ $latest_photo->video_url }}" >
+                                <a data-fancybox href="{{ asset('storage/images/original/') . '/' . $latest_photo->url }}" >
                                   <img class="card-img-top img-fluid" src="{{ asset('storage/images/original/') . '/' . $latest_photo->url }}" />
                                 </a>
                                 <div class="card-body">
