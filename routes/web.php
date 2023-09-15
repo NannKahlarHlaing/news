@@ -15,6 +15,8 @@ use App\Http\Controllers\CartoonController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SubcribeController;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\PhotoEssayController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -243,7 +245,6 @@ Route::controller(FrontendController::class)->group(function(){
             $data = $frontendController->home_page();
 
             $latest = $data->latest;
-            $most_view = $data->most_view;
             $mostViews = $data->mostViews;
             $latestTen = $data->latestTen;
             $temperature = $data->temperature;
@@ -270,7 +271,7 @@ Route::controller(FrontendController::class)->group(function(){
             $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
             $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -290,7 +291,6 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $data = $frontendController->home_page();
 
         $latest = $data->latest;
-        $most_view = $data->most_view;
         $mostViews = $data->mostViews;
         $latestTen = $data->latestTen;
         $temperature = $data->temperature;
@@ -317,7 +317,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
 
     })->name('home');
 
@@ -349,6 +349,9 @@ Route::group(['prefix' => '{language}'], function ($language) {
 
     });
 });
+
+Route::get('/user/email/subscribe', [SubscribeController::class, 'emailSubscribe'])->name('email');
+
 
 Auth::routes();
 

@@ -6,19 +6,17 @@
 @section('content')
 <section class="home">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-12 site-title">
                 <h2>The VWXYZ Online</h2>
             </div>
         </div>
         <div class="row d-flex-center feature">
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row border-bottom">
+                    <div class="col-md-7">
                         <img src=" {{ asset('storage/images/original') . '/' . $latest->img_link }}" alt="image" width="100%">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-12">
                                 <h2><a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">
                                     @if (app()->getLocale() == 'mm')
@@ -48,143 +46,25 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="current">
-    <div class="half"></div>
-    <div class="container-fluid">
-        <div class="row text-white d-flex align-items-center">
-            <div class="col-6">
-                <div class="row d-flex align-items-center">
-                    <div class="col-6">
-                        <span>THE NEWS FOR</span>
-                        <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
-                    </div>
-                    <div class="col-md-5 col-6 text-end">
-                        <span>YANGON</span>
-                        <h5>{{ $temperature }} <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 most">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h4>THE VWXYZ ONLINE</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container-fluid">
-        <div class="row feature">
-            <div class="col-md-12">
-                <div class="row ">
-                    <div class="col-md-7">
-                        <div class="row">
-                            @foreach ($latestTen as $ten)
-                                <div class="col-md-6 mb-3 py-3 border-bottom">
-                                    <h6>
-                                        @if (app()->getLocale() == 'mm')
-                                            <a href="{{ url('/mm/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->id }} {{ $ten->title_mm }}</a>
-                                        @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->id }}   {{ $ten->title_ch }}</a>
-                                        @else
-                                            <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->id }}  {{ $ten->title_en }}</a>
-                                        @endif
-                                    </h6>
-                                    <div class="row d-flex justify-content-end">
-                                        <div class="col-lg-2 col-md-2 col-2">
-                                            <div class="row d-flex-center">
-                                                <div class="col-12">
-                                                    <div class=" mb-2">
-                                                        <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 text-center">
-                                                    <div class="mb-2">
-                                                        <span>{{ $ten->like }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 text-center">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </div>
-                                                <div class="col-12 text-center">
-                                                    <div class="mb-2">
-                                                        <span>{{ $ten->views }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-10 col-md-10 col-10 mb-2">
-                                            <span class="category">
-                                                @if (app()->getLocale() == 'mm')
-                                                    {{ $ten->category->name_mm }}
-                                                @elseif(app()->getLocale() == 'ch')
-                                                    {{ $ten->category->name_ch }}
-                                                @else
-                                                    {{ $ten->category->name_en }}
-                                                @endif
-
-                                            </span>
-                                            <img src="{{ asset('storage/images/thumbnail/') . '/' . $ten->img_link }}" alt="image" width="100%">
-                                        </div>
-                                        <div class="col-10">
-                                            <p>
-                                                @if (app()->getLocale() == 'mm')
-                                                    {!! $ten->short_desc_mm !!}
-                                                @elseif(app()->getLocale() == 'ch')
-                                                    {!! $ten->short_desc_ch !!}
-                                                @else
-                                                    {!! $ten->short_desc_en !!}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="col-md-5 top">
-                        <div class="row">
-                            <div class="col-12 p-0">
-                                <img src=" {{ asset('/storage/images/thumbnail/') . '/' . $most_view->img_link }}" alt="image" width="100%" height="250px">
-                                <span class="top-one d-block">1</span>
+                    <div class="col-md-5 top mt-5 mt-md-0 mt-lg-0">
+                        <div class="row current text-white d-flex align-items-center rounded-top">
+                            <div class="col-6">
+                                <span><p class="fw-bold">MOST READ</p></span>
+                                <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
                             </div>
-                            <div class="col-12" >
-                                <div class="row bg-danger ps-2 pt-5" >
-                                    <div class="col-md-2 col-2">
-                                        <div class="col-12 text-center">
-                                            <i class="fa-solid fa-eye"></i>
-                                            <div class="mb-2">
-                                                <span>{{ $most_view->views }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10 col-10">
-                                        <h2>
-                                            @if (app()->getLocale() == 'mm')
-                                            <a href="{{ url('/mm/category') . '/' . $most_view->category->name_en . '/' . $most_view->id }}" >{{ $most_view->title_mm }}</a>
-                                            @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/category') . '/' . $most_view->category->name_en . '/' . $most_view->id }}" >{{ $most_view->title_ch }}</a>
-                                            @else
-                                            <a href="{{ url('/category') . '/' . $most_view->category->name_en . '/' . $most_view->id }}" >{{ $most_view->title_en }}</a>
-                                            @endif
-                                        </h2>
-                                    </div>
-                                </div>
+                            <div class=" col-6 text-end">
+                                <span><p class="fw-bold">YANGON</p></span>
+                                <h5>{{ $temperature }} <sup>C</sup><i class="fa-solid fa-cloud-moon-rain fa-lg ms-1"></i></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
                                 @foreach ($mostViews as $key => $itemFive)
-                                    <div class="row py-4 top-ten d-flex align-items-center" >
-                                        <div class="col-md-2 col-3">
-                                            <div class="col-12">
-                                                <span class="top-one">{{ $key + 2 }}</span>
-                                            </div>
+                                    <div class="row py-1 top-ten d-flex align-items-center">
+                                        <div class="col-md-3 col-4">
+                                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
                                         </div>
-                                        <div class="col-md-10 col-9">
+                                        <div class="col-md-9 col-8">
                                             <h6>
                                                 @if (app()->getLocale() == 'mm')
                                                     <a href="{{ url('/mm/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
@@ -195,11 +75,75 @@
                                                 @endif
                                             </h6>
                                         </div>
+                                        <div class="col-12 d-flex align-items-center">
+                                            <span><span class="fw-bold">Viewers:</span> {{ $itemFive->views }}</span>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container-fluid pb-2">
+        <div class="row d-flex-center mt-3 mb-2 border-start border-5 border-color">
+            <div class="col-12">
+                <h2 class="mt-2">LATEST NEWS</h2>
+            </div>
+        </div>
+        <div class="row feature">
+            <div class="col-md-12">
+                <div class="row ">
+                    @foreach ($latestTen as $ten)
+                        <div class="col-md-6 pt-3 border-bottom">
+                            <div class="row d-flex justify-content-end">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class=" mb-2">
+                                            <span class="category">
+                                                @if (app()->getLocale() == 'mm')
+                                                    {{ $ten->category->name_mm }}
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    {{ $ten->category->name_ch }}
+                                                @else
+                                                    {{ $ten->category->name_en }}
+                                                @endif
+
+                                            </span>
+                                            <img src="{{ asset('storage/images/thumbnail/') . '/' . $ten->img_link }}" alt="image" width="100%" class="rounded">
+                                            <div class="col-12 d-flex align-items-center">
+                                                <span><span class="fw-bold">Viewers:</span> {{ $itemFive->views }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <h6>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/mm/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                        @else
+                                            <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_en }}</a>
+                                        @endif
+                                    </h6>
+                                    <p>
+                                        @if (app()->getLocale() == 'mm')
+                                            {!! $ten->short_desc_mm !!}
+                                        @elseif(app()->getLocale() == 'ch')
+                                            {!! $ten->short_desc_ch !!}
+                                        @else
+                                            {!! $ten->short_desc_en !!}
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -223,13 +167,15 @@
                     <span>EMAIL NEWSLETTER</span>
                 </div>
                 <div class="col-md-9">
-                    <div class="input-group ">
-                        <input type="text" class="form-control bg-transparent rounded" name="email" placeholder="Enter your email" aria-label="Enter your name" aria-describedby="button-addon2">
-                        <button class="btn btn-dark" type="button" id="addon2">Sign Up</button>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" name="checkbox" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" checked><span> Subscribe me to the daily newsletter.</span>
-                    </div>
+                    <form id="subscribe-form">
+                        <div class="input-group ">
+                            <input type="text" class="form-control bg-transparent rounded" placeholder="Enter your email" id="email" name="email">
+                            <button class="btn btn-dark" type="button" id="sign-up">Sign Up</button>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="checkbox" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" checked><span> Subscribe me to the daily newsletter.</span>
+                        </div>
+                    </form>
                 </div>
            </div>
             </div>
@@ -253,7 +199,7 @@
                                     <h3>Burma</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/News') . '/' . $catBurma }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/categories/News') . '/' . $catBurma }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($burmas as $burma)
@@ -284,7 +230,7 @@
                                     <h3>Business</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catBusiness }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($businesses as $business)
@@ -315,7 +261,7 @@
                                     <h3>In Person</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catInperson }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($persons as $person)
@@ -346,7 +292,7 @@
                                     <h3>Opnion</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catOpinion }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($opinions as $opinion)
@@ -381,7 +327,7 @@
                                     <h3>Lifestyle</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catLifeStyle }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($lifeStyles as $lifestyle)
@@ -409,10 +355,10 @@
                         <div class="card-body">
                             <div class="row d-flex justify-content-between align-items-center border-bottom border-success border-3 ">
                                 <div class="col p-0">
-                                    <h3>Special</h3>
+                                    <h3>Specials</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catSpecial }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($specials as $special)
@@ -443,7 +389,7 @@
                                     <h3>In Person</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catInperson }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($persons as $person)
@@ -474,7 +420,7 @@
                                     <h3>Opnion</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href=""><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category') . '/' . $catOpinion }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($opinions as $opinion)
@@ -588,19 +534,38 @@
 @endsection
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 <script>
-  // Attach click event to single image
-    document.getElementById("singleImage").addEventListener("click", function() {
-    // Open the carousel modal
-        $('#carouselModal').modal('show');
-        });
-        //  Set caption from card text
-        $('.card-deck a').fancybox({
-        caption : function( instance, item ) {
-        return $(this).parent().find('.card-text').html();
-        }
+    $(document).ready(function(){
+        $('#sign-up').click(function (e) {
 
+            e.preventDefault();
+
+            var email = $('#email').val();
+
+            $.ajax({
+                type: 'GET',
+                url : '{{ route('email')  }}',
+                data: {email},
+                success: function(response){
+                    console.log(response);
+                },
+            });
+        });
     });
+
+//   // Attach click event to single image
+//     document.getElementById("singleImage").addEventListener("click", function() {
+//     // Open the carousel modal
+//         $('#carouselModal').modal('show');
+//         });
+//         //  Set caption from card text
+//         $('.card-deck a').fancybox({
+//         caption : function( instance, item ) {
+//         return $(this).parent().find('.card-text').html();
+//         }
+
+//     });
 
 </script>
 @endsection

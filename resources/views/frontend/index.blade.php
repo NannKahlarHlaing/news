@@ -254,7 +254,7 @@
     @yield('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    // https://vwxyz.online/public/
+    // https://vwxyz.online/
     $(document).ready(function(){
         // Get the input element
         const searchInput = $('.search-input');
@@ -277,7 +277,7 @@
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/en/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
             }
@@ -292,7 +292,7 @@
             //
             console.log( ' ddd'+ $('#mm').text());
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
+                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/mm/');
             }else{
                 var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
             }
@@ -304,7 +304,7 @@
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/en/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
             }
@@ -363,9 +363,11 @@
         })
 
         let mybutton = document.getElementById("top");
+        function scrollFunction() {
+        }
 
         // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+        window.onscroll = scrollFunction();
 
         // When the user clicks on the button, scroll to the top of the document
         function topFunction() {

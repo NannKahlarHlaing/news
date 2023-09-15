@@ -70,7 +70,7 @@
         </div>
     </div>
 </section>
-<section>
+<section class="mb-3">
     <div class="container-fluid">
         <div class="row d-flex-center">
             <div class="col-lg-8 col-md-6">
@@ -130,53 +130,31 @@
                     <div class="">{{ $posts->appends(Request::all())->links() }}</div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 top">
+            <div class="col-lg-4 col-md-6 top mt-5 mt-md-0 mt-lg-0">
+                <div class="row current text-white d-flex align-items-center rounded-top">
+                    <span><p class="fw-bold">MOST READ</p></span>
+                    <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
+                </div>
                 <div class="row">
-                    <div class="col-12 p-0">
-                        <img src="/storage/images/thumbnail/{{ $most_view->img_link}}" alt="image" width="100%" height="250px">
-                        <span class="top-one d-block">1</span>
-                    </div>
-                    <div class="col-12" >
-                        <div class="row bg-danger ps-2 pt-5" >
-                            <div class="col-md-2 col-2">
-                                <div class="col-12">
-                                    <i class="fa-solid fa-eye"></i>
-                                    <div class="mb-2 ms-3">
-                                        <span>{{ $most_view->views }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10 col-10">
-                                <h2><a href="{{ url('/category') . '/' . $most_view->category->name_en . '/' . $latest->id }}" >
-                                    @if (app()->getLocale() == 'mm')
-                                        {{ $most_view->title_mm }}
-                                    @elseif(app()->getLocale() == 'ch')
-                                        {{ $most_view->title_ch }}
-                                    @else
-                                        {{ $most_view->title_en }}
-                                    @endif
-                                    </a></h2>
-                            </div>
-                        </div>
+                    <div class="col-12">
                         @foreach ($mostViews as $key => $itemFive)
-                            <div class="row py-3 top-ten d-flex align-items-center" >
-                                <div class="col-md-2 col-3">
-                                    <div class="col-12">
-                                        <span class="top-one">{{ $key + 2 }}</span>
-                                    </div>
+                            <div class="row py-1 top-ten d-flex align-items-center">
+                                <div class="col-md-3 col-4">
+                                    <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
                                 </div>
-                                <div class="col-md-10 col-9">
+                                <div class="col-md-9 col-8">
                                     <h6>
-                                        <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >
-                                            @if (app()->getLocale() == 'mm')
-                                                {{ $itemFive->title_mm }}
-                                            @elseif(app()->getLocale() == 'ch')
-                                                {{ $itemFive->title_ch }}
-                                            @else
-                                                {{ $itemFive->title_en }}
-                                            @endif
-                                        </a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/mm/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_ch }}</a>
+                                        @else
+                                            <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_en }}</a>
+                                        @endif
                                     </h6>
+                                </div>
+                                <div class="col-12 d-flex align-items-center">
+                                    <span><span class="fw-bold">Viewers:</span> {{ $itemFive->views }}</span>
                                 </div>
                             </div>
                         @endforeach

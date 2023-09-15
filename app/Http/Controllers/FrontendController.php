@@ -43,11 +43,7 @@ class FrontendController extends Controller
 
         $latest = Post::orderBy('created_at', 'desc')->first();
 
-        $most_view = Post::orderBy('views', 'desc')->first();
-
-        $maxViews = $most_view->views;
-
-        $mostViews = $this->mostFiveViews($most_view);
+        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
         $latestTen = Post::orderBy('id', 'desc')
                     ->take(6)
@@ -108,7 +104,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch','latest', 'most_view', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
 
     }
 
@@ -132,11 +128,9 @@ class FrontendController extends Controller
         ->orderBy('id', 'desc')
         ->first();
 
-        $posts = Post::orderBy('id', 'desc')->paginate(9);
+        $posts = Post::where('id', '!=', $latest->id)->orderBy('id', 'desc')->paginate(9);
 
-        $most_view = Post::orderBy('views', 'desc')->first();
-
-        $mostViews = $this->mostFiveViews($most_view);
+        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -145,7 +139,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
     public function sub_categories($language, $main_categroy, $sub_category){
@@ -155,11 +149,9 @@ class FrontendController extends Controller
                 ->orderBy('id', 'desc')
                 ->first();
 
-        $posts = Post::orderBy('id', 'desc')->paginate(9);
+        $posts = Post::where('id', '!=', $latest->id)->orderBy('id', 'desc')->paginate(9);
 
-        $most_view = Post::orderBy('views', 'desc')->first();
-
-        $mostViews = $this->mostFiveViews($most_view);
+        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -168,7 +160,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
     public function sub_categoriesEn($main_categroy, $sub_category){
@@ -209,14 +201,11 @@ class FrontendController extends Controller
 
     public function photo_essays(){
         $sub_cat = ['photo_essays', 'Photo Essays'];
-        $latest = PhotoEssay::orderBy('created_at', 'desc')
-                    ->first();
+        $latest = PhotoEssay::latest('id')->first();
 
-        $posts = PhotoEssay::orderBy('id', 'desc')->paginate(9);
+        $posts = PhotoEssay::where('id', '!=', $latest->id)->orderBy('id', 'desc')->paginate(9);
 
-        $most_view = Post::orderBy('views', 'desc')->first();
-
-        $mostViews = $this->mostFiveViews($most_view);
+        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
         $main_menus_en = MenuItem::where('menu_id', '1')->get();
         $main_menus_mm = MenuItem::where('menu_id', '2')->get();
@@ -225,7 +214,7 @@ class FrontendController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'most_view', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
     public function donation(){
@@ -260,20 +249,6 @@ class FrontendController extends Controller
         return call_user_func_array([$this, 'pages'], ['en', $title]);
     }
 
-    public function careers(){
-        $posts = Career::where('deleted_at', NULL)
-            ->orderBy('id', 'desc')
-            ->get();
-
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.careers', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts'));
-    }
 
     public function contact(){
         $info = Social::find(1);
@@ -331,14 +306,4 @@ class FrontendController extends Controller
         return $arr;
     }
 
-    private function mostFiveViews($most_view){
-        $maxViews = $most_view->views;
-
-        $mostViews = Post::where('views', '<', $maxViews)
-                    ->orderBy('views', 'desc')
-                    ->take(4)
-                    ->get();
-
-        return $mostViews;
-    }
 }

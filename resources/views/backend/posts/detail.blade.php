@@ -11,15 +11,15 @@
 
                     @foreach ($relatedPosts as $related)
                         <div class="col-md-12 py-1">
-                            <h6><a href="{{ url('/category') . '/' . $related->category->name_en . '/' . $related->id }}" >
+                            <h6>
                                 @if (app()->getLocale() == 'mm')
-                                    {{ $related->title_mm }}
+                                    <a href="{{ url('/mm/category') . '/' . $related->category->name_en . '/' . $related->id }}">{{ $related->title_mm }}</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                    {{ $related->title_ch }}
+                                    <a href="{{ url('/ch/category') . '/' . $related->category->name_en . '/' . $related->id }}">{{ $related->title_ch }}</a>
                                 @else
-                                    {{ $related->title_en }}
+                                    <a href="{{ url('/category') . '/' . $related->category->name_en . '/' . $related->id }}">{{ $related->title_en }}</a>
                                 @endif
-                                </a></h6>
+                            </h6>
                         </div>
                     @endforeach
                 </div>
@@ -47,7 +47,7 @@
                     <div class="col-1 social" id="social">
                         <div class="row text-center">
                             <div class="col-12">
-                                <i class="fa-regular fa-message"></i>
+                                <a href="mailto:?subject=Check%20out%20this%20awesome%20content&body=I%20thought%20you%20might%20find%20this%20interesting:%20{{ urlencode(url()->current()) }}"><i class="fa-regular fa-message"></i></a>
                             </div>
                             <div class="col-12">
                                 <i class="fa-regular fa-eye"></i>
