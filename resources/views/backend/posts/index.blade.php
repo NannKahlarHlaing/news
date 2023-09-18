@@ -63,6 +63,11 @@
                     </div>
                     <div class="col-3">
                         <strong class="fw-bold h5">Tag: </strong>
+                        @php
+
+                            $jobCategoryType = gettype($item->tags);
+                            echo $jobCategoryType;
+                        @endphp
                         @foreach ($item->tags as $post_tag)
                             @foreach ($tags as $tag)
                                 @if ($tag->id == $post_tag)

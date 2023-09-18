@@ -286,7 +286,6 @@
         });
 
         $('#mm').on('click', function(event) {
-            console.log( 'ddd');
             event.preventDefault();
             var currentURL = window.location.href;
             //
@@ -300,21 +299,21 @@
             window.location.replace(newUrl);
         });
 
-        $('#en').on('click', function(event) {
-            event.preventDefault();
-            var currentURL = window.location.href;
-            if(lang == 'en'){
-                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/en/');
-            }else{
-                var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
-            }
-        });
+        // $('#en').on('click', function(event) {
+        //     event.preventDefault();
+        //     var currentURL = window.location.href;
+        //     if(lang == 'en'){
+        //         var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/en/');
+        //     }else{
+        //         var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
+        //     }
+        // });
 
         $('#ch').on('click', function(event) {
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/ch/');
+                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/ch/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
             }

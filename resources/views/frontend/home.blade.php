@@ -153,7 +153,7 @@
 <section class="opnion contact-email">
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center">
-            <div class="col-md-7">
+            <div class="col-md-8">
                <div class="row d-flex align-items-center">
                     <div class="col-md-3">
                         <img src="" alt="logo" width="100%">
@@ -169,7 +169,7 @@
                 <div class="col-md-9">
                     <form id="subscribe-form">
                         <div class="input-group ">
-                            <input type="text" class="form-control bg-transparent rounded" placeholder="Enter your email" id="email" name="email">
+                            <input type="email" class="form-control bg-transparent rounded" placeholder="Enter your email" id="email" name="email">
                             <button class="btn btn-dark" type="button" id="sign-up">Sign Up</button>
                         </div>
                         <div class="form-check">
@@ -539,8 +539,6 @@
     $(document).ready(function(){
         $('#sign-up').click(function (e) {
 
-            e.preventDefault();
-
             var email = $('#email').val();
 
             $.ajax({
@@ -549,6 +547,13 @@
                 data: {email},
                 success: function(response){
                     console.log(response);
+                    if (response == 'saved') {
+                        alert('You are succesfully subscribed');
+                        location.reload();
+                    } else {
+                        alert('You are already subscribed');
+                        location.reload();
+                    }
                 },
             });
         });
