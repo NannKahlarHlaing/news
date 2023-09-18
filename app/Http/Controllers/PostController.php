@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Category;
 use App\Models\MenuItem;
 use App\Models\SubCategory;
@@ -164,6 +165,7 @@ class PostController extends Controller
     public function details($language, $category, $id){
 
         $post = Post::find($id);
+        $comments= Comment::where('post_id', $id)->latest()->get();
         $relatedPosts = Post::where('category_id', $post->category_id)
                         ->where('id', '<>', $post->id)
                         ->limit(5)
@@ -176,7 +178,7 @@ class PostController extends Controller
         $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
         $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
-        return view('/backend.posts.detail', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts'));
+        return view('/backend.posts.detail', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts', 'comments'));
     }
 
     public function detailsEn($category, $id){

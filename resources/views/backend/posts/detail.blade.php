@@ -95,18 +95,6 @@
                             {{ $post->topic_en }}
                             @endif
                         </div>
-                        <div class="col-12 mb-4">
-                            <div class="card py-2">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-md-2">
-                                        <img src="" alt="logo" width="130px">
-                                    </div>
-                                    <div class="col-md-3">
-                                        The VWXYZ Online
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-12 mb-4"><strong>Tags:</strong>
                             @foreach ($post->tags as $tagId)
                                 @php
@@ -122,6 +110,77 @@
                                     @endif
                                 @endif
                             @endforeach
+                        </div>
+                        <div class="col-12 mb-4">
+                            <div class="card p-2">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md-2">
+                                        <img src="" alt="logo" width="130px">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <form class="form" action="" id="comment-form">
+                                            @csrf
+                                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                            <div>
+                                                <p id="post_id_errors" class="text-danger"></p>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                                <input class="form-check-input" type="radio" name="user_type" id="anonymous" value="anonymous" checked>
+                                                <label class="form-check-label" for="anonymous">Anonymous</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="user_type" id="visible" value="visible">
+                                                <label class="form-check-label" for="visible">Visible</label>
+                                            </div>
+                                            <div>
+                                                <p id="user_type_errors" class="text-danger"></p>
+                                            </div>
+                                            <div class="mb-3" id="user-details">
+                                                <input type="text" class="me-3 mb-3 mb-lg-0" id="user_name" name="user_name" placeholder="Enter your name"><input type="email" id="user_email" name="user_email" placeholder="Enter your email">
+                                                <div>
+                                                    <p id="user_name_errors" class="text-danger"></p>
+                                                </div>
+                                                <div>
+                                                    <p id="user_email_errors" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <textarea name="comment" id="comment-msg" class="comment" rows="3" width="100%"></textarea>
+                                                <div>
+                                                    <p id="comment_errors" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-danger" id="comment">Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <div class="row d-flex-center mt-3 mb-2">
+                                    <div class="col-12">
+                                        <h5 class="mt-2">Comment Lists</h5>
+                                    </div>
+                                </div>
+                                @foreach ($comments as $item)
+                                    <div class="card p-2">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h6>
+                                                    @if ($item->user_type == 'anonymous')
+                                                        Anonymous
+                                                    @else
+                                                        {{$item->name}}
+                                                    @endif
+                                                </h6>
+                                                <p>{{ $item->comment }}</p>
+                                            </div>
+                                            <div class="col-md-3 text-end text-muted">
+                                                {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                         <div class="col-12">
                             <div class="row my-3  d-flex align-items-center">
@@ -289,6 +348,55 @@
             }
 
         });
+
+        $("input[name='user_type']").change(function() {
+            if ($(this).val() === "visible") {
+                $("#user-details").show();
+            } else {
+                $("#user-details").hide();
+            }
+        });
+
+        if ($("input[name='user_type']:checked").val() === "visible") {
+            $("#user-details").show();
+        } else {
+            $("#user-details").hide();
+        }
+
+        $('#comment-form').submit(function(e){
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                url: '{{ route('comment') }}',
+                type: 'GET',
+                data: formData,
+                success: function (response){
+                    if(response.success){
+                        location.reload();
+                    }
+                    if(response.errors){
+                        var errors = response.errors;
+                        if(errors.post_id){
+                            $('#post_id_errors').text(errors.post_id);
+                        }
+                        if(errors.user_name){
+                            $('#user_name_errors').text(errors.user_name);
+                        }
+                        if(errors.user_email){
+                            $('#user_email_errors').text(errors.user_email);
+                        }
+                        if(errors.comment){
+                            $('#comment_errors').text(errors.comment);
+                        }
+                        if(errors.acc_type){
+                            $('#acc_type_errors').text(errors.acc_type);
+                        }
+                    }
+                }
+            })
+
+        })
+
 
     });
 </script>

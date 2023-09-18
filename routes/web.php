@@ -12,6 +12,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\SocialContoller;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\CartoonController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
@@ -351,6 +352,8 @@ Route::group(['prefix' => '{language}'], function ($language) {
 });
 
 Route::get('/user/email/subscribe', [SubscribeController::class, 'emailSubscribe'])->name('email');
+
+Route::get('/post/users/comment', [CommentController::class, 'create'])->name('comment');
 
 
 Auth::routes();
