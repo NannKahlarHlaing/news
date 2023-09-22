@@ -45,7 +45,12 @@
                                         {{ $post->category->name_en }}
                                     @endif
                                 </span>
-                                <img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%">
+                                @if ($route == 'post_search')
+                                    <img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_link }}" alt="image" width="100%">
+                                @else
+                                    <img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%">
+                                @endif
+
                             </div>
                             <div class="col-lg-12 col-md-12 col-12 ">
                                 <span>BY THE VWXYZ Online</span>
@@ -76,12 +81,14 @@
                         </div>
                     </div>
                 @endforeach
+
+                <div class="">
+                    {{ $posts->appends(Request::all())->links() }}
+                </div>
             @else
                 <div class="col-12 card p-3 text-center">No Content Available</div>
             @endif
 
-
-            {{-- {{ $posts->appends(Request::all())->links() }} --}}
         </div>
     </div>
 </section>

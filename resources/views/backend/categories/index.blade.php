@@ -48,7 +48,7 @@
                         <tbody>
                             @foreach($posts as $post)
                                 <tr>
-                                    <td>{{ $post->name_en }}</td>
+                                    <td>{{ $post->id}} {{ $post->name_en }}</td>
                                     <td>{{ $post->name_mm }}</td>
                                     <td>{{ $post->name_ch }}</td>
                                     @if ($route_name == 'sub_category')

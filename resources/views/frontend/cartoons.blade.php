@@ -116,7 +116,7 @@
     }
 
     .breadcrumb {
-        background-color: #ECE7DD;
+        background-color: var(--font-color);
     }
 
 </style>
@@ -152,17 +152,13 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="border-bottom border-white">
-                                        <a href="#">
-                                            <h6 class="card-text mb-3">
-                                                @if (app()->getLocale() == 'mm')
-                                                    {{ $latest->title_mm }}
-                                                @elseif(app()->getLocale() == 'ch')
-                                                    {{ $latest->title_ch }}
-                                                @else
-                                                    {{ $latest->title_en }}
-                                                @endif
-                                            </h6>
-                                        </a>
+                                        @if (app()->getLocale() == 'mm')
+                                        <a href="{{ url('/mm/cartoons') . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/cartoons') . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                        @else
+                                            <a href="{{ url('/cartoons') . '/' . $latest->id }}">{{ $latest->title_en }}</a>
+                                        @endif
                                     </h2>
                                 </div>
                             </div>
@@ -178,7 +174,7 @@
                                 @elseif(app()->getLocale() == 'ch')
                                     <span>By {{ $latest->cartoonist_ch }} </span>
                                 @else
-                                    <span>By {{ $latest->cartoonist_en }} </span>
+                                    <span>By -{{ $latest->cartoonist_en }} </span>
                                 @endif
                             </div>
                             <div class="mb-3">
@@ -200,13 +196,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-lg-3">
-                    @foreach ($lastThree as $three)
-                        <div class="row three mb-1">
-                            <img src="{{ asset('storage/images/thumbnail') . '/' . $three->img_link }}" alt="">
-                        </div>
-                    @endforeach
-                </div> --}}
             </div>
             <div class="row">
                 <div class="col-12 my-3">
@@ -226,22 +215,22 @@
                             <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
                         </div>
                         <div class="col-md-8 col-6">
-                            <p class=""><a href="">
+                            <p class="">
                                 @if (app()->getLocale() == 'mm')
-                                    {{ $cartoon->title_en }}
+                                 <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_mm }}</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                    {{ $cartoon->title_ch }}
+                                    <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ch }}</a>
                                 @else
-                                    {{ $cartoon->title_en }}
+                                    <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_en }}</a>
                                 @endif
-                            </a></p>
+                            </p>
                             <span class="me-3">
                                 @if (app()->getLocale() == 'mm')
-                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_mm) !!} </span>
+                                    <span>By {!! str_replace("\n", '', $cartoon->cartoonist_mm) !!} </span>
                                 @elseif(app()->getLocale() == 'ch')
-                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_ch) !!} </span>
+                                    <span>By {!! str_replace("\n", '', $cartoon->cartoonist_ch) !!} </span>
                                 @else
-                                    <span>By {!! str_replace("\n", '', $latest->cartoonist_en) !!} </span>
+                                    <span>By {!! str_replace("\n", '', $cartoon->cartoonist_en) !!} </span>
                                 @endif
                             </span>
                             <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($cartoon->created_at)->format('d F Y') }}</span>

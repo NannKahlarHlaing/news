@@ -13,7 +13,7 @@
         </div>
         <div class="row d-flex-center feature">
             <div class="col-md-12">
-                <div class="row border-bottom">
+                <div class="row border-bottom py-2">
                     <div class="col-md-7">
                         <img src=" {{ asset('storage/images/original') . '/' . $latest->img_link }}" alt="image" width="100%">
                         <div class="row mt-3">
@@ -37,11 +37,11 @@
                                     @endif
                                 </p>
                                 @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
+                                    <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
+                                    <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @else
-                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-danger mt-3">Read Now</a>
+                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @endif
                             </div>
                         </div>
@@ -150,7 +150,7 @@
     </div>
 </section>
 
-<section class="opnion contact-email">
+<section class="opnion contact-email text-white">
     <div class="container-fluid">
         <div class="row d-flex-center align-items-center">
             <div class="col-md-8">
@@ -169,7 +169,7 @@
                 <div class="col-md-9">
                     <form id="subscribe-form">
                         <div class="input-group ">
-                            <input type="email" class="form-control bg-transparent rounded" placeholder="Enter your email" id="email" name="email">
+                            <input type="email" class="form-control bg-transparent rounded subscribe" placeholder="Enter your email" id="email" name="email">
                             <button class="btn btn-dark" type="button" id="sign-up">Sign Up</button>
                         </div>
                         <div class="form-check">
@@ -194,7 +194,7 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>Burma</h3>
                                 </div>
@@ -225,7 +225,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-primary border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>Business</h3>
                                 </div>
@@ -256,7 +256,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>In Person</h3>
                                 </div>
@@ -287,7 +287,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>Opnion</h3>
                                 </div>
@@ -322,7 +322,7 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-success border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>Lifestyle</h3>
                                 </div>
@@ -353,7 +353,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-success border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>Specials</h3>
                                 </div>
@@ -384,7 +384,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>In Person</h3>
                                 </div>
@@ -415,7 +415,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class="row d-flex justify-content-between align-items-center border-bottom border-danger border-3 ">
+                            <div class="row d-flex justify-content-between align-items-center border-bottom border-color border-3 ">
                                 <div class="col p-0">
                                     <h3>Opnion</h3>
                                 </div>
@@ -458,7 +458,7 @@
     </div>
 </section>
 
-<section class="bg-dark p-3 video">
+<section class="bg-gray p-3 video">
     <div class="container-fluid">
         <div class="row d-flex-center">
             <div class="col-md-12">
@@ -468,7 +468,7 @@
                             <div class="col-6 d-flex">
                                 <h3>Photos</h3>
                             </div>
-                            <div class="col-6 text-end">
+                            <div class="col-6 text-end fw-bold">
                                 <span>{{ \Carbon\Carbon::parse($latest_photo->created_at)->format('d F Y') }}</span>
                             </div>
                         </div>
@@ -498,7 +498,7 @@
                                 <div class="col-6 d-flex">
                                     <h3>Cartoons</h3>
                                 </div>
-                                <div class="col-6 text-end">
+                                <div class="col-6 text-end fw-bold">
                                     <span>{{ \Carbon\Carbon::parse($latest_cartoon->created_at)->format('d F Y') }}</span>
                                 </div>
                             </div>

@@ -29,7 +29,8 @@ return new class extends Migration
             $table->longText('desc_en')->nullable();
             $table->longText('desc_mm')->nullable();
             $table->longText('desc_ch')->nullable();
-            $table->integer('views');
+            $table->integer('views')->nullable();
+            $table->integer('viewers')->nullable();
             $table->integer('like')->nullable();
             $table->integer('love')->nullable();
             $table->integer('wow')->nullable();

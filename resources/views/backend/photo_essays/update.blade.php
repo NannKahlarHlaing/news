@@ -19,10 +19,40 @@
                 <form class="form" method="POST" action="{{route('backend.photo_essays.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{ $post->id }}">
+                    <div class="form-group">
+                        <label for="img_link">Image <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link" >
+                        @error('img_link')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                        <div class="col-lg-12 mt-2">
+                            <img src="/storage/images/thumbnail/{{ $post->img_link }}" width="200" height="150">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author', $post->author) }}">
+                        @error('author')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Create Date</label>
+                        <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="{{ old('date', $post->date) }}">
+                        @error('date')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
+                    </div>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <div class="form-group">
-                                <label for="title_en">Title_EN</label>
+                                <label for="title_en">Title_EN <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en', $post->title_en) }}">
                                 @error('title_en')
                                     <div class="invalid-feedback">
@@ -40,7 +70,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="short_desc_en">Short_Description_EN</label>
+                                <label for="short_desc_en">Short_Description_EN <span class="text-danger">*</span></label>
                                 <textarea class="short_summernote form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
                                 @error('short_desc_en')
                                     <div class="invalid-feedback">
@@ -49,7 +79,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_en">Description_EN</label>
+                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">
@@ -134,36 +164,6 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="img_link">Image</label>
-                        <input type="file" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link" >
-                        @error('img_link')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                        <div class="col-lg-12 mt-2">
-                            <img src="/storage/images/thumbnail/{{ $post->img_link }}" width="200" height="150">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author', $post->author) }}">
-                        @error('author')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Create Date</label>
-                        <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="{{ old('date', $post->date) }}">
-                        @error('date')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Update</button>

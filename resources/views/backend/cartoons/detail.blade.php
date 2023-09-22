@@ -59,15 +59,14 @@
                         <div class="row related">
                             @foreach ($relatedPosts as $related)
                                 <div class="col-md-12 py-1">
-                                    <h6><a href="" >
+                                    <h6>
                                         @if (app()->getLocale() == 'mm')
-                                            {{ $related->title_mm }}
+                                        <a href="{{ url('/mm/cartoons') . '/' . $related->id }}">{{ $related->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
-                                            {{ $related->title_ch }}
+                                            <a href="{{ url('/ch/cartoons') . '/' . $related->id }}">{{ $related->title_ch }}
                                         @else
-                                            {{ $related->title_en }}
+                                            <a href="{{ url('/cartoons') . '/' . $related->id }}">{{ $related->title_en }}
                                         @endif
-                                        </a>
                                     </h6>
                                 </div>
                             @endforeach

@@ -32,9 +32,9 @@
 
 </head>
 <body>
-    <section class="bg-dark">
+    <section class="bg-main">
         <div class="container-fluid">
-            <div class="col-12 py-1 text-end locale">
+            <div class="col-12 py-1 fw-bold text-end locale">
                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                 <a href="" class="text-white me-2" id="en">English</a>
                 <a href="" class="text-white me-2" id="mm">Myanmar</a>
@@ -60,66 +60,23 @@
                                             </div>
                                             <div class="offcanvas-body d-flex justify-content-start">
                                                 <div class="col">
-                                                    <h6><a href="{{ url('/category/News')  }}">News</a></h6>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Burma') }}">Burma</a></h6>
+                                                    <div class="row">
+                                                        @if(isset($all_menus))
+                                                        @foreach ($all_menus as $menu)
+                                                            <div class="col-md-3">
+                                                                <h6>
+                                                                    @if (session()->get('locale') == 'mm')
+                                                                        <a href="{{ url('/mm/category') . '/' . $menu->name_en }}">{{ $menu->name_mm }}</a>
+                                                                    @elseif (session()->get('locale') == 'ch')
+                                                                        <a href="{{ url('/ch/category') . '/' . $menu->name_en }}">{{ $menu->name_ch }}</a>
+                                                                    @else
+                                                                        <a href="{{ url('/category') . '/' . $menu->name_en }}">{{ $menu->name_en }}</a>
+                                                                    @endif
+                                                                </h6>
+                                                            </div>
+                                                        @endforeach
+                                                        @endif
                                                     </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Politics') }}">Politics</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/World') }}">World</a></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6><a href="{{ url('/category/Opinion')  }}">Opinion</a></h6>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Commentary') }}">Commentary</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Editorial') }}">Editorial</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Analysis') }}">Analysis</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6><a href="{{ url('/category/Specials')  }}">Specials</a></h6>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ url('/categories/News/Articles') }}">Articles</a></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div>
-                                                        <h6><a href="{{ url('/category/LifeStyle')  }}">LifeStyle</a></h6>
-                                                    </div>
-                                                    {{-- <div>
-                                                        <h6><a href="{{ route('frontend.videos') }}">Videos</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ route('frontend.photos') }}">Photos</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ route('frontend.photo_essays') }}">Photo Essays</a></h6>
-                                                    </div>
-                                                    <div>
-                                                        <h6><a href="{{ route('frontend.contact') }}">Contact</a></h6>
-                                                    </div>
-                                                    <div class="">
-                                                        <h6><a href="{{ route('frontend.donation') }}">Donate</a></h6>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -160,7 +117,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg" id="site-title">THE VWXYZ ONLINE</div>
+                        <div class="col-lg fw-bold text-white" id="site-title">THE VWXYZ ONLINE</div>
                         <div class="col-lg-2 col-12 text-end mt-2" id="search">
                             <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
                         </div>
@@ -199,7 +156,7 @@
     </div>
 
     @yield('content')
-    <section class="bg-dark footer-top text-white">
+    <section class="bg-main footer-top text-white">
         <div class="container-fluid">
             <div class="row d-flex-center" style="margin: 0">
                 <div class="col-12 p-3">
@@ -256,17 +213,11 @@
 <script>
     // https://vwxyz.online/
     $(document).ready(function(){
-        // Get the input element
         const searchInput = $('.search-input');
 
-            // Add an event listener for the "keydown" event on the input element
             searchInput.on('keydown', function(event) {
-                // Check if the pressed key is the "Enter" key (key code 13)
                 if (event.keyCode === 13) {
-                    // Prevent the default behavior of the "Enter" key (form submission)
                     event.preventDefault();
-
-                    // Submit the form
                     $('#search-form').submit();
                 }
             });
@@ -277,7 +228,7 @@
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/en/');
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
             }
@@ -288,10 +239,8 @@
         $('#mm').on('click', function(event) {
             event.preventDefault();
             var currentURL = window.location.href;
-            //
-            console.log( ' ddd'+ $('#mm').text());
             if(lang == 'en'){
-                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/mm/');
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
             }else{
                 var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
             }
@@ -299,21 +248,11 @@
             window.location.replace(newUrl);
         });
 
-        // $('#en').on('click', function(event) {
-        //     event.preventDefault();
-        //     var currentURL = window.location.href;
-        //     if(lang == 'en'){
-        //         var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/en/');
-        //     }else{
-        //         var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
-        //     }
-        // });
-
         $('#ch').on('click', function(event) {
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('https://vwxyz.online/', 'https://vwxyz.online/ch/');
+                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/ch/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
             }
@@ -325,29 +264,31 @@
         $('#search-form').addClass('d-none');
         var navbar = $('#navbar');
         var navbarOffset = navbar.offset().top;
-        navbar.addClass('bg-danger');
+        navbar.addClass('bg-gray');
         $('#text-menu').addClass('d-none');
 
         $(window).scroll(function () {
 
             if ($(window).scrollTop() > navbarOffset) {
-                navbar.removeClass('bg-danger');
-                navbar.addClass('sticky scrolled bg-background');
+                navbar.removeClass('bg-gray');
+                navbar.addClass('sticky scrolled bg-background shadow');
                 $('#nav-hide').addClass('d-none');
-                $('#site-title').addClass('text-danger');
                 $('#site-title').removeClass('d-none');
                 $('#menu-bar').addClass('col');
                 $('#text-menu').removeClass('d-none');
+                $('#text-menu').addClass('text-white');
+                $('.fa-bars').addClass('text-white');
+                $('#search').addClass('text-white');
                 $('#text-all').addClass('d-none');
             } else {
-
-                navbar.addClass('bg-danger');
-                navbar.removeClass('sticky scrolled bg-background');
+                navbar.addClass('bg-gray');
+                navbar.removeClass('sticky scrolled bg-background shadow');
                 $('#nav-hide').removeClass('d-none');
                 $('#site-title').addClass('d-none');
                 $('#menu-bar').removeClass('col');
-
+                $('#search').removeClass('text-white');
                 $('#text-menu').addClass('d-none');
+                $('.fa-bars').removeClass('text-white');
                 $('#text-all').removeClass('d-none');
             }
         });

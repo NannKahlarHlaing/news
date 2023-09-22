@@ -31,7 +31,7 @@
                         </div>
                     </nav>
                     <div class="form-group">
-                        <label for="img_link">Image Url</label>
+                        <label for="img_link">Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link">
                         @error('img_link')
                             <div class="invalid-feedback">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Categories</label>
+                            <label>Categories <span class="text-danger">*</span></label>
                             <select class="form-control form-select @error('category') is-invalid @enderror" id="category" name="category" aria-label="Default select example">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $item)
@@ -72,7 +72,7 @@
                             @enderror
                         </div>
                         <div class="col-md-4">
-                            <label>Tag</label>
+                            <label>Tag <span class="text-danger">*</span></label>
                             <div class="form-control scroll-window">
                                 @foreach ($all_tags as $item)
                                     <div class="form-check">
@@ -111,7 +111,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="short_desc_en">Short Description_EN</label>
+                                <label for="short_desc_en">Short Description_EN <span class="text-danger">*</span></label>
                                 <textarea class="short_summernote form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
                                 @error('short_desc_en')
                                     <div class="invalid-feedback">
@@ -120,7 +120,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_en">Description_EN</label>
+                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">

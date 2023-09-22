@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
     <style>
     #detail{
-        background-color: #242423;
+        background-color: var(--color-gray);
     }
     .slick-slider .slick-prev, .slick-slider .slick-next {
         z-index: 100;

@@ -176,39 +176,26 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('/backend/js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('/backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('/backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
     <!-- Page level custom scripts -->
     <script src="{{ asset('/backend/js/demo/datatables-demo.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    {{-- <script src="https://cdn.tiny.cloud/1/jvgg8kp13x9r8tbzf76mmt35xqmw877ln3vadyx31afcbhpp/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
-
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
+    <!-- Page level plugins -->
+    <script src="{{ asset('/backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
 
 {{--<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-
-
-{{-- <script>
-    tinymce.init({
-      selector: 'textarea',
-      plugins: ' anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-    });
-  </script> --}}
     <script>
-        // Show the modal when the page loads
         $(document).ready(function() {
             $('#alertModal').modal('show');
 
@@ -219,21 +206,6 @@
             $('.summernote').summernote({
                 height: 250,
             });
-
-            // $('.summernote').summernote({
-            //     toolbar: [
-            //         ['style', ['bold', 'italic', 'underline', 'clear']],
-            //         ['font', ['strikethrough', 'superscript', 'subscript']],
-            //         ['fontsize', ['fontsize']],
-            //         ['color', ['color']],
-            //         ['para', ['ul', 'ol', 'paragraph']],
-            //         ['height', ['height']],
-            //         ['insert', ['link', 'picture', 'table', 'hr']],
-            //         ['view', ['fullscreen', 'codeview']],
-            //     ],
-            //     height: 250,
-                
-            // });
         });
 
     </script>

@@ -92,6 +92,8 @@ class PostController extends Controller
     public function create(Request $request){
         Validator::make($request->all(),[
             'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category' => 'required',
+            'tags' => 'required',
         ])->validate();
 
         $this->validation($request);
@@ -186,6 +188,8 @@ class PostController extends Controller
     }
 
     public function addValue(Request $request){
+        $ip = $request->ip();
+
         $value = $request->input('value');
         $id = $request->input('id');
 
@@ -197,7 +201,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return $addedValue;
+        return $ip;
     }
 
     public function searchEn(Request $request){
@@ -228,16 +232,9 @@ class PostController extends Controller
                 ->paginate(4);
         }
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
         $route = 'post_search';
 
-        return view('frontend.search', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'search', 'route'));
+        return view('frontend.search', compact('posts', 'search', 'route'));
     }
 
     private function validation($request){

@@ -104,7 +104,7 @@
         font-size: 43px;
     }
     .last-photos{
-        background-color: #242423 !important;
+        background-color: var(--theme-color) !important;
     }
 
     .last-photos h2, .last-photos span{

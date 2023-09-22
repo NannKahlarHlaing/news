@@ -48,7 +48,7 @@
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
                                 </div>
                                 <div class="mb-3 text-end">
-                                    <button type="submit" class="btn btn-danger">Send</button>
+                                    <button type="submit" class="btn btn-green">Send</button>
                                 </div>
                             </form>
                         </div>

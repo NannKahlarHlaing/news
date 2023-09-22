@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Category;
 use App\Models\MenuItem;
@@ -13,24 +12,6 @@ class MenuController extends Controller
 {
     public function index(){
         return view('backend.menus.index');
-    }
-
-    public function create_form(){
-        $pages = Page::all();
-        $categories = Category::all();
-        $sub_categories = SubCategory::all();
-        $menu_items = MenuItem::all();
-        return view('backend.menus.create', compact('pages', 'categories', 'sub_categories'));
-    }
-
-    public function create_menu(Request $request){
-        $name = $request->input('menu_name');
-
-        Menu::create([
-            'name' => $name
-        ]);
-
-        return $name;
     }
 
     public function update_menu($id) {
@@ -119,5 +100,19 @@ class MenuController extends Controller
         return response()->json(['message' => 'Data updated successfully']);
     }
 
+    public function all_menu(){
+        $items = Category::all();
 
+        return view('backend.menus.all_menu', compact('items'));
+    }
+
+    public function update_allMenu(Request $request){
+        $category = Category::find($request->id);
+
+        $category->order = $request->order;
+
+        $category->save();
+
+        return 'success';
+    }
 }

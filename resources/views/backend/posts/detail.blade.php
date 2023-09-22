@@ -68,7 +68,6 @@
                                 </a>
                             </div>
                             <div class="col-12 mb-2">
-                                {{-- <script type="IN/Share" data-url="{{ URL::current() }}"><i class="fa-brands fa-linkedin-in"></i></script> --}}
                                 <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" target="_blank">
                                     <i class="fa-brands fa-linkedin"></i>
                                 </a>
@@ -150,7 +149,7 @@
                                                     <p id="comment_errors" class="text-danger"></p>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-danger" id="comment">Comment</button>
+                                            <button class="btn btn-green" id="comment">Comment</button>
                                         </form>
                                     </div>
                                 </div>
@@ -225,10 +224,8 @@
             method: 'GET',
             data: {value: value, id: id},
             success: function(response){
-                $('#views').html(response);
-            },
-            error: function(xhr, status, error) {
-                console.log('error' + error);
+                console.log(response);
+                // $('#views').html(response);
             }
         });
 
@@ -265,7 +262,6 @@
                     url: `/post/like/${id}`,
                     method: 'GET',
                     success: function(response) {
-                        console.log(response);
                         document.cookie = `${likedKey}=true`;
                         localStorage.setItem(likedKey, 'true');
 
@@ -287,7 +283,6 @@
                     url: `/post/love/${id}`,
                     method: 'GET',
                     success: function(response) {
-                        console.log(response);
                         document.cookie = `${lovedKey}=true`;
                         localStorage.setItem(lovedKey, 'true');
 
@@ -310,7 +305,6 @@
                     url: `/post/wow/${id}`,
                     method: 'GET',
                     success: function(response) {
-                        console.log(response);
                         document.cookie = `${wowKey}=true`;
                         localStorage.setItem(wowKey, 'true');
 
@@ -333,7 +327,6 @@
                     url: `/post/sad/${id}`,
                     method: 'GET',
                     success: function(response) {
-                        console.log(response);
                         document.cookie = `${sadKey}=true`;
                         localStorage.setItem(sadKey, 'true');
 

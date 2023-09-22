@@ -17,6 +17,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubcribeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\PhotoEssayController;
 use App\Http\Controllers\SubCategoryController;
@@ -33,10 +34,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 //frontend
 Route::get('/', [FrontendController::class, 'home_page']);
@@ -68,9 +65,7 @@ Route::group(['middleware' => 'normal'], function () {
 
     Route::prefix('/admin')->group(function(){
 
-        Route::get('/', function () {
-            return view('backend.dashboard');
-        })->name('admin');
+        Route::get('/', [DashboardController::class, 'index'])->name('admin');
 
         Route::group(['middleware' => 'admin'], function () {
             Route::controller(AdminController::class)->group(function(){
@@ -178,14 +173,15 @@ Route::group(['middleware' => 'normal'], function () {
         Route::controller(MenuController::class)->group(function(){
             Route::get('/menus', 'index')->name('backend.menus');
             Route::get('/menus/create', 'create_form')->name('backend.menus.create_form');
-
             Route::get('/create', 'create_menu')->name('menu_name.create');
-
             Route::get('/menu/update/{id}', 'update_menu')->name('backend.menu.update');
-
             Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
 
             Route::get('/menu_items/update', 'update_menuItems')->name('backend.menu_items.update');
+
+            Route::get('all/menus/index', 'all_menu')->name('backend.all_menus.index');
+
+            Route::get('all/menus/update', 'update_allMenu')->name('backend.all_menus.update');
         });
 
         Route::get('/get/sub_category', [SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');
@@ -232,7 +228,6 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/videos', 'show_videos')->name('frontend.videos');
     Route::get('/photos', 'show_photos')->name('frontend.photos');
     Route::get('/photo_essays', 'photo_essays')->name('frontend.photo_essays');
-    Route::get('/donation', 'donation')->name('frontend.donation');
     Route::get('/contact', 'contact')->name('frontend.contact');
     Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
@@ -340,7 +335,6 @@ Route::group(['prefix' => '{language}'], function ($language) {
         Route::get('/videos', 'show_videos');
         Route::get('/photos', 'show_photos');
         Route::get('/photo_essays', 'photo_essays');
-        Route::get('/donation', 'donation');
         Route::get('/contact', 'contact');
         Route::post('/contact', 'sendEmail');
         Route::get('/cartoons', 'cartoons');

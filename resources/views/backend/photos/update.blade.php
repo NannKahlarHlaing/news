@@ -16,7 +16,7 @@
                     @csrf
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">
-                        <label for="url">Image URL</label>
+                        <label for="url">Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('url') is-invalid @enderror" id="url" name="url">
                         @error('url')
                             <div class="invalid-feedback">
@@ -30,7 +30,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <div class="form-group">
-                                <label for="desc_en">Description_EN</label>
+                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">

@@ -46,6 +46,7 @@ class FrontendController extends Controller
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
         $latestTen = Post::orderBy('id', 'desc')
+                    ->where('id', '!=', $latest->id)
                     ->take(6)
                     ->get();
 
@@ -97,14 +98,7 @@ class FrontendController extends Controller
 
         $lasts_cartoons = Cartoon::latest()->take(6)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+        return view('frontend.home', compact('latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
 
     }
 
@@ -113,38 +107,27 @@ class FrontendController extends Controller
     }
 
     public function main_categories($language, $name){
-        // dd(Route::currentRouteName());
         $category = Category::where('name_en', $name)->first();
-
         $id = $category->id;
-
         $sub_cat = $category;
 
-        $posts = Post::where('category_id', $id)
-                ->orderBy('id', 'desc')
-                ->get();
-
+        $sub_categories = SubCategory::where('category_id', $id)->latest()->get();
         $latest = Post::where('category_id', $id)
-        ->orderBy('id', 'desc')
-        ->first();
+                    ->orderBy('id', 'desc')
+                    ->first();
 
-        $posts = Post::where('id', '!=', $latest->id)->orderBy('id', 'desc')->paginate(9);
+        $posts = Post::where('category_id', $id)
+                    ->where('id', '!=', $latest->id)
+                    ->orderBy('id', 'desc')
+                    ->paginate(9);
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('sub_categories', 'sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
     public function sub_categories($language, $main_categroy, $sub_category){
-        $cat= SubCategory::where('name_en', $sub_category)->get();
-        $sub_cat = $cat->first();
+        $sub_cat = SubCategory::where('name_en', $sub_category)->first();
         $latest = Post::where('sub_category_id', $sub_cat->id)
                 ->orderBy('id', 'desc')
                 ->first();
@@ -153,14 +136,7 @@ class FrontendController extends Controller
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
     public function sub_categoriesEn($main_categroy, $sub_category){
@@ -174,14 +150,7 @@ class FrontendController extends Controller
         $latest = Video::latest()->first();
         $categories = Category::where('deleted_at', NULL)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.videos.videos', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'latest', 'categories'));
+        return view('frontend.videos.videos', compact('posts', 'latest', 'categories'));
     }
 
     public function show_photos(){
@@ -189,14 +158,7 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->paginate(8);
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.photos.photos', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts'));
+        return view('frontend.photos.photos', compact('posts'));
     }
 
     public function photo_essays(){
@@ -207,25 +169,9 @@ class FrontendController extends Controller
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.sub_page', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'sub_cat', 'latest', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
-    public function donation(){
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-        return view('frontend.donation', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch'));
-    }
 
     public function pages( $language, $title){
         // dd($title);
@@ -235,14 +181,7 @@ class FrontendController extends Controller
                     ->get();
         $post = $posts->first();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.pages', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch','post'));
+        return view('frontend.pages', compact('post'));
     }
 
     public function pagesEn($title){
@@ -275,14 +214,7 @@ class FrontendController extends Controller
             $line = $this->stringToArray($info->line);
         }
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.contact', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'info', 'email', 'phone', 'facebook', 'youtube', 'instagram', 'twitter', 'linked_in','whatsapp', 'line'));
+        return view('frontend.contact', compact('info', 'email', 'phone', 'facebook', 'youtube', 'instagram', 'twitter', 'linked_in','whatsapp', 'line'));
     }
 
     public function cartoons(){
@@ -291,14 +223,7 @@ class FrontendController extends Controller
 
         $cartoons = Cartoon::orderBy('id', 'desc')->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.cartoons', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'cartoons'));
+        return view('frontend.cartoons', compact('latest', 'cartoons'));
     }
 
     private function stringToArray($str){

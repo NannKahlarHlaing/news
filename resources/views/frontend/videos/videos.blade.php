@@ -5,9 +5,13 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" type="text/css" href="https://codepen.io/fancyapps/pen/Kxdwjj.css">
     <style>
+        .last-photos{
+            background-color: var(--color-gray) !important;
+        }
         .last-photos .card{
         background-color: #242423;
-        border-radius: 0;
+        /* border-radius: 0; */
+        border: 0;
         }
         .last-photos .col-lg-3 {
             padding: 0;
@@ -17,7 +21,14 @@
             border: 0;
         }
         .last-photos .card-text{
-            color: #fff;
+            color: var(--font-color);
+        }
+
+        .search-input::placeholder{
+            color: var(--color-gray) !important;
+        }
+        .search-input{
+            border-color: var(--color-gray) !important;
         }
 </style>
 @endsection
@@ -55,7 +66,7 @@
                         <div class="col-lg-10 col-md-9 col-10">
                             <div class="row">
                                 <div class="col-12">
-                                    <h2 class="border-bottom border-white pb-3">
+                                    <h2 class="border-bottom border-color pb-3">
                                         <a href="{{ url('/videos') . '/' . $latest->id }}">
                                             @if (app()->getLocale() == 'mm')
                                             <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title_mm }}</a>
@@ -86,54 +97,56 @@
         </div>
     </div>
 </section>
-<section class="last-photos">
+<section class="bg-sec">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-12">
-                <div class="row d-flex align-items-center my-3">
-                    <div class="col-md-3 col-6">
-                        <select class="btn btn-secondary" name="categories" id="categories">
-                            <option value=""> Pick A Channel</option>
-                            @foreach ($categories as $item)
-                                <option value="{{ $item->id }}">
-                                    @if (app()->getLocale() == 'mm')
-                                        {{ $item->name_mm }}
-                                    @elseif(app()->getLocale() == 'ch')
-                                        {{ $item->name_ch }}
-                                    @else
-                                        {{ $item->name_en }}
-                                    @endif
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-6 col-6">
-                        <h2 class="text-center">FILTERS</h2>
-                    </div>
-                    <div class="col-md-3">
-                        @if (session()->get('locale') == 'mm')
-                            <form class="d-flex" id="search-form" action="{{ url('/mm/videos/search') }}" method="GET">
-                                @csrf
-                                <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                                <button type="submit" class="btn btn-danger">Search</button>
-                            </form>
-                        @elseif (session()->get('locale') == 'ch')
-                            <form class="d-flex" id="search-form" action="{{ url('/ch/videos/search') }}" method="GET">
-                                @csrf
-                                <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                                <button type="submit" class="btn btn-danger">Search</button>
-                            </form>
-                        @else
-                            <form class="d-flex" id="search-form" action="{{ url('/videos/search') }}" method="GET">
-                                @csrf
-                                <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                                <button type="submit" class="btn btn-danger">Search</button>
-                            </form>
-                        @endif
-                    </div>
+            <div class="row d-flex align-items-center my-3">
+                <div class="col-md-3 col-6">
+                    <select class="btn btn-gray" name="categories" id="categories">
+                        <option value=""> Pick A Channel</option>
+                        @foreach ($categories as $item)
+                            <option value="{{ $item->id }}">
+                                @if (app()->getLocale() == 'mm')
+                                    {{ $item->name_mm }}
+                                @elseif(app()->getLocale() == 'ch')
+                                    {{ $item->name_ch }}
+                                @else
+                                    {{ $item->name_en }}
+                                @endif
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-6 col-6">
+                    <h2 class="text-center">FILTERS</h2>
+                </div>
+                <div class="col-md-3">
+                    @if (session()->get('locale') == 'mm')
+                        <form class="d-flex" id="search-form" action="{{ url('/mm/videos/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray">Search</button>
+                        </form>
+                    @elseif (session()->get('locale') == 'ch')
+                        <form class="d-flex" id="search-form" action="{{ url('/ch/videos/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray">Search</button>
+                        </form>
+                    @else
+                        <form class="d-flex" id="search-form" action="{{ url('/videos/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray">Search</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
+</section>
+<section class="last-photos py-3">
+    <div class="container-fluid">
         <div class="row" id="post_container">
             @foreach ($posts as $item)
                 <div class="col-lg-3 col-md-6 mb-3">

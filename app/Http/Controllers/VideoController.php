@@ -102,33 +102,20 @@ class VideoController extends Controller
         if($language == 'mm'){
             $posts = Video::where('title_mm', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_mm', 'LIKE', '%' . $search . '%')
-                // ->paginate(4);
-                ->get();
+                ->paginate(4);
         }elseif($language == 'ch'){
             $posts = Video::where('title_ch', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
-                // ->paginate(4);
-                ->get();
+                ->paginate(4);
         }else{
             $posts = Video::where('title_en', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
-                // ->paginate(4);
-                ->get();
+                ->paginate(4);
         }
-
-        // dd($posts);
-
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
 
         $route = 'video_search';
 
-
-        return view('frontend.search', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'posts', 'search', 'route'));
+        return view('frontend.search', compact('posts', 'search', 'route'));
     }
 
     public function detailsEn($id){
@@ -140,19 +127,13 @@ class VideoController extends Controller
 
         $relatedPosts = Video::where('id', '<>', $post->id)->limit(3)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.videos.details', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts'));
+        return view('frontend.videos.details', compact('post', 'relatedPosts'));
     }
 
     private function validation($request){
         Validator::make($request->all(),[
             'video_url' => 'required',
+            'img_url' => 'required',
             'category' => 'required',
         ])->validate();
     }

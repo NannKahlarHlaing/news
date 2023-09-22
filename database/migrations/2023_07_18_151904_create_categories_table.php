@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name_en');
             $table->string('name_mm')->nullable();
             $table->string('name_ch')->nullable();
+            $table->integer('order')->defult(0);
             $table->timestamps();
             $table->softDeletes();
         });
