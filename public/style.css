@@ -137,9 +137,12 @@ h6 a:hover{
     width: 0;
     line-height: 0;
   }
-  /* .feature h6 a:hover{
-    color: var(--sectheme-color);
-  } */
+  .form-check{
+    margin-bottom: 0 ;
+  }
+  #newsletter{
+    pointer-events: none;
+  }
 .circle{
   border: 1px solid #242423;
   background-color: transparent;
@@ -201,8 +204,6 @@ h6 a:hover{
 .category{
   background: #242423;
   color: #fff;
-  /* top: 0;
-  left: 0; */
   padding: 5px 10px;
   line-height: 1em;
   position: absolute;
@@ -244,7 +245,7 @@ h6 a:hover{
 
 .copyright{
   margin: 50px 0 0;
-  color: var(--theme-color);
+  color: #fff;
   text-align: center;
   font-size: 13px;
 }
@@ -262,9 +263,6 @@ h6 a:hover{
   color: var(--theme-color);
   font-size: 14px;
 }
-/* .video h3{
-  color: var(--font-color);
-} */
 .top-one{
     background: var(--theme-color);
     position: absolute;
@@ -399,16 +397,9 @@ h6 a{
     font-size: 1.8rem;
 }
 
-/* offcanvas */
-/* .offcanvas-top{
-    height: 200px !important;
-} */
 .offcanvas-body a{
     color: var(--font-color);
 }
-/* .language li a:hover{
-  color: #000;
-} */
 .related h6 a{
     color: var(--theme-color);
 }
@@ -494,6 +485,14 @@ h6 a{
     background-color: var(--color-gray);
 }
 
+.tags span{
+    font-size: small;
+    padding: 3px 5px;
+    background-color: var(--color-gray);
+    border-radius: 5%;
+    box-shadow: .1rem .1rem .1rem var(--color-dgray)!important;
+}
+
 @media only screen and (min-width: 412px ) and (max-width: 820px){
     .container{
         height: 5rem;
@@ -513,10 +512,3 @@ h6 a{
         height: 250px;
     }
 }
-
-
-
-
-
-
-

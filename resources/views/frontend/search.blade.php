@@ -53,7 +53,7 @@
 
                             </div>
                             <div class="col-lg-12 col-md-12 col-12 ">
-                                <span>BY THE VWXYZ Online</span>
+                                <span>BY {{ env('APP_NAME') }}</span>
                                 @if ($route == 'post_search')
                                     <p>
                                         @if (app()->getLocale() == 'mm')

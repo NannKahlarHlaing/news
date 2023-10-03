@@ -17,8 +17,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             @if (Session::has('message'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ Session::get('error') }}
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('message') }}
                                 </div>
                             @endif
                             <form class="form bg-transparent" method="POST" action="{{ route('frontend.email_sent') }}">

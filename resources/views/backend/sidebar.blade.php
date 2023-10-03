@@ -101,6 +101,12 @@
             <span>Menus</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('backend.newsletter') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Newsletters</span></a>
+    </li>
+
     <!-- Heading -->
     {{-- <div class="sidebar-heading">
         Addons

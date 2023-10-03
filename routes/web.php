@@ -67,6 +67,10 @@ Route::group(['middleware' => 'normal'], function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('admin');
 
+        Route::get('/newsletter', [SubscribeController::class, 'newsletter'])->name('backend.newsletter');
+
+        Route::post('/newsletter', [SubscribeController::class, 'send_newsletter'])->name('newsletter');
+
         Route::group(['middleware' => 'admin'], function () {
             Route::controller(AdminController::class)->group(function(){
                 Route::get('/users', 'index')->name('backend.users');
@@ -229,7 +233,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/photos', 'show_photos')->name('frontend.photos');
     Route::get('/photo_essays', 'photo_essays')->name('frontend.photo_essays');
     Route::get('/contact', 'contact')->name('frontend.contact');
-    Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
+    // Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
     Route::get('/category/{category}', 'main_categoriesEn')->name('main_categories.sub_pages');
     Route::get('/categories/{main_category}/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
@@ -260,14 +264,7 @@ Route::controller(FrontendController::class)->group(function(){
             $latest_cartoon = $data->latest_cartoon;
             $lasts_cartoons = $data->lasts_cartoons;
 
-            $main_menus_en = MenuItem::where('menu_id', '1')->get();
-            $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-            $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-            $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-            $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-            $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-            return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+            return view('frontend.home', compact('latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -306,14 +303,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $latest_cartoon = $data->latest_cartoon;
         $lasts_cartoons = $data->lasts_cartoons;
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('frontend.home', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+        return view('frontend.home', compact('latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
 
     })->name('home');
 

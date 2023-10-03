@@ -172,9 +172,7 @@ class FrontendController extends Controller
         return view('frontend.sub_page', compact('sub_cat', 'latest', 'mostViews', 'posts'));
     }
 
-
     public function pages( $language, $title){
-        // dd($title);
         $posts = Page::where('title_en', $title)
                     ->where('deleted_at', NULL)
                     ->orderBy('id', 'desc')

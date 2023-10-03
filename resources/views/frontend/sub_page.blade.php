@@ -165,7 +165,7 @@
                                     <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-10 ">
-                                    <span>BY THE VWXYZ Online</span>
+                                    <span>BY {{ env('APP_NAME') }}</span>
                                     <p>
                                         @if (app()->getLocale() == 'mm')
                                             {!! $ten->short_desc_mm !!}

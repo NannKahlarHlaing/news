@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex-center my-5">
-            <div class="col-md-3 related">
+            <div class="col-lg-3 related">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="border-bottom border-dark pb-1">Related Posts</h3>
@@ -24,7 +24,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <div class="row mb-5">
                     <div class="col-12">
                         <span class="d-none" id="id">{{ $post->id }}</span>
@@ -75,14 +75,14 @@
                         </div>
                     </div>
                     <div class="col-11">
-                        <h6>BY <a href="" class="tex-dark fw-bold me-3">The VWXYZ Online</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
+                        <h6>BY <a href="" class="tex-dark fw-bold me-3">{{ env('APP_NAME')}}</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
                         <p>
                             @if (app()->getLocale() == 'mm')
-                                {!! str_replace("\n", '', $post->desc_mm) !!}
+                                {!! $post->desc_mm !!}
                             @elseif(app()->getLocale() == 'ch')
-                                {!! str_replace("\n", '', $post->desc_ch) !!}
+                                {!! $post->desc_ch !!}
                             @else
-                                {!! str_replace("\n", '', $post->desc_en) !!}
+                                {!! $post->desc_en !!}
                             @endif
                         </p>
                         <div class="col-12 mb-4"><strong>Topics:</strong>
@@ -94,18 +94,18 @@
                             {{ $post->topic_en }}
                             @endif
                         </div>
-                        <div class="col-12 mb-4"><strong>Tags:</strong>
+                        <div class="col-12 mb-4 tags"><strong>Tags:</strong>
                             @foreach ($post->tags as $tagId)
                                 @php
                                     $tag = \App\Models\Tag::find($tagId);
                                 @endphp
                                 @if ($tag)
                                     @if (app()->getLocale() == 'mm')
-                                        {{ $tag->name_mm }}
+                                        <span>{{ $tag->name_mm }}</span>
                                     @elseif (app()->getLocale() == 'ch')
-                                        {{ $tag->name_ch }}
+                                        <span>{{ $tag->name_ch }}</span>
                                     @else
-                                        {{ $tag->name_en }}
+                                        <span>{{ $tag->name_en }}</span>
                                     @endif
                                 @endif
                             @endforeach
@@ -114,7 +114,7 @@
                             <div class="card p-2">
                                 <div class="row d-flex align-items-center">
                                     <div class="col-md-2">
-                                        <img src="" alt="logo" width="130px">
+                                        <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="logo" width="100%">
                                     </div>
                                     <div class="col-md-10">
                                         <form class="form" action="" id="comment-form">

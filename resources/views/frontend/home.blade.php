@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-md-12 site-title">
-                <h2>The VWXYZ Online</h2>
+                <h2>{{ env('APP_NAME') }}</h2>
             </div>
         </div>
         <div class="row d-flex-center feature">
@@ -155,27 +155,29 @@
         <div class="row d-flex-center align-items-center">
             <div class="col-md-8">
                <div class="row d-flex align-items-center">
-                    <div class="col-md-3">
-                        <img src="" alt="logo" width="100%">
+                    <div class="col-md-3 text-center">
+                        <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="logo" width="60%">
+                        <span class="d-block">EMAIL NEWSLETTER</span>
                     </div>
                     <div class="col-md-9">
                         <h3>Get the top stories delivered to you daily…</h3>
+                        <form id="subscribe-form">
+                            <div class="input-group ">
+                                <input type="email" class="form-control bg-transparent rounded subscribe" placeholder="Enter your email" id="email" name="email">
+                                <button class="btn btn-dark" type="button" id="sign-up">Sign Up</button>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="checkbox" id="newsletter" type="checkbox" value="checkedValue" aria-label="Text for screen reader" checked readonly><span> Subscribe me to the daily newsletter.</span>
+                            </div>
+                        </form>
                     </div>
                </div>
                <div class="row d-flex align-items-center">
                 <div class="col-md-3 text-center">
-                    <span>EMAIL NEWSLETTER</span>
+
                 </div>
                 <div class="col-md-9">
-                    <form id="subscribe-form">
-                        <div class="input-group ">
-                            <input type="email" class="form-control bg-transparent rounded subscribe" placeholder="Enter your email" id="email" name="email">
-                            <button class="btn btn-dark" type="button" id="sign-up">Sign Up</button>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" name="checkbox" id="" type="checkbox" value="checkedValue" aria-label="Text for screen reader" checked><span> Subscribe me to the daily newsletter.</span>
-                        </div>
-                    </form>
+
                 </div>
            </div>
             </div>

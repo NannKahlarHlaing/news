@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The VWXYZ Online</title>
+    <title>{{ env('APP_NAME') }}</title>
 
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,7 @@
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-11">
                                             <div class="offcanvas-header">
-                                                <h5 id="offcanvasTopLabel">The VWXYZ Online</h5>
+                                                <h5 id="offcanvasTopLabel">{{ env('APP_NAME') }}</h5>
                                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                             </div>
                                             <div class="offcanvas-body d-flex justify-content-start">
@@ -117,7 +117,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg fw-bold text-white" id="site-title">THE VWXYZ ONLINE</div>
+                        <div class="col-lg fw-bold text-white" id="site-title">{{ env('APP_NAME') }}</div>
                         <div class="col-lg-2 col-12 text-end mt-2" id="search">
                             <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
                         </div>
@@ -167,7 +167,6 @@
                     </div>
                     <div class="row d-flex justify-content-between">
                         <div class="col-md-3">
-                            <img src="" alt="logo" width="100%">
                             <ul class="footer-link">
                                 @if (session()->get('locale') == 'mm')
                                     @foreach ($footer_menus_mm as $item)
@@ -202,7 +201,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <span class="copyright"> Copyright © 2016 VWXYZ Publishing Group. All Rights Reserved</span>
+                        <span class="copyright"> {{ $info->footer_text }}</span>
                     </div>
                 </div>
             </div>
@@ -211,8 +210,9 @@
     @yield('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    // https://vwxyz.online/
     $(document).ready(function(){
+        var appUrl = '{{ $app_url }}';
+        console.log(appUrl);
         const searchInput = $('.search-input');
 
             searchInput.on('keydown', function(event) {
@@ -228,7 +228,7 @@
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/en/');
+                var newUrl = currentURL.replace(appUrl, appUrl + 'en/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
             }
@@ -240,7 +240,7 @@
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/mm/');
+                var newUrl = currentURL.replace(appUrl, appUrl + 'mm/');
             }else{
                 var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
             }
@@ -252,7 +252,7 @@
             event.preventDefault();
             var currentURL = window.location.href;
             if(lang == 'en'){
-                var newUrl = currentURL.replace('http://127.0.0.1:8000/', 'http://127.0.0.1:8000/ch/');
+                var newUrl = currentURL.replace(appUrl, appUrl + 'ch/');
             }else{
                 var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
             }
