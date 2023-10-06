@@ -47,7 +47,7 @@
                                 <tr>
                                     <td>{{ $item->title_en }}</td>
                                     <td>
-                                        <a href="{{ url('/') . '/' . $item->title_en }}" class="btn btn-danger btn-circle">
+                                        <a href="{{ url('/') . '/' . $item->url_slug }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>

@@ -41,7 +41,7 @@
                 type: 'GET',
                 data: { 'id': id, 'order': order},
                 success: function(response){
-                    console.log(response);
+                   location.reload();
                 }
             })
         })

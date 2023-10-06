@@ -20,7 +20,7 @@
                     <div class="col-md-3 mb-3 py-3 border-bottom">
                         <h5>
                             @if ($route == 'post_search')
-                                <a href="{{ url('/category') . '/' . $post->category->name_en . '/' . $post->id }}">
+                                <a href="{{ url('/category') . '/' . $post->category->url_slug . '/' . $post->id }}">
                             @else
                                 <a href="{{ url('/videos') . '/' . $post->id }}">
                             @endif

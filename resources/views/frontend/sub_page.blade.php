@@ -28,11 +28,11 @@
                         @foreach ($sub_categories as $sub)
                             <div class="sub_cat border-bottom border-sec-color py-1">
                                 @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/categories') . '/' . $sub_cat->name_en . '/' . $sub->name_en  }}">{{ $sub->name_mm }}</a>
+                                    <a href="{{ url('/mm/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_mm }}</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                <a href="{{ url('/ch/categories') . '/' . $sub_cat->name_en . '/' . $sub->name_en  }}">{{ $sub->name_ch }}</a>
+                                <a href="{{ url('/ch/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ch }}</a>
                                 @else
-                                <a href="{{ url('/categories') . '/' . $sub_cat->name_en . '/' . $sub->name_en  }}">{{ $sub->name_en }}</a>
+                                <a href="{{ url('/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_en }}</a>
                                 @endif
                             </div>
                         @endforeach
@@ -50,11 +50,11 @@
                                 <h2>
                                     @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
                                         @if (app()->getLocale() == 'mm')
-                                            <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
+                                            <a href="{{ url('/mm/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                            <a href="{{ url('/ch/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
                                         @else
-                                            <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">{{ $latest->title_en }}</a>
+                                            <a href="{{ url('/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_en }}</a>
                                         @endif
                                     @else
                                         @if (app()->getLocale() == 'mm')
@@ -76,7 +76,7 @@
                                     @endif
                                 </p>
                                 @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
-                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                    <a href="{{ url('/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @else
                                     <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @endif
@@ -120,11 +120,11 @@
                             <h5>
                                 @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
                                     @if (app()->getLocale() == 'mm')
-                                        <a href="{{ url('/mm/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
+                                        <a href="{{ url('/mm/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
                                     @elseif(app()->getLocale() == 'ch')
-                                        <a href="{{ url('/ch/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                        <a href="{{ url('/ch/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
                                     @else
-                                        <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_en }}</a>
+                                        <a href="{{ url('/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_en }}</a>
                                     @endif
                                 @else
                                     @if (app()->getLocale() == 'mm')
@@ -197,11 +197,11 @@
                                 <div class="col-md-9 col-8">
                                     <h6>
                                         @if (app()->getLocale() == 'mm')
-                                            <a href="{{ url('/mm/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
+                                            <a href="{{ url('/mm/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_ch }}</a>
+                                            <a href="{{ url('/ch/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_ch }}</a>
                                         @else
-                                            <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_en }}</a>
+                                            <a href="{{ url('/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_en }}</a>
                                         @endif
                                     </h6>
                                 </div>

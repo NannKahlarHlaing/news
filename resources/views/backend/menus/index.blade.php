@@ -4,7 +4,7 @@
 
 <section class="container-fluid">
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">
@@ -72,7 +72,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">
@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">
@@ -106,7 +106,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card text-start">
                 <div class="card-body">
                     <div class="row">

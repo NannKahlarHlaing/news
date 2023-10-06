@@ -58,6 +58,7 @@ class PageController extends Controller
         $post->desc_en = $request->desc_en;
         $post->desc_mm = $request->desc_mm;
         $post->desc_ch = $request->desc_ch;
+        $post->url_slug = str_replace(' ', '-', strtolower($request->title_en));
 
         $post->save();
 
@@ -110,6 +111,7 @@ class PageController extends Controller
             'desc_en' => $request->desc_en,
             'desc_mm' => $request->desc_mm,
             'desc_ch' => $request->desc_ch,
+            'url_slug' =>  str_replace(' ', '-', strtolower($request->title_en))
         ];
     }
 

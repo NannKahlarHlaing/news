@@ -45,6 +45,7 @@ class TagController extends Controller
         $post->name_en = $request->name_en;
         $post->name_mm = $request->name_mm;
         $post->name_ch = $request->name_ch;
+        $post->url_slug = str_replace(' ', '-', strtolower($request->name_en));
         $post->save();
 
         return redirect ('/admin/tag')->with('status', 'Tag is updated successfully!');
@@ -69,6 +70,7 @@ class TagController extends Controller
             'name_en' => $request->name_en,
             'name_mm' => $request->name_mm,
             'name_ch' => $request->name_ch,
+            'url_slug' => str_replace(' ', '-', strtolower($request->name_en))
         ];
     }
 }

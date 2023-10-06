@@ -10,7 +10,7 @@ class Tag extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name_en', 'name_mm', 'name_ch'];
+    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'url_slug'];
 
     public function tagNames()
     {

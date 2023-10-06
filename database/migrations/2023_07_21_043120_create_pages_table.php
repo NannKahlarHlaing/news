@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText('desc_en')->nullable();
             $table->longText('desc_mm')->nullable();
             $table->longText('desc_ch')->nullable();
+            $table->string('url_slug');
             $table->timestamps();
             $table->softDeletes();
         });

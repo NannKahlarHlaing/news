@@ -107,7 +107,7 @@ class FrontendController extends Controller
     }
 
     public function main_categories($language, $name){
-        $category = Category::where('name_en', $name)->first();
+        $category = Category::where('url_slug', $name)->first();
         $id = $category->id;
         $sub_cat = $category;
 
@@ -127,12 +127,16 @@ class FrontendController extends Controller
     }
 
     public function sub_categories($language, $main_categroy, $sub_category){
-        $sub_cat = SubCategory::where('name_en', $sub_category)->first();
+        $sub_cat = SubCategory::where('url_slug', $sub_category)->first();
+        $id = $sub_cat->id;
         $latest = Post::where('sub_category_id', $sub_cat->id)
                 ->orderBy('id', 'desc')
                 ->first();
 
-        $posts = Post::where('id', '!=', $latest->id)->orderBy('id', 'desc')->paginate(9);
+        $posts = Post::where('sub_category_id', $id)
+                ->where('id', '!=', $latest->id)
+                ->orderBy('id', 'desc')
+                ->paginate(9);
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
@@ -173,7 +177,7 @@ class FrontendController extends Controller
     }
 
     public function pages( $language, $title){
-        $posts = Page::where('title_en', $title)
+        $posts = Page::where('url_slug', $title)
                     ->where('deleted_at', NULL)
                     ->orderBy('id', 'desc')
                     ->get();

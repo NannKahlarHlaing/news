@@ -10,12 +10,12 @@ class SubCategory extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'category_id'];
+    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'category_id', 'url_slug'];
 
     public function category(){
         return $this->belongsTo('App\Models\Category', 'category_id');
     }
-    
+
     public function posts(){
         return $this->hasMany('App\Models\Post', 'id');
     }

@@ -18,7 +18,7 @@
                         <img src=" {{ asset('storage/images/original') . '/' . $latest->img_link }}" alt="image" width="100%">
                         <div class="row mt-3">
                             <div class="col-12">
-                                <h2><a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}">
+                                <h2><a href="{{ url('/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">
                                     @if (app()->getLocale() == 'mm')
                                         {{ $latest->title_mm }}
                                     @elseif(app()->getLocale() == 'ch')
@@ -37,11 +37,11 @@
                                     @endif
                                 </p>
                                 @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                    <a href="{{ url('/mm/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                    <a href="{{ url('/ch/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @else
-                                    <a href="{{ url('/category') . '/' . $latest->category->name_en . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                    <a href="{{ url('/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
                                 @endif
                             </div>
                         </div>
@@ -67,11 +67,11 @@
                                         <div class="col-md-9 col-8">
                                             <h6>
                                                 @if (app()->getLocale() == 'mm')
-                                                    <a href="{{ url('/mm/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
+                                                    <a href="{{ url('/mm/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
                                                 @elseif(app()->getLocale() == 'ch')
-                                                    <a href="{{ url('/ch/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_ch }}</a>
+                                                    <a href="{{ url('/ch/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_ch }}</a>
                                                 @else
-                                                    <a href="{{ url('/category') . '/' . $itemFive->category->name_en . '/' . $itemFive->id }}" >{{ $itemFive->title_en }}</a>
+                                                    <a href="{{ url('/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_en }}</a>
                                                 @endif
                                             </h6>
                                         </div>
@@ -124,11 +124,11 @@
                                 <div class="col-8">
                                     <h6>
                                         @if (app()->getLocale() == 'mm')
-                                            <a href="{{ url('/mm/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
+                                            <a href="{{ url('/mm/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                            <a href="{{ url('/ch/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
                                         @else
-                                            <a href="{{ url('/category') . '/' . $ten->category->name_en . '/' . $ten->id }}">{{ $ten->title_en }}</a>
+                                            <a href="{{ url('/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_en }}</a>
                                         @endif
                                     </h6>
                                     <p>
@@ -201,7 +201,7 @@
                                     <h3>Burma</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/categories/News') . '/' . $catBurma }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/categories/news/burma') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($burmas as $burma)
@@ -212,11 +212,11 @@
                                     <div class="col-md-8 col-6">
                                         <p>
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $burma->category->name_en . '/' . $burma->id }}">{{ $burma->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $burma->category->url_slug . '/' . $burma->id }}">{{ $burma->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $burma->category->name_en . '/' . $burma->id }}">{{ $burma->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $burma->category->url_slug . '/' . $burma->id }}">{{ $burma->title_ch }}</a>
                                             @else
-                                                <a href="{{ url('/category') . '/' . $burma->category->name_en . '/' . $burma->id }}">{{ $burma->title_en }}</a>
+                                                <a href="{{ url('/category') . '/' . $burma->category->url_slug . '/' . $burma->id }}">{{ $burma->title_en }}</a>
                                             @endif
                                         </p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($burma->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $burma->views }}</span>
@@ -232,7 +232,7 @@
                                     <h3>Business</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catBusiness }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/business') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($businesses as $business)
@@ -243,11 +243,11 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $business->category->name_en . '/' . $business->id }}">{{ $business->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $business->category->url_slug . '/' . $business->id }}">{{ $business->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $business->category->name_en . '/' . $business->id }}">{{ $business->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $business->category->url_slug . '/' . $business->id }}">{{ $business->title_ch }}</a>
                                             @else
-                                                <a href="{{ url('/category') . '/' . $business->category->name_en . '/' . $business->id }}">{{ $business->title_en }}</a>
+                                                <a href="{{ url('/category') . '/' . $business->category->url_slug . '/' . $business->id }}">{{ $business->title_en }}</a>
                                             @endif
                                         </p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($business->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $business->views }}</span>
@@ -263,7 +263,7 @@
                                     <h3>In Person</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catInperson }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($persons as $person)
@@ -274,11 +274,11 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $person->category->name_en . '/' . $person->id }}">{{ $person->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $person->category->name_en . '/' . $person->id }}">{{ $person->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_ch }}</a>
                                             @else
-                                                <a href="{{ url('/category') . '/' . $person->category->name_en . '/' . $person->id }}">{{ $person->title_en }}</a>
+                                                <a href="{{ url('/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_en }}</a>
                                             @endif
                                         </p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $person->views }}</span>
@@ -294,7 +294,7 @@
                                     <h3>Opnion</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catOpinion }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/opinion') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($opinions as $opinion)
@@ -305,11 +305,11 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">{{ $opinion->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $opinion->category->url_slug . '/' . $opinion->id }}">{{ $opinion->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">{{ $opinion->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $opinion->category->url_slug . '/' . $opinion->id }}">{{ $opinion->title_ch }}</a>
                                             @else
-                                                <a href="{{ url('/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">{{ $opinion->title_en }}</a>
+                                                <a href="{{ url('/category') . '/' . $opinion->category->url_slug . '/' . $opinion->id }}">{{ $opinion->title_en }}</a>
                                             @endif
                                         </p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($opinion->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $opinion->views }}</span>
@@ -329,7 +329,7 @@
                                     <h3>Lifestyle</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catLifeStyle }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/lifestyle') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($lifeStyles as $lifestyle)
@@ -340,11 +340,11 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $lifestyle->category->name_en . '/' . $lifestyle->id }}">{{ $lifestyle->title_mm }}
+                                                <a href="{{ url('/mm/category') . '/' . $lifestyle->category->url_slug . '/' . $lifestyle->id }}">{{ $lifestyle->title_mm }}
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $lifestyle->category->name_en . '/' . $lifestyle->id }}">{{ $lifestyle->title_ch }}
+                                                <a href="{{ url('/ch/category') . '/' . $lifestyle->category->url_slug . '/' . $lifestyle->id }}">{{ $lifestyle->title_ch }}
                                             @else
-                                                <a href="{{ url('/category') . '/' . $lifestyle->category->name_en . '/' . $lifestyle->id }}"> {{ $lifestyle->title_en }}
+                                                <a href="{{ url('/category') . '/' . $lifestyle->category->url_slug . '/' . $lifestyle->id }}"> {{ $lifestyle->title_en }}
                                             @endif
                                         </a></p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($lifestyle->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $lifestyle->views }}</span>
@@ -360,7 +360,7 @@
                                     <h3>Specials</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catSpecial }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/specials') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($specials as $special)
@@ -371,11 +371,11 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $special->category->name_en . '/' . $special->id }}">{{ $special->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $special->category->url_slug . '/' . $special->id }}">{{ $special->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $special->category->name_en . '/' . $special->id }}">{{ $special->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $special->category->url_slug . '/' . $special->id }}">{{ $special->title_ch }}</a>
                                             @else
-                                                <a href="{{ url('/category') . '/' . $special->category->name_en . '/' . $special->id }}">{{ $special->title_en }}</a>
+                                                <a href="{{ url('/category') . '/' . $special->category->url_slug . '/' . $special->id }}">{{ $special->title_en }}</a>
                                             @endif
                                         </p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($special->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $special->views }}</span>
@@ -391,7 +391,7 @@
                                     <h3>In Person</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catInperson }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($persons as $person)
@@ -402,11 +402,11 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $person->category->name_en . '/' . $person->id }}">{{ $person->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $person->category->name_en . '/' . $person->id }}">{{ $person->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_ch }}</a>
                                             @else
-                                                <a href="{{ url('/category') . '/' . $person->category->name_en . '/' . $person->id }}">{{ $person->title_en }}</a>
+                                                <a href="{{ url('/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_en }}</a>
                                             @endif
                                         </p>
                                         <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $person->views }}</span>
@@ -422,7 +422,7 @@
                                     <h3>Opnion</h3>
                                 </div>
                                 <div class="col text-end p-0">
-                                    <a href="{{ url('/category') . '/' . $catOpinion }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                    <a href="{{ url('/category/opinion') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
                                 </div>
                             </div>
                             @foreach ($opinions as $opinion)
@@ -433,9 +433,9 @@
                                     <div class="col-md-8 col-6">
                                         <p class="">
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">{{ $opinion->title_mm }}</a>
+                                                <a href="{{ url('/mm/category') . '/' . $opinion->category->url_slug . '/' . $opinion->id }}">{{ $opinion->title_mm }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">{{ $opinion->title_ch }}</a>
+                                                <a href="{{ url('/ch/category') . '/' . $opinion->category->url_slug . '/' . $opinion->id }}">{{ $opinion->title_ch }}</a>
                                             @else
                                                 <a href="{{ url('/category') . '/' . $opinion->category->name_en . '/' . $opinion->id }}">{{ $opinion->title_en }}</a>
                                             @endif

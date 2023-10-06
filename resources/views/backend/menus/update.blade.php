@@ -239,6 +239,7 @@
             if ($(this).prop("checked")) {
                 inputBox.show();
             } else {
+                inputBox.val("");
                 inputBox.hide();
             }
         });
@@ -250,6 +251,7 @@
             if ($(this).prop("checked")) {
                 inputBox.show();
             } else {
+                inputBox.val("");
                 inputBox.hide();
             }
         });
@@ -261,6 +263,7 @@
             if ($(this).prop("checked")) {
                 inputBox.show();
             } else {
+                inputBox.val("");
                 inputBox.hide();
             }
         });
@@ -268,8 +271,6 @@
         $('.btn-save').click(function(event){
 
             var menu_id = $("#menu_id").val();
-
-            console.log(menu_id);
 
             var formData = [];
 
@@ -317,6 +318,7 @@
                     checkboxName: checkboxName,
                     linkValue: linkValue
                 });
+                console.log(formData);
             });
 
             $(".subcategory-input-check:checked").each(function() {
@@ -337,7 +339,6 @@
                 dataType: 'json',
                 success: function(response) {
                     console.log(response);
-
                 },
                 error: function(error) {
                     console.error("Error while saving data.");

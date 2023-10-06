@@ -7,7 +7,10 @@
                 <div class="col-lg-8">
                     <div class="row">
                         <div class="col-12">
-                            <img src="{{ asset('storage/images/original') . '/' . $post->img_url }}" class="img-fluid rounded-top" alt="...." width="100%">
+                            @if ($post->img_url)
+                                <img src="{{ asset('storage/images/original') . '/' . $post->img_url }}" class="img-fluid rounded-top" alt="...." width="100%">
+                            @endif
+
                         </div>
                         <div class="col-12 mt-4">
                             <nav aria-label="breadcrumb">

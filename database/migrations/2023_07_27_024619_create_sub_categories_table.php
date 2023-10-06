@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name_mm')->nullable();
             $table->string('name_ch')->nullable();
             $table->string('category_id');
+            $table->string('url_slug');
             $table->timestamps();
             $table->softDeletes();
         });

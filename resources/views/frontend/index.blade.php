@@ -62,19 +62,19 @@
                                                 <div class="col">
                                                     <div class="row">
                                                         @if(isset($all_menus))
-                                                        @foreach ($all_menus as $menu)
-                                                            <div class="col-md-3">
-                                                                <h6>
-                                                                    @if (session()->get('locale') == 'mm')
-                                                                        <a href="{{ url('/mm/category') . '/' . $menu->name_en }}">{{ $menu->name_mm }}</a>
-                                                                    @elseif (session()->get('locale') == 'ch')
-                                                                        <a href="{{ url('/ch/category') . '/' . $menu->name_en }}">{{ $menu->name_ch }}</a>
-                                                                    @else
-                                                                        <a href="{{ url('/category') . '/' . $menu->name_en }}">{{ $menu->name_en }}</a>
-                                                                    @endif
-                                                                </h6>
-                                                            </div>
-                                                        @endforeach
+                                                            @foreach ($all_menus as $menu)
+                                                                <div class="col-md-3">
+                                                                    <h6>
+                                                                        @if (session()->get('locale') == 'mm')
+                                                                            <a href="{{ url('/mm/category') . '/' . $menu->url_slug }}">{{ $menu->name_mm }}</a>
+                                                                        @elseif (session()->get('locale') == 'ch')
+                                                                            <a href="{{ url('/ch/category') . '/' . $menu->url_slug }}">{{ $menu->name_ch }}</a>
+                                                                        @else
+                                                                            <a href="{{ url('/category') . '/' . $menu->url_slug }}">{{ $menu->name_en }}</a>
+                                                                        @endif
+                                                                    </h6>
+                                                                </div>
+                                                            @endforeach
                                                         @endif
                                                     </div>
                                                 </div>
