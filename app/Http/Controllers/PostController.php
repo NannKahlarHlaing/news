@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Country;
 use App\Models\Category;
 use App\Models\MenuItem;
 use App\Models\SubCategory;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,6 +24,7 @@ class PostController extends Controller
         $search = $request->search;
         $title = $request->title;
         $category = $request->category;
+        $date = $request->date;
 
         if(isset($search)){
             $posts = Post::where(function($query) use ($title) {
@@ -32,17 +35,20 @@ class PostController extends Controller
                     ->when($category, function ($query) use ($category) {
                         return $query->where('category_id', '=', $category);
                     })
+                    ->when($date, function ($query) use ($date) {
+                        return $query->where('created_at', 'LIKE', '%'. $date. '%');
+                    })
                     ->orderBy('id', 'desc')
-                    ->paginate(4);
+                    ->paginate(20);
         }else{
-            $posts = Post::orderby('id', 'desc')->paginate(5);
+            $posts = Post::orderby('id', 'desc')->paginate(20);
         }
 
         $tags = Tag::all();
         $categories = Category::all();
 
         $route = 'post_index';
-        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'category', 'route'));
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'date', 'category', 'route'));
     }
 
     public function trashed(Request $request){
@@ -140,15 +146,19 @@ class PostController extends Controller
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
+        $post->title_ta = $request->title_ta;
         $post->topic_en = $request->topic_en;
         $post->topic_mm = $request->topic_mm;
         $post->topic_ch = $request->topic_ch;
-        $post->short_desc_en = str_replace("\n", "\r\n", $request->short_desc_en);
-        $post->short_desc_mm = str_replace("\n", "\r\n", $request->short_desc_mm);
-        $post->short_desc_ch = str_replace("\n", "\r\n", $request->short_desc_ch);
-        $post->desc_en = str_replace("\n", "\r\n", $request->desc_en);
-        $post->desc_mm = str_replace("\n", "\r\n", $request->desc_mm);
-        $post->desc_ch = str_replace("\n", "\r\n", $request->desc_ch);
+        $post->topic_ta = $request->topic_ta;
+        $post->short_desc_en = $request->short_desc_en;
+        $post->short_desc_mm = $request->short_desc_mm;
+        $post->short_desc_ch = $request->short_desc_ch;
+        $post->short_desc_ta = $request->short_desc_ta;
+        $post->desc_en = $request->desc_en;
+        $post->desc_mm = $request->desc_mm;
+        $post->desc_ch = $request->desc_ch;
+        $post->desc_ta = $request->desc_ta;
 
         $post->save();
 
@@ -159,6 +169,10 @@ class PostController extends Controller
     public function destroy($id){
         $post = Post::find($id);
         $post->delete();
+
+        Comment::where('post_id', $id)->delete();
+
+        Country::where('post_id', $id)->delete();
 
         return redirect ('/admin/posts')->with('status', 'Post is deleted successfully!');
 
@@ -188,20 +202,30 @@ class PostController extends Controller
     }
 
     public function addValue(Request $request){
-        $ip = $request->ip();
-
         $value = $request->input('value');
         $id = $request->input('id');
 
         $addedValue = $value + 1;
 
         $post = Post::find($id);
-
         $post->views = $addedValue;
+
+        $ip = $request->ip();
+        $country = '';
+        $response = Http::get("http://ip-api.com/json/{$ip}");
+
+        if ($response->successful()) {
+            $data = $response->json();
+            $country = $data['country'];
+            Country::create([
+                'post_id' => $id,
+                'country' => $country
+            ]);
+        }
 
         $post->save();
 
-        return $ip;
+        return $addedValue;
     }
 
     public function searchEn(Request $request){
@@ -223,6 +247,12 @@ class PostController extends Controller
                 ->orWhere('topic_ch', 'LIKE', '%' . $search . '%')
                 ->orWhere('short_desc_ch', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
+        }elseif($language == 'ta'){
+            $posts = Post::where('title_ta', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic_ta', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc_ta', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_ta', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }else{
             $posts = Post::where('title_en', 'LIKE', '%' . $search . '%')
@@ -318,15 +348,19 @@ class PostController extends Controller
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
             'title_ch' => $request->title_ch,
+            'title_ta' => $request->title_ta,
             'topic_en' => $request->topic_en,
             'topic_mm' => $request->topic_mm,
             'topic_ch' => $request->topic_ch,
+            'topic_ta' => $request->topic_ta,
             'short_desc_en' => $request->short_desc_en,
             'short_desc_mm' => $request->short_desc_mm,
             'short_desc_ch' => $request->short_desc_ch,
+            'short_desc_ta' => $request->short_desc_ta,
             'desc_en' => $request->desc_en,
             'desc_mm' => $request->desc_mm,
             'desc_ch' => $request->desc_ch,
+            'desc_ta' => $request->desc_ta,
             'views' => 0,
             'like' => 0,
             'love' => 0,

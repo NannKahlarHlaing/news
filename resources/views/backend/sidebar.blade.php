@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">The VWXYZ Online</div>
+        <div class="sidebar-brand-text mx-3">{{ env('APP_NAME') }}</div>
     </a>
 
     <!-- Divider -->
@@ -86,7 +86,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('backend.socials') }}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Social</span></a>
+            <span>Contact</span></a>
     </li>
 
     <li class="nav-item">
@@ -102,13 +102,19 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.newsletter') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Newsletters</span></a>
-    </li>
-
-    <!-- Heading -->
-    {{-- <div class="sidebar-heading">
+        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseSub"
+            aria-expanded="true" aria-controls="collapseSub">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Subscribes</span>
+        </a>
+        <div id="collapseSub" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('backend.subscribers') }}">Subscribers</a>
+                <a class="collapse-item" href="{{ route('backend.newsletters') }}">Newsletters</a>
+            </div>
+        </div>
+    {{-- </li>
+    <div class="sidebar-heading">
         Addons
     </div> --}}
 

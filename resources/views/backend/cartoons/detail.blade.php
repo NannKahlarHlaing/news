@@ -18,6 +18,8 @@
                         {{ $post->title_mm }}
                     @elseif(app()->getLocale() == 'ch')
                         {{ $post->title_ch }}
+                    @elseif(app()->getLocale() == 'ta')
+                        {{ $post->title_ta }}
                     @else
                         {{ $post->title_en }}
                     @endif
@@ -30,6 +32,7 @@
                             <span><i class="fa-solid fa-clock"></i> {{ $post->created_at->format('d F Y') }} </span>
                         </div>
                         <div class="col-md-12 mb-3">
+                            <span class="category"> {{ $post->cartoonist }} </span>
                             <img src="{{ asset('storage/images/original') . '/' . $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
                         </div>
                         <div class="row d-flex align-items-center">

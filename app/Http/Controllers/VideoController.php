@@ -43,12 +43,11 @@ class VideoController extends Controller
     }
 
     public function update(Request $request){
-        dd($request->id);
         $this->validation($request);
 
         $post = Video::find($request->id);
 
-        $image = $request->file('url');
+        $image = $request->file('img_url');
 
         if($image != '' || $image != NULL){
 
@@ -67,10 +66,11 @@ class VideoController extends Controller
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
+        $post->title_ta = $request->title_ta;
         $post->desc_en = $request->desc_en;
         $post->desc_mm = $request->desc_mm;
         $post->desc_ch = $request->desc_ch;
-
+        $post->desc_ta = $request->desc_ta;
 
         $post->save();
 
@@ -107,6 +107,10 @@ class VideoController extends Controller
             $posts = Video::where('title_ch', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
+        }elseif($language == 'ta'){
+            $posts = Video::where('title_ta', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc_ta', 'LIKE', '%' . $search . '%')
+                ->paginate(4);
         }else{
             $posts = Video::where('title_en', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
@@ -133,7 +137,6 @@ class VideoController extends Controller
     private function validation($request){
         Validator::make($request->all(),[
             'video_url' => 'required',
-            'img_url' => 'required',
             'category' => 'required',
         ])->validate();
     }
@@ -165,9 +168,11 @@ class VideoController extends Controller
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
             'title_ch' => $request->title_ch,
+            'title_ta' => $request->title_ta,
             'desc_en' => $request->desc_en,
             'desc_mm' => $request->desc_mm,
             'desc_ch' => $request->desc_ch,
+            'desc_ta' => $request->desc_ta,
         ];
     }
 }

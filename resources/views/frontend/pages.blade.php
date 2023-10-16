@@ -21,6 +21,8 @@
                                             {{ $post->title_mm }}
                                         @elseif(app()->getLocale() == 'ch')
                                             {{ $post->title_ch }}
+                                        @elseif(app()->getLocale() == 'ta')
+                                            {{ $post->title_ta }}
                                         @else
                                             {{ $post->title_en }}
                                         @endif
@@ -34,6 +36,8 @@
                                     {{ $post->title_mm }}
                                 @elseif(app()->getLocale() == 'ch')
                                     {{ $post->title_ch }}
+                                @elseif(app()->getLocale() == 'ta')
+                                    {{ $post->title_ta }}
                                 @else
                                     {{ $post->title_en }}
                                 @endif
@@ -44,6 +48,8 @@
                                 {!! $post->desc_mm !!}
                             @elseif(app()->getLocale() == 'ch')
                                 {!! $post->desc_ch !!}
+                            @elseif(app()->getLocale() == 'ta')
+                                {!! $post->desc_ta !!}
                             @else
                                 {!! $post->desc_en !!}
                             @endif

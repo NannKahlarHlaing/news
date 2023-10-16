@@ -18,7 +18,7 @@ class SetLanguage
         $language = $request->segment(1);
 
         // Validate if the language is supported or set the default language here
-        if(!in_array($language, ['en', 'mm', 'ch'])){
+        if(!in_array($language, ['en', 'mm', 'ch', 'ta'])){
             $language = 'en';
 
         }elseif ($language === 'en') {

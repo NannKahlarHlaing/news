@@ -41,6 +41,7 @@ class NewsLetterMail extends Mailable
         return new Content(
             view: 'backend.newsletters.newsletter_email',
         );
+
     }
 
     /**

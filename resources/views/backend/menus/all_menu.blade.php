@@ -4,7 +4,7 @@
 
 <section class="container-fluid">
     <div class="row mb-3">
-        <div class="col-lg-5">
+        <div class="col-lg-8">
             @foreach ($items as $item)
                 <div class="card text-start mb-2">
                     <div class="card-body">

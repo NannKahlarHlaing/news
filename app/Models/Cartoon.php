@@ -10,5 +10,6 @@ class Cartoon extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['img_link', 'category_id', 'title_en', 'title_mm', 'title_ch', 'cartoonist_en', 'cartoonist_mm', 'cartoonist_ch', 'views'];
+    protected $fillable = ['img_link', 'title_en', 'title_mm', 'title_ch', 'title_ta', 'cartoonist', 'views'];
+
 }

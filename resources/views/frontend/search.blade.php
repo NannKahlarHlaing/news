@@ -29,6 +29,8 @@
                                 {{ $post->title_mm }}
                             @elseif(app()->getLocale() == 'ch')
                                 {{ $post->title_ch }}
+                            @elseif(app()->getLocale() == 'ta')
+                                {{ $post->title_ta }}
                             @else
                                 {{ $post->title_en }}
                             @endif
@@ -41,6 +43,8 @@
                                         {{ $post->category->name_mm }}
                                     @elseif(app()->getLocale() == 'ch')
                                         {{ $post->category->name_ch }}
+                                    @elseif(app()->getLocale() == 'ta')
+                                        {{ $post->category->name_ta }}
                                     @else
                                         {{ $post->category->name_en }}
                                     @endif
@@ -57,23 +61,25 @@
                                 @if ($route == 'post_search')
                                     <p>
                                         @if (app()->getLocale() == 'mm')
-                                        {!! $post->short_desc_mm !!}
-
+                                            {!! $post->short_desc_mm !!}
                                         @elseif(app()->getLocale() == 'ch')
-                                        {!! $post->short_desc_ch !!}
+                                            {!! $post->short_desc_ch !!}
+                                        @elseif(app()->getLocale() == 'ta')
+                                            {!! $post->short_desc_ta !!}
                                         @else
-                                        {!! $post->short_desc_en !!}
+                                            {!! $post->short_desc_en !!}
                                         @endif
                                     </p>
                                 @else
                                 <p>
                                     @if (app()->getLocale() == 'mm')
-                                    {!! $post->desc_mm !!}
-
+                                        {!! $post->desc_mm !!}
                                     @elseif(app()->getLocale() == 'ch')
-                                    {!! $post->desc_ch !!}
+                                        {!! $post->desc_ch !!}
+                                    @elseif(app()->getLocale() == 'ta')
+                                        {!! $post->desc_ta !!}
                                     @else
-                                    {!! $post->desc_en !!}
+                                        {!! $post->desc_en !!}
                                     @endif
                                 </p>
                                 @endif

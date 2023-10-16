@@ -45,6 +45,7 @@ class TagController extends Controller
         $post->name_en = $request->name_en;
         $post->name_mm = $request->name_mm;
         $post->name_ch = $request->name_ch;
+        $post->name_ta = $request->name_ta;
         $post->url_slug = str_replace(' ', '-', strtolower($request->name_en));
         $post->save();
 
@@ -70,6 +71,7 @@ class TagController extends Controller
             'name_en' => $request->name_en,
             'name_mm' => $request->name_mm,
             'name_ch' => $request->name_ch,
+            'name_ta' => $request->name_ta,
             'url_slug' => str_replace(' ', '-', strtolower($request->name_en))
         ];
     }

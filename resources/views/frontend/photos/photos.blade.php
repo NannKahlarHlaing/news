@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css">
     <link rel="stylesheet" href="https://www.insightindia.com/mcss/icon-font.css">
     <style>
-    #detail{
+    /* #detail{
         background-color: var(--color-gray);
-    }
+    } */
     .slick-slider .slick-prev, .slick-slider .slick-next {
         z-index: 100;
         font-size: 2.5em;
@@ -121,12 +121,14 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-6">
                                             @if (app()->getLocale() == 'mm')
-                                            {!! str_replace("\n", '', $item->desc_mm) !!}
-                                        @elseif(app()->getLocale() == 'ch')
-                                            {!! str_replace("\n", '', $item->desc_ch) !!}
-                                        @else
-                                            {!! str_replace("\n", '', $item->desc_en) !!}
-                                        @endif
+                                                {!! $item->desc_mm !!}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {!! $item->desc_ch !!}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {!! $item->desc_ta !!}
+                                            @else
+                                                {!! $item->desc_en !!}
+                                            @endif
                                         </div>
                                         <div class="col-3 d-flex align-items-center"> <!-- Add a new column for the eye icon -->
                                             <i class="fa-regular fa-eye me-3"></i>

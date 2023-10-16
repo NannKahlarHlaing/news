@@ -61,9 +61,8 @@ class CartoonController extends Controller
         $post->title_en = $request->title_en;
         $post->title_mm = $request->title_mm;
         $post->title_ch = $request->title_ch;
-        $post->cartoonist_en = $request->cartoonist_en;
-        $post->cartoonist_mm = $request->cartoonist_mm;
-        $post->cartoonist_ch = $request->cartoonist_ch;
+        $post->title_ta = $request->title_ta;
+        $post->cartoonist = $request->cartoonist;
 
         $post->save();
 
@@ -84,14 +83,7 @@ class CartoonController extends Controller
 
         $relatedPosts = Cartoon::where('id', '<>', $post->id)->limit(3)->get();
 
-        $main_menus_en = MenuItem::where('menu_id', '1')->get();
-        $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-        $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-        $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-        $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-        $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-
-        return view('backend.cartoons.detail', compact('main_menus_en', 'main_menus_mm', 'main_menus_ch', 'footer_menus_en', 'footer_menus_mm', 'footer_menus_ch', 'post', 'relatedPosts'));
+        return view('backend.cartoons.detail', compact('post', 'relatedPosts'));
     }
 
     public function detailsEn($id){
@@ -112,7 +104,7 @@ class CartoonController extends Controller
 
         return $addedValue;
     }
-    
+
     private function validation($request){
         Validator::make($request->all(),[
             'title_en' => 'required',
@@ -135,13 +127,11 @@ class CartoonController extends Controller
         })->save(public_path('storage/images/thumbnail/' . $imageName));
         return [
             'img_link' => $imageName,
-            'category_id' => $request->category_id,
             'title_en' => $request->title_en,
             'title_mm' => $request->title_mm,
             'title_ch' => $request->title_ch,
-            'cartoonist_en' => $request->cartoonist_en,
-            'cartoonist_mm' => $request->cartoonist_mm,
-            'cartoonist_ch' => $request->cartoonist_ch,
+            'title_ta' => $request->title_ta,
+            'cartoonist' => $request->cartoonist,
             'views' => 0
         ];
     }

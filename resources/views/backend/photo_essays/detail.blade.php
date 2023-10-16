@@ -104,11 +104,12 @@
         font-size: 43px;
     }
     .last-photos{
-        background-color: var(--theme-color) !important;
+        background-color: var(--sectheme-color) !important;
     }
 
     .last-photos h2, .last-photos span{
         color: #ECE7DD !important;
+        margin-bottom: 0;
     }
     .card{
         background-color: rgba(255,255,255,0.5) !important;
@@ -163,19 +164,20 @@
                         {{ $post->title_mm }}
                     @elseif(app()->getLocale() == 'ch')
                         {{ $post->title_ch }}
+                    @elseif(app()->getLocale() == 'ta')
+                        {{ $post->title_ta }}
                     @else
                     {{ $post->title_en }}
                     @endif
                 </h2>
             </div>
         </div>
-        <div class="row d-flex-center">
+        {{-- <div class="row d-flex-center">
             <div class="col-8 text-center">
                 <i class="fa-solid fa-user-large"></i><br>
                 <span>{{ $post->author }}</span><br>
-                <span>The VWXYZ ONLINE</span>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 <section class="py-4">
@@ -187,24 +189,28 @@
                         {{ \Carbon\Carbon::createFromFormat('Y-m-d', $post->date)->format('d F Y') }}
                     </div>
                     <div class="col-6 text-end">
-                        The VWXYZ ONLINE
+                        {{ env('APP_NAME') }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 mb-4">
+                    <div class="col-12">
                         @if (app()->getLocale() == 'mm')
-                            {!! str_replace("\n", '', $post->desc_mm) !!}
+                            {!! $post->desc_mm!!}
                         @elseif(app()->getLocale() == 'ch')
-                            {!! str_replace("\n", '', $post->desc_ch) !!}
+                            {!! $post->desc_ch !!}
+                        @elseif(app()->getLocale() == 'ta')
+                            {!! $post->desc_ta !!}
                         @else
-                            {!! str_replace("\n", '', $post->desc_en) !!}
+                            {!! $post->desc_en !!}
                         @endif
                     </div>
-                    <div class="col-12 mb-4"><strong>Topics:</strong>
+                    <div class="col-12 my-4 fw-bold fs-15"><strong>Topics:</strong>
                         @if (app()->getLocale() == 'mm')
                             {{ $post->topic_mm }}
                         @elseif(app()->getLocale() == 'ch')
                             {{ $post->topic_ch }}
+                        @elseif(app()->getLocale() == 'ta')
+                            {{ $post->topic_ta }}
                         @else
                         {{ $post->topic_en }}
                         @endif
@@ -218,7 +224,7 @@
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-9">
                                         <span class="fw-bold">{{ $post->author }}</span><br>
-                                        <span>The VWXYZ Online</span>
+                                        <span>{{ env('APP_NAME') }}</span>
                                     </div>
                                 </div>
                             </div>

@@ -28,8 +28,7 @@
                         <thead>
                             <tr>
                                 <th>Title EN</th>
-                                <th>Image Link</th>
-                                <th>Cartoonist EN</th>
+                                <th>Cartoonist</th>
                                 <th>Views</th>
                                 <th>View</th>
                                 <th>Edit</th>
@@ -39,8 +38,7 @@
                         <tfoot>
                             <tr>
                                 <th>Title EN</th>
-                                <th>Image Link</th>
-                                <th>Cartoonist EN</th>
+                                <th>Cartoonist</th>
                                 <th>Views</th>
                                 <th>View</th>
                                 <th>Edit</th>
@@ -51,8 +49,7 @@
                             @foreach ($posts as $item)
                                 <tr>
                                     <td>{{ $item->title_en }}</td>
-                                    <td>{{ $item->img_link }}</td>
-                                    <td>{{ $item->cartoonist_en }}</td>
+                                    <td>{{ $item->cartoonist }}</td>
                                     <td>{{ $item->views }}</td>
                                     <td>
                                         <a href="{{ url('/cartoons') . '/' . $item->id }}" class="btn btn-danger btn-circle">

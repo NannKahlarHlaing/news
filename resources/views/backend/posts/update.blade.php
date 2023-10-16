@@ -25,9 +25,10 @@
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <nav class="mb-3">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">English</button>
-                          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Myanmar</button>
-                          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Chinese</button>
+                            <button class="nav-link active" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en" type="button" role="tab" aria-controls="nav-en" aria-selected="true">English</button>
+                            <button class="nav-link" id="nav-mm-tab" data-bs-toggle="tab" data-bs-target="#nav-mm" type="button" role="tab" aria-controls="nav-mm" aria-selected="false">Myanmar</button>
+                            <button class="nav-link" id="nav-ch-tab" data-bs-toggle="tab" data-bs-target="#nav-ch" type="button" role="tab" aria-controls="nav-ch" aria-selected="false">Chinese</button>
+                            <button class="nav-link" id="nav-ta-tab" data-bs-toggle="tab" data-bs-target="#nav-ta" type="button" role="tab" aria-controls="nav-ta" aria-selected="false">Ta Ang</button>
                         </div>
                     </nav>
                     <div class="form-group">
@@ -91,7 +92,7 @@
                     </div>
 
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
                                 <label for="title_en">Title_EN</label>
                                 <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en', $post->title_en) }}">
@@ -129,7 +130,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="tab-pane fade" id="nav-mm" role="tabpanel" aria-labelledby="nav-mm-tab">
                             <div class="form-group">
                                 <label for="title_mm">Title_MM</label>
                                 <input type="text" class="form-control @error('title_mm') is-invalid @enderror" id="title_mm" name="title_mm" value="{{ old('title_mm', $post->title_mm) }}">
@@ -158,7 +159,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_mm">Description_EN</label>
+                                <label for="desc_mm">Description_MM</label>
                                 <textarea class="summernote form-control @error('desc_mm') is-invalid @enderror"name="desc_mm" id="desc_mm" rows="10">{{ old('desc_mm', $post->desc_mm) }}</textarea>
                                 @error('desc_mm')
                                     <div class="invalid-feedback">
@@ -167,7 +168,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="tab-pane fade" id="nav-ch" role="tabpanel" aria-labelledby="nav-ch-tab">
                             <div class="form-group">
                                 <label for="title_ch">Title_CH</label>
                                 <input type="text" class="form-control @error('title_ch') is-invalid @enderror" id="title_ch" name="title_ch" value="{{ old('title_ch', $post->title_ch) }}">
@@ -205,6 +206,44 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="nav-ta" role="tabpanel" aria-labelledby="nav-ta-tab">
+                            <div class="form-group">
+                                <label for="title_ta">Title_TA</label>
+                                <input type="text" class="form-control @error('title_ta') is-invalid @enderror" id="title_ta" name="title_ta" value="{{ old('title_ta', $post->title_ta) }}">
+                                @error('title_ta')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="topic_ta">Topics_TA</label>
+                                <input type="text" class="form-control @error('topic_ta') is-invalid @enderror" id="topic_ta" name="topic_ta" value="{{ old('topic_ta', $post->topic_ta) }}">
+                                @error('topic_ta')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="short_desc_ta">Short Description_TA</label>
+                                <textarea class="short_summernote form-control @error('short_desc_ta') is-invalid @enderror"name="short_desc_ta" id="short_desc_ta" >{{ old('short_desc_ta', $post->short_desc_ta) }}</textarea>
+                                @error('short_desc_ta')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="desc_ta">Description_TA</label>
+                                <textarea class="summernote form-control @error('desc_ta') is-invalid @enderror"name="desc_ta" id="desc_ta" rows="10">{{ old('desc_ta', $post->desc_ta) }}</textarea>
+                                @error('desc_ta')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Update</button>
@@ -216,7 +255,6 @@
 @endsection
 
 @section('js')
-<!-- Example: Using the jQuery CDN (Content Delivery Network) -->
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}

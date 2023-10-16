@@ -16,9 +16,10 @@
                 <form class="form" method="POST" action="{{ route(Route::currentRouteName() == 'category.create_form' ? 'category.create' : (Route::currentRouteName() == 'sub_category.create_form' ? 'sub_category.create' : 'tag.create')) }}" enctype="multipart/form-data">
                     <nav class="mb-3">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">English</button>
-                          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Myanmar</button>
-                          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Chinese</button>
+                            <button class="nav-link active" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en" type="button" role="tab" aria-controls="nav-en" aria-selected="true">English</button>
+                            <button class="nav-link" id="nav-mm-tab" data-bs-toggle="tab" data-bs-target="#nav-mm" type="button" role="tab" aria-controls="nav-mm" aria-selected="false">Myanmar</button>
+                            <button class="nav-link" id="nav-ch-tab" data-bs-toggle="tab" data-bs-target="#nav-ch" type="button" role="tab" aria-controls="nav-ch" aria-selected="false">Chinese</button>
+                            <button class="nav-link" id="nav-ta-tab" data-bs-toggle="tab" data-bs-target="#nav-ta" type="button" role="tab" aria-controls="nav-ta" aria-selected="false">Ta-Ang</button>
                         </div>
                     </nav>
                     @csrf
@@ -40,7 +41,7 @@
                     @endif
 
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
                                 <label for="name_en">Name_EN</label>
                                 <input type="text" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" name="name_en">
@@ -51,7 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="tab-pane fade" id="nav-mm" role="tabpanel" aria-labelledby="nav-mm-tab">
                             <div class="form-group">
                                 <label for="name_mm">Name_MM</label>
                                 <input type="text" class="form-control @error('name_mm') is-invalid @enderror" value="{{ old('name_mm') }}" name="name_mm">
@@ -62,11 +63,22 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="tab-pane fade" id="nav-ch" role="tabpanel" aria-labelledby="nav-ch-tab">
                             <div class="form-group">
                                 <label for="name_ch">Name_CH</label>
                                 <input type="text" class="form-control @error('name_ch') is-invalid @enderror" value="{{ old('name_ch') }}" name="name_ch">
                                 @error('name_ch')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-ta" role="tabpanel" aria-labelledby="nav-ta-tab">
+                            <div class="form-group">
+                                <label for="name_ta">Name_TA</label>
+                                <input type="text" class="form-control @error('name_ta') is-invalid @enderror" value="{{ old('name_ta') }}" name="name_ta">
+                                @error('name_ta')
                                     <div class="invalid-feedback">
                                         {{$message}}
                                     </div>

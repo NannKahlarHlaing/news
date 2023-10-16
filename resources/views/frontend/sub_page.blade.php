@@ -18,7 +18,7 @@
 
 <section class="pt-5">
     <div class="container-fluid">
-        <div class="row d-flex-center">
+        <div class="row">
             @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' )
                 <div class="col-lg-2 col-md-3 scroll-window">
                     <div class="row">
@@ -30,9 +30,11 @@
                                 @if (app()->getLocale() == 'mm')
                                     <a href="{{ url('/mm/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_mm }}</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                <a href="{{ url('/ch/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ch }}</a>
+                                    <a href="{{ url('/ch/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ch }}</a>
+                                @elseif(app()->getLocale() == 'ta')
+                                    <a href="{{ url('/ta/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ta }}</a>
                                 @else
-                                <a href="{{ url('/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_en }}</a>
+                                    <a href="{{ url('/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_en }}</a>
                                 @endif
                             </div>
                         @endforeach
@@ -42,7 +44,43 @@
             <div class="col-lg-10 col-md-9">
                 <div class="row">
                     <div class="col-md-6 mb-md-0 mb-3">
-                        <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                        @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
+                            @if (app()->getLocale() == 'mm')
+                                <a href="{{ url('/mm/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @elseif(app()->getLocale() == 'ch')
+                                <a href="{{ url('/ch/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @elseif(app()->getLocale() == 'ta')
+                                <a href="{{ url('/ta/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @else
+                                <a href="{{ url('/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @endif
+                        @else
+                            @if (app()->getLocale() == 'mm')
+                                <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @elseif(app()->getLocale() == 'ch')
+                                <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @elseif(app()->getLocale() == 'ta')
+                                <a href="{{ url('/ta') . '/' . $sub_cat[0] . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @else
+                                <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}">
+                                    <img src="/storage/images/original/{{ $latest->img_link }}" alt="image" width="100%">
+                                </a>
+                            @endif
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <div class="row">
@@ -53,6 +91,8 @@
                                             <a href="{{ url('/mm/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
                                             <a href="{{ url('/ch/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_ta }}</a>
                                         @else
                                             <a href="{{ url('/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}">{{ $latest->title_en }}</a>
                                         @endif
@@ -61,6 +101,8 @@
                                             <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
                                             <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_ta }}</a>
                                         @else
                                             <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $latest->id }}">{{ $latest->title_en }}</a>
                                         @endif
@@ -71,6 +113,8 @@
                                         {!! $latest->short_desc_mm !!}
                                     @elseif(app()->getLocale() == 'ch')
                                         {!! $latest->short_desc_ch !!}
+                                    @elseif(app()->getLocale() == 'ta')
+                                        {!! $latest->short_desc_ta !!}
                                     @else
                                         {!! $latest->short_desc_en !!}
                                     @endif
@@ -97,6 +141,8 @@
                                     {{ $sub_cat->name_mm }}
                                 @elseif(app()->getLocale() == 'ch')
                                     {{ $sub_cat->name_ch }}
+                                @elseif(app()->getLocale() == 'ta')
+                                    {{ $sub_cat->name_ta }}
                                 @else
                                     {{ $sub_cat->name_en }}
                                 @endif
@@ -123,6 +169,8 @@
                                         <a href="{{ url('/mm/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
                                     @elseif(app()->getLocale() == 'ch')
                                         <a href="{{ url('/ch/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                    @elseif(app()->getLocale() == 'ta')
+                                        <a href="{{ url('/ta/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_ta }}</a>
                                     @else
                                         <a href="{{ url('/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">{{ $ten->title_en }}</a>
                                     @endif
@@ -131,38 +179,66 @@
                                         <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_mm }}</a>
                                     @elseif(app()->getLocale() == 'ch')
                                         <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_ch }}</a>
+                                    @elseif(app()->getLocale() == 'ta')
+                                        <a href="{{ url('/ta') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_ta }}</a>
                                     @else
-                                    <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_en }}</a>
+                                        <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $ten->id }}">{{ $ten->title_en }}</a>
                                     @endif
-
                                 @endif
                             </h5>
                             <div class="row">
                                 <div class="col-lg-12 col-md-10 col-10">
-                                    @if (Route::currentRouteName() == 'sub_pages')
-                                        <span class="category">
-                                            @if (app()->getLocale() == 'mm')
-                                                {{ $ten->category->name_mm }}
-                                            @elseif(app()->getLocale() == 'ch')
-                                                {{ $ten->category->name_ch }}
-                                            @else
-                                                {{ $ten->category->name_en }}
-                                            @endif
-                                        </span>
-                                    @endif
                                     @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
                                         <span class="category">
                                             @if (app()->getLocale() == 'mm')
                                                 {{ $latest->category->name_mm }}
                                             @elseif(app()->getLocale() == 'ch')
                                                 {{ $latest->category->name_ch }}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $latest->category->name_ta }}
                                             @else
                                                 {{ $latest->category->name_en }}
                                             @endif
 
                                         </span>
                                     @endif
-                                    <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                    @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/mm/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @else
+                                            <a href="{{ url('/category') . '/' . $ten->category->url_slug . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @endif
+                                    @else
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta') . '/' . $sub_cat[0] . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @else
+                                            <a href="{{ url('/') . '/' . $sub_cat[0] . '/' . $ten->id }}">
+                                                <img src="/storage/images/thumbnail/{{ $ten->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @endif
+                                    @endif
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-10 ">
                                     <span>BY {{ env('APP_NAME') }}</span>
@@ -171,6 +247,8 @@
                                             {!! $ten->short_desc_mm !!}
                                         @elseif(app()->getLocale() == 'ch')
                                             {!! $ten->short_desc_ch !!}
+                                        @elseif(app()->getLocale() == 'ta')
+                                            {!! $ten->short_desc_ta !!}
                                         @else
                                             {!! $ten->short_desc_en !!}
                                         @endif
@@ -192,7 +270,23 @@
                         @foreach ($mostViews as $key => $itemFive)
                             <div class="row py-1 top-ten d-flex align-items-center">
                                 <div class="col-md-3 col-4">
-                                    <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
+                                    @if (app()->getLocale() == 'mm')
+                                        <a href="{{ url('/mm/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >
+                                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
+                                        </a>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <a href="{{ url('/ch/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >
+                                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
+                                        </a>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <a href="{{ url('/ta/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >
+                                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
+                                        </a>
+                                    @else
+                                        <a href="{{ url('/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >
+                                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
+                                        </a>
+                                    @endif
                                 </div>
                                 <div class="col-md-9 col-8">
                                     <h6>
@@ -200,13 +294,15 @@
                                             <a href="{{ url('/mm/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
                                             <a href="{{ url('/ch/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_ch }}</a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ta/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_ta }}</a>
                                         @else
                                             <a href="{{ url('/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >{{ $itemFive->title_en }}</a>
                                         @endif
                                     </h6>
                                 </div>
                                 <div class="col-12 d-flex align-items-center">
-                                    <span><span class="fw-bold">Viewers:</span> {{ $itemFive->views }}</span>
+                                    <span><span class="fw-bold">Views:</span> {{ $itemFive->views }}</span>
                                 </div>
                             </div>
                         @endforeach

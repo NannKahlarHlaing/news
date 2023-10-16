@@ -10,7 +10,7 @@ class Video extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['video_url', 'img_url', 'category_id', 'title_en', 'title_mm' ,'title_ch', 'desc_en', 'desc_mm', 'desc_ch'];
+    protected $fillable = ['video_url', 'img_url', 'category_id', 'title_en', 'title_mm' , 'title_ch', 'title_ta', 'desc_en', 'desc_mm', 'desc_ch', 'desc_ta'];
 
     public function category(){
         return $this->belongsTo('App\Models\Category', 'category_id');

@@ -37,6 +37,12 @@ class MenuController extends Controller
         else if($id == 6){
             $menu_name = 'Footer Menu CH';
         }
+        else if($id == 7){
+            $menu_name = 'Main Menu TA';
+        }
+        else if($id == 8){
+            $menu_name = 'Footer Menu TA';
+        }
 
         $menu_items = MenuItem::where('menu_id', $id)->get();
 

@@ -10,15 +10,15 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'order', 'url_slug'];
+    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'name_ta', 'order', 'url_slug'];
 
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
-            $maxOrder = static::max('order'); // Get the maximum 'order' value in the table
-            $model->order = $maxOrder + 1; // Set 'order' to the next available value
+            $maxOrder = static::max('order');
+            $model->order = $maxOrder + 1;
         });
     }
 

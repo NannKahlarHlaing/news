@@ -156,6 +156,8 @@
                                         <a href="{{ url('/mm/cartoons') . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
                                             <a href="{{ url('/ch/cartoons') . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/cartoons') . '/' . $latest->id }}">{{ $latest->title_ta }}</a>
                                         @else
                                             <a href="{{ url('/cartoons') . '/' . $latest->id }}">{{ $latest->title_en }}</a>
                                         @endif
@@ -168,14 +170,7 @@
                                     <i class="fa-solid fa-eye text-dark me-4"></i> {{ $latest->views }}
                                 </span>
                                 <span><i class="fa-solid fa-clock"></i> {{ $latest->created_at->format('d F Y') }} - </span>
-
-                                @if (app()->getLocale() == 'mm')
-                                    <span>By {{ $latest->cartoonist_mm }} </span>
-                                @elseif(app()->getLocale() == 'ch')
-                                    <span>By {{ $latest->cartoonist_ch }} </span>
-                                @else
-                                    <span>By -{{ $latest->cartoonist_en }} </span>
-                                @endif
+                                <span>By -{{ $latest->cartoonist }} </span>
                             </div>
                             <div class="mb-3">
 
@@ -220,18 +215,14 @@
                                  <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_mm }}</a>
                                 @elseif(app()->getLocale() == 'ch')
                                     <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ch }}</a>
+                                @elseif(app()->getLocale() == 'ta')
+                                    <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ta }}</a>
                                 @else
                                     <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_en }}</a>
                                 @endif
                             </p>
                             <span class="me-3">
-                                @if (app()->getLocale() == 'mm')
-                                    <span>By {!! str_replace("\n", '', $cartoon->cartoonist_mm) !!} </span>
-                                @elseif(app()->getLocale() == 'ch')
-                                    <span>By {!! str_replace("\n", '', $cartoon->cartoonist_ch) !!} </span>
-                                @else
-                                    <span>By {!! str_replace("\n", '', $cartoon->cartoonist_en) !!} </span>
-                                @endif
+                                <span>By {{ $cartoon->cartoonist }} </span>
                             </span>
                             <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($cartoon->created_at)->format('d F Y') }}</span>
                             <span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $cartoon->views }}</span>

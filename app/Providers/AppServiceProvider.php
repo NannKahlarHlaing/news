@@ -37,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
             $footer_menus_en = MenuItem::where('menu_id', '4')->get();
             $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
             $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
+            $main_menus_ta = MenuItem::where('menu_id', '7')->get();
+            $footer_menus_ta = MenuItem::where('menu_id', '8')->get();
 
             $info = Social::find(1);
 
@@ -51,9 +53,11 @@ class AppServiceProvider extends ServiceProvider
                 'main_menus_en' => $main_menus_en,
                 'main_menus_mm' => $main_menus_mm,
                 'main_menus_ch' => $main_menus_ch,
+                'main_menus_ta' => $main_menus_ta,
                 'footer_menus_en' => $footer_menus_en,
                 'footer_menus_mm' => $footer_menus_mm,
                 'footer_menus_ch' => $footer_menus_ch,
+                'footer_menus_ta' => $footer_menus_ta,
                 'app_url' => $app_url,
                 'info' => $info,
             ]);

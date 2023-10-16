@@ -13,11 +13,13 @@
                         <div class="col-md-12 py-1">
                             <h6>
                                 @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/category') . '/' . $related->category->name_en . '/' . $related->id }}">{{ $related->title_mm }}</a>
+                                    <a href="{{ url('/mm/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title_mm }}</a>
                                 @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/category') . '/' . $related->category->name_en . '/' . $related->id }}">{{ $related->title_ch }}</a>
+                                    <a href="{{ url('/ch/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title_ch }}</a>
+                                @elseif(app()->getLocale() == 'ta')
+                                    <a href="{{ url('/ta/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title_ta }}</a>
                                 @else
-                                    <a href="{{ url('/category') . '/' . $related->category->name_en . '/' . $related->id }}">{{ $related->title_en }}</a>
+                                    <a href="{{ url('/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title_en }}</a>
                                 @endif
                             </h6>
                         </div>
@@ -28,18 +30,43 @@
                 <div class="row mb-5">
                     <div class="col-12">
                         <span class="d-none" id="id">{{ $post->id }}</span>
-                        <span>{{ $post->category->name }}</span>
+                        {{-- <span>{{ $post->category->name_en }}</span> --}}
                         <h2>
                             @if (app()->getLocale() == 'mm')
                                 {{ $post->title_mm }}
                             @elseif(app()->getLocale() == 'ch')
                                 {{ $post->title_ch }}
+                            @elseif(app()->getLocale() == 'ta')
+                                {{ $post->title_ta }}
                             @else
-                            {{ $post->title_en }}
+                                {{ $post->title_en }}
                             @endif
                         </h2>
                     </div>
                     <div class="col-12">
+                        <span class="category">
+                            @if (app()->getLocale() == 'mm')
+                                {{ $post->category->name_mm }}
+                                @isset($post->sub_category_id)
+                                    / {{$post->sub_category->name_mm }}
+                                @endisset
+                            @elseif(app()->getLocale() == 'ch')
+                                {{ $post->category->name_ch }}
+                                @isset($post->sub_category_id)
+                                    / {{$post->sub_category->name_ch }}
+                                @endisset
+                            @elseif(app()->getLocale() == 'ta')
+                                {{ $post->category->name_ta }}
+                                @isset($post->sub_category_id)
+                                    / {{$post->sub_category->name_ta }}
+                                @endisset
+                            @else
+                                {{ $post->category->name_en }}
+                                @isset($post->sub_category_id)
+                                    / {{$post->sub_category->name_en }}
+                                @endisset
+                            @endif
+                        </span>
                         <img src="/storage/images/original/{{ $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
                     </div>
                 </div>
@@ -81,15 +108,19 @@
                                 {!! $post->desc_mm !!}
                             @elseif(app()->getLocale() == 'ch')
                                 {!! $post->desc_ch !!}
+                            @elseif(app()->getLocale() == 'ta')
+                                {!! $post->desc_ta !!}
                             @else
                                 {!! $post->desc_en !!}
                             @endif
                         </p>
-                        <div class="col-12 mb-4"><strong>Topics:</strong>
+                        <div class="col-12 my-4 fw-bold fs-15"><strong>Topics:</strong>
                             @if (app()->getLocale() == 'mm')
                                 {{ $post->topic_mm }}
                             @elseif(app()->getLocale() == 'ch')
                                 {{ $post->topic_ch }}
+                            @elseif(app()->getLocale() == 'ta')
+                                {{ $post->topic_ta }}
                             @else
                             {{ $post->topic_en }}
                             @endif
@@ -104,6 +135,8 @@
                                         <span>{{ $tag->name_mm }}</span>
                                     @elseif (app()->getLocale() == 'ch')
                                         <span>{{ $tag->name_ch }}</span>
+                                    @elseif (app()->getLocale() == 'ta')
+                                        <span>{{ $tag->name_ta }}</span>
                                     @else
                                         <span>{{ $tag->name_en }}</span>
                                     @endif
@@ -224,8 +257,7 @@
             method: 'GET',
             data: {value: value, id: id},
             success: function(response){
-                console.log(response);
-                // $('#views').html(response);
+                $('#views').html(response);
             }
         });
 

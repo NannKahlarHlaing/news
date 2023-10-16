@@ -67,9 +67,15 @@ Route::group(['middleware' => 'normal'], function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('admin');
 
-        Route::get('/newsletter', [SubscribeController::class, 'newsletter'])->name('backend.newsletter');
+        Route::get('/subscribers', [SubscribeController::class, 'subscribers'])->name('backend.subscribers');
+
+        Route::get('/newsletters', [SubscribeController::class, 'newsletters'])->name('backend.newsletters');
+
+        Route::get('/newsletter_form', [SubscribeController::class, 'newsletter_form'])->name('backend.newsletter_form');
 
         Route::post('/newsletter', [SubscribeController::class, 'send_newsletter'])->name('newsletter');
+
+        Route::get('/newsletters/details/{id}', [SubscribeController::class, 'details']);
 
         Route::group(['middleware' => 'admin'], function () {
             Route::controller(AdminController::class)->group(function(){
@@ -233,13 +239,11 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/photos', 'show_photos')->name('frontend.photos');
     Route::get('/photo_essays', 'photo_essays')->name('frontend.photo_essays');
     Route::get('/contact', 'contact')->name('frontend.contact');
-    // Route::post('/contact', 'sendEmail')->name('frontend.email_sent');
     Route::get('/cartoons', 'cartoons')->name('frontend.cartoons');
     Route::get('/category/{category}', 'main_categoriesEn')->name('main_categories.sub_pages');
     Route::get('/categories/{main_category}/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
-    // Route::get('/{title}', 'pagesEn')->name('frontend.pages');
     Route::get('/{title}', function($path){
-        if($path == 'mm' || $path == 'ch'){
+        if($path == 'mm' || $path == 'ch' || $path == 'ta'){
             $frontendController = new FrontendController();
 
             $data = $frontendController->home_page();

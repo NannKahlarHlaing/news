@@ -28,6 +28,8 @@
                                 $name = 'ဓာတ်ပုံများ';
                             }else if($id == '3' || $id == '6'){
                                 $name = '相片';
+                            }else if($id == '7' || $id == '8'){
+                                $name = 'ဓာတ်ပုံများ';
                             }else{
                                 $name = 'Photos';
                             }
@@ -47,6 +49,9 @@
                                 $name = 'ဓာတ်ပုံအက်ဆေးများ';
                             }else if($id == '3' || $id == '6'){
                                 $name = '照片随笔';
+                            }
+                            else if($id == '7' || $id == '8'){
+                                $name = 'ဓာတ်ပုံအက်ဆေးများ';
                             }else{
                                 $name = 'Photo Essays';
                             }
@@ -66,6 +71,9 @@
                                 $name = 'ဗီဒီယိုများ';
                             }else if($id == '3' || $id == '6'){
                                 $name = '视频';
+                            }
+                            else if($id == '7' || $id == '8'){
+                                $name = 'ဗီဒီယိုများ';
                             }else{
                                 $name = 'Videos';
                             }
@@ -85,6 +93,8 @@
                                 $name = 'ကာတွန်းများ';
                             }else if($id == '3' || $id == '6'){
                                 $name = '卡通';
+                            }else if($id == '7' || $id == '8'){
+                                $name = 'ကာတွန်းများ';
                             }else{
                                 $name = 'Cartoons';
                             }
@@ -104,6 +114,8 @@
                                 $name = 'ဆက်သွယ်ရန်';
                             }else if($id == '3' || $id == '6'){
                                 $name = '联络我们';
+                            }else if($id == '7' || $id == '8'){
+                                $name = 'ဆက်သွယ်ရန်';
                             }else{
                                 $name = 'Contact';
                             }
@@ -124,6 +136,8 @@
                                 $name = $item->title_mm;
                             }else if($id == '3' || $id == '6'){
                                 $name = $item->title_ch;
+                            } else if($id == '7' || $id == '8'){
+                                $name = $item->title_ta;
                             }else{
                                 $name = $item->title_en;
                             }
@@ -140,7 +154,7 @@
                     @endforeach
                 </div>
             </div>
-            @if ($menu_name == 'Main Menu EN' || $menu_name == 'Main Menu MM' || $menu_name == 'Main Menu CH')
+            @if ($menu_name == 'Main Menu EN' || $menu_name == 'Main Menu MM' || $menu_name == 'Main Menu CH' || $menu_name == 'Main Menu TA')
                 <div class="col-md-4">
                     <h6 class="mb-3">Edit Menu Items From Categories</h6>
                     <div class="form-control scroll-window mb-3">
@@ -150,6 +164,8 @@
                                     $name = $item->name_mm;
                                 }else if($id == '3' || $id == '6'){
                                     $name = $item->name_ch;
+                                }else if($id == '7' || $id == '8'){
+                                    $name = $item->name_ta;
                                 }else{
                                     $name = $item->name_en;
                                 }
@@ -175,6 +191,8 @@
                                     $name = $item->name_mm;
                                 }else if($id == '3' || $id == '6'){
                                     $name = $item->name_ch;
+                                }else if($id == '7' || $id == '8'){
+                                    $name = $item->name_ta;
                                 }else{
                                     $name = $item->name_en;
                                 }

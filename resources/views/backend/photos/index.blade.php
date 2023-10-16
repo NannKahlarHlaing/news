@@ -30,8 +30,8 @@
                                 <th>Description_En</th>
                                 <th>Camera Man</th>
                                 <th>Views</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -39,8 +39,8 @@
                                 <th>Description</th>
                                 <th>Camera Man</th>
                                 <th>Views</th>
-                                <th>Action</th>
-                                <th>Action</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </tfoot>
                         <tbody>

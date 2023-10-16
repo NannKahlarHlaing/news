@@ -47,13 +47,14 @@ class PhotoController extends Controller
             $thumbnail = $original->fit(400, 300, function($constraint){
                 $constraint->aspectRatio();
             })->save(public_path('storage/images/thumbnail/' . $imageName));
-            
+
             $post->url = $imageName;
         }
 
         $post->desc_en = $request->desc_en;
         $post->desc_mm = $request->desc_mm;
         $post->desc_ch = $request->desc_ch;
+        $post->desc_ta = $request->desc_ta;
         $post->camera = $request->camera;
 
         $post->save();
@@ -118,6 +119,7 @@ class PhotoController extends Controller
             'desc_en' => $request->desc_en,
             'desc_mm' => $request->desc_mm,
             'desc_ch' => $request->desc_ch,
+            'desc_ta' => $request->desc_ta,
             'camera' => $request->camera,
             'views' => 0
         ];

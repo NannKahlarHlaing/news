@@ -36,9 +36,10 @@
         <div class="container-fluid">
             <div class="col-12 py-1 fw-bold text-end locale">
                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
-                <a href="" class="text-white me-2" id="en">English</a>
                 <a href="" class="text-white me-2" id="mm">Myanmar</a>
-                <a href="" class="text-white" id="ch">Chinese</a>
+                <a href="" class="text-white me-2" id="ta">Ta'ang</a>
+                <a href="" class="text-white me-2" id="ch">Chinese</a>
+                <a href="" class="text-white" id="en">English</a>
             </div>
         </div>
     </section>
@@ -48,17 +49,23 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-lg navbar-light aa">
-                        <div class="" id="menu-bar">
-                            <button class="btn btn-transparent d-none d-lg-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span></button>
+                        <div class="d-flex align-items-center" id="menu-bar">
+                            <button class="btn btn-transparent d-none d-lg-block py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                                <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="" width="80px" height="80px">
+                                <i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span>
+                            </button>
                             <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                                 <div class="container-fluid">
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-11">
+                                    <div class="row d-flex justify-content-center align-items-center">
+                                        <div class="col-lg-2 col-md-2 text-center">
+                                            <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="" width="100px" height="100px">
+                                        </div>
+                                        <div class="col-lg-10 col-md-10">
                                             <div class="offcanvas-header">
                                                 <h5 id="offcanvasTopLabel">{{ env('APP_NAME') }}</h5>
                                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                             </div>
-                                            <div class="offcanvas-body d-flex justify-content-start">
+                                            <div class="offcanvas-body d-flex justify-content-center">
                                                 <div class="col">
                                                     <div class="row">
                                                         @if(isset($all_menus))
@@ -69,6 +76,8 @@
                                                                             <a href="{{ url('/mm/category') . '/' . $menu->url_slug }}">{{ $menu->name_mm }}</a>
                                                                         @elseif (session()->get('locale') == 'ch')
                                                                             <a href="{{ url('/ch/category') . '/' . $menu->url_slug }}">{{ $menu->name_ch }}</a>
+                                                                        @elseif (session()->get('locale') == 'ta')
+                                                                            <a href="{{ url('/ta/category') . '/' . $menu->url_slug }}">{{ $menu->name_ta }}</a>
                                                                         @else
                                                                             <a href="{{ url('/category') . '/' . $menu->url_slug }}">{{ $menu->name_en }}</a>
                                                                         @endif
@@ -106,6 +115,12 @@
                                             <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                             </li>
                                         @endforeach
+                                    @elseif (session()->get('locale') == 'ta')
+                                        @foreach ($main_menus_ta as $item)
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            </li>
+                                        @endforeach
                                     @else
                                         @foreach ($main_menus_en as $item)
                                         <li class="nav-item">
@@ -118,7 +133,7 @@
                             </div>
                         </div>
                         <div class="col-lg fw-bold text-white" id="site-title">{{ env('APP_NAME') }}</div>
-                        <div class="col-lg-2 col-12 text-end mt-2" id="search">
+                        <div class="col-lg-2 col-12 text-end mt-2 mt-lg-0" id="search">
                             <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </nav>
@@ -130,6 +145,12 @@
                         </form>
                     @elseif (session()->get('locale') == 'ch')
                         <form class="d-flex" id="search-form" action="{{ url('/ch/posts/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <i class="fa-solid fa-xmark" id="btn-close"></i>
+                        </form>
+                    @elseif (session()->get('locale') == 'ta')
+                        <form class="d-flex" id="search-form" action="{{ url('/ta/posts/search') }}" method="GET">
                             @csrf
                             <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
                             <i class="fa-solid fa-xmark" id="btn-close"></i>
@@ -176,6 +197,10 @@
                                     @foreach ($footer_menus_ch as $item)
                                         <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
                                     @endforeach
+                                @elseif (session()->get('locale') == 'ta')
+                                    @foreach ($footer_menus_ta as $item)
+                                        <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
+                                    @endforeach
                                 @else
                                     @foreach ($footer_menus_en as $item)
                                         <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
@@ -212,7 +237,6 @@
 <script>
     $(document).ready(function(){
         var appUrl = '{{ $app_url }}';
-        console.log(appUrl);
         const searchInput = $('.search-input');
 
             searchInput.on('keydown', function(event) {
@@ -230,7 +254,7 @@
             if(lang == 'en'){
                 var newUrl = currentURL.replace(appUrl, appUrl + 'en/');
             }else{
-                var newUrl = currentURL.replace(/\/(mm|ch)\//, '/en/');
+                var newUrl = currentURL.replace(/\/(mm|ch|ta)\//, '/en/');
             }
 
             window.location.replace(newUrl);
@@ -242,7 +266,7 @@
             if(lang == 'en'){
                 var newUrl = currentURL.replace(appUrl, appUrl + 'mm/');
             }else{
-                var newUrl = currentURL.replace(/\/(ch|en)\//, '/mm/');
+                var newUrl = currentURL.replace(/\/(ch|en|ta)\//, '/mm/');
             }
 
             window.location.replace(newUrl);
@@ -254,7 +278,19 @@
             if(lang == 'en'){
                 var newUrl = currentURL.replace(appUrl, appUrl + 'ch/');
             }else{
-                var newUrl = currentURL.replace(/\/(mm|en)\//, '/ch/');
+                var newUrl = currentURL.replace(/\/(mm|en|ta)\//, '/ch/');
+            }
+
+            window.location.replace(newUrl);
+        });
+
+        $('#ta').on('click', function(event) {
+            event.preventDefault();
+            var currentURL = window.location.href;
+            if(lang == 'en'){
+                var newUrl = currentURL.replace(appUrl, appUrl + 'ta/');
+            }else{
+                var newUrl = currentURL.replace(/\/(mm|en|ch)\//, '/ta/');
             }
 
             window.location.replace(newUrl);
@@ -306,13 +342,11 @@
         function scrollFunction() {
         }
 
-        // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = scrollFunction();
 
-        // When the user clicks on the button, scroll to the top of the document
         function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
     })
 

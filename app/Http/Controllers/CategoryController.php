@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ class CategoryController extends Controller
         $post->name_en = $request->name_en;
         $post->name_mm = $request->name_mm;
         $post->name_ch = $request->name_ch;
+        $post->name_ta = $request->name_ta;
         $post->url_slug = str_replace(' ', '-', strtolower($request->name_en));
         $post->save();
 
@@ -56,12 +58,14 @@ class CategoryController extends Controller
         $post = Category::find($id);
         $post->delete();
 
+        SubCategory::where('category_id', $id)->delete();
+
         return redirect('/admin/categories')->with('status', 'Category is deleted successfully!');
     }
 
     private function validation($request){
         Validator::make($request->all(),[
-            'name_en' => 'required'
+            'name_en' => 'required',
         ])->validate();
     }
 
@@ -70,6 +74,7 @@ class CategoryController extends Controller
             'name_en' => $request->name_en,
             'name_mm' => $request->name_mm,
             'name_ch' => $request->name_ch,
+            'name_ta' => $request->name_ta,
             'url_slug' => str_replace(' ', '-', strtolower($request->name_en))
         ];
     }

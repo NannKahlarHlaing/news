@@ -24,10 +24,10 @@
             color: var(--font-color);
         }
 
-        .search-input::placeholder{
+        .filter .search-input::placeholder{
             color: var(--color-gray) !important;
         }
-        .search-input{
+        .filter .search-input{
             border-color: var(--color-gray) !important;
         }
 </style>
@@ -72,6 +72,8 @@
                                             <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
                                             <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title_ch }}</a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title_ta }}</a>
                                         @else
                                             <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title_en }}</a>
                                         @endif
@@ -82,11 +84,13 @@
                             <span class="d-block py-3">{{ $latest->created_at->format('d F Y') }}</span>
                             <div class="row">
                                 @if (app()->getLocale() == 'mm')
-                                    {!! str_replace("\n", '', $latest->desc_mm) !!}
+                                    {!! $latest->desc_mm !!}
                                 @elseif(app()->getLocale() == 'ch')
-                                    {!! str_replace("\n", '', $latest->desc_ch) !!}
+                                    {!! $latest->desc_ch !!}
+                                @elseif(app()->getLocale() == 'ta')
+                                    {!! $latest->desc_ta !!}
                                 @else
-                                    {!! str_replace("\n", '', $latest->desc_en) !!}
+                                    {!! $latest->desc_en !!}
                                 @endif
                             </div>
                         </div>
@@ -110,6 +114,8 @@
                                     {{ $item->name_mm }}
                                 @elseif(app()->getLocale() == 'ch')
                                     {{ $item->name_ch }}
+                                @elseif(app()->getLocale() == 'ta')
+                                    {{ $item->name_ta }}
                                 @else
                                     {{ $item->name_en }}
                                 @endif
@@ -120,7 +126,7 @@
                 <div class="col-md-6 col-6">
                     <h2 class="text-center">FILTERS</h2>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 filter">
                     @if (session()->get('locale') == 'mm')
                         <form class="d-flex" id="search-form" action="{{ url('/mm/videos/search') }}" method="GET">
                             @csrf
@@ -129,6 +135,12 @@
                         </form>
                     @elseif (session()->get('locale') == 'ch')
                         <form class="d-flex" id="search-form" action="{{ url('/ch/videos/search') }}" method="GET">
+                            @csrf
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray">Search</button>
+                        </form>
+                    @elseif (session()->get('locale') == 'ta')
+                        <form class="d-flex" id="search-form" action="{{ url('/ta/videos/search') }}" method="GET">
                             @csrf
                             <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
                             <button type="submit" class="btn btn-gray">Search</button>
@@ -148,31 +160,38 @@
 <section class="last-photos py-3">
     <div class="container-fluid">
         <div class="row" id="post_container">
-            @foreach ($posts as $item)
-                <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="card">
-                        <a data-fancybox href="{{ $item->video_url }}" >
-                        <img class="card-img-top img-fluid" src=" {{ asset('/storage/images/thumbnail') . '/' . $item->img_url }}" />
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text">
-                                @if (app()->getLocale() == 'mm')
-                                    {{ $item->title_mm }}
-                                @elseif(app()->getLocale() == 'ch')
-                                    {{ $item->title_ch }}
-                                @else
-                                    {{ $item->title_en }}
-                                @endif
-                            </p>
+            @if (count($posts) > 0)
+                @foreach ($posts as $item)
+                    <div class="col-lg-3 col-md-6 mb-3">
+                        <div class="card">
+                            <a data-fancybox href="{{ $item->video_url }}" >
+                            <img class="card-img-top img-fluid" src=" {{ asset('/storage/images/thumbnail') . '/' . $item->img_url }}" />
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    @if (app()->getLocale() == 'mm')
+                                        {{ $item->title_mm }}
+                                    @elseif(app()->getLocale() == 'ch')
+                                        {{ $item->title_ch }}
+                                    @elseif(app()->getLocale() == 'ta')
+                                        {{ $item->title_ta }}
+                                    @else
+                                        {{ $item->title_en }}
+                                    @endif
+                                </p>
+                            </div>
                         </div>
                     </div>
+                @endforeach
+                <div class="row">
+                    <div class="col-12 text-center" id="pagination">
+                        <div class="">{{ $posts->appends(Request::all())->links() }}</div>
+                    </div>
                 </div>
-            @endforeach
-            <div class="row">
-                <div class="col-12 text-center" id="pagination">
-                    <div class="">{{ $posts->appends(Request::all())->links() }}</div>
-                </div>
-            </div>
+            @else
+                <div class="col-12 mt-3 card p-3 text-center">No Content Available</div>
+            @endif
+
         </div>
 
     </div>
@@ -193,16 +212,14 @@
 
         $('#categories').on('change', function(event){
             event.preventDefault();
-            $cat_id = $('#categories').val();
-
+            cat_id = $('#categories').val();
             $.ajax({
                 url: '{{ route('getVideosByCategory') }}',
                 method: 'GET',
-                data: { 'id': $cat_id },
+                data: { 'id': cat_id },
                 success: function(response){
-                    console.log(response);
                     $('#post_container').empty();
-                    const responseLength = response.data.length;
+                    responseLength = response.data.length;
                     if (responseLength > 0) {
                         response.data.forEach(video => {
                             const card = `

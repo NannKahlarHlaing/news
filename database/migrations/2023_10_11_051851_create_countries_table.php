@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('name_en');
-            $table->string('name_mm')->nullable();
-            $table->string('name_ch')->nullable();
-            $table->string('name_ta')->nullable();
-            $table->string('url_slug');
+            $table->string('post_id');
+            $table->string('country');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('countries');
     }
 };

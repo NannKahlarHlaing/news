@@ -1,10 +1,18 @@
 @extends('backend.index')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-4">
+    <div class="row px-5">
+        <div class="col-lg-12 ">
+            <canvas class="chart" id="countryChart"></canvas>
+        </div>
+    </div>
+    <div class="row px-5 mt-3">
+        <div class="col-lg-12 col-md-12">
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">
+                    <div class="card-title">
+                        <h3>Most Views</h3>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped" width="100%" cellspacing="0">
                             <thead>
@@ -22,7 +30,7 @@
                                         <td>{{ $item->category->name_en }}</td>
                                         <td>{{ $item->views }}</td>
                                         <td>
-                                            <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/category') . '/' . $item->category->url_slug . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>
@@ -34,9 +42,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6 col-md-12">
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">
+                    <div class="card-title">
+                        <h3>Most Reacts</h3>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped" width="100%" cellspacing="0">
                             <thead>
@@ -54,7 +65,7 @@
                                         <td>{{ $item->category_name}}</td>
                                         <td>{{ $item->total_reactions }}</td>
                                         <td>
-                                            <a href="{{ url('/category') . '/' . $item->category_name . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/category') . '/' . $item->url_slug . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>
@@ -66,9 +77,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6 col-md-12">
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">
+                    <div class="card-title">
+                        <h3>Most Comments</h3>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped" width="100%" cellspacing="0">
                             <thead>
@@ -86,7 +100,7 @@
                                         <td>{{ $item->category->name_en }}</td>
                                         <td>{{ $item->comments_count }}</td>
                                         <td>
-                                            <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/category') . '/' . $item->category->url_slug . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>
@@ -99,4 +113,44 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const topCountriesData = @json($mostViewsCountries);
+    const countryNames = topCountriesData.map(data => data.country);
+    const countryCounts = topCountriesData.map(data => data.country_count);
+
+    const ctx = document.getElementById('countryChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: countryNames,
+            datasets: [{
+                label: 'Country Counts',
+                data: countryCounts,
+                backgroundColor: '#006934',
+                borderColor: '#006934',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    },
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'View Count'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 @endsection

@@ -25,7 +25,24 @@ class SubscribeController extends Controller
         return $message;
     }
 
-    public function newsletter(){
+    public function subscribers(){
+        $subscribers = Subscribe::all();
+        return view('backend.newsletters.subscribers', compact('subscribers'));
+    }
+
+    public function newsletters(){
+        $newsletters = Newsletter::all();
+
+        return view('backend.newsletters.newsletters', compact('newsletters'));
+    }
+
+    public function details($id){
+        $newsletter = Newsletter::find($id);
+
+        return view('backend.newsletters.details', compact('newsletter'));
+    }
+
+    public function newsletter_form(){
         return view('backend.newsletters.send_form');
     }
 
@@ -42,7 +59,7 @@ class SubscribeController extends Controller
             Mail::to($subscribe->email)->send(new NewsLetterMail($data));
         }
 
-        return redirect()->back()->with('success', 'Newsletter is sent successfully');
+        return redirect('/admin/newsletters')->with('success', 'Newsletter is sent successfully');
 
     }
 }

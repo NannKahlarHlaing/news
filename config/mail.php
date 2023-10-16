@@ -122,4 +122,17 @@ return [
         ],
     ],
 
+    'html' => [
+        'theme' => 'default',
+        'paths' => [resource_path('views/vendor/mail')],
+        'content_type' => 'text/html', // Add or modify this line
+    ],
+
+    'purify' => [
+        'html' => [
+            'HTML.Allowed' => 'a[href],p,br,img[src|alt]',
+        ],
+    ],
+
+
 ];

@@ -30,6 +30,31 @@
 
     @yield('css')
 
+    <style>
+        select {
+        padding: 0 1rem !important;
+    }
+    .chart{
+        width: 100%;
+        height: 700px;
+    }
+
+    @media only screen and (min-width: 412px ) and (max-width: 820px){
+        .chart{
+            width: 100%;
+            height: 500px !important;
+        }
+    }
+
+    @media only screen and (max-width: 412px){
+        .chart{
+            width: 100%;
+            height: 500px !important;
+        }
+    }
+
+    </style>
+
 </head>
 
 <body id="page-top">
