@@ -223,7 +223,7 @@ class FrontendController extends Controller
 
         $latest = Cartoon::latest()->first();
 
-        $cartoons = Cartoon::orderBy('id', 'desc')->get();
+        $cartoons = Cartoon::orderBy('id', 'desc')->paginate(16);
 
         return view('frontend.cartoons', compact('latest', 'cartoons'));
     }

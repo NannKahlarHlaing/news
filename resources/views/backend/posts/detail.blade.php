@@ -6,7 +6,7 @@
             <div class="col-lg-3 related">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="border-bottom border-dark pb-1">Related Posts</h3>
+                        <h3 class="border-bottom border-dark pb-1">{{ __('language.related_posts') }}</h3>
                     </div>
 
                     @foreach ($relatedPosts as $related)
@@ -43,7 +43,7 @@
                             @endif
                         </h2>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 overflow-hidden">
                         <span class="category">
                             @if (app()->getLocale() == 'mm')
                                 {{ $post->category->name_mm }}
@@ -146,7 +146,7 @@
                         <div class="col-12 mb-4">
                             <div class="card p-2">
                                 <div class="row d-flex align-items-center">
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 logo">
                                         <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="logo" width="100%">
                                     </div>
                                     <div class="col-md-10">

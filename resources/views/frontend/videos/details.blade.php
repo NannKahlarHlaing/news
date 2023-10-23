@@ -7,8 +7,8 @@
             <div class="col-12 my-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Video</li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('language.home') }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('language.videos') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -18,6 +18,8 @@
                         {{ $post->title_mm }}
                     @elseif(app()->getLocale() == 'ch')
                         {{ $post->title_ch }}
+                    @elseif(app()->getLocale() == 'ta')
+                        {{ $post->title_ta }}
                     @else
                         {{ $post->title_en }}
                     @endif
@@ -33,9 +35,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6 mb-3 d-flex align-items-center">
-                                    <span class="d-none" id="id">{{ $post->id }}</span>
-                                    <i class="fa-regular fa-eye me-3"></i> <span id="views">{{ $post->views }}</span>
+                                <div class="col-md-6">
+                                    @if (app()->getLocale() == 'mm')
+                                        <span>{!!$post->desc_mm !!}</span>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <span>{!!$post->desc_ch !!}</span>
+                                    @elseif(app()->getLocale() == 'ta')
+                                        <span>{!!$post->desc_ta !!}</span>
+                                    @else
+                                        <span>{!!$post->desc_en !!}</span>
+                                    @endif
                                 </div>
                                 <div class="col-md-6 mb-3 text-end">
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="me-3">
@@ -48,15 +57,6 @@
                                         <i class="fa-brands fa-linkedin"></i>
                                     </a>
                                 </div>
-                                <div class="col-12">
-                                    @if (app()->getLocale() == 'mm')
-                                        <span>{!! str_replace("\n", '', $post->desc_mm) !!}</span>
-                                    @elseif(app()->getLocale() == 'ch')
-                                        <span>{!! str_replace("\n", '', $post->desc_ch) !!}</span>
-                                    @else
-                                        <span>{!! str_replace("\n", '', $post->desc_en) !!}</span>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                 <div class="col-md-5 mb-3">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="border-bottom border-white pb-2">Related Posts</h4>
+                            <h4 class="border-bottom border-white pb-2">{{ __('language.related_posts') }}</h4>
                         </div>
                         <div class="row related">
                             @foreach ($relatedPosts as $related)
@@ -75,6 +75,8 @@
                                             <a href="{{ url('/mm/videos') . '/' . $related->id }}" >{{ $related->title_mm }}</a>
                                         @elseif(app()->getLocale() == 'ch')
                                             <a href="{{ url('/ch/videos') . '/' . $related->id }}" >{{ $related->title_ch }}</a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/videos') . '/' . $related->id }}" >{{ $related->title_ta }}</a>
                                         @else
                                             <a href="{{ url('/videos') . '/' . $related->id }}" >{{ $related->title_en }}</a>
                                         @endif

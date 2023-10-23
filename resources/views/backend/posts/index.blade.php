@@ -38,7 +38,7 @@
                     @endforeach
                 </select>
 
-                <input type="date" class="form-control me-2" id="date" name="date" value="{{ $date }}">
+                <input type="date" class="form-control me-2" id="date" name="date" value="{{ $search_date }}">
 
                 <button class="btn btn-primary">Search</button>
             </form>
@@ -75,7 +75,7 @@
                             @endforeach
                         </div>
                         <div class="col-3">
-                            <strong class="fw-bold h5   ">Views: </strong> <span>{{ $item->views }} {{ $item->created_at }}</span>
+                            <strong class="fw-bold h5   ">Views: </strong> <span>{{ $item->views }}</span>
                         </div>
                     </div>
                 </div>

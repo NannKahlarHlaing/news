@@ -38,7 +38,7 @@
             <div class="col-md-12">
                 <div class="row">
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card overflow-hidden">
                         <a data-fancybox href="{{ $latest->video_url }}" >
                           <img class="card-img-top img-fluid" src="{{ asset('/storage/images/original/') . '/' . $latest->img_url }}" />
                         </a>
@@ -107,7 +107,7 @@
             <div class="row d-flex align-items-center my-3">
                 <div class="col-md-3 col-6">
                     <select class="btn btn-gray" name="categories" id="categories">
-                        <option value=""> Pick A Channel</option>
+                        <option value="">{{ __('language.pick_a_channel') }}</option>
                         @foreach ($categories as $item)
                             <option value="{{ $item->id }}">
                                 @if (app()->getLocale() == 'mm')

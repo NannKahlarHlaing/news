@@ -52,7 +52,7 @@
                         <div class="d-flex align-items-center" id="menu-bar">
                             <button class="btn btn-transparent d-none d-lg-block py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
                                 <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="" width="80px" height="80px">
-                                <i class="fa-solid fa-bars me-2"></i><span id="text-all">All</span><span id="text-menu">Menu</span>
+                                <i class="fa-solid fa-bars me-2"></i><span id="text-all" class="fw-bold">All</span><span id="text-menu" class="fw-bold">Menu</span>
                             </button>
                             <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                                 <div class="container-fluid">
@@ -94,8 +94,8 @@
                             </div>
                         </div>
                         <div class="container-fluid col-lg" id="nav-hide">
-                            <a class="navbar-brand" href="{{ url('/') }}">
-                                Home
+                            <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+                                {{ __('language.home') }}
                             </a>
 
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,26 +105,26 @@
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     @if (session()->get('locale') == 'mm')
                                         @foreach ($main_menus_mm as $item)
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            <li class="nav-item">
+                                                <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}" id={{ $item->id }}>{{ $item->name }}</a>
                                             </li>
                                         @endforeach
                                     @elseif (session()->get('locale') == 'ch')
                                         @foreach ($main_menus_ch as $item)
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            <li class="nav-item">
+                                                <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                             </li>
                                         @endforeach
                                     @elseif (session()->get('locale') == 'ta')
                                         @foreach ($main_menus_ta as $item)
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                             </li>
                                         @endforeach
                                     @else
                                         @foreach ($main_menus_en as $item)
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
+                                            <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                             </li>
                                         @endforeach
                                     @endif
@@ -132,33 +132,33 @@
 
                             </div>
                         </div>
-                        <div class="col-lg fw-bold text-white" id="site-title">{{ env('APP_NAME') }}</div>
+                        <div class="col-lg h2 fw-bold text-white" id="site-title">{{ env('APP_NAME') }}</div>
                         <div class="col-lg-2 col-12 text-end mt-2 mt-lg-0" id="search">
-                            <span>SEARCH...</span><i class="fa-solid fa-magnifying-glass"></i>
+                            <span>{{ __('language.search') }}...</span><i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </nav>
                     @if (session()->get('locale') == 'mm')
                         <form class="d-flex" id="search-form" action="{{ url('/mm/posts/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <input class="form-control me-2 search-input" type="search" placeholder="{{ __('language.search') }}..." aria-label="Search" name="search">
                             <i class="fa-solid fa-xmark" id="btn-close"></i>
                         </form>
                     @elseif (session()->get('locale') == 'ch')
                         <form class="d-flex" id="search-form" action="{{ url('/ch/posts/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <input class="form-control me-2 search-input" type="search" placeholder="{{ __('language.search') }}..." aria-label="Search" name="search">
                             <i class="fa-solid fa-xmark" id="btn-close"></i>
                         </form>
                     @elseif (session()->get('locale') == 'ta')
                         <form class="d-flex" id="search-form" action="{{ url('/ta/posts/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <input class="form-control me-2 search-input" type="search" placeholder="{{ __('language.search') }}..." aria-label="Search" name="search">
                             <i class="fa-solid fa-xmark" id="btn-close"></i>
                         </form>
                     @else
                         <form class="d-flex" id="search-form" action="{{ url('/posts/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input" type="search" placeholder="SEARCH..." aria-label="Search" name="search">
+                            <input class="form-control me-2 search-input" type="search" placeholder="{{ __('language.search') }}..." aria-label="Search" name="search">
                             <i class="fa-solid fa-xmark" id="btn-close"></i>
                         </form>
                     @endif
@@ -182,7 +182,7 @@
             <div class="row d-flex-center" style="margin: 0">
                 <div class="col-12 p-3">
                     <div class="row mb-4 d-flex justify-content-end align-items-center">
-                        <div class="col-2 d-flex justify-content-end test-end">
+                        <div class="col-2 d-flex justify-content-end text-end">
                             <a href="" onclick="topFunction()" id="top">Top <i class="fa-sharp fa-solid fa-angle-up"></i></a>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                         <div class="col-md-3">
                             <div class="row footer-social">
                                 <div class="col-12 d-flex-center border-bottom border-white pb-3 mb-3">
-                                    <i class="fa-brands fa-square-facebook me-5"></i> <i class="fa-brands fa-square-youtube me-5"></i> <i class="fa-brands fa-instagram"></i>
+                                   <a href="{{ $facebook_link }}"><i class="fa-brands fa-square-facebook me-5"></i></a> <a href="{{ $youtube_link }}"><i class="fa-brands fa-square-youtube me-5"></i></a> <a href="{{ $instagram_link }}"><i class="fa-brands fa-instagram"></i></a>
                                 </div>
                                 <div class="col-12 text-center">
                                     <p>contact@gmail.com</p>
@@ -219,7 +219,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 mt-md-0 mt-3">
-                            <h6>About Us</h6>
+                            <h5 class="fw-bold">{{ __('language.about_us') }}</h5>
                             <p>
                                 On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même
                             </p>
@@ -294,6 +294,24 @@
             }
 
             window.location.replace(newUrl);
+        });
+
+        var activeNavItem = localStorage.getItem('activeNavItem');
+
+        if (activeNavItem) {
+            $(`.nav-link[href="${activeNavItem}"]`).addClass('active');
+        }
+
+        $('.nav-link').on('click', function () {
+            var itemHref = $(this).attr('href');
+            localStorage.setItem('activeNavItem', itemHref);
+        });
+
+        $(document).on('click', function (e) {
+            if (!$(e.target).hasClass('nav-link')) {
+                $('.nav-link').removeClass('active');
+                localStorage.removeItem('activeNavItem');
+            }
         });
 
         $('#site-title').addClass('d-none');

@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->string('menu_id');
+            $table->string('item_id');
+            $table->string('type');
             $table->string('name');
             $table->string('link');
+            $table->string('order');
             $table->softDeletes();
             $table->timestamps();
         });

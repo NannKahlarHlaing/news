@@ -31,14 +31,14 @@ class AppServiceProvider extends ServiceProvider
             Log::info('View composer executed');
             $app_url = config('app.url');
             $all_menus = Category::orderBy('order')->get();
-            $main_menus_en = MenuItem::where('menu_id', '1')->get();
-            $main_menus_mm = MenuItem::where('menu_id', '2')->get();
-            $main_menus_ch = MenuItem::where('menu_id', '3')->get();
-            $footer_menus_en = MenuItem::where('menu_id', '4')->get();
-            $footer_menus_mm = MenuItem::where('menu_id', '5')->get();
-            $footer_menus_ch = MenuItem::where('menu_id', '6')->get();
-            $main_menus_ta = MenuItem::where('menu_id', '7')->get();
-            $footer_menus_ta = MenuItem::where('menu_id', '8')->get();
+            $main_menus_en = MenuItem::where('menu_id', '1')->orderBy('order')->get();
+            $main_menus_mm = MenuItem::where('menu_id', '2')->orderBy('order')->get();
+            $main_menus_ch = MenuItem::where('menu_id', '3')->orderBy('order')->get();
+            $footer_menus_en = MenuItem::where('menu_id', '4')->orderBy('order')->get();
+            $footer_menus_mm = MenuItem::where('menu_id', '5')->orderBy('order')->get();
+            $footer_menus_ch = MenuItem::where('menu_id', '6')->orderBy('order')->get();
+            $main_menus_ta = MenuItem::where('menu_id', '7')->orderBy('order')->get();
+            $footer_menus_ta = MenuItem::where('menu_id', '8')->orderBy('order')->get();
 
             $info = Social::find(1);
 
@@ -47,6 +47,10 @@ class AppServiceProvider extends ServiceProvider
             if($info != null){
                 $email = explode(',', $info->email);
             }
+
+            $facebook_link = $this->stringToArray($info->facebook);
+            $youtube_link = $this->stringToArray($info->youtube);
+            $instagram_link = $this->stringToArray($info->instagram);
 
             $view->with([
                 'all_menus' => $all_menus,
@@ -60,7 +64,16 @@ class AppServiceProvider extends ServiceProvider
                 'footer_menus_ta' => $footer_menus_ta,
                 'app_url' => $app_url,
                 'info' => $info,
+                'facebook_link' => $facebook_link,
+                'youtube_link' => $youtube_link,
+                'instagram_link' => $instagram_link
             ]);
         });
+    }
+
+    private function stringToArray($str)
+    {
+        $arr = explode(',', $str);
+        return $arr[0];
     }
 }

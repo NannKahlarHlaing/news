@@ -5,7 +5,7 @@
         <div class="container-fluid my-3">
             <div class="row">
                 <div class="col-12">
-                    <h2>Contact</h2>
+                    <h2>{{ __('language.contact') }}</h2>
                 </div>
             </div>
         </div>

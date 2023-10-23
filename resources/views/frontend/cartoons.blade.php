@@ -129,7 +129,7 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-12">
-                            <h2>Cartoons</h2>
+                            <h2>{{ __('language.cartoons') }}</h2>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <a data-fancybox href="{{ asset('storage/images/original') . '/' . $latest->img_link }}" >
-                                <img class="card-img-top img-fluid" src="{{ asset('storage/images/original') . '/' . $latest->img_link }}" />
+                                    <img class="card-img-top img-fluid" src="{{ asset('storage/images/original') . '/' . $latest->img_link }}" />
                                 </a>
                             </div>
                         </div>
@@ -193,11 +193,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 my-3">
+                <div class="col-12 mt-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Cartoons</li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('language.home') }}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ __('language.cartoons') }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -205,30 +205,34 @@
             <div class="row">
                 <div class="col-md-6">
                     @foreach ($cartoons as $cartoon)
-                    <div class="row mt-3">
-                        <div class="col-md-4 col-6">
-                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                        <div class="row mt-3">
+                            <div class="col-md-4 col-6">
+                                <div class="overflow-hidden">
+                                    <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <p class="">
+                                    @if (app()->getLocale() == 'mm')
+                                    <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_mm }}</a>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ch }}</a>
+                                    @elseif(app()->getLocale() == 'ta')
+                                        <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ta }}</a>
+                                    @else
+                                        <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_en }}</a>
+                                    @endif
+                                </p>
+                                <span class="me-3">
+                                    <span>By {{ $cartoon->cartoonist }} </span>
+                                </span>
+                                <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($cartoon->created_at)->format('d F Y') }}</span>
+                                <span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $cartoon->views }}</span>
+                            </div>
                         </div>
-                        <div class="col-md-8 col-6">
-                            <p class="">
-                                @if (app()->getLocale() == 'mm')
-                                 <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_mm }}</a>
-                                @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ch }}</a>
-                                @elseif(app()->getLocale() == 'ta')
-                                    <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ta }}</a>
-                                @else
-                                    <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_en }}</a>
-                                @endif
-                            </p>
-                            <span class="me-3">
-                                <span>By {{ $cartoon->cartoonist }} </span>
-                            </span>
-                            <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($cartoon->created_at)->format('d F Y') }}</span>
-                            <span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $cartoon->views }}</span>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+
+                    <div class="">{{ $cartoons->appends(Request::all())->links() }}</div>
                 </div>
             </div>
         </div>

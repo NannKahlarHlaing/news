@@ -44,7 +44,7 @@ class MenuController extends Controller
             $menu_name = 'Footer Menu TA';
         }
 
-        $menu_items = MenuItem::where('menu_id', $id)->get();
+        $menu_items = MenuItem::where('menu_id', $id)->orderBy('order')->get();
 
         return view('backend.menus.update', compact('id', 'menu_name', 'menu_items', 'pages', 'categories', 'sub_categories'));
 
@@ -75,35 +75,47 @@ class MenuController extends Controller
 
     public function update_menuItems(Request $request) {
         $arr = [];
-        foreach ($request->formData as $data) {
-            $checkboxName = $data['checkboxName'];
-            $linkValue = $data['linkValue'];
+        if($request->formData !== null){
+            foreach ($request->formData as $data) {
+                $itemId = $data['itemId'];
+                $type = $data['type'];
+                $checkboxName = $data['checkboxName'];
+                $linkValue = $data['linkValue'];
 
-            $item = MenuItem::where('name', $checkboxName)->where('menu_id', $request->menu_id)->first();
+                $item = MenuItem::where('item_id', $itemId)->where('type', $type)->where('menu_id', $request->menu_id)->first();
 
-            if($item){
-                $item->menu_id = $request->menu_id;
-                $item->link = $linkValue;
+                if($item){
+                    $item->item_id = $itemId;
+                    $item->type = $type;
+                    $item->name = $checkboxName;
+                    $item->menu_id = $request->menu_id;
+                    $item->link = $linkValue;
 
-                $item->save();
-            }else{
-                MenuItem::create([
-                    'menu_id' => $request->menu_id,
-                    'name' => $checkboxName,
-                    'link' => $linkValue,
-                ]);
+                    $item->save();
+                }else{
+                    MenuItem::create([
+                        'menu_id' => $request->menu_id,
+                        'item_id' => $itemId,
+                        'type' => $type,
+                        'name' => $checkboxName,
+                        'link' => $linkValue,
+                        'order' => 0
+                    ]);
+                }
             }
-
         }
 
-        foreach ($request->uncheckedData as $item) {
-            $name = $item['name'];
-            $menuItem = MenuItem::where('name', $name)->where('menu_id', $request->menu_id)->first();
+        foreach ($request->uncheckedData as $menu_item) {
+            $itemId = $menu_item['itemId'];
+            $type = $menu_item['type'];
+            $name = $menu_item['name'];
+            $menuItem = MenuItem::where('item_id', $itemId)->where('type', $type)->where('menu_id', $request->menu_id)->first();
             if ($menuItem) {
                 $menuItem->delete();
             }
         }
         return response()->json(['message' => 'Data updated successfully']);
+
     }
 
     public function all_menu(){
@@ -118,6 +130,16 @@ class MenuController extends Controller
         $category->order = $request->order;
 
         $category->save();
+
+        return 'success';
+    }
+
+    public function order(Request $request){
+        $item = MenuItem::find($request->id);
+
+        $item->order = $request->order;
+
+        $item->save();
 
         return 'success';
     }

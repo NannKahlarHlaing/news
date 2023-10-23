@@ -9,6 +9,9 @@
     #detail{
         background-color: #242423;
     }
+    #detail img{
+        transform: none;
+    }
     .slick-slider .slick-prev, .slick-slider .slick-next {
         z-index: 100;
         font-size: 2.5em;

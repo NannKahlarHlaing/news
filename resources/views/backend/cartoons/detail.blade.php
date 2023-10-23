@@ -7,8 +7,8 @@
             <div class="col-12 my-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cartoon</li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('language.home') }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('language.cartoons') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -32,8 +32,10 @@
                             <span><i class="fa-solid fa-clock"></i> {{ $post->created_at->format('d F Y') }} </span>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <span class="category"> {{ $post->cartoonist }} </span>
-                            <img src="{{ asset('storage/images/original') . '/' . $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
+                            <div class="overflow-hidden">
+                                <span class="category"> {{ $post->cartoonist }} </span>
+                                <img src="{{ asset('storage/images/original') . '/' . $post->img_link }}" alt="" width="100%" height="400px" style="object-fit: cover">
+                            </div>
                         </div>
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6 d-flex align-items-center">
@@ -57,7 +59,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="border-bottom border-white pb-2">Related Posts</h4>
+                            <h4 class="border-bottom border-white pb-2">{{ __('language.related_posts') }}</h4>
                         </div>
                         <div class="row related">
                             @foreach ($relatedPosts as $related)

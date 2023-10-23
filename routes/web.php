@@ -192,6 +192,8 @@ Route::group(['middleware' => 'normal'], function () {
             Route::get('all/menus/index', 'all_menu')->name('backend.all_menus.index');
 
             Route::get('all/menus/update', 'update_allMenu')->name('backend.all_menus.update');
+
+            Route::get('/menu_items/order', 'order')->name('backend.menu_items.order');
         });
 
         Route::get('/get/sub_category', [SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');

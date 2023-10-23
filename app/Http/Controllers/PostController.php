@@ -24,7 +24,7 @@ class PostController extends Controller
         $search = $request->search;
         $title = $request->title;
         $category = $request->category;
-        $date = $request->date;
+        $search_date = $request->date;
 
         if(isset($search)){
             $posts = Post::where(function($query) use ($title) {
@@ -35,8 +35,8 @@ class PostController extends Controller
                     ->when($category, function ($query) use ($category) {
                         return $query->where('category_id', '=', $category);
                     })
-                    ->when($date, function ($query) use ($date) {
-                        return $query->where('created_at', 'LIKE', '%'. $date. '%');
+                    ->when($search_date, function ($query) use ($search_date) {
+                        return $query->where('created_at', 'LIKE', '%'. $search_date. '%');
                     })
                     ->orderBy('id', 'desc')
                     ->paginate(20);
@@ -48,7 +48,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $route = 'post_index';
-        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'date', 'category', 'route'));
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'search_date', 'category', 'route'));
     }
 
     public function trashed(Request $request){
@@ -56,6 +56,7 @@ class PostController extends Controller
         $search = $request->search;
         $title = $request->title;
         $category = $request->category;
+        $search_date = $request->date;
 
         if(isset($search)){
             $posts = Post::onlyTrashed()
@@ -67,6 +68,9 @@ class PostController extends Controller
                     ->when($category, function ($query) use ($category) {
                         return $query->where('category_id', '=', $category);
                     })
+                    ->when($search_date, function ($query) use ($search_date) {
+                        return $query->where('deleted_at', 'LIKE', '%'. $search_date. '%');
+                    })
                     ->orderBy('id', 'desc')
                     ->paginate(4);
         }else{
@@ -77,7 +81,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $route = 'post_trashed';
-        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'category', 'route'));
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'search_date', 'category', 'route'));
     }
 
     public function restore($id){
