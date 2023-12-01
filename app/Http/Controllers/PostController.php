@@ -102,8 +102,7 @@ class PostController extends Controller
     public function create(Request $request){
         Validator::make($request->all(),[
             'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category' => 'required',
-            'tags' => 'required',
+            'category' => 'required'
         ])->validate();
 
         $this->validation($request);
@@ -273,9 +272,7 @@ class PostController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'title_en' => 'required',
             'category' => 'required',
-            'short_desc_en' => 'required',
         ])->validate();
     }
 

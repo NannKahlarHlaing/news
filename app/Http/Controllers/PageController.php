@@ -20,7 +20,7 @@ class PageController extends Controller
     }
 
     public function create(Request $request){
-        $this->validation($request);
+        // $this->validation($request);
         $data = $this->getData($request);
 
         Page::create($data);
@@ -34,7 +34,7 @@ class PageController extends Controller
     }
 
     public function update(Request $request){
-        $this->validation($request);
+        // $this->validation($request);
 
         $post = Page::find($request->id);
 

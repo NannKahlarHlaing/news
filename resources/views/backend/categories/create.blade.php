@@ -14,6 +14,7 @@
         <div class="row">
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route(Route::currentRouteName() == 'category.create_form' ? 'category.create' : (Route::currentRouteName() == 'sub_category.create_form' ? 'sub_category.create' : 'tag.create')) }}" enctype="multipart/form-data">
+
                     <nav class="mb-3">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en" type="button" role="tab" aria-controls="nav-en" aria-selected="true">English</button>
@@ -22,6 +23,7 @@
                             <button class="nav-link" id="nav-ta-tab" data-bs-toggle="tab" data-bs-target="#nav-ta" type="button" role="tab" aria-controls="nav-ta" aria-selected="false">Ta-Ang</button>
                         </div>
                     </nav>
+                    <span class="text-danger fw-bold">*** Name EN field must be filled!!!</span>
                     @csrf
                     @if($route_name == 'sub_category.create_form')
                         <div class="form-group">
@@ -43,7 +45,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
-                                <label for="name_en">Name_EN</label>
+                                <label for="name_en">Name_EN <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" name="name_en">
                                 @error('name_en')
                                     <div class="invalid-feedback">

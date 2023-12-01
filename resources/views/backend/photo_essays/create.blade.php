@@ -67,7 +67,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="short_desc_en">Short_Description_EN <span class="text-danger">*</span></label>
+                                <label for="short_desc_en">Short_Description_EN </label>
                                 <textarea class="short_summernote form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en') }}</textarea>
                                 @error('short_desc_en')
                                     <div class="invalid-feedback">
@@ -76,7 +76,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
+                                <label for="desc_en">Description_EN</label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en') }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">

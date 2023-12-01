@@ -25,7 +25,7 @@ class CartoonController extends Controller
             'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ])->validate();
 
-        $this->validation($request);
+        // $this->validation($request);
         $data = $this->getData($request);
 
         Cartoon::create($data);
@@ -40,7 +40,7 @@ class CartoonController extends Controller
     }
 
     public function update(Request $request){
-        $this->validation($request);
+        // $this->validation($request);
 
         $post = Cartoon::find($request->id);
 

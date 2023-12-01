@@ -15,6 +15,7 @@
                 </nav>
                 <form class="form" method="POST" action="{{route('backend.pages.create') }}" enctype="multipart/form-data">
                     @csrf
+                    <span class="text-danger fw-bold">*** Name EN field must be filled!!!</span>
                     <div class="form-group">
                         <label for="img_url">Image</label>
                         <input type="file" class="form-control @error('img_url') is-invalid @enderror" id="img_url" name="img_url" >
@@ -36,7 +37,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
+                                <label for="desc_en">Description_EN</label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en') }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">

@@ -15,6 +15,7 @@
                 </nav>
                 <form class="form" method="POST" action="{{route('backend.pages.update') }}" enctype="multipart/form-data">
                     @csrf
+                    <span class="text-danger fw-bold">*** Name EN field must be filled!!!</span>
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">
                         <label for="img_url">Image</label>
@@ -40,7 +41,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
+                                <label for="desc_en">Description_EN </label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en', $post->desc_en) }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">

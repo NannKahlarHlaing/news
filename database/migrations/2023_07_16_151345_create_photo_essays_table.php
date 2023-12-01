@@ -30,8 +30,8 @@ return new class extends Migration
             $table->longText('desc_ch')->nullable();
             $table->longText('desc_ta')->nullable();
             $table->string('img_link');
-            $table->string('author');
-            $table->string('date');
+            $table->string('author')->nullable();
+            $table->string('date')->nullable();
             $table->integer('like')->nullable();
             $table->integer('love')->nullable();
             $table->integer('wow')->nullable();

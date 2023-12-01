@@ -27,7 +27,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
-                                <label for="desc_en">Description_EN <span class="text-danger">*</span></label>
+                                <label for="desc_en">Description_EN </label>
                                 <textarea class="summernote form-control @error('desc_en') is-invalid @enderror"name="desc_en" id="desc_en" rows="10">{{ old('desc_en') }}</textarea>
                                 @error('desc_en')
                                     <div class="invalid-feedback">

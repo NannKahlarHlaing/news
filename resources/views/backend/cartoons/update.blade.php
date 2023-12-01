@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="img_link">Image</label>
+                        <label for="img_link">Image <span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('img_link') is-invalid @enderror" id="img_link" name="img_link">
                         @error('img_link')
                             <div class="invalid-feedback">

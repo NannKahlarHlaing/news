@@ -25,7 +25,7 @@ class PhotoEssayController extends Controller
             'img_link' => 'required',
         ])->validate();
 
-        $this->validation($request);
+        // $this->validation($request);
         $data = $this->getData($request);
 
         PhotoEssay::create($data);
@@ -40,7 +40,7 @@ class PhotoEssayController extends Controller
     }
 
     public function update(Request $request){
-        $this->validation($request);
+        // $this->validation($request);
 
         $post = PhotoEssay::find($request->id);
 

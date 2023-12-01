@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('cartoons', function (Blueprint $table) {
             $table->id();
-            $table->string('img_link')->nullable();
-            $table->string('title_en');
+            $table->string('img_link');
+            $table->string('title_en')->nullable();
             $table->string('title_mm')->nullable();
             $table->string('title_ch')->nullable();
             $table->string('title_ta')->nullable();
-            $table->string('cartoonist');
+            $table->string('cartoonist')->nullable();
             $table->string('views');
             $table->timestamps();
             $table->softDeletes();

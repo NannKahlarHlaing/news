@@ -394,7 +394,7 @@
             $.ajax({
                 url: '{{ route('comment') }}',
                 type: 'GET',
-                data: formData,
+                data: {'id' : '1','formData': formData},
                 success: function (response){
                     if(response.success){
                         location.reload();

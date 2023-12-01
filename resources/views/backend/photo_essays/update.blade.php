@@ -53,7 +53,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
-                                <label for="title_en">Title_EN <span class="text-danger">*</span></label>
+                                <label for="title_en">Title_EN </label>
                                 <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en', $post->title_en) }}">
                                 @error('title_en')
                                     <div class="invalid-feedback">
@@ -71,7 +71,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="short_desc_en">Short_Description_EN <span class="text-danger">*</span></label>
+                                <label for="short_desc_en">Short_Description_EN </label>
                                 <textarea class="short_summernote form-control @error('short_desc_en') is-invalid @enderror"name="short_desc_en" id="short_desc_en" >{{ old('short_desc_en', $post->short_desc_en) }}</textarea>
                                 @error('short_desc_en')
                                     <div class="invalid-feedback">

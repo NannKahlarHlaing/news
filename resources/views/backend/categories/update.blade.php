@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route(Route::currentRouteName() == 'category.update_form' ? 'category.update' : (Route::currentRouteName() == 'sub_category.update_form' ? 'sub_category.update' : 'tag.update')) }}" enctype="multipart/form-data">
+                    <span class="text-danger">*** Name EN field must be filled!!!</span>
                     <nav class="mb-3">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en" type="button" role="tab" aria-controls="nav-en" aria-selected="true">English</button>
@@ -46,7 +47,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
-                                <label for="name_en">Name_EN</label>
+                                <label for="name_en">Name_EN <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en', $post->name_en) }}" name="name_en">
                                 @error('name_en')
                                     <div class="invalid-feedback">
