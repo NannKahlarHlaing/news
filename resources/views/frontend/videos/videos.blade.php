@@ -67,31 +67,23 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2 class="border-bottom border-color pb-3">
-                                        <a href="{{ url('/videos') . '/' . $latest->id }}">
+                                        {{-- <a href="{{ url('/videos') . '/' . $latest->id }}"> --}}
                                             @if (app()->getLocale() == 'mm')
-                                            <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title_mm }}</a>
-                                        @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title_ch }}</a>
-                                        @elseif(app()->getLocale() == 'ta')
-                                            <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title_ta }}</a>
-                                        @else
-                                            <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title_en }}</a>
-                                        @endif
-                                        </a>
+                                                <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                            @elseif(app()->getLocale() == 'ch')
+                                                <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                            @elseif(app()->getLocale() == 'ta')
+                                                <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                            @else
+                                                <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                            @endif
+                                        {{-- </a> --}}
                                     </h2>
                                 </div>
                             </div>
                             <span class="d-block py-3">{{ $latest->created_at->format('d F Y') }}</span>
                             <div class="row">
-                                @if (app()->getLocale() == 'mm')
-                                    {!! $latest->desc_mm !!}
-                                @elseif(app()->getLocale() == 'ch')
-                                    {!! $latest->desc_ch !!}
-                                @elseif(app()->getLocale() == 'ta')
-                                    {!! $latest->desc_ta !!}
-                                @else
-                                    {!! $latest->desc_en !!}
-                                @endif
+                                {!! $latest->desc !!}
                             </div>
                         </div>
                     </div>
@@ -169,15 +161,7 @@
                             </a>
                             <div class="card-body">
                                 <p class="card-text">
-                                    @if (app()->getLocale() == 'mm')
-                                        {{ $item->title_mm }}
-                                    @elseif(app()->getLocale() == 'ch')
-                                        {{ $item->title_ch }}
-                                    @elseif(app()->getLocale() == 'ta')
-                                        {{ $item->title_ta }}
-                                    @else
-                                        {{ $item->title_en }}
-                                    @endif
+                                    {{ $item->title }}
                                 </p>
                             </div>
                         </div>

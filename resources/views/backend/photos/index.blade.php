@@ -47,7 +47,7 @@
                             @foreach ($posts as $item)
 
                                 <tr>
-                                    <td>{!!$item->desc_en !!}</td>
+                                    <td>{!!$item->desc !!}</td>
                                     <td>{{ $item->camera }}</td>
                                     <td>{{ $item->views }}</td>
                                     <td>

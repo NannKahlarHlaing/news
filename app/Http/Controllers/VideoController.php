@@ -165,14 +165,9 @@ class VideoController extends Controller
             'video_url' => $request->video_url,
             'img_url' => $imageName,
             'category_id' => $request->category,
-            'title_en' => $request->title_en,
-            'title_mm' => $request->title_mm,
-            'title_ch' => $request->title_ch,
-            'title_ta' => $request->title_ta,
-            'desc_en' => $request->desc_en,
-            'desc_mm' => $request->desc_mm,
-            'desc_ch' => $request->desc_ch,
-            'desc_ta' => $request->desc_ta,
+            'title' => $request->title,
+            'desc' => $request->desc,
+            'lang' => $request->lang
         ];
     }
 }

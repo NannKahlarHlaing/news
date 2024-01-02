@@ -13,25 +13,13 @@ return new class extends Migration
     {
         Schema::create('photo_essays', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en')->nullable();
-            $table->string('title_mm')->nullable();
-            $table->string('title_ch')->nullable();
-            $table->string('title_ta')->nullable();
-            $table->string('topic_en')->nullable();
-            $table->string('topic_mm')->nullable();
-            $table->string('topic_ch')->nullable();
-            $table->string('topic_ta')->nullable();
-            $table->text('short_desc_en')->nullable();
-            $table->text('short_desc_mm')->nullable();
-            $table->text('short_desc_ch')->nullable();
-            $table->text('short_desc_ta')->nullable();
-            $table->longText('desc_en')->nullable();
-            $table->longText('desc_mm')->nullable();
-            $table->longText('desc_ch')->nullable();
-            $table->longText('desc_ta')->nullable();
+            $table->string('title');
+            $table->string('topic')->nullable();
+            $table->text('short_desc');
+            $table->longText('desc')->nullable();
             $table->string('img_link');
             $table->string('author')->nullable();
-            $table->string('date')->nullable();
+            $table->string('lang');
             $table->integer('like')->nullable();
             $table->integer('love')->nullable();
             $table->integer('wow')->nullable();

@@ -14,15 +14,7 @@
             </div>
             <div class="col-12">
                 <h2>
-                    @if (app()->getLocale() == 'mm')
-                        {{ $post->title_mm }}
-                    @elseif(app()->getLocale() == 'ch')
-                        {{ $post->title_ch }}
-                    @elseif(app()->getLocale() == 'ta')
-                        {{ $post->title_ta }}
-                    @else
-                        {{ $post->title_en }}
-                    @endif
+                    {{ $post->title }}
                 </h2>
             </div>
             <div class="row">
@@ -65,13 +57,7 @@
                             @foreach ($relatedPosts as $related)
                                 <div class="col-md-12 py-1">
                                     <h6>
-                                        @if (app()->getLocale() == 'mm')
-                                        <a href="{{ url('/mm/cartoons') . '/' . $related->id }}">{{ $related->title_mm }}</a>
-                                        @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/cartoons') . '/' . $related->id }}">{{ $related->title_ch }}
-                                        @else
-                                            <a href="{{ url('/cartoons') . '/' . $related->id }}">{{ $related->title_en }}
-                                        @endif
+                                        <a href="{{ url('/cartoons') . '/' . $related->id }}">{{ $related->title }}</a>
                                     </h6>
                                 </div>
                             @endforeach

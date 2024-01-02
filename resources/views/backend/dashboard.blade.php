@@ -26,7 +26,7 @@
                             <tbody>
                                 @foreach ($mostViews as $item)
                                     <tr>
-                                        <td>{{ $item->title_en }}</td>
+                                        <td>{{ $item->title }}</td>
                                         <td>{{ $item->category->name_en }}</td>
                                         <td>{{ $item->views }}</td>
                                         <td>
@@ -96,7 +96,7 @@
                             <tbody>
                                 @foreach ($mostComments as $item)
                                     <tr>
-                                        <td>{{ $item->title_en }}</td>
+                                        <td>{{ $item->title }}</td>
                                         <td>{{ $item->category->name_en }}</td>
                                         <td>{{ $item->comments_count }}</td>
                                         <td>

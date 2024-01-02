@@ -25,9 +25,8 @@ class CartoonController extends Controller
             'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ])->validate();
 
-        // $this->validation($request);
+        $this->validation($request);
         $data = $this->getData($request);
-
         Cartoon::create($data);
 
         return redirect ('/admin/cartoons');
@@ -40,7 +39,7 @@ class CartoonController extends Controller
     }
 
     public function update(Request $request){
-        // $this->validation($request);
+        $this->validation($request);
 
         $post = Cartoon::find($request->id);
 
@@ -58,11 +57,9 @@ class CartoonController extends Controller
             $post->img_link = $imageName;
         }
 
-        $post->title_en = $request->title_en;
-        $post->title_mm = $request->title_mm;
-        $post->title_ch = $request->title_ch;
-        $post->title_ta = $request->title_ta;
+        $post->title = $request->title;
         $post->cartoonist = $request->cartoonist;
+        $post->lang = $request->lang;
 
         $post->save();
 
@@ -107,7 +104,8 @@ class CartoonController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'title_en' => 'required',
+            'title' => 'required',
+            'lang' => 'required'
         ])->validate();
     }
 
@@ -125,13 +123,12 @@ class CartoonController extends Controller
         $thumbnail = $original->fit(400, 300, function($constraint){
             $constraint->aspectRatio();
         })->save(public_path('storage/images/thumbnail/' . $imageName));
+
         return [
             'img_link' => $imageName,
-            'title_en' => $request->title_en,
-            'title_mm' => $request->title_mm,
-            'title_ch' => $request->title_ch,
-            'title_ta' => $request->title_ta,
+            'title' => $request->title,
             'cartoonist' => $request->cartoonist,
+            'lang' => $request->lang,
             'views' => 0
         ];
     }

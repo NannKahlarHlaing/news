@@ -34,6 +34,10 @@ class PhotoController extends Controller
 
     public function update(Request $request){
 
+        Validator::make($request->all(),[
+            'url' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ])->validate();
+
         $post = Photo::find($request->id);
 
         $image = $request->file('url');
@@ -51,11 +55,9 @@ class PhotoController extends Controller
             $post->url = $imageName;
         }
 
-        $post->desc_en = $request->desc_en;
-        $post->desc_mm = $request->desc_mm;
-        $post->desc_ch = $request->desc_ch;
-        $post->desc_ta = $request->desc_ta;
+        $post->desc = $request->desc;
         $post->camera = $request->camera;
+        $post->lang = $request->lang;
 
         $post->save();
 
@@ -88,7 +90,8 @@ class PhotoController extends Controller
 
     private function validation($request){
         Validator::make($request->all(),[
-            'url' => 'required',
+            'url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'lang' => 'required'
         ])->validate();
     }
 
@@ -116,11 +119,9 @@ class PhotoController extends Controller
 
         return [
             'url' => $imageName,
-            'desc_en' => $request->desc_en,
-            'desc_mm' => $request->desc_mm,
-            'desc_ch' => $request->desc_ch,
-            'desc_ta' => $request->desc_ta,
+            'desc' => $request->desc,
             'camera' => $request->camera,
+            'lang' => $request->lang,
             'views' => 0
         ];
     }

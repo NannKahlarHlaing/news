@@ -10,5 +10,5 @@ class Page extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['img_url', 'title_en', 'title_mm', 'title_ch', 'title_ta', 'desc_en', 'desc_mm', 'desc_ch', 'desc_ta', 'url_slug'];
+    protected $fillable = ['img_url', 'title', 'title_en', 'desc', 'lang', 'url_slug'];
 }

@@ -153,13 +153,13 @@
                                 <div class="col-12">
                                     <h2 class="border-bottom border-white">
                                         @if (app()->getLocale() == 'mm')
-                                        <a href="{{ url('/mm/cartoons') . '/' . $latest->id }}">{{ $latest->title_mm }}</a>
+                                        <a href="{{ url('/mm/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
                                         @elseif(app()->getLocale() == 'ch')
-                                            <a href="{{ url('/ch/cartoons') . '/' . $latest->id }}">{{ $latest->title_ch }}</a>
+                                            <a href="{{ url('/ch/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
                                         @elseif(app()->getLocale() == 'ta')
-                                            <a href="{{ url('/ta/cartoons') . '/' . $latest->id }}">{{ $latest->title_ta }}</a>
+                                            <a href="{{ url('/ta/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
                                         @else
-                                            <a href="{{ url('/cartoons') . '/' . $latest->id }}">{{ $latest->title_en }}</a>
+                                            <a href="{{ url('/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
                                         @endif
                                     </h2>
                                 </div>
@@ -172,9 +172,9 @@
                                 <span><i class="fa-solid fa-clock"></i> {{ $latest->created_at->format('d F Y') }} - </span>
                                 <span>By -{{ $latest->cartoonist }} </span>
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
 
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-12">
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="me-3">
@@ -214,13 +214,13 @@
                             <div class="col-md-8 col-6">
                                 <p class="">
                                     @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_mm }}</a>
+                                    <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
                                     @elseif(app()->getLocale() == 'ch')
-                                        <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ch }}</a>
+                                        <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
                                     @elseif(app()->getLocale() == 'ta')
-                                        <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_ta }}</a>
+                                        <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
                                     @else
-                                        <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title_en }}</a>
+                                        <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
                                     @endif
                                 </p>
                                 <span class="me-3">

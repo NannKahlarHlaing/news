@@ -47,7 +47,7 @@
 
                                 <tr>
                                     <td>{{ $item->video_url }}</td>
-                                    <td>{!! $item->desc_en !!}</td>
+                                    <td>{!! $item->desc !!}</td>
                                     <td>{{ $item->category->name_en }}</td>
                                     <td>
                                         <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">

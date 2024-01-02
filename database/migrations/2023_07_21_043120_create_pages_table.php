@@ -15,14 +15,10 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('img_url')->nullable();
-            $table->string('title_en')();
-            $table->string('title_mm')->nullable();
-            $table->string('title_ch')->nullable();
-            $table->string('title_ta')->nullable();
-            $table->longText('desc_en')->nullable();
-            $table->longText('desc_mm')->nullable();
-            $table->longText('desc_ch')->nullable();
-            $table->longText('desc_ta')->nullable();
+            $table->string('title');
+            $table->string('title_en');
+            $table->longText('desc')->nullable();
+            $table->string('lang');
             $table->string('url_slug');
             $table->timestamps();
             $table->softDeletes();

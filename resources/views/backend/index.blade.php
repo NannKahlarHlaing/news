@@ -32,12 +32,17 @@
 
     <style>
         select {
-        padding: 0 1rem !important;
-    }
-    .chart{
-        width: 100%;
-        height: 700px;
-    }
+            padding: 0 1rem !important;
+        }
+
+        .form-select {
+            width: 300px;
+            height: 40px !important;
+        }
+        .chart{
+            width: 100%;
+            height: 700px;
+        }
 
     @media only screen and (min-width: 412px ) and (max-width: 820px){
         .chart{

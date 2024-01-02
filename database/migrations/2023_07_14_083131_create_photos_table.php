@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->longText('desc_en')->nullable();
-            $table->longText('desc_mm')->nullable();
-            $table->longText('desc_ch')->nullable();
-            $table->longText('desc_ta')->nullable();
+            $table->longText('desc')->nullable();
             $table->string('camera')->nullable();
+            $table->string('lang');
             $table->integer('views');
             $table->timestamps();
             $table->softDeletes();

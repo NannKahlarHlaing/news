@@ -29,6 +29,7 @@
                             <tr>
                                 <th>Page_Title_En</th>
                                 <th>Url Slug</th>
+                                <th>Language</th>
                                 <th>View</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -38,6 +39,7 @@
                             <tr>
                                 <th>Page_Title_En</th>
                                 <th>Url Slug</th>
+                                <th>Language</th>
                                 <th>View</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -45,10 +47,10 @@
                         </tfoot>
                         <tbody>
                             @foreach ($posts as $item)
-
                                 <tr>
-                                    <td>{{ $item->title_en }}</td>
+                                    <td>{{ $item->title }}</td>
                                     <td>{{ $item->url_slug }}</td>
+                                    <td>{{ $item->lang }}</td>
                                     <td>
                                         <a href="{{ url('/') . '/' . $item->url_slug }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-eye"></i>

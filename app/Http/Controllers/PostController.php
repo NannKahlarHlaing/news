@@ -102,7 +102,6 @@ class PostController extends Controller
     public function create(Request $request){
         Validator::make($request->all(),[
             'img_link' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category' => 'required'
         ])->validate();
 
         $this->validation($request);
@@ -126,7 +125,6 @@ class PostController extends Controller
     public function update(Request $request){
         $this->validation($request);
 
-
         $post = Post::find($request->id);
 
         $image = $request->file('img_link');
@@ -146,22 +144,11 @@ class PostController extends Controller
         $post->category_id = $request->category;
         $post->sub_category_id = $request->sub_category;
         $post->tags = $request->input('tags');
-        $post->title_en = $request->title_en;
-        $post->title_mm = $request->title_mm;
-        $post->title_ch = $request->title_ch;
-        $post->title_ta = $request->title_ta;
-        $post->topic_en = $request->topic_en;
-        $post->topic_mm = $request->topic_mm;
-        $post->topic_ch = $request->topic_ch;
-        $post->topic_ta = $request->topic_ta;
-        $post->short_desc_en = $request->short_desc_en;
-        $post->short_desc_mm = $request->short_desc_mm;
-        $post->short_desc_ch = $request->short_desc_ch;
-        $post->short_desc_ta = $request->short_desc_ta;
-        $post->desc_en = $request->desc_en;
-        $post->desc_mm = $request->desc_mm;
-        $post->desc_ch = $request->desc_ch;
-        $post->desc_ta = $request->desc_ta;
+        $post->title = $request->title;
+        $post->topic = $request->topic;
+        $post->short_desc = $request->short_desc;
+        $post->desc = $request->desc;
+        $post->lang = $request->lang;
 
         $post->save();
 
@@ -273,6 +260,9 @@ class PostController extends Controller
     private function validation($request){
         Validator::make($request->all(),[
             'category' => 'required',
+            'title' => 'required',
+            'short_desc' => 'required',
+            'lang' => 'required'
         ])->validate();
     }
 
@@ -346,22 +336,11 @@ class PostController extends Controller
             'category_id' => $request->category,
             'sub_category_id' => $request->sub_category,
             'tags' => $request->input('tags'),
-            'title_en' => $request->title_en,
-            'title_mm' => $request->title_mm,
-            'title_ch' => $request->title_ch,
-            'title_ta' => $request->title_ta,
-            'topic_en' => $request->topic_en,
-            'topic_mm' => $request->topic_mm,
-            'topic_ch' => $request->topic_ch,
-            'topic_ta' => $request->topic_ta,
-            'short_desc_en' => $request->short_desc_en,
-            'short_desc_mm' => $request->short_desc_mm,
-            'short_desc_ch' => $request->short_desc_ch,
-            'short_desc_ta' => $request->short_desc_ta,
-            'desc_en' => $request->desc_en,
-            'desc_mm' => $request->desc_mm,
-            'desc_ch' => $request->desc_ch,
-            'desc_ta' => $request->desc_ta,
+            'title' => $request->title,
+            'topic' => $request->topic,
+            'short_desc' => $request->short_desc,
+            'desc' => $request->desc,
+            'lang' => $request->lang,
             'views' => 0,
             'like' => 0,
             'love' => 0,

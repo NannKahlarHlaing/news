@@ -53,7 +53,7 @@
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-12 mb-2">
-                            <h3>{{ $item->id }}{{ $item->title_en }} </h3>
+                            <h3>{{ $item->id }}{{ $item->title }} </h3>
                         </div>
                         <div class="col-3">
                             <strong class="fw-bold h5">Category: </strong> <span>{{ $item->category->name_en }}</span>

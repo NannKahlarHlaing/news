@@ -10,5 +10,5 @@ class Photo extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['url', 'desc_en', 'desc_mm', 'desc_ch', 'desc_ta', 'camera', 'views'];
+    protected $fillable = ['url', 'desc', 'camera', 'lang', 'views'];
 }

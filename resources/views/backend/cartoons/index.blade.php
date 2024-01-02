@@ -27,8 +27,9 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Title EN</th>
+                                <th>Title</th>
                                 <th>Cartoonist</th>
+                                <th>Language</th>
                                 <th>Views</th>
                                 <th>View</th>
                                 <th>Edit</th>
@@ -37,8 +38,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Title EN</th>
+                                <th>Title</th>
                                 <th>Cartoonist</th>
+                                <th>Language</th>
                                 <th>Views</th>
                                 <th>View</th>
                                 <th>Edit</th>
@@ -48,8 +50,9 @@
                         <tbody>
                             @foreach ($posts as $item)
                                 <tr>
-                                    <td>{{ $item->title_en }}</td>
+                                    <td>{{ $item->title }}</td>
                                     <td>{{ $item->cartoonist }}</td>
+                                    <td>{{ $item->lang }}</td>
                                     <td>{{ $item->views }}</td>
                                     <td>
                                         <a href="{{ url('/cartoons') . '/' . $item->id }}" class="btn btn-danger btn-circle">

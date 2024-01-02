@@ -120,15 +120,7 @@
                                 <div class="col-lg-10 text-center">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-6">
-                                            @if (app()->getLocale() == 'mm')
-                                                {!! $item->desc_mm !!}
-                                            @elseif(app()->getLocale() == 'ch')
-                                                {!! $item->desc_ch !!}
-                                            @elseif(app()->getLocale() == 'ta')
-                                                {!! $item->desc_ta !!}
-                                            @else
-                                                {!! $item->desc_en !!}
-                                            @endif
+                                            {!! $item->desc !!}
                                         </div>
                                         <div class="col-3 d-flex align-items-center"> <!-- Add a new column for the eye icon -->
                                             <i class="fa-regular fa-eye me-3"></i>

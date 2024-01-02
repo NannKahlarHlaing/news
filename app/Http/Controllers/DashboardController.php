@@ -19,8 +19,8 @@ class DashboardController extends Controller
 
         $mostReacts  = DB::table('posts')
                 ->leftJoin('categories', 'posts.category_id', 'categories.id')
-                ->select('posts.id', 'posts.category_id', 'posts.title_en as title', 'categories.name_en as category_name', 'categories.url_slug as url_slug', DB::raw('SUM(`like` + love + wow + sad) AS total_reactions'))
-                ->groupBy('posts.id', 'posts.category_id', 'posts.title_en', 'categories.name_en', 'categories.url_slug')
+                ->select('posts.id', 'posts.category_id', 'posts.title as title', 'categories.name_en as category_name', 'categories.url_slug as url_slug', DB::raw('SUM(`like` + love + wow + sad) AS total_reactions'))
+                ->groupBy('posts.id', 'posts.category_id', 'posts.title', 'categories.name_en', 'categories.url_slug')
                 ->orderByRaw('total_reactions DESC')
                 ->limit(5)
                 ->get();

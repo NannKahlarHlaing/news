@@ -163,15 +163,7 @@
             <div class="col-8">
                 <span class="d-none" id="id">{{ $post->id }}</span>
                 <h2 class="text-center">
-                    @if (app()->getLocale() == 'mm')
-                        {{ $post->title_mm }}
-                    @elseif(app()->getLocale() == 'ch')
-                        {{ $post->title_ch }}
-                    @elseif(app()->getLocale() == 'ta')
-                        {{ $post->title_ta }}
-                    @else
-                    {{ $post->title_en }}
-                    @endif
+                    {{ $post->title }}
                 </h2>
             </div>
         </div>
@@ -189,7 +181,7 @@
             <div class="col-lg-8">
                 <div class="row mb-3    ">
                     <div class="col-6">
-                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $post->date)->format('d F Y') }}
+                        {{ date('d M Y', strtotime($post->created_at)) }}
                     </div>
                     <div class="col-6 text-end">
                         {{ env('APP_NAME') }}
@@ -197,26 +189,10 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        @if (app()->getLocale() == 'mm')
-                            {!! $post->desc_mm!!}
-                        @elseif(app()->getLocale() == 'ch')
-                            {!! $post->desc_ch !!}
-                        @elseif(app()->getLocale() == 'ta')
-                            {!! $post->desc_ta !!}
-                        @else
-                            {!! $post->desc_en !!}
-                        @endif
+                        {!! $post->desc !!}
                     </div>
                     <div class="col-12 my-4 fw-bold fs-15"><strong>Topics:</strong>
-                        @if (app()->getLocale() == 'mm')
-                            {{ $post->topic_mm }}
-                        @elseif(app()->getLocale() == 'ch')
-                            {{ $post->topic_ch }}
-                        @elseif(app()->getLocale() == 'ta')
-                            {{ $post->topic_ta }}
-                        @else
-                        {{ $post->topic_en }}
-                        @endif
+                        {{ $post->topic }}
                     </div>
                     <div class="col-12 mb-3">
                         <div class="card py-3">
