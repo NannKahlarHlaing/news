@@ -63,14 +63,9 @@ class VideoController extends Controller
 
         $post->video_url = $request->video_url;
         $post->category_id = $request->category;
-        $post->title_en = $request->title_en;
-        $post->title_mm = $request->title_mm;
-        $post->title_ch = $request->title_ch;
-        $post->title_ta = $request->title_ta;
-        $post->desc_en = $request->desc_en;
-        $post->desc_mm = $request->desc_mm;
-        $post->desc_ch = $request->desc_ch;
-        $post->desc_ta = $request->desc_ta;
+        $post->title = $request->title;
+        $post->desc = $request->desc;
+        $post->lang = $request->lang;
 
         $post->save();
 
@@ -100,20 +95,20 @@ class VideoController extends Controller
     public function search($language, Request $request){
         $search = $request->search;
         if($language == 'mm'){
-            $posts = Video::where('title_mm', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_mm', 'LIKE', '%' . $search . '%')
+            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }elseif($language == 'ch'){
-            $posts = Video::where('title_ch', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
+            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }elseif($language == 'ta'){
-            $posts = Video::where('title_ta', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_ta', 'LIKE', '%' . $search . '%')
+            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }else{
-            $posts = Video::where('title_en', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
+            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }
 

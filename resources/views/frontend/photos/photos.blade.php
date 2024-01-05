@@ -113,26 +113,28 @@
               <!-- Begin Product Images Slider -->
                 <div class="main-img-slider">
                 @foreach ($posts as $item)
-                    <div class="">
-                        <a data-fancybox="gallery" href="{{ asset('storage/images/original/') . '/' . $item->url }}">
-                            <img src="{{ asset('storage/images/original/') . '/' . $item->url }}"style="height:60vh;width: 100%;object-fit: cover;">
-                            <div class="row description d-flex-center mt-5 py-3">
-                                <div class="col-lg-10 text-center">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-6">
-                                            {!! $item->desc !!}
-                                        </div>
-                                        <div class="col-3 d-flex align-items-center"> <!-- Add a new column for the eye icon -->
-                                            <i class="fa-regular fa-eye me-3"></i>
-                                            <span class="id d-none">{{ $item->id }}</span>
-                                            <span class="views d-inline">{{ $item->views }}</span>
+                    @if($item->lang == app()->getLocale())
+                        <div class="">
+                            <a data-fancybox="gallery" href="{{ asset('storage/images/original/') . '/' . $item->url }}">
+                                <img src="{{ asset('storage/images/original/') . '/' . $item->url }}"style="height:60vh;width: 100%;object-fit: cover;">
+                                <div class="row description d-flex-center mt-5 py-3">
+                                    <div class="col-lg-10 text-center">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-6">
+                                                {!! $item->desc !!}
+                                            </div>
+                                            <div class="col-3 d-flex align-items-center"> <!-- Add a new column for the eye icon -->
+                                                <i class="fa-regular fa-eye me-3"></i>
+                                                <span class="id d-none">{{ $item->id }}</span>
+                                                <span class="views d-inline">{{ $item->views }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                        {{-- <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="http://via.placeholder.com/840x480" class="img-fluid"></a> --}}
-                    </div>
+                            </a>
+                            {{-- <a data-fancybox="gallery" href="http://via.placeholder.com/1920x1280"><img src="http://via.placeholder.com/840x480" class="img-fluid"></a> --}}
+                        </div>
+                    @endif
                 @endforeach
                 </div>
             <!-- End Product Images Slider -->
@@ -140,7 +142,9 @@
             <!-- Begin product thumb nav -->
             <ul class="thumb-nav d-none" >
                 @foreach ($posts as $item)
-                    <li><img src="{{ asset('/storage/images/original') . '/' . $item->url }}"></li>
+                    @if($item->lang == app()->getLocale())
+                        <li><img src="{{ asset('/storage/images/original') . '/' . $item->url }}"></li>
+                    @endif
                 @endforeach
             </ul>
             <!-- End product thumb nav -->
@@ -166,11 +170,13 @@
             <div class="col-12">
                 <div class="row imglist">
                     @foreach ($posts as $item)
-                    <div class="col-lg-3 col-md-6 mb-2">
-                        <a href="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
-                            <img src="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" width="100%"  />
-                        </a>
-                    </div>
+                        @if($item->lang == app()->getLocale())
+                            <div class="col-lg-3 col-md-6 mb-2">
+                                <a href="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" data-fancybox="images" data-caption="Backpackers following a dirt trail">
+                                    <img src="{{ asset('/storage/images/thumbnail') . '/' . $item->url }}" width="100%"  />
+                                </a>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
                 <div class="row py-5">

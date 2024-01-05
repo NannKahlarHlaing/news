@@ -24,16 +24,20 @@ class PostController extends Controller
         $search = $request->search;
         $title = $request->title;
         $category = $request->category;
+        $lang = $request->lang;
         $search_date = $request->date;
 
         if(isset($search)){
             $posts = Post::where(function($query) use ($title) {
-                        $query->where('title_en', 'LIKE', '%'. $title. '%')
-                        ->orWhere('short_desc_en','LIKE', '%'. $title. '%')
-                        ->orWhere('desc_en','LIKE', '%'. $title. '%');
+                        $query->where('title', 'LIKE', '%'. $title. '%')
+                        ->orWhere('short_desc','LIKE', '%'. $title. '%')
+                        ->orWhere('desc','LIKE', '%'. $title. '%');
                         })
                     ->when($category, function ($query) use ($category) {
                         return $query->where('category_id', '=', $category);
+                    })
+                    ->when($lang, function ($query) use ($lang) {
+                        return $query->where('lang', '=', $lang);
                     })
                     ->when($search_date, function ($query) use ($search_date) {
                         return $query->where('created_at', 'LIKE', '%'. $search_date. '%');
@@ -48,7 +52,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $route = 'post_index';
-        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'search_date', 'category', 'route'));
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'search_date', 'category', 'lang', 'route'));
     }
 
     public function trashed(Request $request){
@@ -174,6 +178,7 @@ class PostController extends Controller
         $comments= Comment::where('post_id', $id)->latest()->get();
         $relatedPosts = Post::where('category_id', $post->category_id)
                         ->where('id', '<>', $post->id)
+                        ->where('lang', $post->lang)
                         ->limit(5)
                         ->get();
 
@@ -206,11 +211,14 @@ class PostController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-            $country = $data['country'];
-            Country::create([
-                'post_id' => $id,
-                'country' => $country
-            ]);
+            if ($data['status'] === 'success') {
+                $country = $data['country'];
+                Country::create([
+                    'post_id' => $id,
+                    'country' => $country
+                ]);
+            }
+
         }
 
         $post->save();
@@ -227,28 +235,28 @@ class PostController extends Controller
         $search = $request->search;
 
         if($language == 'mm'){
-            $posts = Post::where('title_mm', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_mm', 'LIKE', '%' . $search . '%')
-                ->orWhere('short_desc_mm', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_mm', 'LIKE', '%' . $search . '%')
+            $posts = Post::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }elseif($language == 'ch'){
-            $posts = Post::where('title_ch', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_ch', 'LIKE', '%' . $search . '%')
-                ->orWhere('short_desc_ch', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_ch', 'LIKE', '%' . $search . '%')
+            $posts = Post::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }elseif($language == 'ta'){
-            $posts = Post::where('title_ta', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_ta', 'LIKE', '%' . $search . '%')
-                ->orWhere('short_desc_ta', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_ta', 'LIKE', '%' . $search . '%')
+            $posts = Post::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }else{
-            $posts = Post::where('title_en', 'LIKE', '%' . $search . '%')
-                ->orWhere('topic_en', 'LIKE', '%' . $search . '%')
-                ->orWhere('short_desc_en', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc_en', 'LIKE', '%' . $search . '%')
+            $posts = Post::where('title', 'LIKE', '%' . $search . '%')
+                ->orWhere('topic', 'LIKE', '%' . $search . '%')
+                ->orWhere('short_desc', 'LIKE', '%' . $search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $search . '%')
                 ->paginate(4);
         }
 

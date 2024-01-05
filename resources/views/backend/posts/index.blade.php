@@ -38,6 +38,14 @@
                     @endforeach
                 </select>
 
+                <select class="form-control form-select mx-2" name="lang" id="">
+                    <option value="">Select Language</option>
+                    <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="mm" {{ $lang == 'mm' ? 'selected' : '' }}>Myanamr</option>
+                    <option value="ch" {{ $lang == 'ch' ? 'selected' : '' }}>Chinese</option>
+                    <option value="ta" {{ $lang == 'ta' ? 'selected' : '' }}>Ta'ang</option>
+                </select>
+
                 <input type="date" class="form-control me-2" id="date" name="date" value="{{ $search_date }}">
 
                 <button class="btn btn-primary">Search</button>
@@ -55,27 +63,61 @@
                         <div class="col-12 mb-2">
                             <h3>{{ $item->id }}{{ $item->title }} </h3>
                         </div>
-                        <div class="col-3">
-                            <strong class="fw-bold h5">Category: </strong> <span>{{ $item->category->name_en }}</span>
+                        <div class="col-lg-4 col-md-6 mb-2">
+                            <strong class="fw-bold h5">Category: </strong> <span>
+                                @if ($item->lang == 'mm')
+                                    {{ $item->category->name_mm }}
+                                @elseif($item->lang == 'ch')
+                                    {{ $item->category->name_ch }}
+                                @elseif($item->lang == 'ta')
+                                    {{ $item->category->name_ta }}
+                                @else
+                                    {{ $item->category->name_en }}
+                                @endif
+                            </span>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-4 col-md-6 mb-2">
                             <strong class="fw-bold h5">SubCategory: </strong>
                             @if ($item->sub_category != '' || $item->sub_category != NULL)
-                                <span>{{ $item->sub_category->name_en }}</span>
+                                <span>
+                                    @if ($item->lang == 'mm')
+                                            {{ $item->sub_category->name_mm }}
+                                        @elseif($item->lang == 'ch')
+                                            {{ $item->sub_category->name_ch }}
+                                        @elseif($item->lang == 'ta')
+                                            {{ $item->sub_category->name_ta }}
+                                        @else
+                                            {{ $item->sub_category->name_en }}
+                                        @endif
+                                </span>
                             @endif
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-4 col-md-6 mb-2">
                             <strong class="fw-bold h5">Tag: </strong>
                             @foreach ($item->tags as $post_tag)
                                 @foreach ($tags as $tag)
                                     @if ($tag->id == $post_tag)
-                                        <span>{{ $tag->name_en}},</span>
+                                        <span>
+                                            {{ $tag->name_en}}
+                                            @if ($item->lang == 'mm')
+                                                {{ $tag->name_mm }}
+                                            @elseif($item->lang == 'ch')
+                                                {{ $tag->name_ch }}
+                                            @elseif($item->lang == 'ta')
+                                                {{ $tag->name_ta }}
+                                            @else
+                                                {{ $tag->name_en }}
+                                            @endif
+                                            ,</span>
                                     @endif
                                 @endforeach
                             @endforeach
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-4 col-md-6 mb-2">
                             <strong class="fw-bold h5   ">Views: </strong> <span>{{ $item->views }}</span>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-2">
+                            <strong class="fw-bold h5   ">Language: </strong> <span>{{ $item->lang  }}</span>
                         </div>
                     </div>
                 </div>

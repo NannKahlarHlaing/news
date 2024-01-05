@@ -250,7 +250,7 @@ Route::controller(FrontendController::class)->group(function(){
 
             $data = $frontendController->home_page();
 
-            $latest = $data->latest;
+            $latestPosts = $data->latestPosts;
             $mostViews = $data->mostViews;
             $latestTen = $data->latestTen;
             $temperature = $data->temperature;
@@ -266,11 +266,11 @@ Route::controller(FrontendController::class)->group(function(){
             $catOpinion = $data->catOpinion;
             $catLifeStyle = $data->catLifeStyle;
             $catSpecial = $data->catSpecial;
-            $latest_photo = $data->latest_photo;
-            $latest_cartoon = $data->latest_cartoon;
+            $latest_photos = $data->latest_photos;
+            $latest_cartoons = $data->latest_cartoons;
             $lasts_cartoons = $data->lasts_cartoons;
 
-            return view('frontend.home', compact('latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+            return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -289,7 +289,7 @@ Route::group(['prefix' => '{language}'], function ($language) {
 
         $data = $frontendController->home_page();
 
-        $latest = $data->latest;
+        $latestPosts = $data->latestPosts;
         $mostViews = $data->mostViews;
         $latestTen = $data->latestTen;
         $temperature = $data->temperature;
@@ -305,11 +305,11 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $catOpinion = $data->catOpinion;
         $catLifeStyle = $data->catLifeStyle;
         $catSpecial = $data->catSpecial;
-        $latest_photo = $data->latest_photo;
-        $latest_cartoon = $data->latest_cartoon;
+        $latest_photos = $data->latest_photos;
+        $latest_cartoons = $data->latest_cartoons;
         $lasts_cartoons = $data->lasts_cartoons;
 
-        return view('frontend.home', compact('latest', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photo', 'latest_cartoon', 'lasts_cartoons'));
+        return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
 
     })->name('home');
 
@@ -347,6 +347,5 @@ Route::get('/post/users/comment', [CommentController::class, 'create'])->name('c
 
 
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

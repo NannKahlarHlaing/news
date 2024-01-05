@@ -134,7 +134,8 @@
                                                 <p id="user_type_errors" class="text-danger"></p>
                                             </div>
                                             <div class="mb-3" id="user-details">
-                                                <input type="text" class="me-3 mb-3 mb-lg-0" id="user_name" name="user_name" placeholder="Enter your name"><input type="email" id="user_email" name="user_email" placeholder="Enter your email">
+                                                <input type="text" class="me-3 mb-3 mb-lg-0" id="user_name" name="user_name" placeholder="Enter your name">
+                                                <input type="email" id="user_email" name="user_email" placeholder="Enter your email">
                                                 <div>
                                                     <p id="user_name_errors" class="text-danger"></p>
                                                 </div>
@@ -362,6 +363,7 @@
                 type: 'GET',
                 data: {'id' : '1','formData': formData},
                 success: function (response){
+                    console.log(response);
                     if(response.success){
                         location.reload();
                     }

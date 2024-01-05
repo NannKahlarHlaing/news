@@ -29,6 +29,7 @@
                             <tr>
                                 <th>Description_En</th>
                                 <th>Camera Man</th>
+                                <th>Language</th>
                                 <th>Views</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -38,6 +39,7 @@
                             <tr>
                                 <th>Description</th>
                                 <th>Camera Man</th>
+                                <th>Language</th>
                                 <th>Views</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -49,6 +51,7 @@
                                 <tr>
                                     <td>{!!$item->desc !!}</td>
                                     <td>{{ $item->camera }}</td>
+                                    <td>{{ $item->lang }}</td>
                                     <td>{{ $item->views }}</td>
                                     <td>
                                         <a href="{{ url('/admin/photos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">

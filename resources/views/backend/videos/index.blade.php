@@ -30,6 +30,7 @@
                                 <th>Video URL</th>
                                 <th>Description_En</th>
                                 <th>Category</th>
+                                <th>Language</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -38,6 +39,7 @@
                                 <th>Video URL</th>
                                 <th>Description_En</th>
                                 <th>Category</th>
+                                <th>Language</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -48,7 +50,18 @@
                                 <tr>
                                     <td>{{ $item->video_url }}</td>
                                     <td>{!! $item->desc !!}</td>
-                                    <td>{{ $item->category->name_en }}</td>
+                                    <td>
+                                        @if ($item->lang == 'mm')
+                                            {{ $item->category->name_mm }}
+                                        @elseif($item->lang == 'ch')
+                                            {{ $item->category->name_ch }}
+                                        @elseif($item->lang == 'ta')
+                                            {{ $item->category->name_ta }}
+                                        @else
+                                            {{ $item->category->name_en }}
+                                        @endif
+                                    </td>
+                                    <th>{{ $item->lang }}</th>
                                     <td>
                                         <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
                                             <i class="fa-solid fa-pencil"></i>

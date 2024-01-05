@@ -16,7 +16,18 @@ class MenuController extends Controller
 
     public function update_menu($id) {
 
-        $pages = Page::all();
+        if($id == 1 || $id == 4){
+            $lang = 'en';
+        }elseif($id == 2 || $id == 5){
+            $lang = 'mm';
+        }elseif($id == 3 || $id == 6){
+            $lang = 'ch';
+        }elseif($id == 7 || $id == 8 ){
+            $lang = 'ta';
+        }
+
+        $pages = Page::where('lang', $lang)->get();
+        
         $categories = Category::all();
         $sub_categories = SubCategory::all();
 

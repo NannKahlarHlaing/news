@@ -35,61 +35,65 @@
 <section class="video-page py-5">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-md-12">
-                <div class="row">
-                <div class="col-md-6">
-                    <div class="card overflow-hidden">
-                        <a data-fancybox href="{{ $latest->video_url }}" >
-                          <img class="card-img-top img-fluid" src="{{ asset('/storage/images/original/') . '/' . $latest->img_url }}" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-3 col-2 text-center">
-                            <div class="col-12 mb-2">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" >
-                                    <i class="fa-brands fa-square-facebook"></i>
-                                </a>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}">
-                                    <i class="fa-brands fa-square-twitter"></i>
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}">
-                                    <i class="fa-brands fa-linkedin"></i>
+            @foreach ($latestVideos as $latest)
+                @if($latest->lang == app()->getLocale())
+                    <div class="col-md-12">
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="card overflow-hidden">
+                                <a data-fancybox href="{{ $latest->video_url }}" >
+                                <img class="card-img-top img-fluid" src="{{ asset('/storage/images/original/') . '/' . $latest->img_url }}" />
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-10 col-md-9 col-10">
+                        <div class="col-md-6">
                             <div class="row">
-                                <div class="col-12">
-                                    <h2 class="border-bottom border-color pb-3">
-                                        {{-- <a href="{{ url('/videos') . '/' . $latest->id }}"> --}}
-                                            @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                            @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                            @elseif(app()->getLocale() == 'ta')
-                                                <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                            @else
-                                                <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                            @endif
-                                        {{-- </a> --}}
-                                    </h2>
+                                <div class="col-lg-2 col-md-3 col-2 text-center">
+                                    <div class="col-12 mb-2">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" >
+                                            <i class="fa-brands fa-square-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}">
+                                            <i class="fa-brands fa-square-twitter"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 col-md-9 col-10">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h2 class="border-bottom border-color pb-3">
+                                                {{-- <a href="{{ url('/videos') . '/' . $latest->id }}"> --}}
+                                                    @if (app()->getLocale() == 'mm')
+                                                        <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                    @elseif(app()->getLocale() == 'ch')
+                                                        <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                    @elseif(app()->getLocale() == 'ta')
+                                                        <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                    @else
+                                                        <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                    @endif
+                                                {{-- </a> --}}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <span class="d-block py-3">{{ $latest->created_at->format('d F Y') }}</span>
+                                    <div class="row">
+                                        {!! $latest->desc !!}
+                                    </div>
                                 </div>
                             </div>
-                            <span class="d-block py-3">{{ $latest->created_at->format('d F Y') }}</span>
-                            <div class="row">
-                                {!! $latest->desc !!}
-                            </div>
+                        </div>
                         </div>
                     </div>
-                </div>
-                </div>
-            </div>
+                @endif
+            @endforeach
         </div>
     </div>
 </section>
@@ -154,18 +158,20 @@
         <div class="row" id="post_container">
             @if (count($posts) > 0)
                 @foreach ($posts as $item)
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="card">
-                            <a data-fancybox href="{{ $item->video_url }}" >
-                            <img class="card-img-top img-fluid" src=" {{ asset('/storage/images/thumbnail') . '/' . $item->img_url }}" />
-                            </a>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{ $item->title }}
-                                </p>
+                    @if($item->lang == app()->getLocale())
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <div class="card">
+                                <a data-fancybox href="{{ $item->video_url }}" >
+                                <img class="card-img-top img-fluid" src=" {{ asset('/storage/images/thumbnail') . '/' . $item->img_url }}" />
+                                </a>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        {{ $item->title }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
                 <div class="row">
                     <div class="col-12 text-center" id="pagination">
