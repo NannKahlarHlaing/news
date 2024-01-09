@@ -61,16 +61,20 @@ class PostController extends Controller
         $title = $request->title;
         $category = $request->category;
         $search_date = $request->date;
+        $lang = $request->lang;
 
         if(isset($search)){
             $posts = Post::onlyTrashed()
                     ->where(function($query) use ($title) {
-                        $query->where('title_en', 'LIKE', '%'. $title. '%')
-                        ->orWhere('short_desc_en','LIKE', '%'. $title. '%')
-                        ->orWhere('desc_en','LIKE', '%'. $title. '%');
+                        $query->where('title', 'LIKE', '%'. $title. '%')
+                        ->orWhere('short_desc','LIKE', '%'. $title. '%')
+                        ->orWhere('desc','LIKE', '%'. $title. '%');
                         })
                     ->when($category, function ($query) use ($category) {
                         return $query->where('category_id', '=', $category);
+                    })
+                    ->when($lang, function ($query) use ($lang) {
+                        return $query->where('lang', '=', $lang);
                     })
                     ->when($search_date, function ($query) use ($search_date) {
                         return $query->where('deleted_at', 'LIKE', '%'. $search_date. '%');
@@ -85,7 +89,7 @@ class PostController extends Controller
         $categories = Category::all();
 
         $route = 'post_trashed';
-        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'search_date', 'category', 'route'));
+        return view('backend.posts.index', compact('posts', 'tags', 'categories', 'title', 'search_date', 'category', 'lang', 'route'));
     }
 
     public function restore($id){

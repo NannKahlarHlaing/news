@@ -5,7 +5,7 @@
   --sectheme-color: #a90101;
   --color-yellow: #fcf904;
   --color-dgray: #242423;
-  --color-gray: #e1deda;
+  --color-gray: #F2F2F2;
   --color-pale: #dad0bc;
 }
 
@@ -157,8 +157,33 @@ img:hover{
 
   /* home page */
 
+
+#subscribe-form input[type="email"]{
+    height: 50px;
+    border-radius: 0;
+}
+#subscribe-form input::placeholder {
+    color: #fff;
+}
+  .card {
+    border: none;
+  }
+
 .carousel-control-next, .carousel-control-prev{
     width: 30px;
+
+}
+
+/* .carousel-control-prev{
+    left: -35px;
+}
+
+.carousel-control-next{
+    right: -35px;
+} */
+
+.carousel-indicators {
+    margin-bottom: -10px;
 }
 
 .home{
