@@ -56,8 +56,9 @@
                     <div class="col-1 social" id="social">
                         <div class="row text-center">
                             <div class="col-12">
-                                <a href="mailto:?subject=Check%20out%20this%20awesome%20content&body=I%20thought%20you%20might%20find%20this%20interesting:%20{{ urlencode(url()->current()) }}"><i class="fa-regular fa-message"></i></a>
+                                <a href="mailto:?subject=Check%20out%20this%20awesome%20content&body=I%20thought%20you%20might%20find%20this%20interesting:%20{{ urlencode(url()->current()) }}" title="Share on Email"><i class="fa-regular fa-message"></i></a>
                             </div>
+
                             <div class="col-12">
                                 <i class="fa-regular fa-eye"></i>
                             </div>
@@ -67,17 +68,17 @@
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
-                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}">
+                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" title="Share on Facebook">
                                     <i class="fa-brands fa-square-facebook"></i>
                                 </a>
                             </div>
                             <div class="col-12 mb-2">
-                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" target="_blank" rel="noopener">
+                                <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" target="_blank" rel="noopener" title="Share on Twitter">
                                     <i class="fa-brands fa-square-twitter"></i>
                                 </a>
                             </div>
                             <div class="col-12 mb-2">
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" target="_blank">
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" target="_blank" title="Share on LinkedIn">
                                     <i class="fa-brands fa-linkedin"></i>
                                 </a>
                             </div>
@@ -129,9 +130,6 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="user_type" id="visible" value="visible">
                                                 <label class="form-check-label" for="visible">Visible</label>
-                                            </div>
-                                            <div>
-                                                <p id="user_type_errors" class="text-danger"></p>
                                             </div>
                                             <div class="mb-3" id="user-details">
                                                 <input type="text" class="me-3 mb-3 mb-lg-0" id="user_name" name="user_name" placeholder="Enter your name">
@@ -358,6 +356,22 @@
         $('#comment-form').submit(function(e){
             e.preventDefault();
             var formData = $(this).serialize();
+            var user_type = $('input[name="user_type"]:checked').val();
+            var user_name = $('input[name="user_name"]').val();
+            var user_email = $('input[name="user_email"]').val();
+            var comment = $('#comment-msg').val();
+            if(comment === ''){
+                $('#comment_errors').text('Comment is required.')
+            }
+
+            if(user_type === 'visible'){
+                if(user_name === ''){
+                    $('#user_name_errors').text('User Name is required.')
+                }
+                if(user_email === ''){
+                    $('#user_email_errors').text('User Email is required.')
+                }
+            }
             $.ajax({
                 url: '{{ route('comment') }}',
                 type: 'GET',
@@ -367,29 +381,10 @@
                     if(response.success){
                         location.reload();
                     }
-                    if(response.errors){
-                        var errors = response.errors;
-                        if(errors.post_id){
-                            $('#post_id_errors').text(errors.post_id);
-                        }
-                        if(errors.user_name){
-                            $('#user_name_errors').text(errors.user_name);
-                        }
-                        if(errors.user_email){
-                            $('#user_email_errors').text(errors.user_email);
-                        }
-                        if(errors.comment){
-                            $('#comment_errors').text(errors.comment);
-                        }
-                        if(errors.acc_type){
-                            $('#acc_type_errors').text(errors.acc_type);
-                        }
-                    }
                 }
             })
 
         })
-
 
     });
 </script>

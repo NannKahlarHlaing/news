@@ -6,6 +6,7 @@
     .scroll-window {
       height: 40vh;
       overflow: auto;
+      overflow-x: hidden;
       border: 1px solid var(--color-gray);
       padding: 0 15px;
       border-radius: 5px;
@@ -19,24 +20,26 @@
     <div class="container-fluid">
         <div class="row">
             @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' )
-                <div class="col-lg-2 col-md-3 bg-gray scroll-window">
-                    <div class="row">
-                        <div class="bg-main text-white py-1">
-                            Sub Categories
-                        </div>
-                        @foreach ($sub_categories as $sub)
-                            <div class="sub_cat border-bottom border-sec-color  py-1">
-                                @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_mm }}</a>
-                                @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ch }}</a>
-                                @elseif(app()->getLocale() == 'ta')
-                                    <a href="{{ url('/ta/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ta }}</a>
-                                @else
-                                    <a href="{{ url('/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_en }}</a>
-                                @endif
+                <div class="col-lg-2 col-md-3 ps-0">
+                    <div class="bg-gray scroll-window px-0">
+                        <div class="row">
+                            <div class="col-12 bg-main text-white py-1 px-4">
+                                Sub Categories
                             </div>
-                        @endforeach
+                            @foreach ($sub_categories as $sub)
+                                <div class="sub_cat border-bottom border-sec-color  py-1 px-4">
+                                    @if (app()->getLocale() == 'mm')
+                                        <a href="{{ url('/mm/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_mm }}</a>
+                                    @elseif(app()->getLocale() == 'ch')
+                                        <a href="{{ url('/ch/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ch }}</a>
+                                    @elseif(app()->getLocale() == 'ta')
+                                        <a href="{{ url('/ta/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_ta }}</a>
+                                    @else
+                                        <a href="{{ url('/categories') . '/' . $sub_cat->url_slug . '/' . $sub->url_slug  }}">{{ $sub->name_en }}</a>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             @endif
@@ -139,7 +142,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 my-3">
+            <div class="col-12 my-3 px-0">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('language.home') }}</a></li>
@@ -167,8 +170,8 @@
 <section class="mb-3">
     <div class="container-fluid">
         <div class="row d-flex-center">
-            <div class="col-lg-8 col-md-6">
-                <div class="row">
+            <div class="col-lg-8 col-md-6 ps-0 pe-4">
+                <div class="row gx-4">
                     @if (count($posts) >0)
                         @foreach ($posts as $ten)
                             @if($ten->lang == app()->getLocale())
@@ -276,7 +279,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 top mt-5 mt-md-0 mt-lg-0">
+            <div class="col-lg-4 col-md-6 top mt-5 mt-md-1 mt-lg-1">
                 <div class="row current text-white d-flex align-items-center rounded-top">
                     <span><p class="fw-bold">MOST READ</p></span>
                     <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
@@ -284,7 +287,7 @@
                 <div class="row">
                     <div class="col-12">
                         @foreach ($mostViews as $key => $itemFive)
-                            <div class="row py-1 top-ten d-flex align-items-center">
+                            <div class="row py-2 top-ten d-flex align-items-center">
                                 <div class="col-md-3 col-4">
                                     <div class="overflow-hidden">
                                         @if (app()->getLocale() == 'mm')

@@ -53,6 +53,9 @@ h6 a:hover{
 .btn-green:hover{
     background-color: var(--color-gray) !important;
 }
+#nav-hide #menu-bar .btn-green:hover{
+    background-color: var(--color-pale) !important;
+}
 
 .btn-gray{
     background-color: var(--color-gray);
@@ -289,7 +292,7 @@ img:hover{
 }
 .btn-reaction {
   height: 2.5rem;
-  width: 2.5rem;
+  width: 3.5rem;
   font-size: 1rem;
   display: inline-flex;
   align-items: center;
@@ -574,6 +577,8 @@ h6 a{
     .ph-img{
         height: 500px;
     }
+
+
 }
 
 @media only screen and (max-width: 412px){
@@ -583,5 +588,9 @@ h6 a{
 
     .ph-img{
         height: 250px;
+    }
+
+    .offcanvas{
+        height: auto !important;
     }
 }

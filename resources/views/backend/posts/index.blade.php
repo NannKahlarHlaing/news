@@ -41,7 +41,7 @@
                 <select class="form-control form-select mx-2" name="lang" id="">
                     <option value="">Select Language</option>
                     <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
-                    <option value="mm" {{ $lang == 'mm' ? 'selected' : '' }}>Myanamr</option>
+                    <option value="mm" {{ $lang == 'mm' ? 'selected' : '' }}>Myanamar</option>
                     <option value="ch" {{ $lang == 'ch' ? 'selected' : '' }}>Chinese</option>
                     <option value="ta" {{ $lang == 'ta' ? 'selected' : '' }}>Ta'ang</option>
                 </select>
@@ -61,10 +61,10 @@
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-12 mb-2">
-                            <h3>{{ $item->id }}{{ $item->title }} </h3>
+                            <h5>{{ $item->title }} </h5>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong class="fw-bold h5">Category: </strong> <span>
+                            <strong >Category: </strong> <span>
                                 @if ($item->lang == 'mm')
                                     {{ $item->category->name_mm }}
                                 @elseif($item->lang == 'ch')
@@ -77,7 +77,7 @@
                             </span>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong class="fw-bold h5">SubCategory: </strong>
+                            <strong>SubCategory: </strong>
                             @if ($item->sub_category != '' || $item->sub_category != NULL)
                                 <span>
                                     @if ($item->lang == 'mm')
@@ -93,31 +93,30 @@
                             @endif
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong class="fw-bold h5">Tag: </strong>
+                            <strong>Tag: </strong>
                             @foreach ($item->tags as $post_tag)
                                 @foreach ($tags as $tag)
                                     @if ($tag->id == $post_tag)
                                         <span>
-                                            {{ $tag->name_en}}
                                             @if ($item->lang == 'mm')
-                                                {{ $tag->name_mm }}
+                                                {{ $tag->name_mm }},
                                             @elseif($item->lang == 'ch')
-                                                {{ $tag->name_ch }}
+                                                {{ $tag->name_ch }},
                                             @elseif($item->lang == 'ta')
-                                                {{ $tag->name_ta }}
+                                                {{ $tag->name_ta }},
                                             @else
-                                                {{ $tag->name_en }}
+                                                {{ $tag->name_en }},
                                             @endif
-                                            ,</span>
+                                        </span>
                                     @endif
                                 @endforeach
                             @endforeach
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong class="fw-bold h5   ">Views: </strong> <span>{{ $item->views }}</span>
+                            <strong>Views: </strong> <span>{{ $item->views }}</span>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong class="fw-bold h5   ">Language: </strong> <span>{{ $item->lang  }}</span>
+                            <strong>Language: </strong> <span>{{ $item->lang  }}</span>
                         </div>
                     </div>
                 </div>

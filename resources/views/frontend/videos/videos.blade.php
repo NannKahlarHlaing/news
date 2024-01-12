@@ -50,17 +50,17 @@
                             <div class="row">
                                 <div class="col-lg-2 col-md-3 col-2 text-center">
                                     <div class="col-12 mb-2">
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" >
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" title="Share on Facebook">
                                             <i class="fa-brands fa-square-facebook"></i>
                                         </a>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}">
+                                        <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" title="Share on Twitter">
                                             <i class="fa-brands fa-square-twitter"></i>
                                         </a>
                                     </div>
                                     <div class="col-12">
-                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}">
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" title="Share on LinkedIn">
                                             <i class="fa-brands fa-linkedin"></i>
                                         </a>
                                     </div>
@@ -69,17 +69,15 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h2 class="border-bottom border-color pb-3">
-                                                {{-- <a href="{{ url('/videos') . '/' . $latest->id }}"> --}}
-                                                    @if (app()->getLocale() == 'mm')
-                                                        <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                                    @elseif(app()->getLocale() == 'ch')
-                                                        <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                                    @elseif(app()->getLocale() == 'ta')
-                                                        <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                                    @else
-                                                        <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
-                                                    @endif
-                                                {{-- </a> --}}
+                                                @if (app()->getLocale() == 'mm')
+                                                    <a href="{{ url('/mm/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                @elseif(app()->getLocale() == 'ch')
+                                                    <a href="{{ url('/ch/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                @elseif(app()->getLocale() == 'ta')
+                                                    <a href="{{ url('/ta/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                @else
+                                                    <a href="{{ url('/videos') . '/' . $latest->id }}" >{{ $latest->title }}</a>
+                                                @endif
                                             </h2>
                                         </div>
                                     </div>

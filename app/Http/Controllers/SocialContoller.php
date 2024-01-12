@@ -11,7 +11,7 @@ class SocialContoller extends Controller
 {
     public function index(){
         $posts = Social::where('deleted_at', NULL)->get();
-        
+
         if(count($posts) >= 1){
             foreach ($posts as $post) {
                 $post = $post;
@@ -25,7 +25,7 @@ class SocialContoller extends Controller
 
     public function create(Request $request){
         $this->validation($request);
-    
+
         $posts = Social::where('deleted_at', NULL)->get();
 
         $count = count($posts);
@@ -44,7 +44,7 @@ class SocialContoller extends Controller
             $post->whatsapp = $request->whatsapp;
             $post->line = $request->line;
             $post->footer_text = $request->footer_text;
-            
+
             $post->save();
 
         }else{
@@ -52,8 +52,8 @@ class SocialContoller extends Controller
             Social::create($data);
         }
 
-        return redirect()->back();
-        
+        return redirect()->back()->with('success', 'Successfully Updated contact and social information.');
+
     }
 
     private function validation($request){

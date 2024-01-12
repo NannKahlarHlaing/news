@@ -126,7 +126,7 @@
                                             </h6>
                                         </div>
                                         <div class="col-12 d-flex align-items-center">
-                                            <span><span class="fw-bold">Views:</span> {{ $itemFive->views }}</span>
+                                            <span><i class="fa-solid fa-eye me-2" style="color:#575757"></i> {{ $itemFive->views }}</span>
                                         </div>
                                     </div>
                                 @endforeach
@@ -187,7 +187,7 @@
                                                 </div>
 
                                                 <div class="col-12 d-flex align-items-center">
-                                                    <span><span class="fw-bold">Viewers:</span> {{ $itemFive->views }}</span>
+                                                    <span><span></span><i class="fa-solid fa-eye me-2" style="color:#575757"></i></span> {{ $itemFive->views }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -270,7 +270,7 @@
                                         <h3>Burma</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/categories/news/burma') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/categories/news/burma') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1  " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
@@ -310,7 +310,7 @@
                                                             <a href="{{ url('/category') . '/' . $burma->category->url_slug . '/' . $burma->id }}">{{ $burma->title }}</a>
                                                         @endif
                                                     </p>
-                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($burma->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $burma->views }}</span>
+                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($burma->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $burma->views }}</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -326,7 +326,7 @@
                                         <h3>Business</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/business') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/category/business') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
@@ -366,7 +366,7 @@
                                                             <a href="{{ url('/category') . '/' . $business->category->url_slug . '/' . $business->id }}">{{ $business->title }}</a>
                                                         @endif
                                                     </p>
-                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($business->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $business->views }}</span>
+                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($business->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $business->views }}</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -381,7 +381,7 @@
                                         <h3>In Person</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
@@ -421,7 +421,7 @@
                                                             <a href="{{ url('/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title }}</a>
                                                         @endif
                                                     </p>
-                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $person->views }}</span>
+                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $person->views }}</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -441,7 +441,7 @@
                                         <h3>Opinion</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/opinion') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/category/opinion') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
@@ -481,7 +481,7 @@
                                                             <a href="{{ url('/category') . '/' . $opinion->category->url_slug . '/' . $opinion->id }}">{{ $opinion->title }}</a>
                                                         @endif
                                                     </p>
-                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($opinion->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $opinion->views }}</span>
+                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($opinion->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $opinion->views }}</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -496,7 +496,7 @@
                                         <h3>Lifestyle</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/lifestyle') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/category/lifestyle') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
@@ -536,7 +536,7 @@
                                                             <a href="{{ url('/category') . '/' . $lifestyle->category->url_slug . '/' . $lifestyle->id }}"> {{ $lifestyle->title }}</a>
                                                         @endif
                                                     </p>
-                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($lifestyle->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $lifestyle->views }}</span>
+                                                    <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($lifestyle->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $lifestyle->views }}</span>
                                                 </div>
                                             </div>
                                         @endif
@@ -551,7 +551,7 @@
                                         <h3>Specials</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/specials') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/category/specials') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
@@ -591,7 +591,7 @@
                                                         <a href="{{ url('/category') . '/' . $special->category->url_slug . '/' . $special->id }}">{{ $special->title }}</a>
                                                     @endif
                                                 </p>
-                                                <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($special->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $special->views }}</span>
+                                                <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($special->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $special->views }}</span>
                                             </div>
                                         </div>
                                     @endif
@@ -606,7 +606,7 @@
                                         <h3>In Person</h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 "></i></a>
+                                        <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
                                     </div>
                                 </div>
                                 @foreach ($persons as $person)
@@ -642,7 +642,7 @@
                                                     <a href="{{ url('/category') . '/' . $person->category->url_slug . '/' . $person->id }}">{{ $person->title_en }}</a>
                                                 @endif
                                             </p>
-                                            <span class="small me-3"><i class="fa-solid fa-clock me-1"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4"></i>{{ $person->views }}</span>
+                                            <span class="small me-3"><i class="fa-solid fa-clock me-1" style="color:#575757"></i>{{ \Carbon\Carbon::parse($person->created_at)->format('d F Y') }}</span><span class="small"><i class="fa-solid fa-eye me-4" style="color:#575757"></i>{{ $person->views }}</span>
                                         </div>
                                     </div>
                                 @endforeach

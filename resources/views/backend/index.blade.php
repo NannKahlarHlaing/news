@@ -31,6 +31,9 @@
     @yield('css')
 
     <style>
+        strong{
+            color: gray;
+        }
         select {
             padding: 0 1rem !important;
         }

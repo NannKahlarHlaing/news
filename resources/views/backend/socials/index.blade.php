@@ -5,7 +5,12 @@
         <h3 class="my-3">Page Informaiton And Social</h3>
         <div class="row">
             <div class="col-md-8">
-                <form class="form" method="POST" action="{{ route('backend.socials.create') }}" enctype="multipart/form-data"> 
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <form class="form" method="POST" action="{{ route('backend.socials.create') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{  is_object($post) ? $post->id : '' }}">
                     <div class="form-group">
@@ -128,15 +133,15 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    $(document).ready(function(){
-        $('#btn-title').click(function(event){
-            event.preventDefault();
-            var title = $('#title').val();
+    // $(document).ready(function(){
+    //     $('#btn-title').click(function(event){
+    //         event.preventDefault();
+    //         var title = $('#title').val();
 
-            $.ajax({
-                
-            })
-        });
-    });
+    //         $.ajax({
+
+    //         })
+    //     });
+    // });
 </script>
 @endsection

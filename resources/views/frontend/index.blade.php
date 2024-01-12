@@ -34,7 +34,7 @@
 <body>
     <section class="bg-main">
         <div class="container-fluid">
-            <div class="col-12 py-1 fw-bold text-end locale">
+            <div class="col-12 py-1 text-end locale">
                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                 <a href="" class="text-white me-2" id="mm">Myanmar</a>
                 <a href="" class="text-white me-2" id="ta">Ta'ang</a>
@@ -49,60 +49,65 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-lg navbar-light aa">
-                        <div class="container-fluid col-lg px-0" id="nav-hide">
-                            <div class="d-flex align-items-center" id="menu-bar">
-                                <button class="btn btn-transparent py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-                                    <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
-                                    <i class="fa-solid fa-bars me-2"></i><span id="text-all" class="fw-bold me-2">All</span><span id="text-menu" class="fw-bold">Menu</span>
-                                </button>
-                                <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-                                    <div class="container-fluid">
-                                        <div class="row d-flex justify-content-center align-items-center">
-                                            <div class="col-lg-2 col-md-2 text-center">
-                                                <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="" width="100px" height="100px">
-                                            </div>
-                                            <div class="col-lg-10 col-md-10">
-                                                <div class="offcanvas-header">
-                                                    <h5 id="offcanvasTopLabel">{{ env('APP_NAME') }}</h5>
-                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                                </div>
-                                                <div class="offcanvas-body d-flex justify-content-center">
-                                                    <div class="col">
-                                                        <div class="row">
-                                                            @if(isset($all_menus))
-                                                                @foreach ($all_menus as $menu)
-                                                                    <div class="col-md-3">
-                                                                        <h6>
-                                                                            @if (session()->get('locale') == 'mm')
-                                                                                <a href="{{ url('/mm/category') . '/' . $menu->url_slug }}">{{ $menu->name_mm }}</a>
-                                                                            @elseif (session()->get('locale') == 'ch')
-                                                                                <a href="{{ url('/ch/category') . '/' . $menu->url_slug }}">{{ $menu->name_ch }}</a>
-                                                                            @elseif (session()->get('locale') == 'ta')
-                                                                                <a href="{{ url('/ta/category') . '/' . $menu->url_slug }}">{{ $menu->name_ta }}</a>
-                                                                            @else
-                                                                                <a href="{{ url('/category') . '/' . $menu->url_slug }}">{{ $menu->name_en }}</a>
-                                                                            @endif
-                                                                        </h6>
-                                                                    </div>
-                                                                @endforeach
-                                                            @endif
-                                                        </div>
-                                                    </div>
+                        <a class="btn btn-transparent py-0 ps-0 d-none" id="all-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                            <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
+                            <button class="btn btn-gray mt-1"><p class="fw-bold px-2"> ALL MENU</p></button>
+                        </a>
+                        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                            <div class="container-fluid">
+                                <div class="row d-flex justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-2 text-center">
+                                        <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="" width="100px" height="100px">
+                                    </div>
+                                    <div class="col-lg-10 col-md-10">
+                                        <div class="offcanvas-header">
+                                            <h5 id="offcanvasTopLabel">{{ env('APP_NAME') }}</h5>
+                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body d-flex justify-content-center">
+                                            <div class="col">
+                                                <div class="row">
+                                                    @if(isset($all_menus))
+                                                        @foreach ($all_menus as $menu)
+                                                            <div class="col-md-3">
+                                                                <h6>
+                                                                    @if (session()->get('locale') == 'mm')
+                                                                        <a href="{{ url('/mm/category') . '/' . $menu->url_slug }}">{{ $menu->name_mm }}</a>
+                                                                    @elseif (session()->get('locale') == 'ch')
+                                                                        <a href="{{ url('/ch/category') . '/' . $menu->url_slug }}">{{ $menu->name_ch }}</a>
+                                                                    @elseif (session()->get('locale') == 'ta')
+                                                                        <a href="{{ url('/ta/category') . '/' . $menu->url_slug }}">{{ $menu->name_ta }}</a>
+                                                                    @else
+                                                                        <a href="{{ url('/category') . '/' . $menu->url_slug }}">{{ $menu->name_en }}</a>
+                                                                    @endif
+                                                                </h6>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-                                {{ __('language.home') }}
-                            </a>
+                        </div>
+                        <div class="container-fluid col-lg px-0" id="nav-hide">
+                            <div class="d-flex align-items-center" id="menu-bar">
+                                <a class="btn btn-transparent py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                                    <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
+                                    <button class="btn btn-green mt-1"><p class="fw-bold px-3"> ALL MENU</p></button>
+                                </a>
 
+                            </div>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link fw-bold" aria-current="page" href="{{ url('/') }}">{{ __('language.home') }}</a>
+                                    </li>
+
                                     @if (session()->get('locale') == 'mm')
                                         @foreach ($main_menus_mm as $item)
                                             <li class="nav-item">
@@ -132,7 +137,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg h2 fw-bold text-white" id="site-title">{{ env('APP_NAME') }}</div>
+                        <div class="col-lg h2 fw-bold text-white text-center" id="site-title">{{ env('APP_NAME') }}</div>
                         <div class="col-lg-2 col-12 text-end mt-2 mt-lg-0" id="search">
                             <span>{{ __('language.search') }}...</span><i class="fa-solid fa-magnifying-glass"></i>
                         </div>
@@ -334,6 +339,7 @@
                 $('.fa-bars').addClass('text-white');
                 $('#search').addClass('text-white');
                 $('#text-all').addClass('d-none');
+                $('#all-menu').removeClass('d-none');
             } else {
                 navbar.addClass('bg-gray');
                 navbar.removeClass('sticky scrolled bg-background shadow');
@@ -344,6 +350,7 @@
                 $('#text-menu').addClass('d-none');
                 $('.fa-bars').removeClass('text-white');
                 $('#text-all').removeClass('d-none');
+                $('#all-menu').addClass('d-none');
             }
         });
         $('#search').click(function(){
