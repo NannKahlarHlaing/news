@@ -11,13 +11,13 @@
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">
                     <div class="card-title">
-                        <h3>Most Views</h3>
+                        <h5>Most Views</h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Post Title EN</th>
+                                    <th>Post Title</th>
                                     <th>Category</th>
                                     <th>Views</th>
                                     <th>View</th>
@@ -30,7 +30,7 @@
                                         <td>{{ $item->category->name_en }}</td>
                                         <td>{{ $item->views }}</td>
                                         <td>
-                                            <a href="{{ url('/category') . '/' . $item->category->url_slug . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/category') . '/' . $item->category->url_slug . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="View">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>
@@ -46,13 +46,13 @@
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">
                     <div class="card-title">
-                        <h3>Most Reacts</h3>
+                        <h5>Most Reacts</h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Post Title EN</th>
+                                    <th>Post Title</th>
                                     <th>Category</th>
                                     <th>Reactions</th>
                                     <th>View</th>
@@ -65,7 +65,7 @@
                                         <td>{{ $item->category_name}}</td>
                                         <td>{{ $item->total_reactions }}</td>
                                         <td>
-                                            <a href="{{ url('/category') . '/' . $item->url_slug . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/category') . '/' . $item->url_slug . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="View">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>
@@ -81,13 +81,13 @@
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">
                     <div class="card-title">
-                        <h3>Most Comments</h3>
+                        <h5>Most Comments</h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Post Title EN</th>
+                                    <th>Post Title</th>
                                     <th>Category</th>
                                     <th>Comments</th>
                                     <th>View</th>
@@ -100,7 +100,7 @@
                                         <td>{{ $item->category->name_en }}</td>
                                         <td>{{ $item->comments_count }}</td>
                                         <td>
-                                            <a href="{{ url('/category') . '/' . $item->category->url_slug . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/category') . '/' . $item->category->url_slug . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="View">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </td>

@@ -16,40 +16,42 @@
 </div>
 <div class="card shadow mb-4">
 <div class="card-header py-3">
-    <div class="row mb-3">
+    <div class="row mb-3 align-items-center">
         <div class="col-md-8">
-            <h3>Posts</h3>
+            <h5>Posts</h5>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
-            <a href="{{ route('backend.posts.create_form') }}" class="btn btn-success me-3">Add Post</a>
+            <a href="{{ route('backend.posts.create_form') }}" class="btn btn-primary me-3">Add Post</a>
             <a href="{{ route('backend.posts.trashed') }}" class="btn btn-primary">Trashed Post</a>
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-12">
-            <form class="form-inline" action="">
-                <input type="hidden" name="search" value="1">
-                <input class="form-control" type="text" name="title" value="{{ $title }}" placeholder="Search by Title, Short Description or Description">
-
-                <select class="form-control form-select mx-2" name="category" id="">
-                    <option value="">Select Category</option>
-                    @foreach ($categories as $item)
-                        <option value="{{ $item->id }}" {{ $category == $item->id ? 'selected' : '' }}> {{ $item->name_en }}</option>
-                    @endforeach
-                </select>
-
-                <select class="form-control form-select mx-2" name="lang" id="">
-                    <option value="">Select Language</option>
-                    <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
-                    <option value="mm" {{ $lang == 'mm' ? 'selected' : '' }}>Myanamar</option>
-                    <option value="ch" {{ $lang == 'ch' ? 'selected' : '' }}>Chinese</option>
-                    <option value="ta" {{ $lang == 'ta' ? 'selected' : '' }}>Ta'ang</option>
-                </select>
-
-                <input type="date" class="form-control me-2" id="date" name="date" value="{{ $search_date }}">
-
-                <button class="btn btn-primary">Search</button>
+        <div class="col-md-7">
+            <form class="form" action="">
+                <div class="d-flex mb-3">
+                    <input type="hidden" name="search" value="1">
+                    <select class="form-control form-select me-2" name="category" id="">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $item)
+                            <option value="{{ $item->id }}" {{ $category == $item->id ? 'selected' : '' }}> {{ $item->name_en }}</option>
+                        @endforeach
+                    </select>
+                    <select class="form-control form-select" style="width:350px" name="lang" id="">
+                        <option value="">Select Language</option>
+                        <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
+                        <option value="mm" {{ $lang == 'mm' ? 'selected' : '' }}>Myanmar</option>
+                        <option value="ch" {{ $lang == 'ch' ? 'selected' : '' }}>Chinese</option>
+                        <option value="ta" {{ $lang == 'ta' ? 'selected' : '' }}>Ta'ang</option>
+                    </select>
+                    <input type="date" class="form-control ms-2" id="date" name="date" value="{{ $search_date }}">
+                </div>
+    
+                <div class="d-flex">
+                    <input class="form-control me-2" type="text" name="title" value="{{ $title }}" placeholder="Search by Title, Short Description or Description">
+                    <button class="btn btn-primary">Search</button>
+                </div>
             </form>
+
         </div>
     </div>
     @if(count($posts) > 0)
@@ -61,10 +63,10 @@
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-12 mb-2">
-                            <h5>{{ $item->title }} </h5>
+                            <h6>{{ $item->title }} </h6>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong >Category: </strong> <span>
+                            Category: 
                                 @if ($item->lang == 'mm')
                                     {{ $item->category->name_mm }}
                                 @elseif($item->lang == 'ch')
@@ -74,10 +76,9 @@
                                 @else
                                     {{ $item->category->name_en }}
                                 @endif
-                            </span>
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong>SubCategory: </strong>
+                            SubCategory: 
                             @if ($item->sub_category != '' || $item->sub_category != NULL)
                                 <span>
                                     @if ($item->lang == 'mm')
@@ -93,7 +94,7 @@
                             @endif
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong>Tag: </strong>
+                            Tag:
                             @foreach ($item->tags as $post_tag)
                                 @foreach ($tags as $tag)
                                     @if ($tag->id == $post_tag)
@@ -113,10 +114,19 @@
                             @endforeach
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong>Views: </strong> <span>{{ $item->views }}</span>
+                            Views:{{ $item->views }}
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            <strong>Language: </strong> <span>{{ $item->lang  }}</span>
+                            Language: 
+                                @if ($item->lang == 'en')
+                                    English
+                                @elseif($item->lang == 'mm')
+                                    Myanmar
+                                @elseif($item->lang == 'ch')
+                                    Chinese
+                                @elseif($item->lang == 'ta')
+                                    Ta'ang
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -124,13 +134,13 @@
                     @if ($route == 'post_index')
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <a href="{{ url('/admin/posts/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
-                                    <i class="fa-solid fa-pencil"></i>
+                                <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="View">
+                                    <i class="fa-solid fa-eye"></i>
                                 </a>
                             </div>
                             <div class="col-12 mb-3">
-                                <a href="{{ url('/category') . '/' . $item->category->name_en . '/' . $item->id }}" class="btn btn-danger btn-circle">
-                                    <i class="fa-solid fa-eye"></i>
+                                <a href="{{ url('/admin/posts/update') . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="Edit">
+                                    <i class="fa-solid fa-pencil"></i>
                                 </a>
                             </div>
                             <div class="col-12">
@@ -140,8 +150,9 @@
 
                                     <button
                                         type="submit"
-                                        class="btn btn-danger btn-circle"
+                                        class="btn btn-secondary btn-circle"
                                         onclick="return confirm('Are you sure to delete');"
+                                        title="Delete"
                                     >
                                     <i class="fa-solid fa-trash-can"></i>
                                     </button>
@@ -157,7 +168,7 @@
 
                                     <button
                                         type="submit"
-                                        class="btn btn-danger btn-circle"
+                                        class="btn btn-secondary btn-circle"
                                     >
                                     <i class="fa-solid fa-recycle"></i>
                                     </button>

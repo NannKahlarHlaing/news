@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add
+        <h5 class="my-3">Add
             @if ($route_name == 'category.create_form')
                 Category
             @elseif($route_name == 'tag.create_form')
@@ -10,7 +10,7 @@
             @else
                 Sub Category
             @endif
-        </h3>
+        </h5>
         <div class="row">
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route(Route::currentRouteName() == 'category.create_form' ? 'category.create' : (Route::currentRouteName() == 'sub_category.create_form' ? 'sub_category.create' : 'tag.create')) }}" enctype="multipart/form-data">
@@ -23,7 +23,6 @@
                             <button class="nav-link" id="nav-ta-tab" data-bs-toggle="tab" data-bs-target="#nav-ta" type="button" role="tab" aria-controls="nav-ta" aria-selected="false">Ta-Ang</button>
                         </div>
                     </nav>
-                    <span class="text-danger fw-bold">*** Name EN field must be filled!!!</span>
                     @csrf
                     @if($route_name == 'sub_category.create_form')
                         <div class="form-group">
@@ -45,7 +44,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                             <div class="form-group">
-                                <label for="name_en">Name_EN <span class="text-danger">*</span></label>
+                                <label for="name_en">English Name <span class="text-danger">(English Name must be filled for all languages.)</span></label>
                                 <input type="text" class="form-control @error('name_en') is-invalid @enderror" value="{{ old('name_en') }}" name="name_en">
                                 @error('name_en')
                                     <div class="invalid-feedback">
@@ -56,7 +55,7 @@
                         </div>
                         <div class="tab-pane fade" id="nav-mm" role="tabpanel" aria-labelledby="nav-mm-tab">
                             <div class="form-group">
-                                <label for="name_mm">Name_MM</label>
+                                <label for="name_mm">Myanmar Name</label>
                                 <input type="text" class="form-control @error('name_mm') is-invalid @enderror" value="{{ old('name_mm') }}" name="name_mm">
                                 @error('name_mm')
                                     <div class="invalid-feedback">
@@ -67,7 +66,7 @@
                         </div>
                         <div class="tab-pane fade" id="nav-ch" role="tabpanel" aria-labelledby="nav-ch-tab">
                             <div class="form-group">
-                                <label for="name_ch">Name_CH</label>
+                                <label for="name_ch">Chinese Name</label>
                                 <input type="text" class="form-control @error('name_ch') is-invalid @enderror" value="{{ old('name_ch') }}" name="name_ch">
                                 @error('name_ch')
                                     <div class="invalid-feedback">
@@ -78,7 +77,7 @@
                         </div>
                         <div class="tab-pane fade" id="nav-ta" role="tabpanel" aria-labelledby="nav-ta-tab">
                             <div class="form-group">
-                                <label for="name_ta">Name_TA</label>
+                                <label for="name_ta">Ta'ang Name</label>
                                 <input type="text" class="form-control @error('name_ta') is-invalid @enderror" value="{{ old('name_ta') }}" name="name_ta">
                                 @error('name_ta')
                                     <div class="invalid-feedback">

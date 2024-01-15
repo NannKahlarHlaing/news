@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Edit Photos</h3>
+        <h5 class="my-3">Edit Photos</h5>
         <div class="row">
             <div class="col-md-8 ">
                 <form class="form" method="POST" action="{{route('backend.photos.update') }}" enctype="multipart/form-data">

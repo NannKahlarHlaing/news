@@ -16,7 +16,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Newsletter</h3>
+        <h5 class="my-3">Newsletter</h5>
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

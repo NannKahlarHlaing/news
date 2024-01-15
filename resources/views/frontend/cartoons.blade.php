@@ -160,8 +160,8 @@
                                                     <a href="{{ url('/ch/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
                                                 @elseif(app()->getLocale() == 'ta')
                                                     <a href="{{ url('/ta/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
-                                                @else
-                                                    <a href="{{ url('/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
+                                                @elseif(app()->getLocale() == 'en')
+                                                    <a href="{{ url('/en/cartoons') . '/' . $latest->id }}">{{ $latest->title }}</a>
                                                 @endif
                                             </h2>
                                         </div>
@@ -176,13 +176,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="me-3">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(URL::current()) }}" class="me-3" title="Share on Facebook">
                                                 <i class="fa-brands fa-square-facebook"></i>
                                             </a>
-                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="me-3">
+                                            <a href="https://twitter.com/intent/tweet?text={{ urlencode(URL::current()) }}&url={{ urlencode(URL::current()) }}" class="me-3" title="Share on Twitter">
                                                 <i class="fa-brands fa-square-twitter"></i>
                                             </a>
-                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}">
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(URL::current()) }}" title="Share on LinkedIn">
                                                 <i class="fa-brands fa-linkedin"></i>
                                             </a>
                                         </div>
@@ -210,7 +210,23 @@
                             <div class="row mt-3">
                                 <div class="col-md-4 col-6">
                                     <div class="overflow-hidden">
-                                        <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                                        @if (app()->getLocale() == 'mm')
+                                        <a href="{{ url('/mm/cartoons') . '/' . $cartoon->id }}">
+                                            <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                                        </a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">
+                                                <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">
+                                                <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/cartoons') . '/' . $cartoon->id }}">
+                                                <img src=" {{ asset('storage/images/thumbnail') . '/' . $cartoon->img_link }}" alt="image" width="100%">
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-6">
@@ -221,8 +237,8 @@
                                             <a href="{{ url('/ch/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
                                         @elseif(app()->getLocale() == 'ta')
                                             <a href="{{ url('/ta/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
-                                        @else
-                                            <a href="{{ url('/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/cartoons') . '/' . $cartoon->id }}">{{ $cartoon->title }}</a>
                                         @endif
                                     </p>
                                     <span class="me-3">

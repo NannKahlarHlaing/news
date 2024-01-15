@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Edit Page</h3>
+        <h5 class="my-3">Edit Page</h5>
         <div class="row">
             <div class="col-md-8 ">
                 <form class="form" method="POST" action="{{route('backend.pages.update') }}" enctype="multipart/form-data">
@@ -47,7 +47,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="title_en">Title_EN <span class="text-danger fw-bold">*** Title EN field must be filled for all languages!!!</span></label>
+                        <label for="title_en">EnglishTitle <span class="text-danger">(Title EN field must be filled for all languages)</span></label>
                         <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en', $post->title_en) }}">
                         @error('title_en')
                             <div class="invalid-feedback">

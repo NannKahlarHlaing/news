@@ -14,10 +14,10 @@
     </div>
     <div class="row pt-5">
         <div class="col-12">
-            <h3>Subscribers</h3>
+            <h5>Subscribers</h5>
         </div>
     </div>
-    <div class="row py-5 px-3">
+    <div class="row py-3">
         <div class="col-lg-8">
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">

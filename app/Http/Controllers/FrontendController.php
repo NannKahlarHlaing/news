@@ -214,10 +214,11 @@ class FrontendController extends Controller
     }
 
     public function main_categoriesEn($category){
-        return call_user_func_array([$this, 'main_categories'], ['en', $category]);
+        return call_user_func_array([$this, 'main_categories'], ['mm', $category]);
     }
 
     public function main_categories($language, $name){
+        $main_cat = '';
         $category = Category::where('url_slug', $name)->first();
         $id = $category->id;
         $sub_cat = $category;
@@ -239,12 +240,16 @@ class FrontendController extends Controller
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
-        return view('frontend.sub_page', compact('sub_categories', 'sub_cat', 'latestPosts', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('sub_categories', 'sub_cat', 'main_cat', 'latestPosts', 'mostViews', 'posts'));
     }
 
-    public function sub_categories($language, $main_categroy, $sub_category){
+    public function sub_categories($language, $main_category, $sub_category){
+        $main_cat = Category::where('url_slug', $main_category)->first();
         $sub_cat = SubCategory::where('url_slug', $sub_category)->first();
         $id = $sub_cat->id;
+
+        $sub_categories = SubCategory::where('category_id', $main_cat->id)->latest()->get();
+
         // $latest = Post::where('sub_category_id', $sub_cat->id)
         //         ->orderBy('id', 'desc')
         //         ->first();
@@ -265,11 +270,11 @@ class FrontendController extends Controller
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
-        return view('frontend.sub_page', compact('sub_cat', 'latestPosts', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('sub_cat', 'main_cat', 'sub_categories', 'latestPosts', 'mostViews', 'posts'));
     }
 
     public function sub_categoriesEn($main_categroy, $sub_category){
-        return call_user_func_array([$this, 'sub_categories'], ['en', $main_categroy, $sub_category]);
+        return call_user_func_array([$this, 'sub_categories'], ['mm', $main_categroy, $sub_category]);
     }
 
     public function show_videos(){
@@ -297,6 +302,7 @@ class FrontendController extends Controller
     }
 
     public function photo_essays(){
+        $main_cat = '';
         $sub_cat = ['photo_essays', 'Photo Essays'];
         $latestPosts = PhotoEssay::whereIn('id', function ($query) {
             $query->select(\DB::raw('MAX(id)'))
@@ -308,7 +314,7 @@ class FrontendController extends Controller
 
         $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
 
-        return view('frontend.sub_page', compact('sub_cat', 'latestPosts', 'mostViews', 'posts'));
+        return view('frontend.sub_page', compact('sub_cat', 'main_cat', 'latestPosts', 'mostViews', 'posts'));
     }
 
     public function pages( $language, $title){
@@ -322,7 +328,7 @@ class FrontendController extends Controller
     }
 
     public function pagesEn($title){
-        return call_user_func_array([$this, 'pages'], ['en', $title]);
+        return call_user_func_array([$this, 'pages'], ['mm', $title]);
     }
 
 

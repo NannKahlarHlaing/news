@@ -32,27 +32,27 @@ class MenuController extends Controller
         $sub_categories = SubCategory::all();
 
         if($id == 1){
-            $menu_name = 'Main Menu EN';
+            $menu_name = 'English Main Menu';
         }else if($id == 2){
-            $menu_name = 'Main Menu MM';
+            $menu_name = 'Myanmar Main Menu';
         }
         else if($id == 3){
-            $menu_name = 'Main Menu CH';
+            $menu_name = 'Chinese Main Menu';
         }
         else if($id == 4){
-            $menu_name = 'Footer Menu EN';
+            $menu_name = 'English Footer Menu';
         }
         else if($id == 5){
-            $menu_name = 'Footer Menu MM';
+            $menu_name = 'Myanmar Footer Menu';
         }
         else if($id == 6){
-            $menu_name = 'Footer Menu CH';
+            $menu_name = 'Chinese Footer Menu';
         }
         else if($id == 7){
-            $menu_name = 'Main Menu TA';
+            $menu_name = 'Ta\'ang Main Menu';
         }
         else if($id == 8){
-            $menu_name = 'Footer Menu TA';
+            $menu_name = 'Ta\'ang Footer Menu';
         }
 
         $menu_items = MenuItem::where('menu_id', $id)->orderBy('order')->get();

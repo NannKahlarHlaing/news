@@ -19,10 +19,10 @@ class SetLanguage
 
         // Validate if the language is supported or set the default language here
         if(!in_array($language, ['en', 'mm', 'ch', 'ta'])){
-            $language = 'en';
+            $language = 'mm'; //default language
 
-        }elseif ($language === 'en') {
-            // If the language is 'en', redirect to the URL without the language segment
+        }elseif ($language === 'mm') {
+            // If the language is 'mm', redirect to the URL without the language segment
             $pathWithoutLanguage = ltrim($request->getPathInfo(), '/' . $language);
             return redirect($pathWithoutLanguage);
         }

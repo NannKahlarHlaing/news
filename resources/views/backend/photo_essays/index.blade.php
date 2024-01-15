@@ -16,9 +16,9 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <div class="row mb-3">
+        <div class="row mb-3 align-items-center">
             <div class="col-md-8">
-                <h3>Photo Essays</h3>
+                <h5>Photo Essays</h5>
             </div>
             <div class="col-md-4 text-md-end mt-3 mt-md-0">
                 <a href="{{ route('backend.photo_essays.create_form') }}" class="btn btn-primary">Add Photos Essay</a>
@@ -32,7 +32,7 @@
                 <div class="col-lg-9 col-md-6">
                     <div class="row">
                         <div class="col-12">
-                            <h5>{{ $item->title }}</h5>
+                            <h6>{{ $item->title }}</h6>
                         </div>
                         <div class="col-lg-4">
                             <strong class="fw-bold">Author: </strong> <span>{{ $item->author }}</span>
@@ -52,13 +52,13 @@
                 <div class="col-lg-1 col-md-2 text-end">
                     <div class="row">
                         <div class="col-12 mb-3">
-                            <a href="{{ url('/admin/photo_essays/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
-                                <i class="fa-solid fa-pencil"></i>
+                            <a href="{{ url('/photo_essays') . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="View">
+                                <i class="fa-solid fa-eye"></i>
                             </a>
                         </div>
                         <div class="col-12 mb-3">
-                            <a href="{{ url('/photo_essays') . '/' . $item->id }}" class="btn btn-danger btn-circle">
-                                <i class="fa-solid fa-eye"></i>
+                            <a href="{{ url('/admin/photo_essays/update') . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="Edit">
+                                <i class="fa-solid fa-pencil"></i>
                             </a>
                         </div>
                         <div class="col-12">
@@ -68,8 +68,9 @@
 
                                 <button
                                     type="submit"
-                                    class="btn btn-danger btn-circle"
+                                    class="btn btn-secondary btn-circle"
                                     onclick="return confirm('Are you sure to delete');"
+                                    title="Delete"
                                 >
                                 <i class="fa-solid fa-trash-can"></i>
                                 </button>

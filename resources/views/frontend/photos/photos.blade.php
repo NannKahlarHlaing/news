@@ -120,13 +120,13 @@
                                 <div class="row description d-flex-center mt-5 py-3">
                                     <div class="col-lg-10 text-center">
                                         <div class="row d-flex align-items-center">
-                                            <div class="col-6">
+                                            <div class="col-6 text-dark">
                                                 {!! $item->desc !!}
                                             </div>
                                             <div class="col-3 d-flex align-items-center"> <!-- Add a new column for the eye icon -->
-                                                <i class="fa-regular fa-eye me-3"></i>
+                                                <i class="fa-regular fa-eye me-3" style="color:#575757"></i>
                                                 <span class="id d-none">{{ $item->id }}</span>
-                                                <span class="views d-inline">{{ $item->views }}</span>
+                                                <span class="views d-inline text-dark">{{ $item->views }}</span>
                                             </div>
                                         </div>
                                     </div>

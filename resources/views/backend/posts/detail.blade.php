@@ -8,11 +8,18 @@
                     <div class="col-md-12">
                         <h3 class="border-bottom border-dark pb-1">{{ __('language.related_posts') }}</h3>
                     </div>
-
                     @foreach ($relatedPosts as $related)
                         <div class="col-md-12 py-1">
                             <h6>
-                                <a href="{{ url('/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @if (app()->getLocale() == 'mm')
+                                    <a href="{{ url('/mm/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @elseif(app()->getLocale() == 'ch')
+                                    <a href="{{ url('/ch/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @elseif(app()->getLocale() == 'ta')
+                                    <a href="{{ url('/ta/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @elseif(app()->getLocale() == 'en')
+                                    <a href="{{ url('/en/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @endif
                             </h6>
                         </div>
                     @endforeach
@@ -22,7 +29,6 @@
                 <div class="row mb-5">
                     <div class="col-12">
                         <span class="d-none" id="id">{{ $post->id }}</span>
-                        {{-- <span>{{ $post->category->name_en }}</span> --}}
                         <h2>{{ $post->title }}</h2>
                     </div>
                     <div class="col-12 overflow-hidden">
@@ -42,7 +48,7 @@
                                 @isset($post->sub_category_id)
                                     / {{$post->sub_category->name_ta }}
                                 @endisset
-                            @else
+                            @elseif(app()->getLocale() == 'en')
                                 {{ $post->category->name_en }}
                                 @isset($post->sub_category_id)
                                     / {{$post->sub_category->name_en }}
@@ -53,17 +59,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-1 social" id="social">
+                    <div class="col-lg-1 col-md-1 col-2 social" id="social">
                         <div class="row text-center">
                             <div class="col-12">
                                 <a href="mailto:?subject=Check%20out%20this%20awesome%20content&body=I%20thought%20you%20might%20find%20this%20interesting:%20{{ urlencode(url()->current()) }}" title="Share on Email"><i class="fa-regular fa-message"></i></a>
                             </div>
 
                             <div class="col-12">
-                                <i class="fa-regular fa-eye"></i>
+                                <i class="fa-regular fa-eye" title="Views"></i>
                             </div>
                             <div class="col-12">
-                                <div class="btn border-bottom mb-2">
+                                <div class=" border-bottom mb-2">
                                     <span id="views">{{ $post->views }}</span>
                                 </div>
                             </div>
@@ -84,8 +90,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-11">
-                        <h6>BY <a href="" class="tex-dark fw-bold me-3">{{ env('APP_NAME')}}</a><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
+                    <div class="col-lg-11 col-md-11 col-10">
+                        <h6><span>{{ date('d F Y', strtotime($post->created_at)) }}</span></h6>
                         <p>
                             {!! $post->desc !!}
                         </p>
@@ -104,7 +110,7 @@
                                         <span>{{ $tag->name_ch }}</span>
                                     @elseif (app()->getLocale() == 'ta')
                                         <span>{{ $tag->name_ta }}</span>
-                                    @else
+                                    @elseif(app()->getLocale() == 'en')
                                         <span>{{ $tag->name_en }}</span>
                                     @endif
                                 @endif

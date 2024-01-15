@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add User</h3>
+        <h5 class="my-3">Edit User</h5>
         <div class="row">
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route('users.create_form') }}" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
                         <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

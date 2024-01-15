@@ -139,8 +139,8 @@
                             <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
                             <button type="submit" class="btn btn-gray">Search</button>
                         </form>
-                    @else
-                        <form class="d-flex" id="search-form" action="{{ url('/videos/search') }}" method="GET">
+                    @elseif (session()->get('locale') == 'en')
+                        <form class="d-flex" id="search-form" action="{{ url('/en/videos/search') }}" method="GET">
                             @csrf
                             <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
                             <button type="submit" class="btn btn-gray">Search</button>

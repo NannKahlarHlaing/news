@@ -16,13 +16,13 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add Post</h3>
+        <h5 class="my-3">Add Post</h5>
         <div class="row">
             <div class="col-md-8 ">
                 <form class="form" method="POST" action="{{route('backend.posts.create') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <select class="form-select form-select @error('lang') is-invalid @enderror " name="lang">
+                        <select class="form-select @error('lang') is-invalid @enderror " name="lang">
                             <option value="" {{ old('lang') == ''? "selected":"" }}>Choose Language</option>
                             <option value="en" {{ old('lang') == 'en'? "selected":"" }}>English</option>
                             <option value="mm" {{ old('lang') == 'mm'? "selected":"" }}>Myanmar</option>
@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label>Categories <span class="text-danger">*</span></label>
-                            <select class="form-control form-select @error('category') is-invalid @enderror" id="category" name="category" aria-label="Default select example">
+                            <select class=" form-select @error('category') is-invalid @enderror" id="category" name="category" aria-label="Default select example">
                                 <option value="" selected hidden>Select Category</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id  }}" {{ old('category') == $item->id? "selected":"" }}>{{ $item->name_en }}</option>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>SubCategories</label>
-                            <select class="form-control form-select @error('sub_category') is-invalid @enderror" id="sub_category" name="sub_category" aria-label="Default select example">
+                            <select class=" form-select @error('sub_category') is-invalid @enderror" id="sub_category" name="sub_category" aria-label="Default select example">
                                 <option value="" selected hidden>Select SubCategory</option>
                                 @foreach ($sub_categories as $item)
                                     <option value="{{ $item->id  }}" {{ old('sub_category') == $item->id? "selected":"" }}>{{ $item->name_en }}</option>

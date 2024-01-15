@@ -38,7 +38,7 @@
                 <span class="d-none" id ="lang">{{ app()->getLocale() }}</span>
                 <a href="" class="text-white me-2" id="mm">Myanmar</a>
                 <a href="" class="text-white me-2" id="ta">Ta'ang</a>
-                <a href="" class="text-white me-2" id="ch">Chinese</a>
+                <!--<a href="" class="text-white me-2" id="ch">Chinese</a>-->
                 <a href="" class="text-white" id="en">English</a>
             </div>
         </div>
@@ -77,7 +77,7 @@
                                                                         <a href="{{ url('/ch/category') . '/' . $menu->url_slug }}">{{ $menu->name_ch }}</a>
                                                                     @elseif (session()->get('locale') == 'ta')
                                                                         <a href="{{ url('/ta/category') . '/' . $menu->url_slug }}">{{ $menu->name_ta }}</a>
-                                                                    @else
+                                                                    @elseif (session()->get('locale') == 'en')
                                                                         <a href="{{ url('/category') . '/' . $menu->url_slug }}">{{ $menu->name_en }}</a>
                                                                     @endif
                                                                 </h6>
@@ -104,29 +104,37 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li class="nav-item">
-                                        <a class="nav-link fw-bold" aria-current="page" href="{{ url('/') }}">{{ __('language.home') }}</a>
-                                    </li>
-
                                     @if (session()->get('locale') == 'mm')
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-bold" aria-current="page" href="{{ url('/mm') }}">{{ __('language.home') }}</a>
+                                        </li>
                                         @foreach ($main_menus_mm as $item)
                                             <li class="nav-item">
                                                 <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}" id={{ $item->id }}>{{ $item->name }}</a>
                                             </li>
                                         @endforeach
                                     @elseif (session()->get('locale') == 'ch')
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-bold" aria-current="page" href="{{ url('/ch') }}">{{ __('language.home') }}</a>
+                                        </li>
                                         @foreach ($main_menus_ch as $item)
                                             <li class="nav-item">
                                                 <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                             </li>
                                         @endforeach
                                     @elseif (session()->get('locale') == 'ta')
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-bold" aria-current="page" href="{{ url('/ta') }}">{{ __('language.home') }}</a>
+                                        </li>
                                         @foreach ($main_menus_ta as $item)
                                         <li class="nav-item">
                                             <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
                                             </li>
                                         @endforeach
-                                    @else
+                                    @elseif(session()->get('locale') == 'en')
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-bold" aria-current="page" href="{{ url('/en') }}">{{ __('language.home') }}</a>
+                                        </li>
                                         @foreach ($main_menus_en as $item)
                                         <li class="nav-item">
                                             <a class="nav-link fw-bold" aria-current="page" href="{{ $item->link }}">{{ $item->name }}</a>
@@ -160,7 +168,7 @@
                             <input class="form-control me-2 search-input" type="search" placeholder="{{ __('language.search') }}..." aria-label="Search" name="search">
                             <i class="fa-solid fa-xmark" id="btn-close"></i>
                         </form>
-                    @else
+                    @elseif (session()->get('locale') == 'en')
                         <form class="d-flex" id="search-form" action="{{ url('/posts/search') }}" method="GET">
                             @csrf
                             <input class="form-control me-2 search-input" type="search" placeholder="{{ __('language.search') }}..." aria-label="Search" name="search">
@@ -206,7 +214,7 @@
                                     @foreach ($footer_menus_ta as $item)
                                         <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
                                     @endforeach
-                                @else
+                                @elseif (session()->get('locale') == 'en')
                                     @foreach ($footer_menus_en as $item)
                                         <li><a class="nav-link "href="{{ $item->link }}">{{ $item->name }}</a></li>
                                     @endforeach
@@ -255,49 +263,25 @@
 
         $('#en').on('click', function(event) {
             event.preventDefault();
-            var currentURL = window.location.href;
-            if(lang == 'en'){
-                var newUrl = currentURL.replace(appUrl, appUrl + 'en/');
-            }else{
-                var newUrl = currentURL.replace(/\/(mm|ch|ta)\//, '/en/');
-            }
-
+            var newUrl = appUrl + 'en/';
             window.location.replace(newUrl);
         });
 
         $('#mm').on('click', function(event) {
             event.preventDefault();
-            var currentURL = window.location.href;
-            if(lang == 'en'){
-                var newUrl = currentURL.replace(appUrl, appUrl + 'mm/');
-            }else{
-                var newUrl = currentURL.replace(/\/(ch|en|ta)\//, '/mm/');
-            }
-
+            var newUrl = appUrl + 'mm/';
             window.location.replace(newUrl);
         });
 
         $('#ch').on('click', function(event) {
             event.preventDefault();
-            var currentURL = window.location.href;
-            if(lang == 'en'){
-                var newUrl = currentURL.replace(appUrl, appUrl + 'ch/');
-            }else{
-                var newUrl = currentURL.replace(/\/(mm|en|ta)\//, '/ch/');
-            }
-
+            var newUrl = appUrl + 'ch/';
             window.location.replace(newUrl);
         });
 
         $('#ta').on('click', function(event) {
             event.preventDefault();
-            var currentURL = window.location.href;
-            if(lang == 'en'){
-                var newUrl = currentURL.replace(appUrl, appUrl + 'ta/');
-            }else{
-                var newUrl = currentURL.replace(/\/(mm|en|ch)\//, '/ta/');
-            }
-
+                var newUrl = appUrl + 'ta/';
             window.location.replace(newUrl);
         });
 

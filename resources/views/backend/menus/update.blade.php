@@ -16,7 +16,7 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h3 class="my-3">{{ $menu_name }}</h3>
+            <h5 class="my-3">{{ $menu_name }}</h5>
             <form class="form" action="" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" id="menu_id" name="menu_id" value="{{ $id }}" />
@@ -34,12 +34,12 @@
                                     }else if($id == '7' || $id == '8'){
                                         $link = '/ta/photos';
                                         $name = 'ဓာတ်ပုံများ';
-                                    }else{
-                                        $link = '/photos';
+                                    }elseif($id == '1' || $id == '4'){
+                                        $link = '/en/photos';
                                         $name = 'Photos';
                                     }
                                     if($name == '' || $name == NULL){
-                                        $link = '/photos';
+                                        $link = '/en/photos';
                                         $name = 'Photos';
                                     }
                                     $menu = $menu_items->where('item_id', 'p-1')->where('type', 'page')->first();
@@ -61,12 +61,12 @@
                                     else if($id == '7' || $id == '8'){
                                         $link = '/ta/photo_essays';
                                         $name = 'ဓာတ်ပုံအက်ဆေးများ';
-                                    }else{
-                                        $link = '/photo_essays';
+                                    }elseif($id == '1' || $id == '4'){
+                                        $link = '/en/photo_essays';
                                         $name = 'Photo Essays';
                                     }
                                     if($name == '' || $name == NULL){
-                                        $link = '/photo_essays';
+                                        $link = '/en/photo_essays';
                                         $name = 'Photo Essays';
                                     }
                                 $menu = $menu_items->where('item_id', 'p-2')->where('type', 'page')->first();
@@ -88,8 +88,8 @@
                                     else if($id == '7' || $id == '8'){
                                         $link = '/ta/videos';
                                         $name = 'ဗီဒီယိုများ';
-                                    }else{
-                                        $link = '/videos';
+                                    }elseif($id == '1' || $id == '4'){
+                                        $link = '/en/videos';
                                         $name = 'Videos';
                                     }
                                     if($name == '' || $name == NULL){
@@ -114,12 +114,12 @@
                                     }else if($id == '7' || $id == '8'){
                                         $link = '/ta/cartoons';
                                         $name = 'ကာတွန်းများ';
-                                    }else{
-                                        $link = '/cartoons';
+                                    }elseif($id == '1' || $id == '4'){
+                                        $link = '/en/cartoons';
                                         $name = 'Cartoons';
                                     }
                                     if($name == '' || $name == NULL){
-                                        $link = '/cartoons';
+                                        $link = '/en/cartoons';
                                         $name = 'Cartoons';
                                     }
                                     $menu = $menu_items->where('item_id', 'p-4')->where('type', 'page')->first();
@@ -140,8 +140,8 @@
                                     }else if($id == '7' || $id == '8'){
                                         $link = '/ta/contact';
                                         $name = 'ဆက်သွယ်ရန်';
-                                    }else{
-                                        $link = '/contact';
+                                    }elseif($id == '1' || $id == '4'){
+                                        $link = '/en/contact';
                                         $name = 'Contact';
                                     }
                                     if($name == '' || $name == NULL){
@@ -167,12 +167,12 @@
                                     } else if($id == '7' || $id == '8'){
                                         $link = '/ta/' . $item->url_slug;
                                         $name = $item->title_ta;
-                                    }else{
+                                    }elseif($id == '1' || $id == '4'){
                                         $name = $item->title_en;
-                                        $link = '/' . $item->url_slug;
+                                        $link = '/en/' . $item->url_slug;
                                     }
                                     if($name == '' || $name == NULL){
-                                        $link = '/' . $item->url_slug;
+                                        $link = '/en/' . $item->url_slug;
                                         $name = $item->title_en;
                                     }
                                     $menu = $menu_items->where('item_id', $item->id)->where('type', 'page')->first();
@@ -185,7 +185,7 @@
                             @endforeach
                         </div>
                     </div>
-                    @if ($menu_name == 'Main Menu EN' || $menu_name == 'Main Menu MM' || $menu_name == 'Main Menu CH' || $menu_name == 'Main Menu TA')
+                    @if ($menu_name == 'English Main Menu' || $menu_name == 'Myanmar Main Menu' || $menu_name == 'Chinese Main Menu' || $menu_name == 'Ta\'ang Main Menu')
                         <div class="col-md-4">
                             <h6 class="mb-3">Edit Menu Items From Categories</h6>
                             <div class="form-control scroll-window mb-3">
@@ -200,13 +200,13 @@
                                         }else if($id == '7' || $id == '8'){
                                             $name = $item->name_ta;
                                             $link = '/ta/category/' . $item->url_slug;
-                                        }else{
+                                        }elseif($id == '1' || $id == '4'){
                                             $name = $item->name_en;
-                                            $link = '/category/' . $item->url_slug;
+                                            $link = '/en/category/' . $item->url_slug;
                                         }
                                         if($name == '' || $name == NULL){
                                             $name = $item->name_en;
-                                            $link = '/category/' . $item->url_slug;
+                                            $link = '/en/category/' . $item->url_slug;
                                         }
                                         $menu = $menu_items->where('item_id', $item->id)->where('type', 'category')->first();
                                     @endphp
@@ -222,7 +222,6 @@
                             <h6 class="mb-3">Edit Menu Items From SubCategories</h6>
                             <div class="form-control scroll-window mb-3">
                                 @foreach ($sub_categories as $item)
-
                                     @php
                                         if($id == '2' || $id == '5'){
                                             $name = $item->name_mm;
@@ -233,13 +232,13 @@
                                         }else if($id == '7' || $id == '8'){
                                             $name = $item->name_ta;
                                             $link = '/ta/categories/' . $item->category->url_slug . '/' . $item->url_slug;
-                                        }else{
+                                        }elseif($id == '1' || $id == '4'){
                                             $name = $item->name_en;
-                                            $link = '/categories/' . $item->category->url_slug . '/' . $item->url_slug;
+                                            $link = '/en/categories/' . $item->category->url_slug . '/' . $item->url_slug;
                                         }
                                         if($name == '' || $name == NULL){
                                             $name = $item->name_en;
-                                            $link = '/categories/' . $item->category->url_slug . '/' . $item->url_slug;
+                                            $link = '/en/categories/' . $item->category->url_slug . '/' . $item->url_slug;
                                         }
                                         $menu = $menu_items->where('item_id', $item->id)->where('type', 'subcategory')->first();
                                     @endphp
@@ -263,7 +262,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="row">
-                <h3>Menu Lists</h3>
+                <h5>Menu Lists</h5>
             </div>
             @foreach ($menu_items as $item)
                     <div class="card text-start mb-2">

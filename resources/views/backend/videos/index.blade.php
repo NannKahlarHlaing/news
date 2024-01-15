@@ -12,15 +12,15 @@
             @endif
         </div>
     </div>
-    <div class="row pt-5">
+    <div class="row pt-5 align-items-center">
         <div class="col-md-8">
-            <h3>Videos</h3>
+            <h5>Videos</h5>
         </div>
         <div class="col-lg-4 d-flex justify-content-end">
             <a href="{{ route('backend.videos.create_form') }}" class="btn btn-primary">Add Videos</a>
         </div>
     </div>
-    <div class="row py-5 px-3">
+    <div class="row py-3 px-3">
         <div class="card shadow mb-4" style="width: 100%">
             <div class="card-body">
                 <div class="table-responsive">
@@ -28,22 +28,13 @@
                         <thead>
                             <tr>
                                 <th>Video URL</th>
-                                <th>Description_En</th>
+                                <th>Description</th>
                                 <th>Category</th>
                                 <th>Language</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                                <th>Video URL</th>
-                                <th>Description_En</th>
-                                <th>Category</th>
-                                <th>Language</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                             @foreach ($posts as $item)
 
@@ -61,9 +52,19 @@
                                             {{ $item->category->name_en }}
                                         @endif
                                     </td>
-                                    <th>{{ $item->lang }}</th>
                                     <td>
-                                        <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                        @if ($item->lang == 'en')
+                                            English
+                                        @elseif($item->lang == 'mm')
+                                            Myanmar
+                                        @elseif($item->lang == 'ch')
+                                            Chinese
+                                        @elseif($item->lang == 'ta')
+                                            Ta'ang
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('/admin/videos/update') . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="Edit">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
                                     </td>
@@ -74,8 +75,9 @@
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-danger btn-circle"
+                                                class="btn btn-secondary btn-circle"
                                                 onclick="return confirm('Are you sure to delete');"
+                                                title="Delete"
                                             >
                                             <i class="fa-solid fa-trash-can"></i>
                                             </button>

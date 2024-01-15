@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Page Informaiton And Social</h3>
+        <h5 class="my-3">Page Informaiton And Social</h5>
         <div class="row">
             <div class="col-md-8">
                 @if(session('success'))

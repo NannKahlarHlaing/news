@@ -31,8 +31,8 @@
     @yield('css')
 
     <style>
-        strong{
-            color: gray;
+        body{
+            font-size: 0.85rem;
         }
         select {
             padding: 0 1rem !important;

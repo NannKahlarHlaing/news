@@ -89,28 +89,16 @@ class VideoController extends Controller
     }
 
     public function searchEn(Request $request){
-        return call_user_func_array([$this, 'search'], ['en', $request]);
+        return call_user_func_array([$this, 'search'], ['mm', $request]);
     }
 
     public function search($language, Request $request){
         $search = $request->search;
-        if($language == 'mm'){
-            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
+
+        $posts = Video::where('title', 'LIKE', '%' . $search . '%')
                 ->orWhere('desc', 'LIKE', '%' . $search . '%')
+                ->where('lang', $language)
                 ->paginate(4);
-        }elseif($language == 'ch'){
-            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc', 'LIKE', '%' . $search . '%')
-                ->paginate(4);
-        }elseif($language == 'ta'){
-            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc', 'LIKE', '%' . $search . '%')
-                ->paginate(4);
-        }else{
-            $posts = Video::where('title', 'LIKE', '%' . $search . '%')
-                ->orWhere('desc', 'LIKE', '%' . $search . '%')
-                ->paginate(4);
-        }
 
         $route = 'video_search';
 

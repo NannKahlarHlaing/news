@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container-fluid">
-        <h3 class="my-3">Add Videos</h3>
+        <h5 class="my-3">Add Videos</h5>
         <div class="row">
             <div class="col-md-8 ">
                 <form class="form" method="POST" action="{{route('backend.videos.create') }}" enctype="multipart/form-data">

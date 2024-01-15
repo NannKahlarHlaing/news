@@ -4,9 +4,9 @@
 @endsection
 @section('content')
 <div class="container-fluid">
-    <div class="row my-3">
+    <div class="row my-3 align-items-center">
         <div class="col-md-8">
-            <h3 class="">
+            <h5 class="">
                 @if ($route_name == 'category')
                     Categories
                 @elseif($route_name == 'tag')
@@ -14,7 +14,7 @@
                 @else
                     Sub Category
                 @endif
-            </h3>
+            </h5>
         </div>
         <div class="col-md-4 d-flex justify-content-end">
             @if ($route_name == 'category')
@@ -27,7 +27,7 @@
 
         </div>
     </div>
-    <div class="row py-5 px-3">
+    <div class="row py-3 px-3">
         <div class="row">
             @if(Session::has('status'))
                 <div class="alert alert-success" role="alert">
@@ -41,10 +41,10 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <th scope="col">#</th>
-                            <th scope="col">Name_EN</th>
-                            <th scope="col">Name_MM</th>
-                            <th scope="col">Name_CH</th>
-                            <th scope="col">Name_TA</th>
+                            <th scope="col">English Name</th>
+                            <th scope="col">Myanmar Name</th>
+                            <th scope="col">Chinese Name</th>
+                            <th scope="col">Ta'ang Name</th>
                             @if ($route_name == 'sub_category')
                                 <th scope="col">Category</th>
                             @endif
@@ -70,11 +70,11 @@
                                     @endif
                                     <td>
                                         @if ($route_name == 'category')
-                                            <a href="{{ url('/admin/categories/update') . '/' . $post->id }}" class="btn btn-danger btn-circle"><i class="fa-solid fa-pencil"></i></a>
+                                            <a href="{{ url('/admin/categories/update') . '/' . $post->id }}" class="btn btn-secondary btn-circle" title="Edit"><i class="fa-solid fa-pencil"></i></a>
                                         @elseif($route_name == 'tag')
-                                            <a href="{{ url('/admin/tag/update') . '/' . $post->id }}" class="btn btn-danger btn-circle"><i class="fa-solid fa-pencil"></i></a>
+                                            <a href="{{ url('/admin/tag/update') . '/' . $post->id }}" class="btn btn-secondary btn-circle" title="Edit"><i class="fa-solid fa-pencil"></i></a>
                                         @else
-                                            <a href="{{ url('/admin/sub_categories/update') . '/' . $post->id }}" class="btn btn-danger btn-circle"><i class="fa-solid fa-pencil"></i></a>
+                                            <a href="{{ url('/admin/sub_categories/update') . '/' . $post->id }}" class="btn btn-secondary btn-circle" title="Edit"><i class="fa-solid fa-pencil"></i></a>
                                         @endif
 
                                     </td>
@@ -86,8 +86,9 @@
 
                                                 <button
                                                     type="submit"
-                                                    class="btn btn-danger btn-circle"
+                                                    class="btn btn-secondary btn-circle"
                                                     onclick="return confirm('Are you sure to delete');"
+                                                    title="Delete"
                                                 >
                                                  <i class="fa-solid fa-trash-can"></i>
                                                 </button>
@@ -99,8 +100,9 @@
 
                                                 <button
                                                     type="submit"
-                                                    class="btn btn-danger btn-circle"
+                                                    class="btn btn-secondary btn-circle"
                                                     onclick="return confirm('Are you sure to delete');"
+                                                    title="Delete"
                                                 >
                                                  <i class="fa-solid fa-trash-can"></i>
                                                 </button>
@@ -112,8 +114,9 @@
 
                                                 <button
                                                     type="submit"
-                                                    class="btn btn-danger btn-circle"
+                                                    class="btn btn-secondary btn-circle"
                                                     onclick="return confirm('Are you sure to delete');"
+                                                    title="Delete"
                                                 >
                                                  <i class="fa-solid fa-trash-can"></i>
                                                 </button>

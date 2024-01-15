@@ -27,8 +27,8 @@
                                         <a href="{{ url('/ch/category') . '/' . $post->category->url_slug . '/' . $post->id }}">{{ $post->title }}</a>
                                     @elseif(app()->getLocale() == 'ta')
                                         <a href="{{ url('/ta/category') . '/' . $post->category->url_slug . '/' . $post->id }}">{{ $post->title }}</a>
-                                    @else
-                                        <a href="{{ url('/category') . '/' . $post->category->url_slug . '/' . $post->id }}">{{ $post->title }}</a>
+                                    @elseif(app()->getLocale() == 'en')
+                                        <a href="{{ url('/en/category') . '/' . $post->category->url_slug . '/' . $post->id }}">{{ $post->title }}</a>
                                     @endif
                                 @else
                                     @if (app()->getLocale() == 'mm')
@@ -37,8 +37,8 @@
                                         <a href="{{ url('/ch/videos') . '/' . $post->id }}">{{ $post->title }}</a>
                                     @elseif(app()->getLocale() == 'ta')
                                         <a href="{{ url('/ta/videos') . '/' . $post->id }}">{{ $post->title }}</a>
-                                    @else
-                                        <a href="{{ url('/videos') . '/' . $post->id }}">{{ $post->title }}</a>
+                                    @elseif(app()->getLocale() == 'en')
+                                        <a href="{{ url('/en/videos') . '/' . $post->id }}">{{ $post->title }}</a>
                                     @endif
                                 @endif
                             </h6>
@@ -52,7 +52,7 @@
                                                 {{ $post->category->name_ch }}
                                             @elseif(app()->getLocale() == 'ta')
                                                 {{ $post->category->name_ta }}
-                                            @else
+                                            @elseif(app()->getLocale() == 'en')
                                                 {{ $post->category->name_en }}
                                             @endif
                                         </span>
@@ -63,8 +63,8 @@
                                                 <a href="{{ url('/ch/category') . '/' . $post->category->url_slug . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_link }}" alt="image" width="100%"></a>
                                             @elseif(app()->getLocale() == 'ta')
                                                 <a href="{{ url('/ta/category') . '/' . $post->category->url_slug . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_link }}" alt="image" width="100%"></a>
-                                            @else
-                                                <a href="{{ url('/category') . '/' . $post->category->url_slug . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_link }}" alt="image" width="100%"></a>
+                                            @elseif(app()->getLocale() == 'en')
+                                                <a href="{{ url('/en/category') . '/' . $post->category->url_slug . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_link }}" alt="image" width="100%"></a>
                                             @endif
 
                                         @else
@@ -74,37 +74,20 @@
                                                 <a href="{{ url('/ch/videos') . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%"></a>
                                             @elseif(app()->getLocale() == 'ta')
                                                 <a href="{{ url('/ta/videos') . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%"></a>
-                                            @else
-                                                <a href="{{ url('/videos') . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%"></a>
+                                            @elseif(app()->getLocale() == 'en')
+                                                <a href="{{ url('/en/videos') . '/' . $post->id }}"><img src="{{ asset('storage/images/thumbnail') . '/' . $post->img_url }}" alt="image" width="100%"></a>
                                             @endif
                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-12 ">
-                                    <span>BY {{ env('APP_NAME') }}</span>
                                     @if ($route == 'post_search')
                                         <p class="mt-1">
-                                            @if (app()->getLocale() == 'mm')
-                                                {!! $post->short_desc !!}
-                                            @elseif(app()->getLocale() == 'ch')
-                                                {!! $post->short_desc !!}
-                                            @elseif(app()->getLocale() == 'ta')
-                                                {!! $post->short_desc !!}
-                                            @else
-                                                {!! $post->short_desc !!}
-                                            @endif
+                                            {!! $post->short_desc !!}
                                         </p>
                                     @else
                                         <p class="mt-1">
-                                            @if (app()->getLocale() == 'mm')
-                                                {!! $post->desc !!}
-                                            @elseif(app()->getLocale() == 'ch')
-                                                {!! $post->desc !!}
-                                            @elseif(app()->getLocale() == 'ta')
-                                                {!! $post->desc !!}
-                                            @else
-                                                {!! $post->desc !!}
-                                            @endif
+                                            {!! $post->desc !!}
                                         </p>
                                     @endif
                                 </div>

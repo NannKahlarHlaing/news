@@ -245,7 +245,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/category/{category}', 'main_categoriesEn')->name('main_categories.sub_pages');
     Route::get('/categories/{main_category}/{sub_category}', 'sub_categoriesEn')->name('sub_pages');
     Route::get('/{title}', function($path){
-        if($path == 'mm' || $path == 'ch' || $path == 'ta'){
+        if($path == 'en' || $path == 'ch' || $path == 'ta'){
             $frontendController = new FrontendController();
 
             $data = $frontendController->home_page();

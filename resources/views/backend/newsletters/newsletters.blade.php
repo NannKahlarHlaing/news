@@ -12,17 +12,17 @@
             @endif
         </div>
         <div class="col-lg-8">
-            <div class="row pt-5">
+            <div class="row pt-5 align-items-center">
                 <div class="col-lg-8">
-                    <h3>Newsletters</h3>
+                    <h5>Newsletters</h5>
                 </div>
                 <div class="col-lg-4 d-flex justify-content-end">
-                    <a href="{{ route('backend.newsletter_form') }}" class="btn btn-success me-3">Send Newsletter</a>
+                    <a href="{{ route('backend.newsletter_form') }}" class="btn btn-primary">Send Newsletter</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row py-5 px-3">
+    <div class="row py-3">
         <div class="col-lg-8">
             <div class="card shadow mb-4" style="width: 100%">
                 <div class="card-body">

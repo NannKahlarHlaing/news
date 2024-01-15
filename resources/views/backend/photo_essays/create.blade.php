@@ -4,7 +4,7 @@
     <section class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="my-3">Add Photo Essays</h3>
+                <h5 class="my-3">Add Photo Essays</h5>
             </div>
         </div>
         <div class="row">
