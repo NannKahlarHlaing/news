@@ -1,5 +1,6 @@
 <?php
     return [
+        'all_menu' => 'အားလုံး',
         'home' => 'Home TA',
         'search' => '',
         'most_read' => '',
@@ -17,7 +18,12 @@
         'search_videos' => '',
         'send' => '',
         'related_posts' => '',
+        'topics' => 'Topics',
+        'tags' => 'Tags',
+        'comment' => 'Comment',
         'comment_lists' => 'Comment Lists',
-        'comment_lists' => ''
+        'anonymous' => 'Anonymous',
+        'visible' => 'Visible',
+        'your_thoughts' => 'Your Thoughts'
     ];
 ?>

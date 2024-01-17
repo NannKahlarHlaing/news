@@ -224,7 +224,7 @@
             <div class="col-md-8">
                <div class="row d-flex align-items-center">
                     <div class="col-md-3 text-center">
-                        <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="logo" width="60%">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo" width="60%">
                         <span class="d-block">EMAIL NEWSLETTER</span>
                     </div>
                     <div class="col-md-9">

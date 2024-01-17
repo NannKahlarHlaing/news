@@ -1,5 +1,6 @@
 <?php
     return [
+        'all_menu' => 'All Menu',
         'home' => 'Home',
         'search' => 'SEARCH',
         'most_read' => 'MOST READ',
@@ -16,6 +17,13 @@
         'filters' => 'FILTERS',
         'search_videos' => 'Search Videos',
         'send' => 'Send',
-        'related_posts' => 'Related Posts'
-    ];
+        'related_posts' => 'Related Posts',
+        'topics' => 'Topics',
+        'tags' => 'Tags',
+        'comment' => 'Comment',
+        'comment_lists' => 'Comment Lists',
+        'anonymous' => 'Anonymous',
+        'visible' => 'Visible',
+        'your_thoughts' => 'Your Thoughts'
+        ];
 ?>

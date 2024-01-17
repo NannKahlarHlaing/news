@@ -1,22 +1,28 @@
 <?php
     return [
+        'all_menu' => 'ခေါင်းစဥ်များ',
         'home' => 'မူလစာမျက်နှာ',
         'search' => 'ရှာဖွေရန်',
-        'most_read' => 'လူကြိုက်အများဆုံး',
+        'most_read' => 'လူကြည့်အများဆုံး သတင်းများ',
         'read_now' => 'ယခုဖတ်ရန်',
         'latest_news' => 'နောက်ဆုံးရ သတင်းများ',
         'photos' => 'ဓာတ်ပုံများ',
-        'videos'=> 'Videos',
-        'photo_essays' => '',
+        'videos'=> 'ရုပ်သံများ',
+        'photo_essays' => 'ဓာတ်ပုံ သတင်းများ',
         'cartoons' => 'ကာတွန်းများ',
-        'about_us' => 'ကျွန်ုပ်တို့အကြောင်း',
+        'about_us' => 'သတင်းများ တင်ဆက်ပေးနေသော',
         'contact' => 'ဆက်သွယ်ရန်',
         'latest_photos' => 'နောက်ဆုံးရ ဓာတ်ပုံများ',
-        'pick_a_channel' => '',
-        'filters' => '',
-        'search_videos' => '',
+        'pick_a_channel' => 'ရုပ်သံလိုင်းကို ရွေးပါ',
+        'filters' => 'စီစစ်ခြင်း',
+        'search_videos' => 'ရုပ်သံများ ရှာဖွေရန်',
         'send' => 'ပေးပို့ရန်',
-        'related_posts' => '',
-        'comment_lists' => ''
+        'related_posts' => 'ဆက်စပ် သတင်းများ',
+        'tags' => 'Tags',
+        'comment' => 'မှတ်ချက်ပြုမည်',
+        'comment_lists' => 'မှတ်ချက်များ',
+        'anonymous' => 'အမည်မဖော်ပြပါ',
+        'visible' => 'အမည်ဖော်ပြမည်',
+        'your_thoughts' => 'သင်၏ ထင်မြင်ချက်'
     ];
 ?>

@@ -29,7 +29,23 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet"/>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> --}}
-
+    <style>
+        #subscribe-form input[type="email"]{
+            height: 50px;
+            border-radius: 0;
+        }
+        #subscribe-form input::placeholder {
+            color: #fff;
+        }
+        .btn-reaction{
+            width: 3.5rem;
+        }
+        @media only screen and (max-width: 412px){
+        .offcanvas{
+                height: 80vh !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <section class="bg-main">
@@ -50,14 +66,14 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-lg navbar-light aa">
                         <a class="btn btn-transparent py-0 ps-0 d-none" id="all-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-                            <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
-                            <button class="btn btn-gray mt-1"><p class="fw-bold px-2"> ALL MENU</p></button>
+                            <img src="{{ asset('images/logo.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
+                            <button class="btn btn-gray mt-1"><p class="fw-bold px-2">{{ __('language.all_menu') }}</p></button>
                         </a>
                         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                             <div class="container-fluid">
                                 <div class="row d-flex justify-content-center align-items-center">
                                     <div class="col-lg-2 col-md-2 text-center">
-                                        <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="" width="100px" height="100px">
+                                        <img src="{{ asset('images/logo.png') }}" alt="" width="100px" height="100px">
                                     </div>
                                     <div class="col-lg-10 col-md-10">
                                         <div class="offcanvas-header">
@@ -94,8 +110,8 @@
                         <div class="container-fluid col-lg px-0" id="nav-hide">
                             <div class="d-flex align-items-center" id="menu-bar">
                                 <a class="btn btn-transparent py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-                                    <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
-                                    <button class="btn btn-green mt-1"><p class="fw-bold px-3"> ALL MENU</p></button>
+                                    <img src="{{ asset('images/logo.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
+                                    <button class="btn btn-green mt-1"><p class="fw-bold px-3">{{ __('language.all_menu') }}</p></button>
                                 </a>
 
                             </div>
@@ -232,10 +248,11 @@
                             </div>
                         </div>
                         <div class="col-md-3 mt-md-0 mt-3">
-                            <h5 class="fw-bold text-white">{{ __('language.about_us') }}</h5>
-                            <p>
+                            <h5 class="fw-bold text-white text-center">{{ __('language.about_us') }}</h5>
+<!--                            <p>
                                 On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même
-                            </p>
+                            </p> -->
+                            <div class="text-center"><img src="{{ asset('images/logo.png') }}" alt="logo" width="60%"></div>
                         </div>
                     </div>
                     <div class="row">

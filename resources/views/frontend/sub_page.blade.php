@@ -138,23 +138,23 @@
                                         </p>
                                         @if (Route::currentRouteName() == 'main_categories.sub_pages' || Route::currentRouteName() == 'main_categories.sub_pages.lang' || Route::currentRouteName() == 'sub_pages' || Route::currentRouteName() == 'sub_pages.lang')
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/mm/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/ch/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @elseif(app()->getLocale() == 'ta')
-                                                <a href="{{ url('/ta/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/ta/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @elseif(app()->getLocale() == 'en')
-                                                <a href="{{ url('/en/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/en/category') . '/' . $latest->category->url_slug . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @endif
                                         @else
                                             @if (app()->getLocale() == 'mm')
-                                                <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/mm') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @elseif(app()->getLocale() == 'ch')
-                                                <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/ch') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @elseif(app()->getLocale() == 'ta')
-                                                <a href="{{ url('/ta') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/ta') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @elseif(app()->getLocale() == 'en')
-                                                <a href="{{ url('/en') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">Read Now</a>
+                                                <a href="{{ url('/en') . '/' . $sub_cat[0] . '/' . $latest->id }}" class="btn btn-green mt-3">{{ __('language.read_now') }}</a>
                                             @endif
 
                                         @endif
@@ -312,7 +312,7 @@
             </div>
             <div class="col-lg-4 col-md-6 top mt-5 mt-md-1 mt-lg-1">
                 <div class="row current text-white d-flex align-items-center rounded-top">
-                    <span><p class="fw-bold">MOST READ</p></span>
+                    <span><p class="fw-bold">{{ __('language.most_read') }}</p></span>
                     <h4>{{ \Carbon\Carbon::now()->format('d F Y') }}</h4>
                 </div>
                 <div class="row">

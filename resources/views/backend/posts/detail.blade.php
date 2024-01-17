@@ -95,10 +95,10 @@
                         <p>
                             {!! $post->desc !!}
                         </p>
-                        <div class="col-12 my-4 fw-bold fs-15"><strong>Topics:</strong>
+                        <div class="col-12 my-4 fw-bold fs-15"><strong>{{ __('language.topics') }}:</strong>
                             {{ $post->topic }}
                         </div>
-                        <div class="col-12 mb-4 tags"><strong>Tags:</strong>
+                        <div class="col-12 mb-4 tags"><strong>{{ __('language.tags') }}:</strong>
                             @foreach ($post->tags as $tagId)
                                 @php
                                     $tag = \App\Models\Tag::find($tagId);
@@ -120,7 +120,7 @@
                             <div class="card p-2">
                                 <div class="row d-flex align-items-center">
                                     <div class="col-md-2 logo">
-                                        <img src="{{ asset('images/viber_image_2023-10-02_15-49-11-831-removebg-preview.png') }}" alt="logo" width="100%">
+                                        <img src="{{ asset('images/logo.png') }}" alt="logo" width="100%">
                                     </div>
                                     <div class="col-md-10">
                                         <form class="form" action="" id="comment-form">
@@ -131,11 +131,11 @@
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
                                                 <input class="form-check-input" type="radio" name="user_type" id="anonymous" value="anonymous" checked>
-                                                <label class="form-check-label" for="anonymous">Anonymous</label>
+                                                <label class="form-check-label" for="anonymous">{{ __('language.anonymous') }}</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="user_type" id="visible" value="visible">
-                                                <label class="form-check-label" for="visible">Visible</label>
+                                                <label class="form-check-label" for="visible">{{ __('language.visible') }}</label>
                                             </div>
                                             <div class="mb-3" id="user-details">
                                                 <input type="text" class="me-3 mb-3 mb-lg-0" id="user_name" name="user_name" placeholder="Enter your name">
@@ -153,7 +153,7 @@
                                                     <p id="comment_errors" class="text-danger"></p>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-green" id="comment">Comment</button>
+                                            <button class="btn btn-green" id="comment">{{ __('language.comment') }}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                             <div class="comments">
                                 <div class="row d-flex-center mt-3 mb-2">
                                     <div class="col-12">
-                                        <h5 class="mt-2">Comment Lists</h5>
+                                        <h5 class="mt-2">{{ __('language.comment_lists') }}</h5>
                                     </div>
                                 </div>
                                 @foreach ($comments as $item)
@@ -170,7 +170,7 @@
                                             <div class="col-md-9">
                                                 <h6>
                                                     @if ($item->user_type == 'anonymous')
-                                                        Anonymous
+                                                        {{ __('language.anonymous') }}
                                                     @else
                                                         {{$item->name}}
                                                     @endif
@@ -187,21 +187,24 @@
                         </div>
                         <div class="col-12">
                             <div class="row my-3  d-flex align-items-center">
-                                <div class="col">
+                                <div class="col d-none d-md-block d-lg-block"></div>
+                                <span class="text-center text-md-end text-lg-end col-12 col-md-5 col-lg-4">{{ __('language.your_thoughts') }}</span>
+                                <div class="col-12 col-md-5 col-lg-4 text-center text-md-start text-lg-start">
+                                    <button class="btn btn-reaction mb-2" id="btn-like">
+                                        <img src="{{ asset('/images/liked.svg') }}" alt="">
+                                    </button>
+                                    <button class="btn btn-reaction mb-2" id="btn-love">
+                                        <img src="{{ asset('/images/loved.svg') }}" alt="">
+                                    </button>
+                                    <button class="btn btn-reaction mb-2" id="btn-wow">
+                                        <img src="{{ asset('/images/wow.svg') }}" alt="">
+                                    </button>
+                                    <button class="btn btn-reaction mb-2" id="btn-sad">
+                                        <img src="{{ asset('/images/sad.svg') }}" alt="">
+                                    </button>
                                 </div>
-                                <span class="text-end col">YOUR THOUGHTS …</span>
-                                <button class="btn btn-reaction mb-2" id="btn-like">
-                                    <img src="{{ asset('/images/liked.svg') }}" alt="">
-                                </button>
-                                <button class="btn btn-reaction mb-2" id="btn-love">
-                                    <img src="{{ asset('/images/loved.svg') }}" alt="">
-                                </button>
-                                <button class="btn btn-reaction mb-2" id="btn-wow">
-                                    <img src="{{ asset('/images/wow.svg') }}" alt="">
-                                </button>
-                                <button class="btn btn-reaction mb-2" id="btn-sad">
-                                    <img src="{{ asset('/images/sad.svg') }}" alt="">
-                                </button>
+                                
+                                
                             </div>
                         </div>
                     </div>

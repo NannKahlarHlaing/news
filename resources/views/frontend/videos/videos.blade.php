@@ -46,7 +46,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-3 mt-lg-0 mt-md-0">
                             <div class="row">
                                 <div class="col-lg-2 col-md-3 col-2 text-center">
                                     <div class="col-12 mb-2">
@@ -100,7 +100,7 @@
         <div class="row d-flex-center">
             <div class="row d-flex align-items-center my-3">
                 <div class="col-md-3 col-6">
-                    <select class="btn btn-gray" name="categories" id="categories">
+                    <select class="btn btn-gray text-start" name="categories" id="categories">
                         <option value="">{{ __('language.pick_a_channel') }}</option>
                         @foreach ($categories as $item)
                             <option value="{{ $item->id }}">

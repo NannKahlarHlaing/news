@@ -164,10 +164,18 @@ img:hover{
 #subscribe-form input[type="email"]{
     height: 50px;
     border-radius: 0;
+    color: #fff;
+
 }
 #subscribe-form input::placeholder {
+
     color: #fff;
 }
+input:focus {
+    outline: none;
+    border: none;
+}
+
   .card {
     border: none;
   }
@@ -315,7 +323,7 @@ img:hover{
 }
 
 .copyright{
-  margin: 50px 0 0;
+  margin: 20px 0 0;
   color: #fff;
   text-align: center;
   font-size: 13px;

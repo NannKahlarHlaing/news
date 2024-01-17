@@ -1,5 +1,6 @@
 <?php
     return [
+        'all_menu' => 'All Menu Ch',
         'home' => 'Home Ch',
         'search' => '',
         'most_read' => '',
@@ -17,6 +18,11 @@
         'search_videos' => '',
         'send' => '',
         'related_posts' => '',
-        'comment_lists' => ''
+        'tags' => 'Tags',
+        'comment' => 'Comment',
+        'comment_lists' => 'Comment Lists',
+        'anonymous' => 'Anonymous',
+        'visible' => 'Visible',
+        'your_thoughts' => 'Your Thoughts'
     ];
 ?>

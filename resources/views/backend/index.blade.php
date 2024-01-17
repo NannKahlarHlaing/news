@@ -46,7 +46,10 @@
             width: 100%;
             height: 700px;
         }
-
+        .btn-secondary:hover{
+            background-color: #0062cc;
+    border-color: #005cbf;
+        }
     @media only screen and (min-width: 412px ) and (max-width: 820px){
         .chart{
             width: 100%;

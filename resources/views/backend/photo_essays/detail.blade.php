@@ -209,25 +209,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="row my-3  d-flex align-items-center">
-                            <div class="col">
+                   <div class="col-12">
+                            <div class="row my-3  d-flex align-items-center">
+                                <div class="col d-none d-md-block d-lg-block"></div>
+                                <span class="text-center text-md-end text-lg-end col-12 col-md-5 col-lg-4">YOUR THOUGHTS …</span>
+                                <div class="col-12 col-md-5 col-lg-4 text-center text-md-start text-lg-start">
+                                    <button class="btn btn-reaction mb-2" id="btn-like">
+                                        <img src="{{ asset('/images/liked.svg') }}" alt="">
+                                    </button>
+                                    <button class="btn btn-reaction mb-2" id="btn-love">
+                                        <img src="{{ asset('/images/loved.svg') }}" alt="">
+                                    </button>
+                                    <button class="btn btn-reaction mb-2" id="btn-wow">
+                                        <img src="{{ asset('/images/wow.svg') }}" alt="">
+                                    </button>
+                                    <button class="btn btn-reaction mb-2" id="btn-sad">
+                                        <img src="{{ asset('/images/sad.svg') }}" alt="">
+                                    </button>
+                                </div>
+                                
+                                
                             </div>
-                            <span class="text-end col">YOUR THOUGHTS …</span>
-                            <button class="btn btn-reaction mb-2" id="btn-like">
-                                <img src="{{ asset('/images/liked.svg') }}" alt="">
-                            </button>
-                            <button class="btn btn-reaction mb-2" id="btn-love">
-                                <img src="{{ asset('/images/loved.svg') }}" alt="">
-                            </button>
-                            <button class="btn btn-reaction mb-2" id="btn-wow">
-                                <img src="{{ asset('/images/wow.svg') }}" alt="">
-                            </button>
-                            <button class="btn btn-reaction mb-2" id="btn-sad">
-                                <img src="{{ asset('/images/sad.svg') }}" alt="">
-                            </button>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
