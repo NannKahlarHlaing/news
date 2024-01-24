@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'name_ta', 'order', 'url_slug'];
+    protected $fillable = ['name_en', 'name_mm', 'name_ch', 'name_ta', 'order', 'add_to_carousel', 'url_slug'];
 
     protected static function boot()
     {

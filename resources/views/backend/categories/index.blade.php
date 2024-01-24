@@ -51,6 +51,9 @@
                             @if ($route_name == 'category' || $route_name == 'sub_category')
                                 <th scope="col">Url Slug</th>
                             @endif
+                            @if ($route_name == 'category')
+                                <th scope="col">Add To Carousel</th>
+                            @endif
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </thead>
@@ -66,7 +69,10 @@
                                         <td>{{ $post->category->name_en }}</td>
                                     @endif
                                     @if ($route_name == 'category' || $route_name == 'sub_category')
-                                        <th scope="col">{{ $post->url_slug }}</th>
+                                        <td scope="col">{{ $post->url_slug }}</td>
+                                    @endif
+                                    @if ($route_name == 'category')
+                                        <th>{{ $post->add_to_carousel }}</th>
                                     @endif
                                     <td>
                                         @if ($route_name == 'category')

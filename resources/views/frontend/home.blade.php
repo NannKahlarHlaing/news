@@ -257,16 +257,34 @@
                     <div class="card-group">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row border-bottom border-color border-3 pb-3">
-                                    <div class="col">
-                                        <h3>Burma</h3>
+                                <div class="row border-bottom border-color border-3 pb-3 align-items-center">
+                                    <div class="col-8">
+                                        <h3>
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $carousel_arr[0]->name_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $carousel_arr[0]->name_ch }}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $carousel_arr[0]->name_ta }}
+                                            @elseif(app()->getLocale() == 'en')
+                                                {{ $carousel_arr[0]->name_en }}
+                                            @endif
+                                        </h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/categories/news/burma') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1  " style="color:#575757"></i></a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/category/') . '/'. $carousel_arr[0]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category/') . '/'. $carousel_arr[0]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category/') . '/'. $carousel_arr[0]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/category/') . '/'. $carousel_arr[0]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
-                                    @foreach ($burmas as $burma)
+                                    @foreach ($carousel_ones as $burma)
                                         @if ($burma->lang == app()->getLocale())
                                             <div class="row py-3 ">
                                                 <div class="col-md-4 col-6">
@@ -313,16 +331,34 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <div class="row border-bottom border-color border-3 pb-3">
-                                    <div class="col">
-                                        <h3>Business</h3>
+                                <div class="row border-bottom border-color border-3 pb-3 align-items-center">
+                                    <div class="col-8">
+                                        <h3>
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $carousel_arr[1]->name_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $carousel_arr[1]->name_ch }}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $carousel_arr[1]->name_ta }}
+                                            @elseif(app()->getLocale() == 'en')
+                                                {{ $carousel_arr[1]->name_en }}
+                                            @endif
+                                        </h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/business') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/category/') . '/'. $carousel_arr[1]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category/') . '/'. $carousel_arr[1]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category/') . '/'. $carousel_arr[1]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/category/') . '/'. $carousel_arr[1]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
-                                    @foreach ($businesses as $business)
+                                    @foreach ($carousel_twos as $business)
                                         @if ($business->lang == app()->getLocale())
                                             <div class="row mt-3 py-3">
                                                 <div class="col-md-4 col-6">
@@ -368,16 +404,35 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <div class="row border-bottom border-color border-3 pb-3">
-                                    <div class="col">
-                                        <h3>In Person</h3>
+                                <div class="row border-bottom border-color border-3 pb-3 align-items-center">
+                                    <div class="col-8">
+                                        <h3>
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $carousel_arr[2]->name_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $carousel_arr[2]->name_ch }}</a>
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $carousel_arr[2]->name_ta }}</a>
+                                            @elseif(app()->getLocale() == 'en')
+                                                {{ $carousel_arr[2]->name_en }}</a>
+                                            @endif
+                                        </h3>
                                     </div>
+
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/in-person') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/category/') . '/'. $carousel_arr[2]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category/') . '/'. $carousel_arr[2]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category/') . '/'. $carousel_arr[2]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/category/') . '/'. $carousel_arr[2]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
-                                    @foreach ($persons as $person)
+                                    @foreach ($carousel_threes as $person)
                                         @if($person->lang == app()->getLocale())
                                             <div class="row mt-3 py-3">
                                                 <div class="col-md-4 col-6">
@@ -428,16 +483,34 @@
                     <div class="card-group">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row border-bottom border-color border-3 pb-3">
-                                    <div class="col">
-                                        <h3>Opinion</h3>
+                                <div class="row border-bottom border-color border-3 pb-3 align-items-center">
+                                    <div class="col-8">
+                                        <h3>
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $carousel_arr[3]->name_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $carousel_arr[3]->name_ch }}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $carousel_arr[3]->name_ta }}
+                                            @elseif(app()->getLocale() == 'en')
+                                                {{ $carousel_arr[3]->name_en }}
+                                            @endif
+                                        </h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/opinion') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/category/') . '/'. $carousel_arr[3]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category/') . '/'. $carousel_arr[3]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category/') . '/'. $carousel_arr[3]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/category/') . '/'. $carousel_arr[3]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
-                                    @foreach ($opinions as $opinion)
+                                    @foreach ($carousel_fours as $opinion)
                                         @if($opinion->lang == app()->getLocale())
                                             <div class="row mt-3 py-3">
                                                 <div class="col-md-4 col-6">
@@ -483,16 +556,34 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <div class="row border-bottom border-color border-3 pb-3">
-                                    <div class="col ">
-                                        <h3>Lifestyle</h3>
+                                <div class="row border-bottom border-color border-3 pb-3 align-items-center">
+                                    <div class="col-8">
+                                        <h3>
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $carousel_arr[4]->name_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $carousel_arr[4]->name_ch }}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $carousel_arr[4]->name_ta }}
+                                            @elseif(app()->getLocale() == 'en')
+                                                {{ $carousel_arr[4]->name_en }}
+                                            @endif
+                                        </h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/lifestyle') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/category/') . '/'. $carousel_arr[4]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category/') . '/'. $carousel_arr[4]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category/') . '/'. $carousel_arr[4]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/category/') . '/'. $carousel_arr[4]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
-                                    @foreach ($lifeStyles as $lifestyle)
+                                    @foreach ($carousel_fives as $lifestyle)
                                         @if($lifestyle->lang == app()->getLocale())
                                             <div class="row mt-3 py-3">
                                                 <div class="col-md-4 col-6">
@@ -538,16 +629,34 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <div class="row border-bottom border-color border-3 pb-3">
-                                    <div class="col ">
-                                        <h3>Specials</h3>
+                                <div class="row border-bottom border-color border-3 pb-3 align-items-center">
+                                    <div class="col-8">
+                                        <h3>
+                                            @if (app()->getLocale() == 'mm')
+                                                {{ $carousel_arr[5]->name_mm }}
+                                            @elseif(app()->getLocale() == 'ch')
+                                                {{ $carousel_arr[5]->name_ch }}
+                                            @elseif(app()->getLocale() == 'ta')
+                                                {{ $carousel_arr[5]->name_ta }}
+                                            @elseif(app()->getLocale() == 'en')
+                                                {{ $carousel_arr[5]->name_en }}
+                                            @endif
+                                        </h3>
                                     </div>
                                     <div class="col text-end p-0">
-                                        <a href="{{ url('/category/specials') }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @if (app()->getLocale() == 'mm')
+                                            <a href="{{ url('/category/') . '/'. $carousel_arr[5]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ch')
+                                            <a href="{{ url('/ch/category/') . '/'. $carousel_arr[5]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'ta')
+                                            <a href="{{ url('/ta/category/') . '/'. $carousel_arr[5]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @elseif(app()->getLocale() == 'en')
+                                            <a href="{{ url('/en/category/') . '/'. $carousel_arr[5]->url_slug }}"><span>MORE</span><i class="fa-solid fa-circle-plus ms-1 " style="color:#575757"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row bg-gray">
-                                @foreach ($specials as $special)
+                                @foreach ($carousel_sixes as $special)
                                     @if($special->lang == app()->getLocale())
                                         <div class="row mt-3 py-3">
                                             <div class="col-md-4 col-6">

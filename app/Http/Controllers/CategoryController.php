@@ -47,6 +47,7 @@ class CategoryController extends Controller
         $post->name_mm = $request->name_mm;
         $post->name_ch = $request->name_ch;
         $post->name_ta = $request->name_ta;
+        $post->add_to_carousel = $request->add_to_carousel;
         $post->url_slug = str_replace(' ', '-', strtolower($request->name_en));
         $post->save();
 
@@ -75,6 +76,7 @@ class CategoryController extends Controller
             'name_mm' => $request->name_mm,
             'name_ch' => $request->name_ch,
             'name_ta' => $request->name_ta,
+            'add_to_carousel' => $request->add_to_carousel,
             'url_slug' => str_replace(' ', '-', strtolower($request->name_en))
         ];
     }

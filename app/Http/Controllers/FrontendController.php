@@ -22,6 +22,7 @@ class FrontendController extends Controller
 {
 
     public function home_page(){
+        $temperature = '-';
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -39,8 +40,10 @@ class FrontendController extends Controller
 
         curl_close($curl);
         $data = json_decode($response, true);
-        $main = $data['main'];
-        $temperature = intval($main['temp']);
+        if($data){
+            $main = $data['main'];
+            $temperature = intval($main['temp']);
+        }
 
         $latestPosts = Post::whereIn('id', function ($query) {
             $query->select(\DB::raw('MAX(id)'))
@@ -85,13 +88,16 @@ class FrontendController extends Controller
         //             ->orderBy('id', 'desc')
         //             ->take(3)
         //             ->get();
+        
+        $add_carousels = Category::where('add_to_carousel', 'yes')->take(6)->get();
+        $carousel_arr = [];
 
-        $catBurma = 'Burma'; // subcategory
-        $subCategory = SubCategory::where('name_en', $catBurma)->first();
-
-        $burmas = Post::select('posts.*')
+        foreach($add_carousels as $carousel){
+            $carousel_arr[] = $carousel;
+        }
+        $carousel_ones = Post::select('posts.*')
             ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND sub_category_id = ' . $subCategory->id . ') as ranked_posts'),
+                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND sub_category_id = ' . $carousel_arr[0]->id . ') as ranked_posts'),
                 function ($join) {
                     $join->on('posts.id', '=', 'ranked_posts.id');
                 }
@@ -100,12 +106,9 @@ class FrontendController extends Controller
             ->orderBy('posts.lang')
             ->orderBy('ranked_posts.row_num')
             ->get();
-
-        $catBusiness = 'Business';
-        $subCategory = Category::where('name_en', $catBusiness)->first();
-        $businesses = Post::select('posts.*')
+        $carousel_twos = Post::select('posts.*')
             ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $subCategory->id . ') as ranked_posts'),
+                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[1]->id . ') as ranked_posts'),
                 function ($join) {
                     $join->on('posts.id', '=', 'ranked_posts.id');
                 }
@@ -117,9 +120,20 @@ class FrontendController extends Controller
 
         $catInperson = 'In Person';
         $subCategory = Category::where('name_en', $catInperson)->first();
-        $persons = Post::select('posts.*')
+        $carousel_threes = Post::select('posts.*')
             ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $subCategory->id . ') as ranked_posts'),
+                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[2]->id . ') as ranked_posts'),
+                function ($join) {
+                    $join->on('posts.id', '=', 'ranked_posts.id');
+                }
+            )
+            ->where('ranked_posts.row_num', '<=', 3)
+            ->orderBy('posts.lang')
+            ->orderBy('ranked_posts.row_num')
+            ->get();
+        $carousel_fours = Post::select('posts.*')
+            ->join(
+                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[3]->id . ') as ranked_posts'),
                 function ($join) {
                     $join->on('posts.id', '=', 'ranked_posts.id');
                 }
@@ -129,25 +143,9 @@ class FrontendController extends Controller
             ->orderBy('ranked_posts.row_num')
             ->get();
 
-        $catOpinion = 'Opinion';
-        $subCategory = Category::where('name_en', $catOpinion)->first();
-        $opinions = Post::select('posts.*')
+        $carousel_fives = Post::select('posts.*')
             ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $subCategory->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
-
-        $catLifeStyle = 'LifeStyle';
-        $subCategory = Category::where('name_en', $catLifeStyle)->first();
-        $lifeStyles = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $subCategory->id . ') as ranked_posts'),
+                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[4]->id . ') as ranked_posts'),
                 function ($join) {
                     $join->on('posts.id', '=', 'ranked_posts.id');
                 }
@@ -159,9 +157,9 @@ class FrontendController extends Controller
 
         $catSpecial = 'Specials';
         $subCategory = Category::where('name_en', $catSpecial)->first();
-        $specials = Post::select('posts.*')
+        $carousel_sixes = Post::select('posts.*')
             ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $subCategory->id . ') as ranked_posts'),
+                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[5]->id . ') as ranked_posts'),
                 function ($join) {
                     $join->on('posts.id', '=', 'ranked_posts.id');
                 }
@@ -209,7 +207,7 @@ class FrontendController extends Controller
         ->orderBy('ranked_cartoons.row_num')
         ->get();
 
-        return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
+        return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'carousel_arr', 'carousel_ones', 'carousel_twos', 'carousel_threes', 'carousel_fours', 'carousel_fives', 'carousel_sixes', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
 
     }
 

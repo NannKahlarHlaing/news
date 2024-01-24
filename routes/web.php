@@ -254,23 +254,18 @@ Route::controller(FrontendController::class)->group(function(){
             $mostViews = $data->mostViews;
             $latestTen = $data->latestTen;
             $temperature = $data->temperature;
-            $burmas = $data->burmas;
-            $businesses = $data->businesses;
-            $persons = $data->persons;
-            $opinions = $data->opinions;
-            $lifeStyles = $data->lifeStyles;
-            $specials = $data->specials;
-            $catBurma = $data->catBurma;
-            $catBusiness = $data->catBusiness;
-            $catInperson = $data->catInperson;
-            $catOpinion = $data->catOpinion;
-            $catLifeStyle = $data->catLifeStyle;
-            $catSpecial = $data->catSpecial;
+            $carousel_arr = $data->carousel_arr;
+            $carousel_ones = $data->carousel_ones;
+            $carousel_twos = $data->carousel_twos;
+            $carousel_threes = $data->carousel_threes;
+            $carousel_fours = $data->carousel_fours;
+            $carousel_fives = $data->carousel_fives;
+            $carousel_sixes = $data->carousel_sixes;
             $latest_photos = $data->latest_photos;
             $latest_cartoons = $data->latest_cartoons;
             $lasts_cartoons = $data->lasts_cartoons;
 
-            return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
+            return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'carousel_arr', 'carousel_ones', 'carousel_twos', 'carousel_threes', 'carousel_fours', 'carousel_fives', 'carousel_sixes', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
         }else{
             $controller = app()->make(App\Http\Controllers\FrontendController::class);
             return $controller->pagesEn($path);
@@ -293,23 +288,18 @@ Route::group(['prefix' => '{language}'], function ($language) {
         $mostViews = $data->mostViews;
         $latestTen = $data->latestTen;
         $temperature = $data->temperature;
-        $burmas = $data->burmas;
-        $businesses = $data->businesses;
-        $persons = $data->persons;
-        $opinions = $data->opinions;
-        $lifeStyles = $data->lifeStyles;
-        $specials = $data->specials;
-        $catBurma = $data->catBurma;
-        $catBusiness = $data->catBusiness;
-        $catInperson = $data->catInperson;
-        $catOpinion = $data->catOpinion;
-        $catLifeStyle = $data->catLifeStyle;
-        $catSpecial = $data->catSpecial;
+        $carousel_arr = $data->carousel_arr;
+        $carousel_ones = $data->carousel_ones;
+        $carousel_twos = $data->carousel_twos;
+        $carousel_threes = $data->carousel_threes;
+        $carousel_fours = $data->carousel_fours;
+        $carousel_fives = $data->carousel_fives;
+        $carousel_sixes = $data->carousel_sixes;
         $latest_photos = $data->latest_photos;
         $latest_cartoons = $data->latest_cartoons;
         $lasts_cartoons = $data->lasts_cartoons;
 
-        return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'burmas', 'businesses', 'persons', 'opinions', 'lifeStyles', 'specials', 'catBurma', 'catBusiness', 'catInperson', 'catOpinion', 'catLifeStyle', 'catSpecial', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
+        return view('frontend.home', compact('latestPosts', 'mostViews', 'latestTen', 'temperature', 'carousel_arr', 'carousel_ones', 'carousel_twos', 'carousel_threes', 'carousel_fours', 'carousel_fives', 'carousel_sixes', 'latest_photos', 'latest_cartoons', 'lasts_cartoons'));
 
     })->name('home');
 

@@ -16,6 +16,20 @@
         <div class="row">
             <div class="col-md-8">
                 <form class="form" method="POST" action="{{ route(Route::currentRouteName() == 'category.update_form' ? 'category.update' : (Route::currentRouteName() == 'sub_category.update_form' ? 'sub_category.update' : 'tag.update')) }}" enctype="multipart/form-data">
+                    @if($route_name == 'category.update_form')
+                        <div class="form-group mb-3">
+                            <select class="form-select @error('add_to_carousel') is-invalid @enderror " name="add_to_carousel">
+                                <option value="" {{ old('add_to_carousel') == ''? "selected":"" }}>Add to Carousel</option>
+                                <option value="yes" {{ old('add_to_carousel') == 'yes'? "selected":"" }}>Yes</option>
+                                <option value="no" {{ old('add_to_carousel') == 'no'? "selected":"" }}>No</option>
+                            </select>
+                            @error('add_to_carousel')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                    @endif
                     <nav class="mb-3">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en" type="button" role="tab" aria-controls="nav-en" aria-selected="true">English</button>
