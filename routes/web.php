@@ -131,6 +131,7 @@ Route::group(['middleware' => 'normal'], function () {
             Route::get('/posts/update/{id}', 'update_form')->middleware('moderator');
             Route::post('/posts/update', 'update')->name('backend.posts.update')->middleware('moderator');
             Route::delete('/posts/delete/{id}', 'destroy')->middleware('moderator');
+            Route::delete('/posts/force_delete/{id}', 'force_delete')->middleware('moderator');
             Route::get('/posts/trashed', 'trashed')->name('backend.posts.trashed');
             Route::patch('/posts/restore/{id}', 'restore');
         });

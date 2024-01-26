@@ -165,12 +165,26 @@
                                 <form action="{{ url('/admin/posts/restore', $item->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-
                                     <button
                                         type="submit"
                                         class="btn btn-secondary btn-circle"
                                     >
                                     <i class="fa-solid fa-recycle"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-12">
+                                <form action="{{ url('/admin/posts/force_delete', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-secondary btn-circle"
+                                        onclick="return confirm('Are you sure to delete permanently.');"
+                                        title="Delete"
+                                    >
+                                    <i class="fa-solid fa-trash-can"></i>
                                     </button>
                                 </form>
                             </div>

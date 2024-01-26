@@ -47,23 +47,27 @@ class FrontendController extends Controller
 
         $latestPosts = Post::whereIn('id', function ($query) {
             $query->select(\DB::raw('MAX(id)'))
+            ->where('deleted_at', NULL)
                   ->from('posts')
                   ->groupBy('lang');
         })->latest('created_at')->get();
 
         $latest = Post::orderBy('created_at', 'desc')->first();
 
-        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
+        $languages = Post::distinct()->pluck('lang');
+        $mostViews = [];
 
-        // $mostViewedPosts = Post::select('lang', DB::raw('MAX(views) as max_views'))
-        // ->groupBy('lang')
-        // ->orderBy('max_views', 'desc')
-        // ->take(5)
-        // ->get();
+        // Iterate over each language
+        foreach ($languages as $language) {
+            // Get the top five posts for the current language
+            $topFivePosts = Post::where('lang', $language)
+                ->orderBy('views', 'desc')
+                ->take(5)
+                ->get();
 
-        // $mostViewedPostsData = Post::whereIn('lang', $mostViewedPosts->pluck('lang'))
-        // ->whereIn('views', $mostViewedPosts->pluck('max_views'))
-        // ->get();
+            // Add the top five posts to the result array
+            $mostViews[$language] = $topFivePosts;
+        }
 
         $latestTen = Post::select('posts.*')
         ->join(
@@ -76,18 +80,6 @@ class FrontendController extends Controller
         ->orderBy('posts.lang')
         ->orderBy('ranked_posts.row_num')
         ->get();
-
-        // $latestTen = Post::orderBy('id', 'desc')
-        //             ->where('id', '!=', $latest->id)
-        //             ->take(6)
-        //             ->get();
-
-        // $catBurma = 'Burma'; //subcategory
-        // $cat = SubCategory::where('name_en', $catBurma)->get();
-        // $burmas = Post::where('sub_category_id', $cat->first()->id)
-        //             ->orderBy('id', 'desc')
-        //             ->take(3)
-        //             ->get();
         
         $add_carousels = Category::where('add_to_carousel', 'yes')->take(6)->get();
         $carousel_arr = [];
@@ -189,12 +181,6 @@ class FrontendController extends Controller
         )
         ->get();
 
-        // $latest_photo = Photo::orderBy('id', 'desc')->first();
-
-        // $latest_cartoon = Cartoon::orderBy('id', 'desc')->first();
-
-        // $lasts_cartoons = Cartoon::latest()->take(6)->get();
-
         $lasts_cartoons = Cartoon::select('cartoons.*')
         ->join(
             \DB::raw('(SELECT id, lang, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM cartoons WHERE deleted_at IS NULL) as ranked_cartoons'),
@@ -236,7 +222,16 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->paginate(9);
 
-        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
+        $languages = Post::distinct()->pluck('lang');
+        $mostViews = [];
+
+        foreach ($languages as $language) {
+            $topFivePosts = Post::where('lang', $language)
+                ->orderBy('views', 'desc')
+                ->take(5)
+                ->get();
+            $mostViews[$language] = $topFivePosts;
+        }
 
         return view('frontend.sub_page', compact('sub_categories', 'sub_cat', 'main_cat', 'latestPosts', 'mostViews', 'posts'));
     }
@@ -247,10 +242,6 @@ class FrontendController extends Controller
         $id = $sub_cat->id;
 
         $sub_categories = SubCategory::where('category_id', $main_cat->id)->latest()->get();
-
-        // $latest = Post::where('sub_category_id', $sub_cat->id)
-        //         ->orderBy('id', 'desc')
-        //         ->first();
 
         $latestPosts= Post::select('posts.*')
             ->join(
@@ -266,7 +257,16 @@ class FrontendController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(9);
 
-        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
+        $languages = Post::distinct()->pluck('lang');
+        $mostViews = [];
+
+        foreach ($languages as $language) {
+            $topFivePosts = Post::where('lang', $language)
+                ->orderBy('views', 'desc')
+                ->take(5)
+                ->get();
+            $mostViews[$language] = $topFivePosts;
+        }
 
         return view('frontend.sub_page', compact('sub_cat', 'main_cat', 'sub_categories', 'latestPosts', 'mostViews', 'posts'));
     }
@@ -310,7 +310,16 @@ class FrontendController extends Controller
 
         $posts = PhotoEssay::orderBy('id', 'desc')->paginate(9);
 
-        $mostViews = Post::orderBy('views', 'desc')->take(5)->get();
+        $languages = Post::distinct()->pluck('lang');
+        $mostViews = [];
+
+        foreach ($languages as $language) {
+            $topFivePosts = Post::where('lang', $language)
+                ->orderBy('views', 'desc')
+                ->take(5)
+                ->get();
+            $mostViews[$language] = $topFivePosts;
+        }
 
         return view('frontend.sub_page', compact('sub_cat', 'main_cat', 'latestPosts', 'mostViews', 'posts'));
     }

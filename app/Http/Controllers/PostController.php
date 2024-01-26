@@ -176,6 +176,18 @@ class PostController extends Controller
 
     }
 
+    public function force_delete($id){
+        $post = Post::onlyTrashed()->find($id);
+        $post->forceDelete();
+
+        Comment::where('post_id', $id)->forceDelete();
+
+        Country::where('post_id', $id)->forceDelete();
+
+        return redirect ('/admin/posts')->with('status', 'Post is deleted permanently!');
+
+    }
+
     public function details($language, $category, $id){
 
         $post = Post::find($id);

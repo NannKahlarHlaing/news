@@ -89,11 +89,12 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                @foreach ($mostViews as $key => $itemFive)
+                                @foreach ($mostViews[app()->getLocale()] as $itemFive)
                                     <div class="row py-2 top-ten d-flex align-items-center">
                                         <div class="col-md-3 col-4">
                                             <div class="overflow-hidden">
                                                 @if (app()->getLocale() == 'mm')
+                                                
                                                     <a href="{{ url('/mm/category') . '/' . $itemFive->category->url_slug . '/' . $itemFive->id }}" >
                                                         <img src=" {{ asset('storage/images/thumbnail') . '/' . $itemFive->img_link }}" alt="image" width="100%" class="rounded">
                                                     </a>
@@ -128,7 +129,7 @@
                                         <div class="col-12 d-flex align-items-center">
                                             <span><i class="fa-solid fa-eye me-2" style="color:#575757"></i> {{ $itemFive->views }}</span>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 @endforeach
                             </div>
                         </div>
