@@ -3,28 +3,6 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex-center my-5">
-            <div class="col-lg-3 related">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="border-bottom border-dark pb-1">{{ __('language.related_posts') }}</h3>
-                    </div>
-                    @foreach ($relatedPosts as $related)
-                        <div class="col-md-12 py-1">
-                            <h6>
-                                @if (app()->getLocale() == 'mm')
-                                    <a href="{{ url('/mm/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
-                                @elseif(app()->getLocale() == 'ch')
-                                    <a href="{{ url('/ch/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
-                                @elseif(app()->getLocale() == 'ta')
-                                    <a href="{{ url('/ta/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
-                                @elseif(app()->getLocale() == 'en')
-                                    <a href="{{ url('/en/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
-                                @endif
-                            </h6>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
             <div class="col-lg-9">
                 <div class="row mb-5">
                     <div class="col-12">
@@ -166,7 +144,7 @@
                                 </div>
                                 @foreach ($comments as $item)
                                     <div class="card p-2">
-                                        <div class="row">
+                                        <div class="row align-items-center">
                                             <div class="col-md-9">
                                                 <h6>
                                                     @if ($item->user_type == 'anonymous')
@@ -177,7 +155,7 @@
                                                 </h6>
                                                 <p>{{ $item->comment }}</p>
                                             </div>
-                                            <div class="col-md-3 text-end text-muted">
+                                            <div class="col-md-3 text-md-end text-lg-end text-muted">
                                                 {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</p>
                                             </div>
                                         </div>
@@ -210,6 +188,28 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="col-lg-3 related">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="border-bottom border-dark pb-1">{{ __('language.related_posts') }}</h3>
+                    </div>
+                    @foreach ($relatedPosts as $related)
+                        <div class="col-md-12 py-1">
+                            <h6>
+                                @if (app()->getLocale() == 'mm')
+                                    <a href="{{ url('/mm/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @elseif(app()->getLocale() == 'ch')
+                                    <a href="{{ url('/ch/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @elseif(app()->getLocale() == 'ta')
+                                    <a href="{{ url('/ta/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @elseif(app()->getLocale() == 'en')
+                                    <a href="{{ url('/en/category') . '/' . $related->category->url_slug . '/' . $related->id }}">{{ $related->title }}</a>
+                                @endif
+                            </h6>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
