@@ -23,32 +23,28 @@
         Interface
     </div>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Categories</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                <a class="collapse-item" href="{{ route('category') }}">Main Categories</a>
-                <a class="collapse-item" href="{{ route('sub_category') }}">Sub Categories</a>
+    @if(Auth::guard('admins')->user()->role == 1)
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Categories</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                    <a class="collapse-item" href="{{ route('category') }}">Main Categories</a>
+                    <a class="collapse-item" href="{{ route('sub_category') }}">Sub Categories</a>
+                </div>
             </div>
-        </div>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('tag') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tag</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.pages') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Pages</span></a>
-    </li>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('tag') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tag</span></a>
+        </li>
+    @endif
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('backend.posts') }}">
@@ -56,48 +52,59 @@
             <span>Posts</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.photos') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Photos</span></a>
-    </li>
+    @if(Auth::guard('admins')->user()->role == 1 || Auth::guard('admins')->user()->role == 2)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.pages') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Pages</span></a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.photo_essays') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Photo Essays</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.photos') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Photos</span></a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.videos') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Videos</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.photo_essays') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Photo Essays</span></a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.cartoons') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Cartoons</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.videos') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Videos</span></a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.socials') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Contact</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.cartoons') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Cartoons</span></a>
+        </li>
+    @endif
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.users') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Users</span></a>
-    </li>
+    @if(Auth::guard('admins')->user()->role == 1)
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('backend.menus') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Menus</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.socials') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Contact</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.users') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Users</span></a>
+        </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.menus') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Menus</span></a>
+        </li>
+    @endif
+
+    @if(Auth::guard('admins')->user()->role == 1 || Auth::guard('admins')->user()->role == 2)
     <li class="nav-item">
         <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseSub"
             aria-expanded="true" aria-controls="collapseSub">
@@ -110,7 +117,9 @@
                 <a class="collapse-item" href="{{ route('backend.newsletters') }}">Newsletters</a>
             </div>
         </div>
-    {{-- </li>
+    </li>
+    @endif
+    {{-- 
     <div class="sidebar-heading">
         Addons
     </div> --}}

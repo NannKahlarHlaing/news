@@ -5,7 +5,7 @@
         <h5 class="my-3">Edit User</h5>
         <div class="row">
             <div class="col-md-8">
-                <form class="form" method="POST" action="{{ route('users.create_form') }}" enctype="multipart/form-data">
+                <form class="form" method="POST" action="{{ route('users.update') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <div class="form-group">
@@ -41,19 +41,31 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password <span class="text-danger">*</span></label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" name="check" id="check" class="form-check-input" @if(old('check')) checked @else {{''}} @endif>
+                        <label class="form-check-label" for="check">
+                            Change Password
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
-                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+
+                    <div id="password-field">
+                        <div class="form-group">
+                            <label for="password">Password <span class="text-danger">*</span></label>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" >
+                        </div>
+
                     </div>
+
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
@@ -61,4 +73,25 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function(){
+        if($('#check').is(':checked')) {
+                $('#password-field').show();
+            } else {
+                $('#password-field').hide();
+            }
+
+        $('#check').change(function(){
+            if($(this).is(':checked')) {
+                $('#password-field').show();
+            } else {
+                $('#password-field').hide();
+            }
+            //
+        });
+    });
+</script>
 @endsection

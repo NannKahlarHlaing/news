@@ -87,6 +87,30 @@ class AdminController extends Controller
         return view('backend.users.update', compact('post'));
     }
 
+    public function update(Request $request){
+        $user = Admin::find($request->id);
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required',
+        ])->validate();
+
+        if ($request->check == 'on') {
+            Validator::make($request->all(), [
+                'password' => 'required|min:4|confirmed',
+            ])->validate();
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+
+        $user->save();
+
+        return redirect('/admin/users');
+    }
+
     public function destroy($id){
         $post = Admin::find($id);
         $post->delete();

@@ -32,7 +32,7 @@
                                 <tr>
                                     <td>{{ $post->name }}</td>
                                     <td>{{ $post->email }}</td>
-                                    <td>{{ $post->role }}
+                                    <td>
                                         @if($post->role == '1')
                                             Admin
                                         @elseif($post->role == '2')
@@ -42,7 +42,6 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <!--<a href="{{ url('/admin/users/update') . '/' . $post->id }}" class="btn btn-warning">Edit</a>-->
                                         <a href="{{ url('/admin/users/update') . '/' . $post->id }}" class="btn btn-secondary btn-circle" title="Edit">
                                             <i class="fa-solid fa-pencil"></i>
                                         </a>
@@ -65,7 +64,6 @@
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form>
-                                        
                                     </td>
                                 </tr>
                             @endforeach

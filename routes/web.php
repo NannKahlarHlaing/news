@@ -77,128 +77,130 @@ Route::group(['middleware' => 'normal'], function () {
 
         Route::get('/newsletters/details/{id}', [SubscribeController::class, 'details']);
 
-        Route::group(['middleware' => 'admin'], function () {
-            Route::controller(AdminController::class)->group(function(){
-                Route::get('/users', 'index')->name('backend.users');
-                Route::get('/users/create', 'create_form')->name('users.create_form');
-                Route::post('/users/create', 'create')->name('users.create');
-                Route::get('/users/update/{id}', 'update_form')->name('users.update_form');
-                Route::post('/users/update', 'update')->name('users.update');
-                Route::delete('/users/delete/{id}', 'destroy');
-            });
-        });
-
-        Route::controller(CategoryController::class)->group(function(){
-            Route::get('/categories', 'index')->name('category');
-            Route::get('/categories/create', 'create_form')->name('category.create_form');
-            Route::post('/categories/create', 'create')->name('category.create');
-            Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
-            Route::post('/categories/update', 'update')->name('category.update');
-            Route::delete('/categories/delete/{id}', 'destroy');
-        });
-
-        Route::controller(SubCategoryController::class)->group(function(){
-            Route::get('/sub_categories', 'index')->name('sub_category');
-            Route::get('/sub_categories/create', 'create_form')->name('sub_category.create_form');
-            Route::post('/sub_categories/create', 'create')->name('sub_category.create');
-            Route::get('/sub_categories/update/{id}', 'update_form')->name('sub_category.update_form');
-            Route::post('/sub_categories/update', 'update')->name('sub_category.update');
-            Route::delete('/sub_categories/delete/{id}', 'destroy');
-        });
-
-        Route::controller(TagController::class)->group(function(){
-            Route::get('/tag', 'index')->name('tag');
-            Route::get('/tag/create', 'create_form')->name('tag.create_form');
-            Route::post('/tag/create', 'create')->name('tag.create');
-            Route::get('/tag/update/{id}', 'update_form')->name('tag.update_form');
-            Route::post('/tag/update', 'update')->name('tag.update');
-            Route::delete('/tag/delete/{id}', 'destroy');
-        });
-
-        Route::controller(PageController::class)->group(function(){
-            Route::get('/pages', 'index')->name('backend.pages');
-            Route::get('/pages/create', 'create_form')->name('backend.pages.create_form');
-            Route::post('/pages/create', 'create')->name('backend.pages.create');
-            Route::get('/pages/update/{id}', 'update_form');
-            Route::post('/pages/update', 'update')->name('backend.pages.update');
-            Route::delete('/pages/delete/{id}', 'destroy');
-        });
-
         Route::controller(PostController::class)->group(function(){
             Route::get('/posts', 'index')->name('backend.posts');
             Route::get('/posts/create', 'create_form')->name('backend.posts.create_form');
             Route::post('/posts/create', 'create')->name('backend.posts.create');
-            Route::get('/posts/update/{id}', 'update_form')->middleware('moderator');
-            Route::post('/posts/update', 'update')->name('backend.posts.update')->middleware('moderator');
-            Route::delete('/posts/delete/{id}', 'destroy')->middleware('moderator');
-            Route::delete('/posts/force_delete/{id}', 'force_delete')->middleware('moderator');
+            Route::get('/posts/update/{id}', 'update_form');
+            Route::post('/posts/update', 'update')->name('backend.posts.update');
+            Route::delete('/posts/delete/{id}', 'destroy');
+            Route::delete('/posts/force_delete/{id}', 'force_delete');
             Route::get('/posts/trashed', 'trashed')->name('backend.posts.trashed');
             Route::patch('/posts/restore/{id}', 'restore');
         });
 
-        Route::controller(PhotoController::class)->group(function(){
-            Route::get('/photos', 'index')->name('backend.photos');
-            Route::get('/photos/create', 'create_form')->name('backend.photos.create_form');
-            Route::post('/photos/create', 'create')->name('backend.photos.create');
-            Route::get('/photos/update/{id}', 'update_form');
-            Route::post('/photos/update', 'update')->name('backend.photos.update');
-            Route::delete('/photos/delete/{id}', 'destroy');
-        });
-
-        Route::controller(VideoController::class)->group(function(){
-            Route::get('/videos', 'index')->name('backend.videos');
-            Route::get('/videos/create', 'create_form')->name('backend.videos.create_form');
-            Route::post('/videos/create', 'create')->name('backend.videos.create');
-            Route::get('/videos/update/{id}', 'update_form');
-            Route::post('/videos/update', 'update')->name('backend.videos.update');
-            Route::delete('/videos/delete/{id}', 'destroy');
-            // Route::get('/videos/')
-
-            Route::get('/getVideos', 'getVideosByCategory')->name('getVideosByCategory');
-        });
-
-
-        Route::controller(SocialContoller::class)->group(function(){
-            Route::get('/socials', 'index')->name('backend.socials');
-            Route::post('/socials/create', 'create')->name('backend.socials.create');
-        });
-
-        Route::controller(PhotoEssayController::class)->group(function(){
-            Route::get('/photo_essays', 'index')->name('backend.photo_essays');
-            Route::get('/photo_essays/create', 'create_form')->name('backend.photo_essays.create_form');
-            Route::post('/photo_essays/create', 'create')->name('backend.photo_essays.create');
-            Route::get('/photo_essays/update/{id}', 'update_form');
-            Route::post('/photo_essays/update', 'update')->name('backend.photo_essays.update');
-            Route::delete('/photo_essays/delete/{id}', 'destroy');
-        });
-
-        Route::controller(CartoonController::class)->group(function(){
-            Route::get('/cartoons', 'index')->name('backend.cartoons');
-            Route::get('/cartoons/create', 'create_form')->name('backend.cartoons.create_form');
-            Route::post('/cartoons/create', 'create')->name('backend.cartoons.create');
-            Route::get('/cartoons/update/{id}', 'update_form');
-            Route::post('/cartoons/update', 'update')->name('backend.cartoons.update');
-            Route::delete('/cartoons/delete/{id}', 'destroy');
-        });
-
-        Route::controller(MenuController::class)->group(function(){
-            Route::get('/menus', 'index')->name('backend.menus');
-            Route::get('/menus/create', 'create_form')->name('backend.menus.create_form');
-            Route::get('/create', 'create_menu')->name('menu_name.create');
-            Route::get('/menu/update/{id}', 'update_menu')->name('backend.menu.update');
-            Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
-
-            Route::get('/menu_items/update', 'update_menuItems')->name('backend.menu_items.update');
-
-            Route::get('all/menus/index', 'all_menu')->name('backend.all_menus.index');
-
-            Route::get('all/menus/update', 'update_allMenu')->name('backend.all_menus.update');
-
-            Route::get('/menu_items/order', 'order')->name('backend.menu_items.order');
-        });
-
         Route::get('/get/sub_category', [SubCategoryController::class, 'getSubCategory'])->name('sub_category.get');
 
+        Route::group(['middleware' => 'moderator'], function () {
+
+            Route::group(['middleware' => 'admin'], function () {
+                Route::controller(AdminController::class)->group(function(){
+                    Route::get('/users', 'index')->name('backend.users');
+                    Route::get('/users/create', 'create_form')->name('users.create_form');
+                    Route::post('/users/create', 'create')->name('users.create');
+                    Route::get('/users/update/{id}', 'update_form')->name('users.update_form');
+                    Route::post('/users/update', 'update')->name('users.update');
+                    Route::delete('/users/delete/{id}', 'destroy');
+                });
+                Route::controller(MenuController::class)->group(function(){
+                    Route::get('/menus', 'index')->name('backend.menus');
+                    Route::get('/menus/create', 'create_form')->name('backend.menus.create_form');
+                    Route::get('/create', 'create_menu')->name('menu_name.create');
+                    Route::get('/menu/update/{id}', 'update_menu')->name('backend.menu.update');
+                    Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
+
+                    Route::get('/menu_items/update', 'update_menuItems')->name('backend.menu_items.update');
+
+                    Route::get('all/menus/index', 'all_menu')->name('backend.all_menus.index');
+
+                    Route::get('all/menus/update', 'update_allMenu')->name('backend.all_menus.update');
+
+                    Route::get('/menu_items/order', 'order')->name('backend.menu_items.order');
+                });
+
+                Route::controller(CategoryController::class)->group(function(){
+                    Route::get('/categories', 'index')->name('category');
+                    Route::get('/categories/create', 'create_form')->name('category.create_form');
+                    Route::post('/categories/create', 'create')->name('category.create');
+                    Route::get('/categories/update/{id}', 'update_form')->name('category.update_form');
+                    Route::post('/categories/update', 'update')->name('category.update');
+                    Route::delete('/categories/delete/{id}', 'destroy');
+                });
+
+                Route::controller(SubCategoryController::class)->group(function(){
+                    Route::get('/sub_categories', 'index')->name('sub_category');
+                    Route::get('/sub_categories/create', 'create_form')->name('sub_category.create_form');
+                    Route::post('/sub_categories/create', 'create')->name('sub_category.create');
+                    Route::get('/sub_categories/update/{id}', 'update_form')->name('sub_category.update_form');
+                    Route::post('/sub_categories/update', 'update')->name('sub_category.update');
+                    Route::delete('/sub_categories/delete/{id}', 'destroy');
+                });
+
+                Route::controller(TagController::class)->group(function(){
+                    Route::get('/tag', 'index')->name('tag');
+                    Route::get('/tag/create', 'create_form')->name('tag.create_form');
+                    Route::post('/tag/create', 'create')->name('tag.create');
+                    Route::get('/tag/update/{id}', 'update_form')->name('tag.update_form');
+                    Route::post('/tag/update', 'update')->name('tag.update');
+                    Route::delete('/tag/delete/{id}', 'destroy');
+                });
+
+                Route::controller(SocialContoller::class)->group(function(){
+                    Route::get('/socials', 'index')->name('backend.socials');
+                    Route::post('/socials/create', 'create')->name('backend.socials.create');
+                });
+
+            });
+
+            Route::controller(PageController::class)->group(function(){
+                Route::get('/pages', 'index')->name('backend.pages');
+                Route::get('/pages/create', 'create_form')->name('backend.pages.create_form');
+                Route::post('/pages/create', 'create')->name('backend.pages.create');
+                Route::get('/pages/update/{id}', 'update_form');
+                Route::post('/pages/update', 'update')->name('backend.pages.update');
+                Route::delete('/pages/delete/{id}', 'destroy');
+            });
+
+            Route::controller(PhotoController::class)->group(function(){
+                Route::get('/photos', 'index')->name('backend.photos');
+                Route::get('/photos/create', 'create_form')->name('backend.photos.create_form');
+                Route::post('/photos/create', 'create')->name('backend.photos.create');
+                Route::get('/photos/update/{id}', 'update_form');
+                Route::post('/photos/update', 'update')->name('backend.photos.update');
+                Route::delete('/photos/delete/{id}', 'destroy');
+            });
+
+            Route::controller(VideoController::class)->group(function(){
+                Route::get('/videos', 'index')->name('backend.videos');
+                Route::get('/videos/create', 'create_form')->name('backend.videos.create_form');
+                Route::post('/videos/create', 'create')->name('backend.videos.create');
+                Route::get('/videos/update/{id}', 'update_form');
+                Route::post('/videos/update', 'update')->name('backend.videos.update');
+                Route::delete('/videos/delete/{id}', 'destroy');
+                // Route::get('/videos/')
+
+                Route::get('/getVideos', 'getVideosByCategory')->name('getVideosByCategory');
+            });
+
+            Route::controller(PhotoEssayController::class)->group(function(){
+                Route::get('/photo_essays', 'index')->name('backend.photo_essays');
+                Route::get('/photo_essays/create', 'create_form')->name('backend.photo_essays.create_form');
+                Route::post('/photo_essays/create', 'create')->name('backend.photo_essays.create');
+                Route::get('/photo_essays/update/{id}', 'update_form');
+                Route::post('/photo_essays/update', 'update')->name('backend.photo_essays.update');
+                Route::delete('/photo_essays/delete/{id}', 'destroy');
+            });
+
+            Route::controller(CartoonController::class)->group(function(){
+                Route::get('/cartoons', 'index')->name('backend.cartoons');
+                Route::get('/cartoons/create', 'create_form')->name('backend.cartoons.create_form');
+                Route::post('/cartoons/create', 'create')->name('backend.cartoons.create');
+                Route::get('/cartoons/update/{id}', 'update_form');
+                Route::post('/cartoons/update', 'update')->name('backend.cartoons.update');
+                Route::delete('/cartoons/delete/{id}', 'destroy');
+            });
+
+        });
     });
 });
 
