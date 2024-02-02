@@ -285,6 +285,7 @@ class PostController extends Controller
         Validator::make($request->all(),[
             'category' => 'required',
             'title' => 'required',
+            'tags' => 'required',
             'short_desc' => 'required',
             'lang' => 'required'
         ])->validate();

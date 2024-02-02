@@ -30,6 +30,9 @@
         .filter .search-input{
             border-color: var(--color-gray) !important;
         }
+        .wider-button {
+            width: 40%;
+        }
 </style>
 @endsection
 <section class="video-page py-5">
@@ -117,33 +120,33 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-6 col-6">
-                    <h2 class="text-center">FILTERS</h2>
+                <div class="col-md-5 col-6">
+                    <h2 class="text-center text-white">{{ __('language.filters') }}</h2>
                 </div>
-                <div class="col-md-3 filter">
+                <div class="col-md-4 filter">
                     @if (session()->get('locale') == 'mm')
                         <form class="d-flex" id="search-form" action="{{ url('/mm/videos/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                            <button type="submit" class="btn btn-gray">Search</button>
+                            <input class="form-control me-2 search-input text-white " type="search" placeholder="{{ __('language.search_videos') }}" aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray wider-button">{{ __('language.search') }}</button>
                         </form>
                     @elseif (session()->get('locale') == 'ch')
                         <form class="d-flex" id="search-form" action="{{ url('/ch/videos/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                            <button type="submit" class="btn btn-gray">Search</button>
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="{{ __('language.search_videos') }}" aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray wider-button">{{ __('language.search') }}</button>
                         </form>
                     @elseif (session()->get('locale') == 'ta')
                         <form class="d-flex" id="search-form" action="{{ url('/ta/videos/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                            <button type="submit" class="btn btn-gray">Search</button>
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="{{ __('language.search_videos') }}" aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray wider-button">{{ __('language.search') }}</button>
                         </form>
                     @elseif (session()->get('locale') == 'en')
                         <form class="d-flex" id="search-form" action="{{ url('/en/videos/search') }}" method="GET">
                             @csrf
-                            <input class="form-control me-2 search-input text-white" type="search" placeholder="Search Videos..." aria-label="Search" name="search">
-                            <button type="submit" class="btn btn-gray">Search</button>
+                            <input class="form-control me-2 search-input text-white" type="search" placeholder="{{ __('language.search_videos') }}" aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-gray wider-button">{{ __('language.search') }}</button>
                         </form>
                     @endif
                 </div>

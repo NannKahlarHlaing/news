@@ -83,17 +83,17 @@
                             <div class="form-control scroll-window">
                                 @foreach ($all_tags as $item)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $item->id }}" @if(in_array($item->id, $tags)) checked @endif>
+                                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $item->id }}" {{ is_array(old('tags')) && in_array($item->id, old('tags')) ? 'checked' : '' }}>
                                         <label class="form-check-label">{{ $item->name_en }}</label>
                                     </div>
                                 @endforeach
                             </div>
 
-                            @error('category')
-                                <div class="invalid-feedback">
-                                    {{$message}}
+                            @if ($errors->has('tags'))
+                                <div class="text-danger">
+                                    {{ $errors->first('tags') }}
                                 </div>
-                            @enderror
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
