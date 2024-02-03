@@ -16,6 +16,7 @@ class MenuController extends Controller
 
     public function update_menu($id) {
 
+        $lang = '';
         if($id == 1 || $id == 4){
             $lang = 'en';
         }elseif($id == 2 || $id == 5){
@@ -24,6 +25,10 @@ class MenuController extends Controller
             $lang = 'ch';
         }elseif($id == 7 || $id == 8 ){
             $lang = 'ta';
+        }
+
+        if(!$lang){
+            abort(404);
         }
 
         $pages = Page::where('lang', $lang)->get();
@@ -147,6 +152,9 @@ class MenuController extends Controller
 
     public function order(Request $request){
         $item = MenuItem::find($request->id);
+        if(!$item){
+            abort(404);
+        }
 
         $item->order = $request->order;
 

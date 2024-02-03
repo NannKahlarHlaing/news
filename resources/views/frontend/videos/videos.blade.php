@@ -31,7 +31,11 @@
             border-color: var(--color-gray) !important;
         }
         .wider-button {
+<<<<<<< HEAD
             width: 40%; 
+=======
+            width: 40%;
+>>>>>>> 3dff33d40d732b3473fc535cb0d12aee63eaaec0
         }
 </style>
 @endsection

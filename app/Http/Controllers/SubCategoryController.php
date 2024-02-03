@@ -37,6 +37,9 @@ class SubCategoryController extends Controller
     public function update_form($id){
         $route_name = Route::currentRouteName();
         $post = SubCategory::find($id);
+        if(!$post){
+            abort(404);
+        }
         $categories = Category::where('deleted_at', NULL)->get();
         return view('backend.categories.update', compact('post', 'route_name', 'categories'));
     }
@@ -45,6 +48,9 @@ class SubCategoryController extends Controller
         $this->validation($request);
 
         $post = SubCategory::find($request->id);
+        if(!$post){
+            abort(404);
+        }
         $post->category_id = $request->category;
         $post->name_en = $request->name_en;
         $post->name_mm = $request->name_mm;
@@ -59,6 +65,9 @@ class SubCategoryController extends Controller
 
     public function destroy($id){
         $post = SubCategory::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect('/admin/sub_categories')->with('status', 'SubCategory is deleted successfully!');

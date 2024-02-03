@@ -85,10 +85,10 @@
                             </div>
 
                             @if ($errors->has('tags'))
-                            <div class="text-danger">
-                                {{ $errors->first('tags') }}
-                            </div>
-                        @endif
+                                <div class="text-danger">
+                                    {{ $errors->first('tags') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">

@@ -83,12 +83,45 @@ class AdminController extends Controller
 
     public function update_form($id){
         $post = Admin::find($id);
+        if(!$post){
+            abort(404);
+        }
 
         return view('backend.users.update', compact('post'));
     }
 
+    public function update(Request $request){
+        $user = Admin::find($request->id);
+        if(!$user){
+            abort(404);
+        }
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required',
+        ])->validate();
+
+        if ($request->check == 'on') {
+            Validator::make($request->all(), [
+                'password' => 'required|min:4|confirmed',
+            ])->validate();
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+
+        $user->save();
+
+        return redirect('/admin/users');
+    }
+
     public function destroy($id){
         $post = Admin::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect ('/admin/users')->with('status', 'User is deleted successfully!');

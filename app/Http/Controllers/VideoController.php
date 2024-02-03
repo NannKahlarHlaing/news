@@ -38,15 +38,20 @@ class VideoController extends Controller
 
     public function update_form($id){
         $post = Video::find($id);
+        if(!$post){
+            abort(404);
+        }
         $categories = Category::where('deleted_at', NULL)->get();
         return view('backend.videos.update', compact('post', 'categories'));
     }
 
     public function update(Request $request){
-        $this->validation($request);
-
         $post = Video::find($request->id);
-
+        if(!$post){
+            abort(404);
+        }
+        
+        $this->validation($request);
         $image = $request->file('img_url');
 
         if($image != '' || $image != NULL){
@@ -75,6 +80,9 @@ class VideoController extends Controller
 
     public function destroy($id){
         $post = Video::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect ('/admin/videos')->with('status', 'Videos is deleted successfully!');
@@ -111,6 +119,10 @@ class VideoController extends Controller
 
     public function details($language, $id){
         $post = Video::find($id);
+
+        if(!$post){
+            abort(404);
+        }
 
         $relatedPosts = Video::where('id', '<>', $post->id)->limit(3)->get();
 

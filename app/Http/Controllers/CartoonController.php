@@ -34,14 +34,20 @@ class CartoonController extends Controller
 
     public function update_form($id){
         $post = Cartoon::find($id);
+        if(!$post){
+            abort(404);
+        }
 
         return view('backend.cartoons.update', compact('post'));
     }
 
     public function update(Request $request){
-        $this->validation($request);
-
         $post = Cartoon::find($request->id);
+        if(!$post){
+            abort(404);
+        }
+
+        $this->validation($request);
 
         $image = $request->file('img_link');
 
@@ -69,6 +75,9 @@ class CartoonController extends Controller
 
     public function destroy($id){
         $post = Cartoon::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect ('/admin/cartoons')->with('status', 'cartoons is deleted successfully!');
@@ -77,6 +86,10 @@ class CartoonController extends Controller
 
     public function details($language, $id){
         $post = Cartoon::find($id);
+
+        if(!$post){
+            abort(404);
+        }
 
         $relatedPosts = Cartoon::where('id', '<>', $post->id)->limit(3)->get();
 

@@ -35,6 +35,9 @@ class TagController extends Controller
     public function update_form($id){
         $route_name = Route::currentRouteName();
         $post = Tag::find($id);
+        if(!$post){
+            abort(404);
+        }
         return view('backend.categories.update', compact('post', 'route_name'));
     }
 
@@ -42,6 +45,9 @@ class TagController extends Controller
         $this->validation($request);
 
         $post = Tag::find($request->id);
+        if(!$post){
+            abort(404);
+        }
         $post->name_en = $request->name_en;
         $post->name_mm = $request->name_mm;
         $post->name_ch = $request->name_ch;
@@ -55,6 +61,9 @@ class TagController extends Controller
 
     public function destroy($id){
         $post = Tag::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect('/admin/tag')->with('status', 'Tag is deleted successfully!');

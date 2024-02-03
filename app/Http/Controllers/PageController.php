@@ -30,6 +30,9 @@ class PageController extends Controller
 
     public function update_form($id){
         $post = Page::find($id);
+        if(!$post){
+            abort(404);
+        }
         return view('backend.pages.update', compact('post'));
     }
 
@@ -37,6 +40,9 @@ class PageController extends Controller
         $this->validation($request);
 
         $post = Page::find($request->id);
+        if(!$post){
+            abort(404);
+        }
 
         $image = $request->file('img_url');
 
@@ -66,6 +72,9 @@ class PageController extends Controller
 
     public function destroy($id){
         $post = Page::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect ('/admin/pages')->with('status', 'Post is deleted successfully!');

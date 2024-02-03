@@ -191,6 +191,9 @@ class PostController extends Controller
     public function details($language, $category, $id){
 
         $post = Post::find($id);
+        if(!$post){
+            abort(404);
+        }
         $comments= Comment::where('post_id', $id)->latest()->get();
         $relatedPosts = Post::where('category_id', $post->category_id)
                         ->where('id', '<>', $post->id)
@@ -285,6 +288,7 @@ class PostController extends Controller
         Validator::make($request->all(),[
             'category' => 'required',
             'title' => 'required',
+            'tags' => 'required',
             'short_desc' => 'required',
             'lang' => 'required'
         ])->validate();

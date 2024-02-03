@@ -65,8 +65,14 @@ class FrontendController extends Controller
                 ->take(5)
                 ->get();
 
-            // Add the top five posts to the result array
+            // // Add the top five posts to the result array
             $mostViews[$language] = $topFivePosts;
+
+            $missingLanguages = array_diff(['en', 'mm', 'ch', 'ta'], $languages->toArray());
+            foreach ($missingLanguages as $missingLanguage) {
+                $mostViews[$missingLanguage] = collect(); // Create an empty collection
+            }
+
         }
 
         $latestTen = Post::select('posts.*')
@@ -80,7 +86,7 @@ class FrontendController extends Controller
         ->orderBy('posts.lang')
         ->orderBy('ranked_posts.row_num')
         ->get();
-        
+
         $add_carousels = Category::where('add_to_carousel', 'yes')->take(6)->get();
         $carousel_arr = [];
 
@@ -167,8 +173,6 @@ class FrontendController extends Controller
                 ->get();
         }
 
-
-        
             $latest_photos = Photo::select('photos.*')
             ->join(
                 \DB::raw('(SELECT MAX(id) as max_id, lang FROM photos GROUP BY lang) as latest_photos'),
@@ -211,6 +215,9 @@ class FrontendController extends Controller
     public function main_categories($language, $name){
         $main_cat = '';
         $category = Category::where('url_slug', $name)->first();
+        if(!$category){
+            abort(404);
+        }
         $id = $category->id;
         $sub_cat = $category;
 
@@ -238,6 +245,11 @@ class FrontendController extends Controller
                 ->take(5)
                 ->get();
             $mostViews[$language] = $topFivePosts;
+
+            $missingLanguages = array_diff(['en', 'mm', 'ch', 'ta'], $languages->toArray());
+            foreach ($missingLanguages as $missingLanguage) {
+                $mostViews[$missingLanguage] = collect(); // Create an empty collection
+            }
         }
 
         return view('frontend.sub_page', compact('sub_categories', 'sub_cat', 'main_cat', 'latestPosts', 'mostViews', 'posts'));
@@ -245,7 +257,15 @@ class FrontendController extends Controller
 
     public function sub_categories($language, $main_category, $sub_category){
         $main_cat = Category::where('url_slug', $main_category)->first();
+
+        if(!$main_cat){
+            abort(404);
+        }
+
         $sub_cat = SubCategory::where('url_slug', $sub_category)->first();
+        if(!$sub_cat){
+            abort(404);
+        }
         $id = $sub_cat->id;
 
         $sub_categories = SubCategory::where('category_id', $main_cat->id)->latest()->get();
@@ -273,6 +293,11 @@ class FrontendController extends Controller
                 ->take(5)
                 ->get();
             $mostViews[$language] = $topFivePosts;
+
+            $missingLanguages = array_diff(['en', 'mm', 'ch', 'ta'], $languages->toArray());
+            foreach ($missingLanguages as $missingLanguage) {
+                $mostViews[$missingLanguage] = collect(); // Create an empty collection
+            }
         }
 
         return view('frontend.sub_page', compact('sub_cat', 'main_cat', 'sub_categories', 'latestPosts', 'mostViews', 'posts'));
@@ -326,6 +351,11 @@ class FrontendController extends Controller
                 ->take(5)
                 ->get();
             $mostViews[$language] = $topFivePosts;
+
+            $missingLanguages = array_diff(['en', 'mm', 'ch', 'ta'], $languages->toArray());
+            foreach ($missingLanguages as $missingLanguage) {
+                $mostViews[$missingLanguage] = collect(); // Create an empty collection
+            }
         }
 
         return view('frontend.sub_page', compact('sub_cat', 'main_cat', 'latestPosts', 'mostViews', 'posts'));
@@ -337,6 +367,10 @@ class FrontendController extends Controller
                     ->orderBy('id', 'desc')
                     ->get();
         $post = $posts->first();
+
+        if(!$post){
+            abort(404);
+        }
 
         return view('frontend.pages', compact('post'));
     }

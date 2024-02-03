@@ -29,6 +29,9 @@ class PhotoController extends Controller
 
     public function update_form($id){
         $post = Photo::find($id);
+        if(!$post){
+            abort(404);
+        }
         return view('backend.photos.update', compact('post'));
     }
 
@@ -39,6 +42,9 @@ class PhotoController extends Controller
         ])->validate();
 
         $post = Photo::find($request->id);
+        if(!$post){
+            abort(404);
+        }
 
         $image = $request->file('url');
 
@@ -67,6 +73,9 @@ class PhotoController extends Controller
 
     public function destroy($id){
         $post = Photo::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect ('/admin/photos')->with('status', 'Photos is deleted successfully!');

@@ -35,14 +35,20 @@ class PhotoEssayController extends Controller
 
     public function update_form($id){
         $post = PhotoEssay::find($id);
+        if(!$post){
+            abort(404);
+        }
 
         return view('backend.photo_essays.update', compact('post'));
     }
 
     public function update(Request $request){
-        $this->validation($request);
-
         $post = PhotoEssay::find($request->id);
+        if(!$post){
+            abort(404);
+        }
+        
+        $this->validation($request);
 
         $image = $request->file('img_link');
 
@@ -73,6 +79,9 @@ class PhotoEssayController extends Controller
 
     public function destroy($id){
         $post = PhotoEssay::find($id);
+        if(!$post){
+            abort(404);
+        }
         $post->delete();
 
         return redirect ('/admin/photo_essays')->with('status', 'photo_essays is deleted successfully!');
@@ -81,6 +90,10 @@ class PhotoEssayController extends Controller
 
     public function details($language, $id){
         $post = PhotoEssay::find($id);
+
+        if(!$post){
+            abort(404);
+        }
 
         return view('backend.photo_essays.detail', compact('post'));
     }
@@ -106,6 +119,9 @@ class PhotoEssayController extends Controller
 
     public function likePost($postId) {
         $post = PhotoEssay::find($postId);
+        if(!$post){
+            abort(404);
+        }
         $like = $post->like;
         $post->like = $like + 1;
         $post->save();
@@ -115,6 +131,9 @@ class PhotoEssayController extends Controller
 
     public function lovePost($postId) {
         $post = PhotoEssay::find($postId);
+        if(!$post){
+            abort(404);
+        }
         $love = $post->love;
         $post->love = $love + 1;
         $post->save();
@@ -124,6 +143,9 @@ class PhotoEssayController extends Controller
 
     public function wowPost($postId) {
         $post = PhotoEssay::find($postId);
+        if(!$post){
+            abort(404);
+        }
         $wow = $post->wow;
         $post->wow = $wow + 1;
         $post->save();
@@ -133,6 +155,9 @@ class PhotoEssayController extends Controller
 
     public function sadPost($postId) {
         $post = PhotoEssay::find($postId);
+        if(!$post){
+            abort(404);
+        }
         $sad = $post->sad;
         $post->sad = $sad + 1;
         $post->save();

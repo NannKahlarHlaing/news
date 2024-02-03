@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> The VWXYZ Online - Dashboard</title>
+    <title>Dashboard</title>
 
 
     <!-- Custom fonts for this template-->
@@ -111,14 +111,14 @@
 
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <div class="dropdown-item">
+
                                         {{-- Logout --}}
                                         <form class="d-inline" method="POST" action="{{ route('admin.logout') }}">
                                             @csrf
-                                            <button class="btn btn-link btn-sm fs-6" type="submit">Logout</button>
+                                            <button class="btn btn-link btn-sm fs-6" type="submit"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</button>
                                         </form>
-                                    </a>
+                                    </div>
                                 </div>
                             </li>
                         @else
@@ -127,10 +127,10 @@
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Login</span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
+                            {{-- <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('admin.register_form') }}" >
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Register</span>
-                                </a>
+                                </a> --}}
                             </li>
                         @endif
 
