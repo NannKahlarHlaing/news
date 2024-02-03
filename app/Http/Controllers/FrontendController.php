@@ -87,82 +87,89 @@ class FrontendController extends Controller
         foreach($add_carousels as $carousel){
             $carousel_arr[] = $carousel;
         }
-        $carousel_ones = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND sub_category_id = ' . $carousel_arr[0]->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
-        $carousel_twos = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[1]->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
+        if(count($carousel_arr) < 6){
+            $carousel_ones= [];
+            $carousel_twos= [];
+            $carousel_threes= [];
+            $carousel_fours= [];
+            $carousel_fives= [];
+            $carousel_sixes= [];
+        }else{
+            $carousel_ones = Post::select('posts.*')
+                ->join(
+                    \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND sub_category_id = ' . $carousel_arr[0]->id . ') as ranked_posts'),
+                    function ($join) {
+                        $join->on('posts.id', '=', 'ranked_posts.id');
+                    }
+                )
+                ->where('ranked_posts.row_num', '<=', 3)
+                ->orderBy('posts.lang')
+                ->orderBy('ranked_posts.row_num')
+                ->get();
+            $carousel_twos = Post::select('posts.*')
+                ->join(
+                    \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[1]->id . ') as ranked_posts'),
+                    function ($join) {
+                        $join->on('posts.id', '=', 'ranked_posts.id');
+                    }
+                )
+                ->where('ranked_posts.row_num', '<=', 3)
+                ->orderBy('posts.lang')
+                ->orderBy('ranked_posts.row_num')
+                ->get();
 
-        $catInperson = 'In Person';
-        $subCategory = Category::where('name_en', $catInperson)->first();
-        $carousel_threes = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[2]->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
-        $carousel_fours = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[3]->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
+            $carousel_threes = Post::select('posts.*')
+                ->join(
+                    \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[2]->id . ') as ranked_posts'),
+                    function ($join) {
+                        $join->on('posts.id', '=', 'ranked_posts.id');
+                    }
+                )
+                ->where('ranked_posts.row_num', '<=', 3)
+                ->orderBy('posts.lang')
+                ->orderBy('ranked_posts.row_num')
+                ->get();
+            $carousel_fours = Post::select('posts.*')
+                ->join(
+                    \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[3]->id . ') as ranked_posts'),
+                    function ($join) {
+                        $join->on('posts.id', '=', 'ranked_posts.id');
+                    }
+                )
+                ->where('ranked_posts.row_num', '<=', 3)
+                ->orderBy('posts.lang')
+                ->orderBy('ranked_posts.row_num')
+                ->get();
 
-        $carousel_fives = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[4]->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
-
-        $catSpecial = 'Specials';
-        $subCategory = Category::where('name_en', $catSpecial)->first();
-        $carousel_sixes = Post::select('posts.*')
-            ->join(
-                \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[5]->id . ') as ranked_posts'),
-                function ($join) {
-                    $join->on('posts.id', '=', 'ranked_posts.id');
-                }
-            )
-            ->where('ranked_posts.row_num', '<=', 3)
-            ->orderBy('posts.lang')
-            ->orderBy('ranked_posts.row_num')
-            ->get();
+            $carousel_fives = Post::select('posts.*')
+                ->join(
+                    \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[4]->id . ') as ranked_posts'),
+                    function ($join) {
+                        $join->on('posts.id', '=', 'ranked_posts.id');
+                    }
+                )
+                ->where('ranked_posts.row_num', '<=', 3)
+                ->orderBy('posts.lang')
+                ->orderBy('ranked_posts.row_num')
+                ->get();
 
 
-        $latest_photos = Photo::select('photos.*')
+            $carousel_sixes = Post::select('posts.*')
+                ->join(
+                    \DB::raw('(SELECT id, ROW_NUMBER() OVER (PARTITION BY lang ORDER BY created_at DESC) as row_num FROM posts WHERE deleted_at IS NULL AND category_id = ' . $carousel_arr[5]->id . ') as ranked_posts'),
+                    function ($join) {
+                        $join->on('posts.id', '=', 'ranked_posts.id');
+                    }
+                )
+                ->where('ranked_posts.row_num', '<=', 3)
+                ->orderBy('posts.lang')
+                ->orderBy('ranked_posts.row_num')
+                ->get();
+        }
+
+
+        
+            $latest_photos = Photo::select('photos.*')
             ->join(
                 \DB::raw('(SELECT MAX(id) as max_id, lang FROM photos GROUP BY lang) as latest_photos'),
                 function ($join) {

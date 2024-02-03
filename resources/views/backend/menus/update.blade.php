@@ -80,21 +80,21 @@
                             @php
                                 if($id == '2' || $id == '5'){
                                     $link = '/mm/videos';
-                                        $name = 'ဗီဒီယိုများ';
+                                        $name = 'Ta\'ang TV';
                                     }else if($id == '3' || $id == '6'){
                                         $link = '/ch/videos';
                                         $name = '视频';
                                     }
                                     else if($id == '7' || $id == '8'){
                                         $link = '/ta/videos';
-                                        $name = 'ဗီဒီယိုများ';
+                                        $name = 'Ta\'ang TV';
                                     }elseif($id == '1' || $id == '4'){
                                         $link = '/en/videos';
-                                        $name = 'Videos';
+                                        $name = 'Ta\'ang TV';
                                     }
                                     if($name == '' || $name == NULL){
                                         $link = '/videos';
-                                        $name = 'Videos';
+                                        $name = 'Ta\'ang TV';
                                     }
                                     $menu = $menu_items->where('item_id', 'p-3')->where('type', 'page')->first();
                             @endphp
