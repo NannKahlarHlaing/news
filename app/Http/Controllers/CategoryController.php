@@ -78,6 +78,7 @@ class CategoryController extends Controller
     private function validation($request){
         Validator::make($request->all(),[
             'name_en' => 'required',
+            'add_to_carousel' => 'required'
         ])->validate();
     }
 

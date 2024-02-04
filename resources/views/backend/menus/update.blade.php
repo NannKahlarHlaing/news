@@ -193,7 +193,7 @@
                                 <div class="form-check mb-3">
                                 
                                     <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="{{ $item->id }}" data-page-input-id="page_input_{{ $item->id }}" data-page-type="page" data-page-item-id="{{ $item->id }}"" {{ $menu ? 'checked' : '' }}>
-                                    <label class="form-check-label">{{ $name }} {{$id}}</label>
+                                    <label class="form-check-label">{{ $name }}</label>
                                     <input type="text" id="page_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : $link)) }}">
                                 </div>
                             @endforeach

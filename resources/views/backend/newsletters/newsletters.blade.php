@@ -4,6 +4,15 @@
 
 <div class="container-fluid">
     <div class="row">
+    <div class="col-md-12">
+            @if (Session::has('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('status') }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-8">
             @if (Session::has('success'))
                 <div class="alert alert-success" role="alert">
@@ -33,6 +42,7 @@
                                     <th>#</th>
                                     <th>Subject</th>
                                     <th>View</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,10 +51,25 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->subject }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/newsletters/details') . '/' . $item->id }}" class="btn btn-danger btn-circle">
+                                            <a href="{{ url('/admin/newsletters/details') . '/' . $item->id }}" class="btn btn-secondary btn-circle">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                    </td>
+                                        </td>
+                                        <td>
+                                            <form action="{{ url('/admin/newsletters/delete', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-secondary btn-circle"
+                                                    onclick="return confirm('Are you sure to delete');"
+                                                    title="Delete"
+                                                >
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

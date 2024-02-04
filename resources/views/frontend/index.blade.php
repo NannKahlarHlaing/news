@@ -246,10 +246,10 @@
                         <div class="col-md-3">
                             <div class="row footer-social">
                                 <div class="col-12 d-flex-center border-bottom border-white pb-3 mb-3">
-                                   <a href="{{ $facebook_link }}"><i class="fa-brands fa-square-facebook me-5"></i></a> <a href="{{ $youtube_link }}"><i class="fa-brands fa-square-youtube me-5"></i></a> <a href="{{ $instagram_link }}"><i class="fa-brands fa-instagram"></i></a>
+                                   <a href="{{ $facebook_link }}"><i class="fa-brands fa-square-facebook me-3"></i></a> <a href="{{ $youtube_link }}"><i class="fa-brands fa-square-youtube me-3"></i></a> <a href="{{ $instagram_link }}"><i class="fa-brands fa-instagram me-3"></i></a> <a href="{{ $twitter_link }}"><i class="fa-brands fa-square-twitter"></i></a> 
                                 </div>
                                 <div class="col-12 text-center">
-                                    <p>contact@gmail.com</p>
+                                    <p>{{ $info->email }}</p>
                                 </div>
                             </div>
                         </div>

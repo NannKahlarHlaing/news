@@ -62,4 +62,24 @@ class SubscribeController extends Controller
         return redirect('/admin/newsletters')->with('success', 'Newsletter is sent successfully');
 
     }
+
+    public function unsubscribe($id){
+        $post = Subscribe::find($id);
+        if(!$post){
+            abort(404);
+        }   
+        $post->delete();
+
+        return redirect('/admin/subscribers')->with('status', 'Unsubscribe successfully!');
+    }
+
+    public function delete_newsletter($id){
+        $post = Newsletter::find($id);
+        if(!$post){
+            abort(404);
+        }   
+        $post->delete();
+
+        return redirect('/admin/newsletters')->with('status', 'Newsletter deleted successfully!');
+    }
 }

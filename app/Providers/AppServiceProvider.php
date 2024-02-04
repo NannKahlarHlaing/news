@@ -51,6 +51,10 @@ class AppServiceProvider extends ServiceProvider
             $facebook_link = $this->stringToArray($info->facebook);
             $youtube_link = $this->stringToArray($info->youtube);
             $instagram_link = $this->stringToArray($info->instagram);
+            $twitter_link = $this->stringToArray($info->twitter);
+            $linked_in_link = $this->stringToArray($info->linked_in);
+            $whatsapp_link = $this->stringToArray($info->whatsapp);
+            $line_link = $this->stringToArray($info->line);            
 
             $view->with([
                 'all_menus' => $all_menus,
@@ -66,7 +70,11 @@ class AppServiceProvider extends ServiceProvider
                 'info' => $info,
                 'facebook_link' => $facebook_link,
                 'youtube_link' => $youtube_link,
-                'instagram_link' => $instagram_link
+                'instagram_link' => $instagram_link,
+                'twitter_link' => $twitter_link,
+                'linked_in_link' => $linked_in_link,
+                'whatsapp_link' => $whatsapp_link,
+                'line_link' => $line_link,
             ]);
         });
     }

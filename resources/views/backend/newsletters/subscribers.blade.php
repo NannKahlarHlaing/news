@@ -27,6 +27,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Subscribers</th>
+                                    <th>Unsubscribe</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +35,21 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>
+                                            <form action="{{ url('/admin/subscribers/unsubscribe', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-secondary btn-circle"
+                                                    onclick="return confirm('Are you sure to delete');"
+                                                    title="Delete"
+                                                >
+                                                <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
