@@ -40,6 +40,12 @@
         .btn-reaction{
             width: 3.5rem;
         }
+        .menu-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
         @media only screen and (max-width: 412px){
         .offcanvas{
                 height: 80vh !important;
@@ -60,7 +66,7 @@
         </div>
     </section>
 
-    <section class="d-flex justify-content-center navScroll" id="navbar">
+    <section class="d-flex justify-content-center align-items-center navScroll" id="navbar">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -108,18 +114,18 @@
                             </div>
                         </div>
                         <div class="container-fluid col-lg px-0" id="nav-hide">
-                            <div class="d-flex align-items-center" id="menu-bar">
-                                <a class="btn btn-transparent py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-                                    <img src="{{ asset('images/logo.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
-                                    <button class="btn btn-green mt-1"><p class="fw-bold px-3">{{ __('language.all_menu') }}</p></button>
+                            <div class="d-flex align-items-center col-lg-2" id="menu-bar">
+                                <a class="btn btn-transparent py-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" style="display: inline-flex; align-items: center;">
+                                <img src="{{ asset('images/logo.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
+                                <button class="btn btn-green ms-1"><p class="fw-bold px-3">{{ __('language.all_menu') }}</p></button>
                                 </a>
-
                             </div>
+
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu-list">
                                     @if (session()->get('locale') == 'mm')
                                         <li class="nav-item">
                                             <a class="nav-link fw-bold" aria-current="page" href="{{ url('/mm') }}">{{ __('language.home') }}</a>
@@ -162,7 +168,7 @@
                             </div>
                         </div>
                         <div class="col-lg h2 fw-bold text-white text-center" id="site-title">{{ env('APP_NAME') }}</div>
-                        <div class="col-lg-2 col-12 text-end mt-2 mt-lg-0" id="search">
+                        <div class="col-lg-1 col-12 text-end mt-2 mt-lg-0" id="search">
                             <span>{{ __('language.search') }}...</span><i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                     </nav>
@@ -249,9 +255,6 @@
                         </div>
                         <div class="col-md-3 mt-md-0 mt-3">
                             <h5 class="fw-bold text-white text-center">{{ __('language.about_us') }}</h5>
-<!--                            <p>
-                                On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même
-                            </p> -->
                             <div class="text-center"><img src="{{ asset('images/logo.png') }}" alt="logo" width="60%"></div>
                         </div>
                     </div>
