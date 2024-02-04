@@ -52,9 +52,23 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ url('/') . '/' . $item->url_slug }}" class="btn btn-secondary btn-circle" title="View">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
+                                        @if($item->lang == 'mm')
+                                            <a href="{{ url('/mm') . '/' . $item->url_slug }}" class="btn btn-secondary btn-circle" title="View">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        @elseif($item->lang == 'ch')
+                                            <a href="{{ url('/ch') . '/' . $item->url_slug }}" class="btn btn-secondary btn-circle" title="View">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        @elseif($item->lang == 'ta')
+                                            <a href="{{ url('/ta') . '/' . $item->url_slug }}" class="btn btn-secondary btn-circle" title="View">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        @elseif($item->lang == 'en')
+                                            <a href="{{ url('/en') . '/' . $item->url_slug }}" class="btn btn-secondary btn-circle" title="View">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{ url('/admin/pages/update') . '/' . $item->id }}" class="btn btn-secondary btn-circle" title="Edit">
