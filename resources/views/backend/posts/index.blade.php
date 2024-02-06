@@ -45,7 +45,7 @@
                     </select>
                     <input type="date" class="form-control ms-2" id="date" name="date" value="{{ $search_date }}">
                 </div>
-    
+
                 <div class="d-flex">
                     <input class="form-control me-2" type="text" name="title" value="{{ $title }}" placeholder="Search by Title, Short Description or Description">
                     <button class="btn btn-primary">Search</button>
@@ -65,34 +65,36 @@
                         <div class="col-12 mb-2">
                             <h6>{{ $item->title }} </h6>
                         </div>
-                        <div class="col-lg-4 col-md-6 mb-2">
-                            Category: 
-                                @if ($item->lang == 'mm')
-                                    {{ $item->category->name_mm }}
-                                @elseif($item->lang == 'ch')
-                                    {{ $item->category->name_ch }}
-                                @elseif($item->lang == 'ta')
-                                    {{ $item->category->name_ta }}
-                                @else
-                                    {{ $item->category->name_en }}
-                                @endif
-                        </div>
-                        <div class="col-lg-4 col-md-6 mb-2">
-                            SubCategory: 
-                            @if ($item->sub_category != '' || $item->sub_category != NULL)
-                                <span>
+                        @if ($route == 'post_index')
+                            <div class="col-lg-4 col-md-6 mb-2">
+                                Category:
                                     @if ($item->lang == 'mm')
-                                            {{ $item->sub_category->name_mm }}
-                                        @elseif($item->lang == 'ch')
-                                            {{ $item->sub_category->name_ch }}
-                                        @elseif($item->lang == 'ta')
-                                            {{ $item->sub_category->name_ta }}
-                                        @else
-                                            {{ $item->sub_category->name_en }}
-                                        @endif
-                                </span>
-                            @endif
-                        </div>
+                                        {{ $item->category->name_mm }}
+                                    @elseif($item->lang == 'ch')
+                                        {{ $item->category->name_ch }}
+                                    @elseif($item->lang == 'ta')
+                                        {{ $item->category->name_ta }}
+                                    @else
+                                        {{ $item->category->name_en }}
+                                    @endif
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-2">
+                                SubCategory:
+                                @if ($item->sub_category != '' || $item->sub_category != NULL)
+                                    <span>
+                                        @if ($item->lang == 'mm')
+                                                {{ $item->sub_category->name_mm }}
+                                            @elseif($item->lang == 'ch')
+                                                {{ $item->sub_category->name_ch }}
+                                            @elseif($item->lang == 'ta')
+                                                {{ $item->sub_category->name_ta }}
+                                            @else
+                                                {{ $item->sub_category->name_en }}
+                                            @endif
+                                    </span>
+                                @endif
+                            </div>
+                        @endif
                         <div class="col-lg-4 col-md-6 mb-2">
                             Tag:
                             @foreach ($item->tags as $post_tag)
@@ -117,7 +119,7 @@
                             Views:{{ $item->views }}
                         </div>
                         <div class="col-lg-4 col-md-6 mb-2">
-                            Language: 
+                            Language:
                                 @if ($item->lang == 'en')
                                     English
                                 @elseif($item->lang == 'mm')

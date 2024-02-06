@@ -33,7 +33,7 @@
                                         $name = '相片';
                                     }else if($id == '7' || $id == '8'){
                                         $link = '/ta/photos';
-                                        $name = 'ဓာတ်ပုံများ';
+                                        $name = 'ရူပ်အရာင်';
                                     }elseif($id == '1' || $id == '4'){
                                         $link = '/en/photos';
                                         $name = 'Photos';
@@ -60,7 +60,7 @@
                                     }
                                     else if($id == '7' || $id == '8'){
                                         $link = '/ta/photo_essays';
-                                        $name = 'ဓာတ်ပုံအက်ဆေးများ';
+                                        $name = 'ရုပ်အရာင် Essay';
                                     }elseif($id == '1' || $id == '4'){
                                         $link = '/en/photo_essays';
                                         $name = 'Photo Essays';
@@ -113,7 +113,7 @@
                                         $name = '卡通';
                                     }else if($id == '7' || $id == '8'){
                                         $link = '/ta/cartoons';
-                                        $name = 'ကာတွန်းများ';
+                                        $name = 'ကာတူန်း';
                                     }elseif($id == '1' || $id == '4'){
                                         $link = '/en/cartoons';
                                         $name = 'Cartoons';
@@ -139,7 +139,7 @@
                                         $name = '联络我们';
                                     }else if($id == '7' || $id == '8'){
                                         $link = '/ta/contact';
-                                        $name = 'ဆက်သွယ်ရန်';
+                                        $name = 'ဒီကဆိုပ်ကဘား';
                                     }elseif($id == '1' || $id == '4'){
                                         $link = '/en/contact';
                                         $name = 'Contact';
@@ -152,7 +152,7 @@
                             @endphp
                             <div class="form-check mb-3">
                                 <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="" data-page-input-id="page_input_contact" data-page-type="page" data-page-item-id="p-5" {{ $menu ? 'checked' : '' }}>
-                                <label class="form-check-label">{{ $name }}</label>
+                                <label class="form-check-label">{{ $name }} </label>
                                 <input type="text" id="page_input_contact" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : $link)) }}">
                             </div>
 
@@ -187,13 +187,13 @@
                                 @endphp
                             @endif
                                 @php
-                                
+
                                     $menu = $menu_items->where('item_id', $item->id)->where('type', 'page')->first();
                                 @endphp
                                 <div class="form-check mb-3">
-                                
+
                                     <input class="form-check-input page-input-check" type="checkbox" name="{{ $name }}" value="{{ $item->id }}" data-page-input-id="page_input_{{ $item->id }}" data-page-type="page" data-page-item-id="{{ $item->id }}"" {{ $menu ? 'checked' : '' }}>
-                                    <label class="form-check-label">{{ $name }}</label>
+                                    <label class="form-check-label">{{ $name }} </label>
                                     <input type="text" id="page_input_{{ $item->id }}" placeholder="Enter Link" class="form-control input-link @error('link') is-invalid @enderror" id="" name="link" value="{{ old('link', ($menu ? $menu->link : $link)) }}">
                                 </div>
                             @endforeach

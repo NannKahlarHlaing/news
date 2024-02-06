@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Category;
+use App\Models\MenuItem;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -65,12 +67,21 @@ class CategoryController extends Controller
 
     public function destroy($id){
         $post = Category::find($id);
+        $name_en = $post->name_en;
+        $name_mm = $post->name_mm;
+        $name_ch = $post->name_ch;
+        $name_ta = $post->name_ta;
+
         if(!$post){
             abort(404);
-        }   
+        }
         $post->delete();
 
+        MenuItem::where('name', $name_en)->orWhere('name', $name_mm)->orWhere('name', $name_ch)->orWhere('name', $name_ta)->delete();
+
         SubCategory::where('category_id', $id)->delete();
+
+        Post::where('category_id', $id)->delete();
 
         return redirect('/admin/categories')->with('status', 'Category is deleted successfully!');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Http\Controllers\PostController;
@@ -72,10 +73,14 @@ class PageController extends Controller
 
     public function destroy($id){
         $post = Page::find($id);
+
+        $name = $post->title;
         if(!$post){
             abort(404);
         }
         $post->delete();
+        
+        MenuItem::where('name', $name)->delete();
 
         return redirect ('/admin/pages')->with('status', 'Post is deleted successfully!');
 

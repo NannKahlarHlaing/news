@@ -73,7 +73,7 @@
                     <nav class="navbar navbar-expand-lg navbar-light aa">
                         <a class="btn btn-transparent py-0 ps-0 d-none" id="all-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
                             <img src="{{ asset('images/logo.png') }}" class="d-none d-lg-inline" alt="" width="80px" height="80px">
-                            <button class="btn btn-gray mt-1"><p class="fw-bold px-2">{{ __('language.all_menu') }}</p></button>
+                            <button class="btn btn-gray mt-1"><p class="fw-bold px-2">{{ __('language.all_menu') }}</p></button> 
                         </a>
                         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
                             <div class="container-fluid">
@@ -246,7 +246,7 @@
                         <div class="col-md-3">
                             <div class="row footer-social">
                                 <div class="col-12 d-flex-center border-bottom border-white pb-3 mb-3">
-                                   <a href="{{ $facebook_link }}"><i class="fa-brands fa-square-facebook me-3"></i></a> <a href="{{ $youtube_link }}"><i class="fa-brands fa-square-youtube me-3"></i></a> <a href="{{ $instagram_link }}"><i class="fa-brands fa-instagram me-3"></i></a> <a href="{{ $twitter_link }}"><i class="fa-brands fa-square-twitter"></i></a> 
+                                   <a href="{{ $facebook_link }}"><i class="fa-brands fa-square-facebook me-3"></i></a> <a href="{{ $youtube_link }}"><i class="fa-brands fa-square-youtube me-3"></i></a> <a href="{{ $instagram_link }}"><i class="fa-brands fa-instagram me-3"></i></a> <a href="{{ $twitter_link }}"><i class="fa-brands fa-square-twitter"></i></a>
                                 </div>
                                 <div class="col-12 text-center">
                                     <p>{{ $info->email }}</p>
