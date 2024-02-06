@@ -66,19 +66,19 @@ Route::group(['middleware' => 'normal'], function () {
     Route::prefix('/admin')->group(function(){
 
         Route::get('/', [DashboardController::class, 'index'])->name('admin');
-        
-        
+
+
         Route::controller(SubscribeController::class)->group(function(){
             Route::get('/subscribers', 'subscribers')->name('backend.subscribers');
             Route::delete('/subscribers/unsubscribe/{id}', 'unsubscribe');
-            
+
             Route::get('/newsletters', 'newsletters')->name('backend.newsletters');
             Route::get('/newsletter_form', 'newsletter_form')->name('backend.newsletter_form');
             Route::post('/newsletter', 'send_newsletter')->name('newsletter');
             Route::get('/newsletters/details/{id}', 'details');
             Route::delete('/newsletters/delete/{id}', 'delete_newsletter');
         });
-        
+
 
         Route::controller(PostController::class)->group(function(){
             Route::get('/posts', 'index')->name('backend.posts');
@@ -112,7 +112,7 @@ Route::group(['middleware' => 'normal'], function () {
                     Route::get('/menu/update/{id}', 'update_menu')->name('backend.menu.update');
                     Route::get('/menu_items/create', 'create_menuItems')->name('backend.menu_items.create');
 
-                    Route::get('/menu_items/update', 'update_menuItems')->name('backend.menu_items.update');
+                    Route::post('/menu_items/update', 'update_menuItems')->name('backend.menu_items.update');
 
                     Route::get('all/menus/index', 'all_menu')->name('backend.all_menus.index');
 

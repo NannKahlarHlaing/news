@@ -32,7 +32,7 @@ class MenuController extends Controller
         }
 
         $pages = Page::where('lang', $lang)->get();
-        
+
         $categories = Category::all();
         $sub_categories = SubCategory::all();
 
@@ -90,6 +90,7 @@ class MenuController extends Controller
     }
 
     public function update_menuItems(Request $request) {
+
         $arr = [];
         if($request->formData !== null){
             foreach ($request->formData as $data) {

@@ -366,6 +366,8 @@
 
         $('.btn-save').click(function(event){
 
+            event.preventDefault();
+
             var menu_id = $("#menu_id").val();
 
             var formData = [];
@@ -453,13 +455,17 @@
                 });
             });
 
+            var csrfToken = "{{ csrf_token() }}";
             $.ajax({
                 url: "{{ route('backend.menu_items.update') }}",
-                type: "GET",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
                 data: { 'menu_id': menu_id, 'formData': formData, 'uncheckedData': uncheckedData },
-                dataType: 'json',
+                // dataType: 'json',
                 success: function(response) {
-                    console.log(response);
+                    location.reload();
                 },
                 // error: function(error) {
                 //     console.error("Error while saving data.");
@@ -477,7 +483,7 @@
                 type: 'GET',
                 data: { 'id': id, 'order': order},
                 success: function(response){
-                   location.reload();
+                //    location.reload();
                 }
             })
         })
