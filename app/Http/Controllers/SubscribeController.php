@@ -47,6 +47,10 @@ class SubscribeController extends Controller
     }
 
     public function send_newsletter(Request $request){
+        $subscribers = Subscribe::all();
+        if($subscribers->isEmpty()){
+            return redirect('/admin/newsletters')->with('empty', 'Newsletter cannot sent. You have no subscribers');
+        }
         $data = [
             'subject' => $request->subject,
             'message' => $request->message
@@ -54,13 +58,12 @@ class SubscribeController extends Controller
 
         Newsletter::create($data);
 
-        $subscribers = Subscribe::all();
+        
         foreach ($subscribers as $subscribe) {
             Mail::to($subscribe->email)->send(new NewsLetterMail($data));
         }
 
         return redirect('/admin/newsletters')->with('success', 'Newsletter is sent successfully');
-
     }
 
     public function unsubscribe($id){

@@ -10,6 +10,11 @@
                     {{ Session::get('status') }}
                 </div>
             @endif
+            @if (Session::has('empty'))
+                <div class="alert alert-danger" role="alert">
+                    {{ Session::get('empty') }}
+                </div>
+            @endif
         </div>
     </div>
     <div class="row">
