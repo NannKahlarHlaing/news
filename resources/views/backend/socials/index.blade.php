@@ -68,7 +68,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="instagram">Instagram</label>
+                        <label for="instagram">Telegram</label>
                         <input type="text" class="form-control @error('instagram') is-invalid @enderror" value="{{  is_object($post) ? $post->instagram : '' }}" name="instagram">
                         @error('instagram')
                             <div class="invalid-feedback">
