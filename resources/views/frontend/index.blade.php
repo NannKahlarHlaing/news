@@ -44,7 +44,15 @@
             display: flex;
             flex-wrap: wrap;
         }
+        .fa-facebook, .fa-youtube, .fa-instagram, .fa-square-twitter, .fa-linkedin, .fa-telegram{
+            color: var(--sectheme-color);
+            font-size: 2.5rem;
+        }
 
+        .footer-social .fa-facebook, .footer-social .fa-youtube, .footer-social .fa-instagram, .footer-social .fa-square-twitter, .fa-telegram{
+            color: #fff;
+            font-size: 2.5rem;
+        }
 
         @media only screen and (max-width: 412px){
         .offcanvas{
