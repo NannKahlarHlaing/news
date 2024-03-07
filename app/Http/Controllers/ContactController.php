@@ -17,8 +17,9 @@ class ContactController extends Controller
         $data = $this->getData($request);
 
         Contact::create($data);
+        $mail_to = env('MAIL_FROM_ADDRESS');
 
-        Mail::to('imh.nannkahlar@gmail.com')->send(new ContactMail($data));
+        Mail::to($mail_to)->send(new ContactMail($data));
 
         return back()->with('message', 'Your Message has been send successfully!');
 
